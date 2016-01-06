@@ -4,3 +4,5 @@ Members:
 - Robin Verleun
 - Satyen Akolkar
 - Shahzeb Asif
+- Hailey Musselman
+- Alexandra Thompson
