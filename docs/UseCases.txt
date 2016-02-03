@@ -1,0 +1,18 @@
+1. UserLogin
+2. ShowItemsInPossession
+3. SearchForNewItem
+4. ShowNotifications
+5. RemoveNotification
+6. AddBidOnItem
+7. SeeDescriptionOnItem
+8. AcceptBidOnItem
+9. ChangeProfileContactInfo
+10. ChangeProfileDescription
+11. ShowListOfItemsHavingBid
+12. DeclineBidOnItem
+13. ShowItemsBeingBorrowedByUser
+14. ShowItemsBeingBorrowedByOthers
+15. ReturnItem
+16. LendItem
+17. AddNewItem (online/offline)
+18. DeleteItem
