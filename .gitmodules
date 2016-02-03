@@ -1,0 +1,3 @@
+[submodule "meetings/Notes"]
+	path = meetings/Notes
+	url = git@github.com:CMPUT301W16T05/Notes.git
