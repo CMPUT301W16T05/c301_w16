@@ -47,6 +47,7 @@ Thumbs.db
 .idea/datasources.xml
 .idea/dataSources.ids
 .idea/*.iws
+.idea/libraries
 
 # VIM temp files
 *.swo
