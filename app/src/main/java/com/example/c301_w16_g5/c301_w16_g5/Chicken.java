@@ -73,8 +73,4 @@ public class Chicken {
     public void setRate(double rate) {
         this.rate = rate;
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> RobinWork
