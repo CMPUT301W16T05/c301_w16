@@ -1,10 +1,10 @@
 package com.example.c301_w16_g5.c301_w16_g5;
 
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 /**
  * To work on unit tests, switch the Test Artifact in the Build Variants view.
@@ -13,14 +13,10 @@ public class ThingTest {
     Chicken chicken;
     User user;
 
-    @BeforeClass
+    @Before
     public void initializeVariables() {
         user = new User();
-        chicken = new Chicken("Bob", "Friendly chicken", user, AVAILABLE);
-    }
-
-    @Before
-    public void resetUser() {
+        chicken = new Chicken("Bob", "Friendly chicken", 13.55, Chicken.Status.AVAILABLE);
         user.removeAllChickens();
     }
 
@@ -36,7 +32,7 @@ public class ThingTest {
         assertNotEquals(user.getNumberOfThings(), 0);
 
         Chicken chicken = user.getChicken(0);
-        chicken.update("Tim", "No chicken", user, AVAILABLE);
+        chicken.update("Tim", "No chicken", 15.99, Chicken.Status.AVAILABLE);
 
         assertEquals(chicken.getName(), "Tim");
         assertEquals(chicken.getDescription(), "No chicken");
