@@ -34,4 +34,13 @@ public class User {
     public ArrayList<Chicken> getBorrowedFromMe(ArrayList<Chicken> listOfThings) {
         return null;
     }
+
+    public void releaseChicken(Chicken chicken){
+
+    }
+
+    public Chicken getChicken(Chicken chicken){
+        return null;
+    }
 }
+

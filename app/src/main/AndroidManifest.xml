@@ -43,6 +43,64 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.c301_w16_g5.c301_w16_g5.MainScreen" />
         </activity>
+        <activity
+            android:name=".SearchActivity"
+            android:label="@string/title_activity_search"
+            android:parentActivityName=".MainScreen"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.c301_w16_g5.c301_w16_g5.MainScreen" />
+        </activity>
+        <activity
+            android:name=".Profile"
+            android:label="@string/title_activity_profile"
+            android:parentActivityName=".MainScreen"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.c301_w16_g5.c301_w16_g5.MainScreen" />
+        </activity>
+        <activity
+            android:name=".EditProfileActivity"
+            android:label="@string/title_activity_edit_profile"
+            android:parentActivityName=".Profile"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.c301_w16_g5.c301_w16_g5.Profile" />
+        </activity>
+        <activity
+            android:name=".ItemProfileActivity"
+            android:label="@string/title_activity_item_profile"
+            android:parentActivityName=".ItemViews"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.c301_w16_g5.c301_w16_g5.ItemViews" />
+        </activity>
+        <activity
+            android:name=".NoticesActivity"
+            android:label="@string/title_activity_notices"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".BidsActivity"
+            android:label="@string/title_activity_bids"
+            android:parentActivityName=".ItemProfileActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.c301_w16_g5.c301_w16_g5.ItemProfileActivity" />
+        </activity>
+        <activity
+            android:name=".AddItemActivity"
+            android:label="@string/title_activity_add_item"
+            android:parentActivityName=".ItemViews"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.c301_w16_g5.c301_w16_g5.ItemViews" />
+        </activity>
     </application>
 
 </manifest>
