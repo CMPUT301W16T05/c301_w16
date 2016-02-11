@@ -101,6 +101,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.c301_w16_g5.c301_w16_g5.ItemViews" />
         </activity>
+        <activity
+            android:name=".AddProfileActivity"
+            android:label="@string/title_activity_add_profile"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".UserProfileActivity"
+            android:label="@string/title_activity_user_profile"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

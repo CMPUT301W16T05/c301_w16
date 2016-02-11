@@ -45,6 +45,10 @@ public class User {
         return null;
     }
 
+    public boolean hasChicken(Chicken chicken){
+        return false;
+    }
+
     public UserProfile getUserProfile() {
         return userProfile;
     }
