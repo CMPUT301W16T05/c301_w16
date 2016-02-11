@@ -55,7 +55,7 @@ public class BorrowTest extends ActivityInstrumentationTestCase2 {
      * sub-activity only displays items belonging to another user and have status
      * 'borrowed'
      */
-    public void test_getBorrowedFromOthers(){
+    public void testGetBorrowedFromOthers(){
         ArrayList<Chicken> borrowedThings = user.getBorrowedFromOthers(listOfThings);
 
         ArrayList<Chicken> expectedCase = new ArrayList<Chicken>();
@@ -69,7 +69,7 @@ public class BorrowTest extends ActivityInstrumentationTestCase2 {
      * sub-activity only displays items belonging to self and have status
      * 'borrowed'
      */
-    public void getBorrowedFromMe(){
+    public void testGetBorrowedFromMe(){
         ArrayList<Chicken> myBorrowedThings = user.getBorrowedFromMe(listOfThings);
 
         ArrayList<Chicken> expectedCase = new ArrayList<Chicken>();
