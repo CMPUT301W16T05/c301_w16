@@ -1,5 +1,4 @@
 # We can add file/directory types as they come up
-local.properties
 
 # 1/19/16 - Phil
 # http://stackoverflow.com/questions/16736856/what-should-be-in-my-gitignore-for-an-android-studio-project
@@ -46,3 +45,4 @@ Thumbs.db
 .idea/tasks.xml
 .idea/datasources.xml
 .idea/dataSources.ids
+.idea/*.iws
