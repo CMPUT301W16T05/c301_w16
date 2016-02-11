@@ -6,6 +6,8 @@ import java.util.ArrayList;
  * Created by shahzeb on 2/10/16.
  */
 public class User {
+    private UserProfile userProfile;
+
     public static User getCurrentUser() {
         return null;
     }
@@ -41,6 +43,18 @@ public class User {
 
     public Chicken getChicken(Chicken chicken){
         return null;
+    }
+
+    public UserProfile getUserProfile() {
+        return userProfile;
+    }
+
+    public void setUserProfile(UserProfile userProfile) {
+        this.userProfile = userProfile;
+    }
+
+    public boolean hasUserProfile() {
+        return userProfile != null;
     }
 }
 

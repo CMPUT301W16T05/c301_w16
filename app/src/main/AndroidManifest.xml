@@ -53,7 +53,7 @@
                 android:value="com.example.c301_w16_g5.c301_w16_g5.MainScreen" />
         </activity>
         <activity
-            android:name=".Profile"
+            android:name=".UserProfile"
             android:label="@string/title_activity_profile"
             android:parentActivityName=".MainScreen"
             android:theme="@style/AppTheme.NoActionBar">
@@ -64,11 +64,11 @@
         <activity
             android:name=".EditProfileActivity"
             android:label="@string/title_activity_edit_profile"
-            android:parentActivityName=".Profile"
+            android:parentActivityName=".UserProfile"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.c301_w16_g5.c301_w16_g5.Profile" />
+                android:value=".UserProfile" />
         </activity>
         <activity
             android:name=".ItemProfileActivity"
