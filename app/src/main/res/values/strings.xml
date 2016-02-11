@@ -26,4 +26,6 @@
     <string name="title_activity_notices">NoticesActivity</string>
     <string name="title_activity_bids">BidsActivity</string>
     <string name="title_activity_add_item">AddItemActivity</string>
+    <string name="title_activity_add_profile">AddProfileActivity</string>
+    <string name="title_activity_user_profile">UserProfileActivity</string>
 </resources>
