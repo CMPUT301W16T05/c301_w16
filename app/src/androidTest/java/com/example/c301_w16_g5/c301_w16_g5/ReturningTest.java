@@ -2,9 +2,6 @@ package com.example.c301_w16_g5.c301_w16_g5;
 
 import android.test.ActivityInstrumentationTestCase2;
 
-/**
- * Created by satyen on 2/11/16.
- */
 public class ReturningTest extends ActivityInstrumentationTestCase2 {
 
     public ReturningTest() {
@@ -26,7 +23,7 @@ public class ReturningTest extends ActivityInstrumentationTestCase2 {
 
     public void testReturningAChicken(){
         borrower.releaseChicken(chicken);
-        assert(owner.getChicken(chicken).getStatus() == Chicken.Status.AVAILABLE);
+        assertTrue(owner.getChicken(chicken).getStatus() == Chicken.Status.AVAILABLE);
     }
 
 }
