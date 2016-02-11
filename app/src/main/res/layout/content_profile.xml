@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.c301_w16_g5.c301_w16_g5.Profile"
+    tools:context=".UserProfile"
     tools:showIn="@layout/activity_profile">
 
 </RelativeLayout>
