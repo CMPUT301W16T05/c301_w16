@@ -31,6 +31,7 @@ public class SearchTest extends ActivityInstrumentationTestCase2 {
         allChickens.add(chicken2);
         allChickens.add(chicken3);
         allChickens.add(chicken4);
+        allChickens.add(chicken5);
 
         // test normal functionality
         String[] keywords1 = {"Friendly"};
