@@ -21,6 +21,7 @@ public class ReturningTest extends ActivityInstrumentationTestCase2 {
         borrower.addChicken(chicken);
     }
 
+    // US 07.01.01
     public void testReturningAChicken(){
         borrower.releaseChicken(chicken);
         assertTrue(owner.getChicken(chicken).getStatus() == Chicken.Status.AVAILABLE);

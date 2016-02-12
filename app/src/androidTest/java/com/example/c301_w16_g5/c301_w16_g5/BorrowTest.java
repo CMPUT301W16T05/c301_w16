@@ -49,7 +49,7 @@ public class BorrowTest extends ActivityInstrumentationTestCase2 {
         listOfThings.add(chicken4);
     }
 
-    /*
+    /* US 06.01.01
      * Will require testing an activity and verifying that upon launching the
      * sub-activity only displays items belonging to another user and have status
      * 'borrowed'
@@ -63,7 +63,7 @@ public class BorrowTest extends ActivityInstrumentationTestCase2 {
         assertTrue(borrowedThings.equals(expectedCase));
     }
 
-    /*
+    /* US 06.02.01
      * Will require testing an activity and verifying that upon launching the
      * sub-activity only displays items belonging to self and have status
      * 'borrowed'

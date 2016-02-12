@@ -11,6 +11,7 @@ public class UserProfileTest extends ActivityInstrumentationTestCase2 {
         super(UserProfile.class);
     }
 
+    // US 03.01.01
     public void testAddMyProfile() {
         // valid profile info
         User user = new User();
@@ -82,6 +83,7 @@ public class UserProfileTest extends ActivityInstrumentationTestCase2 {
         }
     }
 
+    // US 03.02.01
     public void testEditMyProfile() {
         // valid profile info
         User user1 = new User();
@@ -137,6 +139,7 @@ public class UserProfileTest extends ActivityInstrumentationTestCase2 {
         }
     }
 
+    // US 03.03.01
     public void testGetUserForChicken() {
         UserList allUsers = new UserList(); // subject to change based on how users are stored
 
