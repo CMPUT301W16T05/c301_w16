@@ -26,23 +26,24 @@ public class SearchTest extends ActivityInstrumentationTestCase2 {
                 Chicken.Status.BORROWED);
 
         // subject to change based on how chickens are stored
-        ChickenList allChickens = new ChickenList();
+        ChickenDatabase allChickens = new ChickenDataBase();
         allChickens.add(chicken1);
         allChickens.add(chicken2);
         allChickens.add(chicken3);
         allChickens.add(chicken4);
         allChickens.add(chicken5);
+        Search search = new Search();
+        search.setDatabase(allChickens);
 
         // test normal functionality
-        String[] keywords1 = {"Friendly"};
-        Search search = new Search();
+        String keywords1 = "Friendly";
         List<Chicken> results = new ArrayList<Chicken>();
         results.add(chicken1);
         results.add(chicken2);
         assertEquals(results, search.searchFor(keywords1));
 
         // test no input
-        String[] keywords2 = {};
+        String keywords2 = "";
         try {
             search.searchFor(keywords2);
         } catch (Exception e) {
@@ -50,18 +51,20 @@ public class SearchTest extends ActivityInstrumentationTestCase2 {
         }
 
         // test search with no match
-        String[] keywords3 = {"rooster", "Bob"};
+        String keywords3 = "rooster Bob";
         results = new ArrayList<Chicken>();
         assertEquals(results, search.searchFor(keywords3));
 
         // test search whose results are reduced because at least one matching item is borrowed
-        String[] keywords4 = {"Shy", "chicken"};
+        String keywords4 = "Shy chicken";
         results = new ArrayList<Chicken>();
         results.add(chicken3);
         assertEquals(results, search.searchFor(keywords4));
 
-        // test case sensitivity
-        String[] keywords5 = {"friendly", "CHICKEN"};
+        // test adding punctuation (ensure it's ignored)
+        // and that order doesn't matter
+        // and that results are case-insensitive
+        String keywords5 = "chicken, friendly";
         results = new ArrayList<Chicken>();
         results.add(chicken1);
         results.add(chicken2);
