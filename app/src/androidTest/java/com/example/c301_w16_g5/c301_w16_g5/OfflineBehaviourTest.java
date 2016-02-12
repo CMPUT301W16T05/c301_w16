@@ -10,6 +10,7 @@ public class OfflineBehaviourTest extends ActivityInstrumentationTestCase2 {
         super(Chicken.class); // TODO: make sure this is right
     }
 
+    // US 08.01.01
     public void TestAddAThingOffline() {
         // not sure how to deal with the connection, so do this for now:
         Server server = new Server();

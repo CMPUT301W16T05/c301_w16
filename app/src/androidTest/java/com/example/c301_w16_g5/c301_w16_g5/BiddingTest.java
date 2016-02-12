@@ -37,6 +37,7 @@ public class BiddingTest extends ActivityInstrumentationTestCase2 {
         chicken3.setUser(user2);
     }
 
+    // US 05.01.01
     public void testPlaceBid() {
         user2.setBalance(10.0);
 
@@ -55,6 +56,7 @@ public class BiddingTest extends ActivityInstrumentationTestCase2 {
         } catch (Exception e) {}
     }
 
+    // US 05.02.01
     public void testGetMyPlacedBids() {
         Bid bid1 = new Bid(user2, 4.0, chicken1); // bid owned by user 2
         Bid bid2 = new Bid(user1, 4.0, chicken3); // bid owned by user 1
@@ -68,12 +70,14 @@ public class BiddingTest extends ActivityInstrumentationTestCase2 {
         assertTrue(my_bids.contains(bid2));
     }
 
+    // US 05.03.01
     public void testReceiveBidNotification() {
         assertTrue(user1.getNotifications().size() == 0);
         Bid bid1 = new Bid(user2, 4.0, chicken1);
         assertTrue(user1.getNotifications().size() == 1);
     }
 
+    // US 05.04.01
     public void testGetBiddedItems() {
         assertFalse(user1.getItemsWithBids().contains(chicken1));
         assertFalse(user1.getItemsWithBids().contains(chicken2));
@@ -84,6 +88,7 @@ public class BiddingTest extends ActivityInstrumentationTestCase2 {
         assertTrue(user1.getItemsWithBids().contains(chicken2));
     }
 
+    // US 05.05.01
     public void testGetBidsForItem() {
         assertTrue(chicken1.getBids().size() == 0);
 
@@ -91,6 +96,7 @@ public class BiddingTest extends ActivityInstrumentationTestCase2 {
         assertTrue(chicken1.getBids().contains(bid1));
     }
 
+    // US 05.06.01
     public void testAcceptBid() {
         Bid bid1 = new Bid(user2, 4.0, chicken1);
         Bid bid2 = new Bid(user3, 5.0, chicken1);
@@ -110,6 +116,7 @@ public class BiddingTest extends ActivityInstrumentationTestCase2 {
         assertTrue(chicken1.getPossessor() == user2);
     }
 
+    // US 05.07.01
     public void testDeclineBid() {
         Bid bid1 = new Bid(user2, 4.0, chicken1);
         Bid bid2 = new Bid(user3, 5.0, chicken1);

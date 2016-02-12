@@ -11,6 +11,7 @@ public class UserProfileTest extends ActivityInstrumentationTestCase2 {
         super(UserProfile.class);
     }
 
+    // US 03.01.01
     public void testAddMyProfile() {
         User user = new User();
         assert(!user.hasUserProfile());
@@ -81,6 +82,7 @@ public class UserProfileTest extends ActivityInstrumentationTestCase2 {
         }
     }
 
+    // US 03.02.01
     public void testEditMyProfile() {
         User user1 = new User();
         UserProfile profile1 = new UserProfile("unique_user1", "First",
@@ -135,6 +137,7 @@ public class UserProfileTest extends ActivityInstrumentationTestCase2 {
         }
     }
 
+    // US 03.03.01
     public void testGetUserForChicken() {
         UserList allUsers = new UserList(); // subject to change based on how users are stored
 

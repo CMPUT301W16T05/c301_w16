@@ -19,11 +19,13 @@ public class ChickenTest extends ActivityInstrumentationTestCase2 {
         user.removeAllChickens();
     }
 
+    // US 01.01.01
     public void testAddAThing() {
         user.addChicken(chicken);
         assertFalse(user.getNumberOfThings() == 0);
     }
 
+    // US 01.04.01
     public void testEditMyThing() {
         user.addChicken(chicken);
         assertFalse(user.getNumberOfThings() == 0);
@@ -35,6 +37,7 @@ public class ChickenTest extends ActivityInstrumentationTestCase2 {
         assertEquals(chicken.getDescription(), "No chicken");
     }
 
+    // US 01.05.01
     public void testDeleteMyThing() {
         user.addChicken(chicken);
         assertFalse(user.getNumberOfThings() == 0);
@@ -43,6 +46,7 @@ public class ChickenTest extends ActivityInstrumentationTestCase2 {
         assertEquals(user.getNumberOfThings(), 0);
     }
 
+    // US 02.01.01
     public void testThingHasStatus() {
         user.addChicken(chicken);
         assertFalse(user.getNumberOfThings() == 0);

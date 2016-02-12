@@ -13,6 +13,7 @@ public class SearchTest extends ActivityInstrumentationTestCase2 {
         super(Search.class);
     }
 
+    // US 04.01.01
     public void testSearchByKeywords() {
         Chicken chicken1 = new Chicken("Bob", "Friendly chicken", 13.55,
                 Chicken.Status.AVAILABLE);
