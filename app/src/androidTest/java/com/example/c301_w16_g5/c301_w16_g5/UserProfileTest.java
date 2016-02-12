@@ -12,6 +12,7 @@ public class UserProfileTest extends ActivityInstrumentationTestCase2 {
     }
 
     public void testAddMyProfile() {
+        // valid profile info
         User user = new User();
         assert(!user.hasUserProfile());
         UserProfile profile = new UserProfile("unique_user123", "First",
@@ -82,6 +83,7 @@ public class UserProfileTest extends ActivityInstrumentationTestCase2 {
     }
 
     public void testEditMyProfile() {
+        // valid profile info
         User user1 = new User();
         UserProfile profile1 = new UserProfile("unique_user1", "First",
                 "Last", "user@ualberta.ca", "780-123-4567",
@@ -153,8 +155,10 @@ public class UserProfileTest extends ActivityInstrumentationTestCase2 {
         allUsers.add(user1);
         allUsers.add(user2);
 
+        // get user from valid username
         assertEquals(profile1, allUsers.getUserProfileForUsername("unique_user1"));
 
+        // attempt to get user from username not in use
         try {
             allUsers.getUserProfileForUsername("not-a-username");
             fail("fail on unused username");
