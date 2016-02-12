@@ -41,6 +41,30 @@ public class User {
 
     }
 
+    public void acceptBid(Bid bid) {
+
+    }
+
+    public void declineBid(Bid bid) {
+
+    }
+
+    public void setBalance(Double new_bal) {
+
+    }
+
+    public ArrayList<Chicken> getItemsWithBids() {
+        return null;
+    }
+
+    public ArrayList<Bid> getBids() {
+        return null;
+    }
+
+    public ArrayList<Notification> getNotifications() {
+        return null;
+    }
+
     public Chicken getChicken(Chicken chicken){
         return null;
     }

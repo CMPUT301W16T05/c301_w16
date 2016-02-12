@@ -1,5 +1,7 @@
 package com.example.c301_w16_g5.c301_w16_g5;
 
+import java.util.ArrayList;
+
 /**
  * Created by Robin on 2016-02-10.
  */
@@ -72,5 +74,17 @@ public class Chicken {
 
     public void setRate(double rate) {
         this.rate = rate;
+    }
+
+    public ArrayList<Bid> getBids() {
+        return null;
+    }
+
+    public boolean hasBid(Bid bid) {
+        return false;
+    }
+
+    public User getPossessor() {
+        return null;
     }
 }
