@@ -20,9 +20,9 @@ public class EditProfileActivityTest extends ActivityInstrumentationTestCase2 {
 
         intent.putExtra(AddProfileActivity.TEXT_SPECIFYING_PROFILE, profile);
         setActivityIntent(intent);
-        AddProfileActivity apa = (AddProfileActivity) getActivity();
+        AddProfileActivity epa = (AddProfileActivity) getActivity();
 
         assertEquals("AddProfileActivity should get the user from the intent",
-                profile, apa.getUserProfile());
+                profile, epa.getUserProfile());
     }
 }
