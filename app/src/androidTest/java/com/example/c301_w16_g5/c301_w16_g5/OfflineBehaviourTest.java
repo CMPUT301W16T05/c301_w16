@@ -23,6 +23,21 @@ public class OfflineBehaviourTest extends ActivityInstrumentationTestCase2 {
         server.reconnect();
 
         assert(user.hasChicken(chicken));
+
+        // simulate poor connectivity
+        server = new Server();
+        server.disconnect();
+
+        user = new User();
+        chicken = new Chicken("Bob", "Friendly chicken", 13.55, Chicken.Status.AVAILABLE);
+        user.addChicken(chicken);
+        assert(!user.hasChicken(chicken));
+
+        server.reconnect();
+        server.disconnect();
+        server.reconnect();
+
+        assert(user.hasChicken(chicken));
     }
 
 }
