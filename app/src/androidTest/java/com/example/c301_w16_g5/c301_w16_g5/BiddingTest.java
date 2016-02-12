@@ -4,10 +4,117 @@ import android.test.ActivityInstrumentationTestCase2;
 
 public class BiddingTest extends ActivityInstrumentationTestCase2 {
 
+    public User user1 = new User();
+    public User user2 = new User();
+    public User user3 = new User();
+
+    public Chicken chicken1 = new Chicken();
+    public Chicken chicken2 = new Chicken();
+    public Chicken chicken3 = new Chicken();
+
     public BiddingTest() {
         super(MainScreen.class);
     }
 
+    protected void setUp() throws Exception {
+        super.setUp();
 
+        chicken1.setName("Name 1");
+        chicken1.setDescription("Description 1");
+        chicken1.setStatus(Chicken.Status.AVAILABLE);
+        chicken1.setUser(user1);
 
+        chicken2.setName("Name 2");
+        chicken2.setDescription("Description 2");
+        chicken2.setStatus(Chicken.Status.AVAILABLE);
+        chicken2.setUser(user1);
+
+        chicken3.setName("Name 3");
+        chicken3.setDescription("Description 3");
+        chicken3.setStatus(Chicken.Status.AVAILABLE);
+        chicken3.setUser(user2);
+    }
+
+    public void testPlaceBid() {
+        // test bid place on available item
+        Bid bid1 = new Bid(user2, 5, chicken1);
+        assertTrue(chicken1.hasBid(bid));
+
+        Bid bid2 = new Bid(user2, 5, chicken2);
+        assertFalse(chicken2.hasBid(bid));
+    }
+
+    public void testGetMyPlacedBids() {
+        Bid bid1 = new Bid(user2, 4, chicken1); // bid owned by user 2
+        Bid bid2 = new Bid(user1, 4, chicken3); // bid owned by user 1
+
+        ArrayList<Bid> my_bids = user2.getBids();
+        assertTrue(my_bids.contains(bid1));
+        assertFalse(my_bids.contains(bid2));
+
+        bid2 = new Bid(user2, 5, chicken2);
+        my_bids = user2.getBids();
+        assertTrue(my_bids.contains(bid2));
+    }
+
+    public void testReceiveBidNotification() {
+        assertTrue(user1.getNotifications().size() == 0);
+        Bid bid1 = new Bid(user2, 4, chicken1);
+        assertTrue(user1.getNotifications().size() == 1);
+    }
+
+    public void testGetBiddedItems() {
+        assertFalse(user1.getItemsWithBids().contains(chicken1));
+        assertFalse(user1.getItemsWithBids().contains(chicken2));
+
+        Bid bid1 = new Bid(user2, 4, chicken1);
+        assertTrue(user1.getItemsWithBids().contains(chicken1));
+        Bid bid2 = new Bid(user2, 5, chicken2);
+        assertTrue(user1.getItemsWithBids().contains(chicken2));
+    }
+
+    public void testGetBidsForItem() {
+        assertTrue(chicken1.getBids().size() == 0);
+
+        Bid bid1 = new Bid(user2, 4, chicken1);
+        assertTrue(chicken1.getBids().contains(bid1));
+    }
+
+    public void testAcceptBid() {
+        Bid bid1 = new Bid(user2, 4, chicken1);
+        Bid bid2 = new Bid(user3, 5, chicken1);
+
+        assertTrue(bid1.getStatus() == Bid.Status.PENDING_APPROVAL);
+        assertTrue(bid2.getStatus() == Bid.Status.PENDING_APPROVAL);
+
+        // test non-owner cannot accept bid
+        user2.acceptBid(bid2);
+        assertTrue(bid2.getStatus() == Bid.Status.PENDING_APPROVAL);
+
+        // test owner can accept bid
+        user1.acceptBid(bid1);
+        assertTrue(bid1.getStatus() == Bid.Status.ACCEPTED);
+        assertTrue(bid2.getStatus() == Bid.Status.DECLINED);
+
+        assertTrue(chicken1.getPossessor() == user2);
+    }
+
+    public void testDeclineBid() {
+        Bid bid1 = new Bid(user2, 4, chicken1);
+        Bid bid2 = new Bid(user3, 5, chicken1);
+
+        assertTrue(bid1.getStatus() == Bid.Status.PENDING_APPROVAL);
+        assertTrue(bid2.getStatus() == Bid.Status.PENDING_APPROVAL);
+
+        // test non-owners of chicken cannot decline bids
+        user2.declineBid(bid2);
+        assertTrue(bid2.getStatus() == Bid.Status.PENDING_APPROVAL);
+
+        // test owner of chicken can decline bids
+        user1.declineBid(bid1);
+        assertTrue(bid1.getStatus() == Bid.Status.DECLINED);
+        assertTrue(bid2.getStatus() == Bid.Status.PENDING_APPROVAL);
+
+        assertTrue(chicken1.getPossessor() == user1);
+    }
 }
