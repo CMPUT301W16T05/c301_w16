@@ -12,6 +12,8 @@ public class AddProfileActivityUITest extends ActivityInstrumentationTestCase2 {
         super(AddProfileActivity.class);
     }
 
+
+
     @UiThreadTest
     public void testAddProfile() {
 
