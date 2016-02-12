@@ -3,6 +3,7 @@ package com.example.c301_w16_g5.c301_w16_g5;
 import android.app.Activity;
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.UiThreadTest;
+import android.test.ViewAsserts;
 import android.widget.ArrayAdapter;
 
 /**
@@ -35,6 +36,11 @@ public class SearchActivityUITest extends ActivityInstrumentationTestCase2 {
         Chicken chicken5 = new Chicken("Ethel", "Shy chicken", 11.95,
                 Chicken.Status.BORROWED);
         activity.getChickenList().add(chicken5);
+    }
+
+    public void testViewVisible() {
+        ViewAsserts.assertOnScreen(activity.getWindow().getDecorView(),
+                activity.findViewById(R.id.toolbar));
     }
 
     @UiThreadTest

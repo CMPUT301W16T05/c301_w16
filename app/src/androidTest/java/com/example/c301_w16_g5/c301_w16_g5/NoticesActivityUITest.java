@@ -5,13 +5,13 @@ import android.app.Instrumentation;
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.ViewAsserts;
 
-public class AddProfileActivityUITest extends ActivityInstrumentationTestCase2 {
+public class NoticesActivityUITest extends ActivityInstrumentationTestCase2 {
 
     Instrumentation instrumentation;
     Activity activity;
 
-    public AddProfileActivityUITest() {
-        super(AddProfileActivity.class);
+    public NoticesActivityUITest() {
+        super(NoticesActivity.class);
     }
 
     protected void setUp() throws Exception {

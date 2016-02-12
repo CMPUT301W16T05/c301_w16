@@ -2,16 +2,17 @@ package com.example.c301_w16_g5.c301_w16_g5;
 
 import android.app.Activity;
 import android.app.Instrumentation;
+import android.support.v7.view.menu.MenuView;
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.ViewAsserts;
 
-public class AddProfileActivityUITest extends ActivityInstrumentationTestCase2 {
+public class ItemViewUITest extends ActivityInstrumentationTestCase2 {
 
     Instrumentation instrumentation;
     Activity activity;
 
-    public AddProfileActivityUITest() {
-        super(AddProfileActivity.class);
+    public ItemViewUITest() {
+        super(MenuView.ItemView.class);
     }
 
     protected void setUp() throws Exception {
