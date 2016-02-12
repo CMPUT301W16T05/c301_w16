@@ -66,3 +66,4 @@ public class UserProfile {
     public void setChickenExperience(String chickenExperience) {
         this.chickenExperience = chickenExperience;
     }
+}
