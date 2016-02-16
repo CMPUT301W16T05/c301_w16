@@ -1,7 +1,5 @@
 package com.example.c301_w16_g5.c301_w16_g5;
 
-import android.app.Activity;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -30,22 +28,22 @@ public class BorrowTest {
         chicken1.setName("Name");
         chicken1.setDescription("Description");
         chicken1.setStatus(Chicken.Status.AVAILABLE);
-        chicken1.setUser(user);
+        chicken1.setOwner(user);
 
         chicken2.setName("Name");
         chicken2.setDescription("Description");
         chicken2.setStatus(Chicken.Status.BORROWED);
-        chicken2.setUser(user);
+        chicken2.setOwner(user);
 
         chicken3.setName("Name");
         chicken3.setDescription("Description");
         chicken3.setStatus(Chicken.Status.AVAILABLE);
-        chicken3.setUser(new User());
+        chicken3.setOwner(new User());
 
         chicken4.setName("Name");
         chicken4.setDescription("Description");
         chicken4.setStatus(Chicken.Status.BORROWED);
-        chicken4.setUser(new User());
+        chicken4.setOwner(new User());
 
         listOfThings.add(chicken1);
         listOfThings.add(chicken2);

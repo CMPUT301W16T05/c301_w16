@@ -7,6 +7,10 @@ import java.util.ArrayList;
  */
 public class User {
     private UserProfile userProfile;
+    private double balance;
+    private ArrayList<Chicken> myChickens;
+    private ArrayList<Bid> bidsOnMyChickens;
+    private ArrayList<Notification> myNotifications;
 
     public static User getCurrentUser() {
         return null;
@@ -18,22 +22,26 @@ public class User {
     public void addChicken(Chicken chicken) {
     }
 
-    public long getNumberOfThings() {
+    public long getNumberOfChickens() {
         return 0;
     }
 
-    public Chicken getChicken(int i) {
+    public Chicken getChicken(int index) {
         return null;
+    }
+
+    public boolean hasChicken(Chicken chicken){
+        return false;
     }
 
     public void deleteChicken(Chicken chicken) {
     }
 
-    public ArrayList<Chicken> getBorrowedFromOthers(ArrayList<Chicken> listOfThings) {
+    public ArrayList<Chicken> getChickensBorrowed() {
         return null;
     }
 
-    public ArrayList<Chicken> getBorrowedFromMe(ArrayList<Chicken> listOfThings) {
+    public ArrayList<Chicken> getChickensLent() {
         return null;
     }
 
@@ -49,28 +57,24 @@ public class User {
 
     }
 
-    public void setBalance(Double new_bal) {
-
+    public void setBalance(double newBalance) {
+        balance = newBalance;
     }
 
-    public ArrayList<Chicken> getItemsWithBids() {
+    public double getBalance() {
+        return balance;
+    }
+
+    public ArrayList<Chicken> getChickensWithBids() {
         return null;
     }
 
     public ArrayList<Bid> getBids() {
-        return null;
+        return bidsOnMyChickens;
     }
 
     public ArrayList<Notification> getNotifications() {
-        return null;
-    }
-
-    public Chicken getChicken(Chicken chicken){
-        return null;
-    }
-
-    public boolean hasChicken(Chicken chicken){
-        return false;
+        return myNotifications;
     }
 
     public UserProfile getUserProfile() {

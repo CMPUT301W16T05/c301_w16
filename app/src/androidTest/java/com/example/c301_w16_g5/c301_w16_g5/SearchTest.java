@@ -3,7 +3,6 @@ package com.example.c301_w16_g5.c301_w16_g5;
 import android.test.ActivityInstrumentationTestCase2;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Hailey on 2016-02-11.
@@ -38,7 +37,7 @@ public class SearchTest extends ActivityInstrumentationTestCase2 {
 
         // test normal functionality
         String keywords1 = "Friendly";
-        List<Chicken> results = new ArrayList<Chicken>();
+        ArrayList<Chicken> results = new ArrayList<Chicken>();
         results.add(chicken1);
         results.add(chicken2);
         assertEquals(results, search.searchFor(keywords1));

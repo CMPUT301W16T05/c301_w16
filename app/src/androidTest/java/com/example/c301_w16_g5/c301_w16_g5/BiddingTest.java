@@ -24,17 +24,17 @@ public class BiddingTest extends ActivityInstrumentationTestCase2 {
         chicken1.setName("Name 1");
         chicken1.setDescription("Description 1");
         chicken1.setStatus(Chicken.Status.AVAILABLE);
-        chicken1.setUser(user1);
+        chicken1.setOwner(user1);
 
         chicken2.setName("Name 2");
         chicken2.setDescription("Description 2");
         chicken2.setStatus(Chicken.Status.AVAILABLE);
-        chicken2.setUser(user1);
+        chicken2.setOwner(user1);
 
         chicken3.setName("Name 3");
         chicken3.setDescription("Description 3");
         chicken3.setStatus(Chicken.Status.AVAILABLE);
-        chicken3.setUser(user2);
+        chicken3.setOwner(user2);
     }
 
     // US 05.01.01
@@ -79,13 +79,13 @@ public class BiddingTest extends ActivityInstrumentationTestCase2 {
 
     // US 05.04.01
     public void testGetBiddedItems() {
-        assertFalse(user1.getItemsWithBids().contains(chicken1));
-        assertFalse(user1.getItemsWithBids().contains(chicken2));
+        assertFalse(user1.getChickensWithBids().contains(chicken1));
+        assertFalse(user1.getChickensWithBids().contains(chicken2));
 
         Bid bid1 = new Bid(user2, 4.0, chicken1);
-        assertTrue(user1.getItemsWithBids().contains(chicken1));
+        assertTrue(user1.getChickensWithBids().contains(chicken1));
         Bid bid2 = new Bid(user2, 5.0, chicken2);
-        assertTrue(user1.getItemsWithBids().contains(chicken2));
+        assertTrue(user1.getChickensWithBids().contains(chicken2));
     }
 
     // US 05.05.01
@@ -113,7 +113,8 @@ public class BiddingTest extends ActivityInstrumentationTestCase2 {
         assertTrue(bid1.getStatus() == Bid.Status.ACCEPTED);
         assertTrue(bid2.getStatus() == Bid.Status.DECLINED);
 
-        assertTrue(chicken1.getPossessor() == user2);
+//        assertTrue(chicken1.getPossessor() == user2);
+        assertTrue(user2.hasChicken(chicken1));
     }
 
     // US 05.07.01
@@ -133,6 +134,7 @@ public class BiddingTest extends ActivityInstrumentationTestCase2 {
         assertTrue(bid1.getStatus() == Bid.Status.DECLINED);
         assertTrue(bid2.getStatus() == Bid.Status.PENDING_APPROVAL);
 
-        assertTrue(chicken1.getPossessor() == user1);
+//        assertTrue(chicken1.getPossessor() == user1);
+        assertTrue(user1.hasChicken(chicken1));
     }
 }

@@ -8,12 +8,34 @@ public class Bid {
     }
 
     private Status status;
+    private User bidder;
+    private double amount;
+    private Chicken chicken;
 
-    public Bid(User owner, Double amount, Chicken chick) {
-
+    public Bid(User bidder, Double amount, Chicken chicken) {
+        this.bidder = bidder;
+        this.amount = amount;
+        this.chicken = chicken;
+        status = Status.PENDING_APPROVAL;
     }
 
     public Status getStatus() {
-        return null;
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public User getBidder() {
+        return bidder;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public Chicken getChicken() {
+        return chicken;
     }
 }

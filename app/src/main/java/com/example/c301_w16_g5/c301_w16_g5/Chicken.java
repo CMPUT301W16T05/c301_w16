@@ -52,11 +52,11 @@ public class Chicken {
         this.status = status;
     }
 
-    public User getUser() {
+    public User getOwner() {
         return owner;
     }
 
-    public void setUser(User owner) {
+    public void setOwner(User owner) {
         this.owner = owner;
     }
 
@@ -84,7 +84,7 @@ public class Chicken {
         return false;
     }
 
-    public User getPossessor() {
-        return null;
-    }
+//    public User getPossessor() {
+//        return null;
+//    }
 }

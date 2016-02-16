@@ -21,7 +21,7 @@ public class OfflineBehaviourTest extends ActivityInstrumentationTestCase2 {
         user.addChicken(chicken);
         assert(!user.hasChicken(chicken));
 
-        server.reconnect();
+        server.connect();
 
         assert(user.hasChicken(chicken));
 
@@ -34,9 +34,9 @@ public class OfflineBehaviourTest extends ActivityInstrumentationTestCase2 {
         user.addChicken(chicken);
         assert(!user.hasChicken(chicken));
 
-        server.reconnect();
+        server.connect();
         server.disconnect();
-        server.reconnect();
+        server.connect();
 
         assert(user.hasChicken(chicken));
     }
