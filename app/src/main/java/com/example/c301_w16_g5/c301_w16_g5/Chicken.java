@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /**
  * Created by Robin on 2016-02-10.
  */
-public class Chicken {
+public class Chicken extends GenericModel<GenericView> {
     public enum Status {
         AVAILABLE,
         BORROWED,
@@ -16,23 +16,24 @@ public class Chicken {
     private Status status;
     private User owner;
     private String description;
-    private double rate;
+    private ArrayList<Bid> bids;
 
     public Chicken() {
+        bids = new ArrayList<Bid>();
     }
 
-    public Chicken(String name, String description, double rate, Status status) {
+    public Chicken(String name, String description, Status status) {
         this.name = name;
         this.owner = User.getCurrentUser();
         this.description = description;
-        this.rate = rate;
         this.status = status;
+
+        bids = new ArrayList<Bid>();
     }
 
-    public void update(String name, String description, double rate, Status status) {
+    public void update(String name, String description, Status status) {
         this.name = name;
         this.description = description;
-        this.rate = rate;
         this.status = status;
     }
 
@@ -68,23 +69,15 @@ public class Chicken {
         this.description = description;
     }
 
-    public double getRate() {
-        return rate;
-    }
-
-    public void setRate(double rate) {
-        this.rate = rate;
-    }
-
     public ArrayList<Bid> getBids() {
-        return null;
+        return bids;
     }
 
-    public boolean hasBid(Bid bid) {
-        return false;
+    public void acceptBid(Bid bid) {
+        // TODO: accept the bid
     }
 
-//    public User getPossessor() {
-//        return null;
-//    }
+    public void declineBid(Bid bid) {
+        // TODO: decline the bid
+    }
 }

@@ -1,5 +1,7 @@
 package com.example.c301_w16_g5.c301_w16_g5;
 
+// TODO: refactor code & delete this class!!!
+
 public class UserProfile {
     private String username;
     private String firstName;
