@@ -18,13 +18,13 @@ public class ReturningTest {
         owner = new User();
         borrower = new User();
 
-        chicken = new Chicken("Name", "FriendlyBird", 1.00, Chicken.Status.BORROWED );
+        chicken = new Chicken("Name", "FriendlyBird", 1.00, Chicken.ChickenStatus.BORROWED );
         borrower.addChicken(chicken);
     }
 
     @Test
     public void ReturningAChicken(){
         borrower.releaseChicken(chicken);
-        assert(owner.getChicken(chicken).getStatus() == Chicken.Status.AVAILABLE);
+        assert(owner.getChicken(chicken).getChickenStatus() == Chicken.ChickenStatus.AVAILABLE);
     }
 }

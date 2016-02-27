@@ -6,14 +6,16 @@ import java.util.ArrayList;
  * Created by Hailey on 2016-02-11.
  */
 public class Search {
-    public Search() {}
+    private ArrayList<Chicken> searchResults;
 
-    public ArrayList<Chicken> searchFor(String searchText) {
+    public Search() {
+        searchResults = new ArrayList<Chicken>();
+    }
+
+    public void searchFor(String searchText) {
         String[] keywords = parse(searchText);
 
         // search with the keywords here
-
-        return null;
     }
 
     private String[] parse(String searchText) {

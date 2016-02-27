@@ -17,7 +17,7 @@ public class OfflineBehaviourTest extends ActivityInstrumentationTestCase2 {
         server.disconnect();
 
         User user = new User();
-        Chicken chicken = new Chicken("Bob", "Friendly chicken", 13.55, Chicken.Status.AVAILABLE);
+        Chicken chicken = new Chicken("Bob", "Friendly chicken", 13.55, Chicken.ChickenStatus.AVAILABLE);
         user.addChicken(chicken);
         assert(!user.hasChicken(chicken));
 
@@ -30,7 +30,7 @@ public class OfflineBehaviourTest extends ActivityInstrumentationTestCase2 {
         server.disconnect();
 
         user = new User();
-        chicken = new Chicken("Bob", "Friendly chicken", 13.55, Chicken.Status.AVAILABLE);
+        chicken = new Chicken("Bob", "Friendly chicken", 13.55, Chicken.ChickenStatus.AVAILABLE);
         user.addChicken(chicken);
         assert(!user.hasChicken(chicken));
 

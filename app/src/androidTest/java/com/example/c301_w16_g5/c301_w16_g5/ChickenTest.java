@@ -15,7 +15,7 @@ public class ChickenTest extends ActivityInstrumentationTestCase2 {
         super.setUp();
 
         user = new User();
-        chicken = new Chicken("Bob", "Friendly chicken", 13.55, Chicken.Status.AVAILABLE);
+        chicken = new Chicken("Bob", "Friendly chicken", 13.55, Chicken.ChickenStatus.AVAILABLE);
         user.removeAllChickens();
     }
 
@@ -31,7 +31,7 @@ public class ChickenTest extends ActivityInstrumentationTestCase2 {
         assertFalse(user.getNumberOfChickens() == 0);
 
         Chicken chicken = user.getChicken(0);
-        chicken.update("Tim", "No chicken", 15.99, Chicken.Status.AVAILABLE);
+        chicken.update("Tim", "No chicken", 15.99, Chicken.ChickenStatus.AVAILABLE);
 
         assertEquals(chicken.getName(), "Tim");
         assertEquals(chicken.getDescription(), "No chicken");
@@ -51,6 +51,6 @@ public class ChickenTest extends ActivityInstrumentationTestCase2 {
         user.addChicken(chicken);
         assertFalse(user.getNumberOfChickens() == 0);
 
-        assertFalse(chicken.getStatus() == Chicken.Status.AVAILABLE);
+        assertFalse(chicken.getChickenStatus() == Chicken.ChickenStatus.AVAILABLE);
     }
 }

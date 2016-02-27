@@ -6,35 +6,34 @@ import java.util.ArrayList;
  * Created by Robin on 2016-02-10.
  */
 public class Chicken extends GenericModel<GenericView> {
-    public enum Status {
+    public enum ChickenStatus {
         AVAILABLE,
         BORROWED,
         NOT_AVAILABLE
     }
 
     private String name;
-    private Status status;
-    private User owner;
     private String description;
+    private ChickenStatus chickenStatus;
+    private User owner;
     private ArrayList<Bid> bids;
 
     public Chicken() {
         bids = new ArrayList<Bid>();
     }
 
-    public Chicken(String name, String description, Status status) {
+    public Chicken(String name, String description, ChickenStatus chickenStatus, User owner) {
         this.name = name;
-        this.owner = User.getCurrentUser();
         this.description = description;
-        this.status = status;
-
-        bids = new ArrayList<Bid>();
+        this.chickenStatus = chickenStatus;
+        this.owner = owner;
+        this.bids = new ArrayList<Bid>();
     }
 
-    public void update(String name, String description, Status status) {
+    public void update(String name, String description, ChickenStatus chickenStatus) {
         this.name = name;
         this.description = description;
-        this.status = status;
+        this.chickenStatus = chickenStatus;
     }
 
     public String getName() {
@@ -45,12 +44,12 @@ public class Chicken extends GenericModel<GenericView> {
         this.name = name;
     }
 
-    public Status getStatus() {
-        return status;
+    public ChickenStatus getChickenStatus() {
+        return chickenStatus;
     }
 
-    public void setStatus(Status status) {
-        this.status = status;
+    public void setChickenStatus(ChickenStatus chickenStatus) {
+        this.chickenStatus = chickenStatus;
     }
 
     public User getOwner() {
@@ -73,11 +72,15 @@ public class Chicken extends GenericModel<GenericView> {
         return bids;
     }
 
-    public void acceptBid(Bid bid) {
-        // TODO: accept the bid
-    }
+    public Bid getAcceptedBid() throws Exception {
+        ArrayList<Bid> bids = getBids();
 
-    public void declineBid(Bid bid) {
-        // TODO: decline the bid
+        for (Bid bid : bids) {
+            if (bid.getBidStatus() == Bid.BidStatus.ACCEPTED) {
+                return bid;
+            }
+        }
+
+        throw new Exception("No accepted bid exists.");
     }
 }

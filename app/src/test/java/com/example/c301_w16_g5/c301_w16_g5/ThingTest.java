@@ -16,7 +16,7 @@ public class ThingTest {
     @Before
     public void initializeVariables() {
         user = new User();
-        chicken = new Chicken("Bob", "Friendly chicken", 13.55, Chicken.Status.AVAILABLE);
+        chicken = new Chicken("Bob", "Friendly chicken", 13.55, Chicken.ChickenStatus.AVAILABLE);
         user.removeAllChickens();
     }
 
@@ -32,7 +32,7 @@ public class ThingTest {
         assertNotEquals(user.getNumberOfThings(), 0);
 
         Chicken chicken = user.getChicken(0);
-        chicken.update("Tim", "No chicken", 15.99, Chicken.Status.AVAILABLE);
+        chicken.update("Tim", "No chicken", 15.99, Chicken.ChickenStatus.AVAILABLE);
 
         assertEquals(chicken.getName(), "Tim");
         assertEquals(chicken.getDescription(), "No chicken");
@@ -52,6 +52,6 @@ public class ThingTest {
         user.addChicken(chicken);
         assertNotEquals(user.getNumberOfThings(), 0);
 
-        assertNotEquals(chicken.getStatus(), 0);
+        assertNotEquals(chicken.getChickenStatus(), 0);
     }
 }

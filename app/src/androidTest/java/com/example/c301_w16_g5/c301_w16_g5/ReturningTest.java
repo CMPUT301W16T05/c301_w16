@@ -17,14 +17,14 @@ public class ReturningTest extends ActivityInstrumentationTestCase2 {
         owner = new User();
         borrower = new User();
 
-        chicken = new Chicken("Name", "FriendlyBird", 1.00, Chicken.Status.BORROWED );
+        chicken = new Chicken("Name", "FriendlyBird", 1.00, Chicken.ChickenStatus.BORROWED );
         borrower.addChicken(chicken);
     }
 
     // US 07.01.01
     public void testReturningAChicken(){
         borrower.releaseChicken(chicken);
-        assertTrue(chicken.getStatus() == Chicken.Status.AVAILABLE);
+        assertTrue(chicken.getChickenStatus() == Chicken.ChickenStatus.AVAILABLE);
     }
 
 }

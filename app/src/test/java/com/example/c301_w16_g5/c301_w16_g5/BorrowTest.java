@@ -27,22 +27,22 @@ public class BorrowTest {
     public void InitializeThings(){
         chicken1.setName("Name");
         chicken1.setDescription("Description");
-        chicken1.setStatus(Chicken.Status.AVAILABLE);
+        chicken1.setChickenStatus(Chicken.ChickenStatus.AVAILABLE);
         chicken1.setOwner(user);
 
         chicken2.setName("Name");
         chicken2.setDescription("Description");
-        chicken2.setStatus(Chicken.Status.BORROWED);
+        chicken2.setChickenStatus(Chicken.ChickenStatus.BORROWED);
         chicken2.setOwner(user);
 
         chicken3.setName("Name");
         chicken3.setDescription("Description");
-        chicken3.setStatus(Chicken.Status.AVAILABLE);
+        chicken3.setChickenStatus(Chicken.ChickenStatus.AVAILABLE);
         chicken3.setOwner(new User());
 
         chicken4.setName("Name");
         chicken4.setDescription("Description");
-        chicken4.setStatus(Chicken.Status.BORROWED);
+        chicken4.setChickenStatus(Chicken.ChickenStatus.BORROWED);
         chicken4.setOwner(new User());
 
         listOfThings.add(chicken1);

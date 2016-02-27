@@ -14,16 +14,16 @@ public class SearchTest extends ActivityInstrumentationTestCase2 {
 
     // US 04.01.01
     public void testSearchByKeywords() {
-        Chicken chicken1 = new Chicken("Bob", "Friendly chicken", 13.55,
-                Chicken.Status.AVAILABLE);
+        Chicken chicken1 = new Chicken("Bob", "Friendly chicken",
+                Chicken.ChickenStatus.AVAILABLE, new User("username"));
         Chicken chicken2 = new Chicken("Joe", "Friendly and social chicken",
-                13.55, Chicken.Status.AVAILABLE);
-        Chicken chicken3 = new Chicken("Fred", "Shy chicken", 15.00,
-                Chicken.Status.AVAILABLE);
+                Chicken.ChickenStatus.AVAILABLE, new User("username"));
+        Chicken chicken3 = new Chicken("Fred", "Shy chicken",
+                Chicken.ChickenStatus.AVAILABLE, new User("username"));
         Chicken chicken4 = new Chicken("Shirley", "Angry chicken",
-                12.05, Chicken.Status.AVAILABLE);
-        Chicken chicken5 = new Chicken("Ethel", "Shy chicken", 11.95,
-                Chicken.Status.BORROWED);
+                Chicken.ChickenStatus.AVAILABLE, new User("username"));
+        Chicken chicken5 = new Chicken("Ethel", "Shy chicken",
+                Chicken.ChickenStatus.BORROWED, new User("username"));
 
         // subject to change based on how chickens are stored
         ChickenDatabase allChickens = new ChickenDataBase();

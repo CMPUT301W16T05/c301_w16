@@ -22,19 +22,19 @@ public class SearchActivityUITest extends ActivityInstrumentationTestCase2 {
 
         // make these the chickens in the database:
         Chicken chicken1 = new Chicken("Bob", "Friendly chicken", 13.55,
-                Chicken.Status.AVAILABLE);
+                Chicken.ChickenStatus.AVAILABLE);
         activity.getChickenList().add(chicken1);
         Chicken chicken2 = new Chicken("Joe", "Friendly and social chicken",
-                13.55, Chicken.Status.AVAILABLE);
+                13.55, Chicken.ChickenStatus.AVAILABLE);
         activity.getChickenList().add(chicken2);
         Chicken chicken3 = new Chicken("Fred", "Shy chicken", 15.00,
-                Chicken.Status.AVAILABLE);
+                Chicken.ChickenStatus.AVAILABLE);
         activity.getChickenList().add(chicken3);
         Chicken chicken4 = new Chicken("Shirley", "Angry chicken",
-                12.05, Chicken.Status.AVAILABLE);
+                12.05, Chicken.ChickenStatus.AVAILABLE);
         activity.getChickenList().add(chicken4);
         Chicken chicken5 = new Chicken("Ethel", "Shy chicken", 11.95,
-                Chicken.Status.BORROWED);
+                Chicken.ChickenStatus.BORROWED);
         activity.getChickenList().add(chicken5);
     }
 

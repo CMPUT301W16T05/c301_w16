@@ -2,9 +2,6 @@ package com.example.c301_w16_g5.c301_w16_g5;
 
 import java.util.ArrayList;
 
-/**
- * Created by shahzeb on 2/10/16.
- */
 public class User extends GenericModel<GenericView> {
     // profile info
     private String username;
@@ -14,15 +11,34 @@ public class User extends GenericModel<GenericView> {
     private String phoneNumber;
     private String chickenExperience;
 
-    private double balance;
+    // My chickens should contain all chickens owned by
+    // user or currently in user's posession
     private ArrayList<Chicken> myChickens;
     private ArrayList<Notification> myNotifications;
 
-    // TODO: constructor? Or no, because using singleton?
+    // For existing users
+    public User(String username) {
+        // TODO: Figure out how to retrieve old user
+    }
 
-    // TODO: delete this, because ChickBidsApplication will deal w/ it?
-    public static User getCurrentUser() {
-        return null;
+    /**
+     * For new users.
+     * @param username
+     * @param firstName
+     * @param lastName
+     * @param email
+     * @param phoneNumber
+     * @param chickenExperience
+     */
+    public User(String username, String firstName, String lastName, String email, String phoneNumber, String chickenExperience) {
+        this.username = username;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.chickenExperience = chickenExperience;
+        this.myChickens = new ArrayList<Chicken>();
+        this.myNotifications = new ArrayList<Notification>();
     }
 
     // profile management
@@ -72,14 +88,6 @@ public class User extends GenericModel<GenericView> {
 
     public void setChickenExperience(String chickenExperience) {
         this.chickenExperience = chickenExperience;
-    }
-
-    public double getBalance() {
-        return balance;
-    }
-
-    public void setBalance(double balance) {
-        this.balance = balance;
     }
 
     // basic chicken management

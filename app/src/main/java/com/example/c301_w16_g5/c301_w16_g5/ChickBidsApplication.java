@@ -12,7 +12,7 @@ public class ChickBidsApplication extends Application {
     static User getUser() {
         if (user == null) {
             // TODO: Question: Do we need to load stuff from file to have persistence instead?
-            user = new User();
+//            user = new User();
         }
         return user;
     }

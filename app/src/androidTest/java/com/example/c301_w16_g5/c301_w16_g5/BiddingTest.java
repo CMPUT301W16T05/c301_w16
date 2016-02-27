@@ -23,17 +23,17 @@ public class BiddingTest extends ActivityInstrumentationTestCase2 {
 
         chicken1.setName("Name 1");
         chicken1.setDescription("Description 1");
-        chicken1.setStatus(Chicken.Status.AVAILABLE);
+        chicken1.setChickenStatus(Chicken.ChickenStatus.AVAILABLE);
         chicken1.setOwner(user1);
 
         chicken2.setName("Name 2");
         chicken2.setDescription("Description 2");
-        chicken2.setStatus(Chicken.Status.AVAILABLE);
+        chicken2.setChickenStatus(Chicken.ChickenStatus.AVAILABLE);
         chicken2.setOwner(user1);
 
         chicken3.setName("Name 3");
         chicken3.setDescription("Description 3");
-        chicken3.setStatus(Chicken.Status.AVAILABLE);
+        chicken3.setChickenStatus(Chicken.ChickenStatus.AVAILABLE);
         chicken3.setOwner(user2);
     }
 
@@ -46,7 +46,7 @@ public class BiddingTest extends ActivityInstrumentationTestCase2 {
         assertTrue(chicken1.hasBid(bid1));
 
         // test bid on unavailable item
-        chicken2.setStatus(Chicken.Status.NOT_AVAILABLE);
+        chicken2.setChickenStatus(Chicken.ChickenStatus.NOT_AVAILABLE);
         Bid bid2 = new Bid(user2, 5.0, chicken2);
         assertFalse(chicken2.hasBid(bid2));
 
