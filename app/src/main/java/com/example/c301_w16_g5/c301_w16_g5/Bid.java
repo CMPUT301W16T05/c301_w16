@@ -11,6 +11,7 @@ public class Bid extends GenericModel<GenericView> {
     private User bidder;
     private double amount;
     private BidStatus bidStatus;
+    private Location location;
 
     public Bid(User bidder, Double amount) {
         this.bidder = bidder;
@@ -33,5 +34,13 @@ public class Bid extends GenericModel<GenericView> {
 
     public void setBidStatus(BidStatus bidStatus) {
         this.bidStatus = bidStatus;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
     }
 }

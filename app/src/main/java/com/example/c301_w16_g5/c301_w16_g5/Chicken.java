@@ -17,6 +17,7 @@ public class Chicken extends GenericModel<GenericView> {
     private ChickenStatus chickenStatus;
     private User owner;
     private ArrayList<Bid> bids;
+    private Photograph photo;
 
     public Chicken() {
         bids = new ArrayList<Bid>();
@@ -82,5 +83,13 @@ public class Chicken extends GenericModel<GenericView> {
         }
 
         throw new Exception("No accepted bid exists.");
+    }
+
+    public Photograph getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(Photograph photo) {
+        this.photo = photo;
     }
 }
