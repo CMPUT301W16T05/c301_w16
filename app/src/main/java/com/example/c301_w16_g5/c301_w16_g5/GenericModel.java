@@ -4,7 +4,12 @@ import java.util.ArrayList;
 import java.util.Vector;
 
 /**
- * Created by Hailey on 2016-02-26.
+ * Provides the basic framework for all models in the application, such that
+ * they have views that display them, and ensure these views are updated
+ * appropriately.  This is an integral part of our MVC design.
+ *
+ * @author  Hailey
+ * @version 1.4, 03/02/2016
  */
 public abstract class GenericModel<V  extends GenericView> {
     private ArrayList<V> views;

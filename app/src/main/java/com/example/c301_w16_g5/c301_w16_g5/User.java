@@ -2,6 +2,17 @@ package com.example.c301_w16_g5.c301_w16_g5;
 
 import java.util.ArrayList;
 
+/**
+ * A <code>User</code> is an operator of the application.  Interactions between
+ * users include lending/borrowing chickens, and viewing other users' profiles.
+ *
+ * @author  Hailey
+ * @version 1.4, 03/02/2016
+ * @see     UserProfileActivity
+ * @see     AddProfileActivity
+ * @see     EditProfileActivity
+ * @see     UserController
+ */
 public class User extends GenericModel<GenericView> {
     // profile info
     private String username;

@@ -11,7 +11,7 @@ public class UserProfileActivityUITest extends ActivityInstrumentationTestCase2 
     Activity activity;
 
     public UserProfileActivityUITest() {
-        super(AddItemActivity.class);
+        super(AddChickenActivity.class);
     }
 
     protected void setUp() throws Exception {

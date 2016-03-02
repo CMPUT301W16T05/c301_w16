@@ -5,7 +5,7 @@ import android.test.ActivityInstrumentationTestCase2;
 
 public class NoticesActivityTest extends ActivityInstrumentationTestCase2 {
     public NoticesActivityTest() {
-        super(NoticesActivity.class);
+        super(NotificationsActivity.class);
     }
 
     public void testStart() throws Exception {

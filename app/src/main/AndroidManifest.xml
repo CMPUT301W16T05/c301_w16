@@ -76,7 +76,7 @@
                 android:value=".UserProfile" />
         </activity>
         <activity
-            android:name=".ItemProfileActivity"
+            android:name=".ItemChickenActivity"
             android:label="@string/title_activity_item_profile"
             android:parentActivityName=".ItemViews"
             android:theme="@style/AppTheme.NoActionBar">
@@ -85,20 +85,20 @@
                 android:value="com.example.c301_w16_g5.c301_w16_g5.ItemViews" />
         </activity>
         <activity
-            android:name=".NoticesActivity"
+            android:name=".NotificationsActivity"
             android:label="@string/title_activity_notices"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".BidsActivity"
             android:label="@string/title_activity_bids"
-            android:parentActivityName=".ItemProfileActivity"
+            android:parentActivityName=".ItemChickenActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.c301_w16_g5.c301_w16_g5.ItemProfileActivity" />
+                android:value=".ItemChickenActivity" />
         </activity>
         <activity
-            android:name=".AddItemActivity"
+            android:name=".AddChickenActivity"
             android:label="@string/title_activity_add_item"
             android:parentActivityName=".ItemViews"
             android:theme="@style/AppTheme.NoActionBar">

@@ -4,7 +4,7 @@ package com.example.c301_w16_g5.c301_w16_g5;
  * A <code>Bid</code> can be placed by a user upon a chicken they would like to borrow, and
  * then possibly accepted by the owner of that chicken.
  *
- * @author  not sure
+ * @author  Satyen
  * @version 1.4, 03/02/2016
  * @see     User
  * @see     Chicken

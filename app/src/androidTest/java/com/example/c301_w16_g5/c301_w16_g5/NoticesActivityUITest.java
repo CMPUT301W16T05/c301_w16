@@ -11,7 +11,7 @@ public class NoticesActivityUITest extends ActivityInstrumentationTestCase2 {
     Activity activity;
 
     public NoticesActivityUITest() {
-        super(NoticesActivity.class);
+        super(NotificationsActivity.class);
     }
 
     protected void setUp() throws Exception {
