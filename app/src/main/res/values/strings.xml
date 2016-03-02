@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Chick Bids</string>
-    <string name="title_activity_login">Chick Bids</string>
+    <string name="title_activity_login">Login</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
@@ -15,17 +15,17 @@
         completions."
     </string>
     <string name="title_activity_main_screen">Home</string>
-    <string name="title_activity_item_views">ItemViews</string>
+    <string name="title_activity_item_views">Items</string>
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="title_activity_item_fragment1">ItemFragment1</string>
-    <string name="title_activity_search">SearchActivity</string>
-    <string name="title_activity_profile">ProfileActivity</string>
-    <string name="title_activity_edit_profile">EditProfileActivity</string>
-    <string name="title_activity_item_profile">ItemProfileActivity</string>
-    <string name="title_activity_notices">NoticesActivity</string>
-    <string name="title_activity_bids">BidsActivity</string>
-    <string name="title_activity_add_item">AddItemActivity</string>
-    <string name="title_activity_add_profile">AddProfileActivity</string>
+    <string name="title_activity_search">Search</string>
+    <string name="title_activity_profile">Profile</string>
+    <string name="title_activity_edit_profile">Edit Profile</string>
+    <string name="title_activity_item_profile">Item Profile</string>
+    <string name="title_activity_notices">Notices</string>
+    <string name="title_activity_bids">Bids</string>
+    <string name="title_activity_add_item">Add Item</string>
+    <string name="title_activity_add_profile">Add Profile</string>
     <string name="title_activity_user_profile">User Profile</string>
 </resources>
