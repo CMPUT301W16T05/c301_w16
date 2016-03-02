@@ -22,7 +22,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainScreen"
+            android:name=".HomeActivity"
             android:label="@string/title_activity_main_screen"
             android:parentActivityName=".LoginActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -33,38 +33,38 @@
         <activity
             android:name=".ItemViews"
             android:label="@string/title_activity_item_views"
-            android:parentActivityName=".MainScreen"
+            android:parentActivityName=".HomeActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.c301_w16_g5.c301_w16_g5.MainScreen" />
+                android:value=".HomeActivity" />
         </activity>
         <activity
             android:name=".ItemFragment1"
             android:label="@string/title_activity_item_fragment1"
-            android:parentActivityName=".MainScreen"
+            android:parentActivityName=".HomeActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.c301_w16_g5.c301_w16_g5.MainScreen" />
+                android:value=".HomeActivity" />
         </activity>
         <activity
             android:name=".SearchActivity"
             android:label="@string/title_activity_search"
-            android:parentActivityName=".MainScreen"
+            android:parentActivityName=".HomeActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.c301_w16_g5.c301_w16_g5.MainScreen" />
+                android:value=".HomeActivity" />
         </activity>
         <activity
             android:name=".UserProfile"
             android:label="@string/title_activity_profile"
-            android:parentActivityName=".MainScreen"
+            android:parentActivityName=".HomeActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.c301_w16_g5.c301_w16_g5.MainScreen" />
+                android:value=".HomeActivity" />
         </activity>
         <activity
             android:name=".EditProfileActivity"

@@ -28,4 +28,9 @@
     <string name="title_activity_add_item">Add Item</string>
     <string name="title_activity_add_profile">Add Profile</string>
     <string name="title_activity_user_profile">User Profile</string>
+
+    <!-- Strings related to navigation bar -->
+    <string name="home">Home</string>
+    <string name="notices">Notices</string>
+
 </resources>

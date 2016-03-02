@@ -5,7 +5,7 @@ import android.test.ActivityInstrumentationTestCase2;
 public class ChickenTest extends ActivityInstrumentationTestCase2 {
 
     public ChickenTest() {
-        super(MainScreen.class);
+        super(HomeActivity.class);
     }
 
     Chicken chicken;

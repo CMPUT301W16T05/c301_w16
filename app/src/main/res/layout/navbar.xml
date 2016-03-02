@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+TODO: provide reference in wiki
+http://developer.android.com/training/improving-layouts/reusing-layouts.html
+accessed on Mar 1. 7:41pm by Satyen Akolkar
+Used to create re-usable navigation bar template for use in remaining activity layouts
+
+http://developer.android.com/training/appbar/setting-up.html
+accessed on Mar 1. 7:46pm by Satyen Akolkar
+Used for navigation bar template
+-->
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/nav_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"/>
+
+</FrameLayout>

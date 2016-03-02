@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class BorrowTest extends ActivityInstrumentationTestCase2 {
 
     public BorrowTest() {
-        super(MainScreen.class);
+        super(HomeActivity.class);
     }
 
     private User user = User.getCurrentUser();
