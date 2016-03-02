@@ -3,7 +3,19 @@ package com.example.c301_w16_g5.c301_w16_g5;
 import java.util.ArrayList;
 
 /**
- * Created by Robin on 2016-02-10.
+ * A <code>Chicken</code> is the item of trade around which the application is
+ * based.  Users borrow chickens from other users who own them, determined by
+ * a bidding system.  Chickens are searchable in a database.
+ *
+ * @author  Robin
+ * @version 1.4, 03/02/2016
+ * @see     User
+ * @see     Bid
+ * @see     Photograph
+ * @see     Search
+ * @see     ChickenController
+ * @see     AddItemActivity
+ * @see     ItemProfileActivity
  */
 public class Chicken extends GenericModel<GenericView> {
     public enum ChickenStatus {
