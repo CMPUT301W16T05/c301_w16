@@ -15,7 +15,7 @@ public class BiddingTest extends ActivityInstrumentationTestCase2 {
     public Chicken chicken3 = new Chicken();
 
     public BiddingTest() {
-        super(MainScreen.class);
+        super(HomeActivity.class);
     }
 
     protected void setUp() throws Exception {

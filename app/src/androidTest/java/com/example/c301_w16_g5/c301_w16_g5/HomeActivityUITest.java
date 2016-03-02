@@ -5,13 +5,13 @@ import android.app.Instrumentation;
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.ViewAsserts;
 
-public class MainScreenUITest extends ActivityInstrumentationTestCase2 {
+public class HomeActivityUITest extends ActivityInstrumentationTestCase2 {
 
     Instrumentation instrumentation;
     Activity activity;
 
-    public MainScreenUITest() {
-        super(MainScreen.class);
+    public HomeActivityUITest() {
+        super(HomeActivity.class);
     }
 
     protected void setUp() throws Exception {
