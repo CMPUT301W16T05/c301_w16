@@ -33,4 +33,9 @@
     <string name="home">Home</string>
     <string name="notices">Notices</string>
 
+    <!-- Strings related to buttons -->
+    <string name="profile">Profile</string>
+    <string name="Search">Search</string>
+    <string name="Items">Items</string>
+
 </resources>

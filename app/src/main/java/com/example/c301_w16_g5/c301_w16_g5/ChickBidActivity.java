@@ -11,9 +11,6 @@ public abstract class ChickBidActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceBundle) {
         super.onCreate(savedInstanceBundle);
-        setContentView(R.layout.activity_chick_bid); // TODO: might be able to refactor out
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.nav_toolbar);
-        setSupportActionBar(myToolbar);
     }
 
     @Override
