@@ -6,6 +6,12 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 
+/**
+ * Responsible for placing the toolbar at the top of every activity screen.
+ *
+ * @author  Satyen
+ * @version 1.4, 03/02/2016
+ */
 public abstract class ChickBidActivity extends AppCompatActivity {
 
     @Override

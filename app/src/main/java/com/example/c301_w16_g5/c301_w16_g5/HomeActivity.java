@@ -3,6 +3,13 @@ package com.example.c301_w16_g5.c301_w16_g5;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 
+/**
+ * The main screen, from which the user can access their profile or chickens,
+ * or perform a search
+ *
+ * @author  Satyen
+ * @version 1.4, 03/02/2016
+ */
 public class HomeActivity extends ChickBidActivity {
 
     @Override

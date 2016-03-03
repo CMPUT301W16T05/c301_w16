@@ -7,6 +7,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+/**
+ * This is the view the user sees when they are updating their profile information.
+ * This will be done in editable text fields.
+ *
+ * @author  Hailey
+ * @version 1.4, 03/02/2016
+ * @see     User
+ * @see     AddProfileActivity
+ * @see     UserProfileActivity
+ */
 public class EditProfileActivity extends UserProfileActivity {
 
     @Override
