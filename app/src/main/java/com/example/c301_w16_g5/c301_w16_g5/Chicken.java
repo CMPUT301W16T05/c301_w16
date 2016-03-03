@@ -29,6 +29,7 @@ public class Chicken extends GenericModel<GenericView> {
     private String description;
     private ChickenStatus chickenStatus;
     private User owner;
+    private User borrower;
     private ArrayList<Bid> bids;
     private Photograph photo;
 
@@ -96,6 +97,14 @@ public class Chicken extends GenericModel<GenericView> {
         }
 
         throw new Exception("No accepted bid exists.");
+    }
+
+    public User getBorrower() {
+        return borrower;
+    }
+
+    public void setBorrower(User borrower) {
+        this.borrower = borrower;
     }
 
     public Photograph getPhoto() {

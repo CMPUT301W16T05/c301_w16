@@ -126,22 +126,6 @@ public class User extends GenericModel<GenericView> {
         myChickens = new ArrayList<Chicken>();
     }
 
-    // chicken lending management
-    public ArrayList<Chicken> getBorrowedFromOthers() {
-        // TODO: implement
-        return null;
-    }
-
-    public ArrayList<Chicken> getBorrowedFromMe() {
-        // TODO: implement
-        return null;
-    }
-
-    public ArrayList<Chicken> getChickensWithBids() {
-        // TODO: implement
-        return null;
-    }
-
     public ArrayList<Notification> getNotifications() {
         // TODO: implement
         return myNotifications;
