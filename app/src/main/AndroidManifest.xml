@@ -54,7 +54,7 @@
                 android:value=".HomeActivity" />
         </activity>
         <activity
-            android:name=".UserProfile"
+            android:name=".UserProfileActivity"
             android:label="@string/title_activity_profile"
             android:parentActivityName=".HomeActivity" >
             <meta-data
@@ -64,10 +64,10 @@
         <activity
             android:name=".EditProfileActivity"
             android:label="@string/title_activity_edit_profile"
-            android:parentActivityName=".UserProfile" >
+            android:parentActivityName=".UserProfileActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".UserProfile" />
+                android:value=".UserProfileActivity" />
         </activity>
         <activity
             android:name=".ItemChickenActivity"
@@ -99,9 +99,6 @@
         <activity
             android:name=".AddProfileActivity"
             android:label="@string/title_activity_add_profile" />
-        <activity
-            android:name=".UserProfileActivity"
-            android:label="@string/title_activity_user_profile" />
     </application>
 
 </manifest>

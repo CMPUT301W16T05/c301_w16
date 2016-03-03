@@ -18,12 +18,13 @@ public class HomeActivity extends ChickBidActivity {
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.nav_toolbar);
         setSupportActionBar(myToolbar);
+        invalidateOptionsMenu();
 
         Button profileButton = (Button) findViewById(R.id.buttonProfile);
         Button itemsButton = (Button) findViewById(R.id.buttonItems);
         Button searchButton = (Button) findViewById(R.id.buttonSearch);
 
-        final Intent intent = new Intent(this, AddProfileActivity.class);
+        final Intent intent = new Intent(this, UserProfileActivity.class);
 
         profileButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,17 +44,5 @@ public class HomeActivity extends ChickBidActivity {
 
         //disable going back to login screen
         //getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-    }
-
-    // TODO: reference source
-    // used to make home icon disappear
-    // http://stackoverflow.com/questions/5440601/android-how-to-enable-disable-option-menu-item-on-button-click answer by Frank
-    // accessed on Mar 2 2016 at 3:20 pm by Satyen Akolkar
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        MenuItem item = menu.findItem(R.id.home_button);
-        item.setEnabled(false);
-        item.getIcon().setAlpha(0);
-        return true;
     }
 }
