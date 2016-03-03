@@ -16,6 +16,7 @@ import android.view.View;
  * @see     User
  * @see     EditProfileActivity
  * @see     UserProfileActivity
+ * @see     UserController
  */
 public class AddProfileActivity extends UserProfileActivity {
 

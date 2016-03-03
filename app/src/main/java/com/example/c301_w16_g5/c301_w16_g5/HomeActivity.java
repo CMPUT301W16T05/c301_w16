@@ -9,6 +9,9 @@ import android.support.v7.widget.Toolbar;
  *
  * @author  Satyen
  * @version 1.4, 03/02/2016
+ * @see     UserProfileActivity
+ * @see     MyChickenListActivity
+ * @see     SearchActivity
  */
 public class HomeActivity extends ChickBidActivity {
 

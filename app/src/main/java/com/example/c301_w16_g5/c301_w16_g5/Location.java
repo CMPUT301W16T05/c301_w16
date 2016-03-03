@@ -12,6 +12,7 @@ package com.example.c301_w16_g5.c301_w16_g5;
  * @see     Bid
  * @see     ChooseLocationActivity
  * @see     ViewLocationActivity
+ * @see     ChickenController
  */
 public class Location {
     private double latitude;

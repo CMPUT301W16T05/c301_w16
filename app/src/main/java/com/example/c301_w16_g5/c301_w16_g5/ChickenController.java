@@ -3,16 +3,17 @@ package com.example.c301_w16_g5.c301_w16_g5;
 import java.util.ArrayList;
 
 /**
- * This class is responsible for operating on the Chicken model
- * to perform complicated actions.
+ * This class is responsible for operating on the <code>Chicken</code> model to
+ * perform complicated actions.
  *
  * @author  Shahzeb
  * @version 1.4, 03/02/2016
  * @see     User
  * @see     Chicken
  * @see     AddChickenActivity
- * @see     ItemChickenActivity
- * @see     EditProfileActivity
+ * @see     EditChickenActivity
+ * @see     OwnerChickenProfileActivity
+ * @see     BorrowerChickenProfileActivity
  */
 public class ChickenController {
     public ArrayList<Chicken> getAllChickensInPossession() {

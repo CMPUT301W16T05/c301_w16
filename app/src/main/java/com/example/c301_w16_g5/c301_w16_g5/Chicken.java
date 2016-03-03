@@ -14,9 +14,11 @@ import java.util.ArrayList;
  * @see     Photograph
  * @see     SearchController
  * @see     ChickenController
+ * @see     ChickenActivity
  * @see     AddChickenActivity
- * @see     ItemChickenActivity
- * @see     EditProfileActivity
+ * @see     EditChickenActivity
+ * @see     OwnerChickenProfileActivity
+ * @see     BorrowerChickenProfileActivity
  */
 public class Chicken extends GenericModel<GenericView> {
     public enum ChickenStatus {

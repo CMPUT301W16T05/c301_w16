@@ -7,6 +7,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+/**
+ * <code>UserProfileActivity</code> provides a view of a user's profile information.
+ *
+ * @author  Hailey
+ * @version 1.4, 03/02/2016
+ * @see     User
+ * @see     UserController
+ */
 public class UserProfileActivity extends AppCompatActivity {
 
     @Override

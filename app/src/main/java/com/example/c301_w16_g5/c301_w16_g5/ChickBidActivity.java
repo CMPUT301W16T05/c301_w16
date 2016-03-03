@@ -7,7 +7,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 
 /**
- * Responsible for placing the toolbar at the top of every activity screen.
+ * This activity is responsible for placing the toolbar at the top of every
+ * activity screen.  It will be inherited from by the other activities (except
+ * the welcome screen).
  *
  * @author  Satyen
  * @version 1.4, 03/02/2016

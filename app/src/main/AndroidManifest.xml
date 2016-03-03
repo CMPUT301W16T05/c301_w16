@@ -12,19 +12,20 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <activity
             android:name=".LoginActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".HomeActivity"
             android:label="@string/title_activity_main_screen"
-            android:parentActivityName=".LoginActivity" >
+            android:parentActivityName=".LoginActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".LoginActivity" />
@@ -32,7 +33,7 @@
         <activity
             android:name=".ItemViews"
             android:label="@string/title_activity_item_views"
-            android:parentActivityName=".HomeActivity" >
+            android:parentActivityName=".HomeActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".HomeActivity" />
@@ -40,7 +41,7 @@
         <activity
             android:name=".ItemFragment1"
             android:label="@string/title_activity_item_fragment1"
-            android:parentActivityName=".HomeActivity" >
+            android:parentActivityName=".HomeActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".HomeActivity" />
@@ -48,7 +49,7 @@
         <activity
             android:name=".SearchActivity"
             android:label="@string/title_activity_search"
-            android:parentActivityName=".HomeActivity" >
+            android:parentActivityName=".HomeActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".HomeActivity" />
@@ -56,7 +57,7 @@
         <activity
             android:name=".UserProfile"
             android:label="@string/title_activity_profile"
-            android:parentActivityName=".HomeActivity" >
+            android:parentActivityName=".HomeActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".HomeActivity" />
@@ -64,18 +65,10 @@
         <activity
             android:name=".EditProfileActivity"
             android:label="@string/title_activity_edit_profile"
-            android:parentActivityName=".UserProfile" >
+            android:parentActivityName=".UserProfile">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".UserProfile" />
-        </activity>
-        <activity
-            android:name=".ItemChickenActivity"
-            android:label="@string/title_activity_item_profile"
-            android:parentActivityName=".ItemViews" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.c301_w16_g5.c301_w16_g5.ItemViews" />
         </activity>
         <activity
             android:name=".NotificationsActivity"
@@ -83,15 +76,15 @@
         <activity
             android:name=".BidsActivity"
             android:label="@string/title_activity_bids"
-            android:parentActivityName=".ItemProfileActivity" >
+            android:parentActivityName=".ItemProfileActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ItemChickenActivity" />
+                android:value=".ChickenActivity" />
         </activity>
         <activity
             android:name=".AddChickenActivity"
             android:label="@string/title_activity_add_item"
-            android:parentActivityName=".ItemViews" >
+            android:parentActivityName=".ItemViews">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.c301_w16_g5.c301_w16_g5.ItemViews" />

@@ -3,7 +3,14 @@ package com.example.c301_w16_g5.c301_w16_g5;
 import android.app.Application;
 
 /**
- * Created by Hailey on 2016-02-26.
+ * <code>ChickBidsApplication</code> is the primary application class.  It
+ * manages the singleton controllers in this MVC model.
+ *
+ * @author  Shahzeb
+ * @version 1.4, 03/02/2016
+ * @see     ChickenController
+ * @see     SearchController
+ * @see     UserController
  */
 public class ChickBidsApplication extends Application {
     transient private static ChickenController chickenController = null;
