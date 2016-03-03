@@ -114,6 +114,10 @@ public class User extends GenericModel<GenericView> {
         return myChickens.get(index);
     }
 
+    public ArrayList<Chicken> getMyChickens() {
+        return myChickens;
+    }
+
     public boolean hasChicken(Chicken chicken){
         return myChickens.contains(chicken);
     }

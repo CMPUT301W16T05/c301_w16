@@ -16,8 +16,7 @@ import java.util.ArrayList;
  */
 public class ChickenController {
     public ArrayList<Chicken> getAllChickensInPossession() {
-        User user = UserController.getUser();
-        return user
+        return UserController.getCurrentUser().getMyChickens();
     }
 
     // chicken lending management
