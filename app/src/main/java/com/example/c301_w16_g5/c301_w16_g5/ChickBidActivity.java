@@ -35,19 +35,21 @@ public abstract class ChickBidActivity extends AppCompatActivity {
     // TODO: reference source
     // used to make home icon disappear
     // http://stackoverflow.com/questions/5440601/android-how-to-enable-disable-option-menu-item-on-button-click answer by Frank
-    // accessed on Mar 2 2016 at 3:20 pm by Satyen Akolkar
+    // accessed on Mar 2 2016 at 3:20 pm by Satyen
+    // FIXME: smells horrendous
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-
-        menu.clear();
-        onCreateOptionsMenu(menu);
+        if (this.getClass().equals(HomeActivity.class) || this.getClass().equals(NotificationsActivity.class)) {
+            menu.clear();
+            onCreateOptionsMenu(menu);
+        } else {
+            return true;
+        }
 
         if (this.getClass().equals(HomeActivity.class)) {
             menu.removeItem(R.id.home_button);
-
         } else if (this.getClass().equals(NotificationsActivity.class)) {
             menu.removeItem(R.id.notifications_button);
-
         }
         return true;
     }
