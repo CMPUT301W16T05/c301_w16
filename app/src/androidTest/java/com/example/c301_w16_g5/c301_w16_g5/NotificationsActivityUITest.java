@@ -5,12 +5,12 @@ import android.app.Instrumentation;
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.ViewAsserts;
 
-public class NoticesActivityUITest extends ActivityInstrumentationTestCase2 {
+public class NotificationsActivityUITest extends ActivityInstrumentationTestCase2 {
 
     Instrumentation instrumentation;
     Activity activity;
 
-    public NoticesActivityUITest() {
+    public NotificationsActivityUITest() {
         super(NotificationsActivity.class);
     }
 

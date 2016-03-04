@@ -17,11 +17,15 @@ import android.view.View;
  * @see     Chicken
  * @see     User
  */
-public class SearchActivity extends AppCompatActivity {
+public class SearchActivity extends ChickBidActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceBundle) {
-        super.onCreate(savedInstanceBundle);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_search);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.nav_toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
 }

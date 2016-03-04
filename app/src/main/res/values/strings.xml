@@ -23,19 +23,22 @@
     <string name="title_activity_profile">Profile</string>
     <string name="title_activity_edit_profile">Edit Profile</string>
     <string name="title_activity_item_profile">Item Profile</string>
-    <string name="title_activity_notices">Notices</string>
+    <string name="title_activity_notices">Notifications</string>
     <string name="title_activity_bids">Bids</string>
     <string name="title_activity_add_item">Add Item</string>
     <string name="title_activity_add_profile">Add Profile</string>
     <string name="title_activity_user_profile">User Profile</string>
 
     <!-- Strings related to navigation bar -->
-    <string name="home">Home</string>
-    <string name="notices">Notices</string>
+    <string name="navbar_home">Home</string>
+    <string name="navbar_notificications">Notifications</string>
 
     <!-- Strings related to buttons -->
     <string name="profile">Profile</string>
     <string name="Search">Search</string>
     <string name="Items">Items</string>
+    <string name="title_activity_notifications">NotificationsActivity</string>
+
+    <string name="hello_world">Hello world!</string>
 
 </resources>
