@@ -24,6 +24,7 @@
         <activity
             android:name=".HomeActivity"
             android:label="@string/title_activity_main_screen"
+            android:launchMode="singleTask"
             android:parentActivityName=".LoginActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -32,14 +33,6 @@
         <activity
             android:name=".ItemViews"
             android:label="@string/title_activity_item_views"
-            android:parentActivityName=".HomeActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".HomeActivity" />
-        </activity>
-        <activity
-            android:name=".ItemFragment1"
-            android:label="@string/title_activity_item_fragment1"
             android:parentActivityName=".HomeActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -70,35 +63,20 @@
                 android:value=".UserProfileActivity" />
         </activity>
         <activity
-            android:name=".ItemChickenActivity"
-            android:label="@string/title_activity_item_profile"
-            android:parentActivityName=".ItemViews" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.c301_w16_g5.c301_w16_g5.ItemViews" />
-        </activity>
-        <activity
             android:name=".NotificationsActivity"
-            android:label="@string/title_activity_notices" />
+            android:label="@string/title_activity_notices" >
+            <!-- TODO: figure out how to make parent last accessed activity -->
+        </activity>
         <activity
             android:name=".BidsActivity"
-            android:label="@string/title_activity_bids"
-            android:parentActivityName=".ItemProfileActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ItemChickenActivity" />
-        </activity>
-        <activity
-            android:name=".AddChickenActivity"
-            android:label="@string/title_activity_add_item"
-            android:parentActivityName=".ItemViews" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.c301_w16_g5.c301_w16_g5.ItemViews" />
+            android:label="@string/title_activity_bids" >
+            <!-- TODO: add parent -->
         </activity>
         <activity
             android:name=".AddProfileActivity"
-            android:label="@string/title_activity_add_profile" />
+            android:label="@string/title_activity_add_profile">
+            <!-- TODO: add parent -->
+        </activity>
     </application>
 
 </manifest>

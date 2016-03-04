@@ -15,6 +15,7 @@ public class HomeActivity extends ChickBidActivity {
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.nav_toolbar);
         setSupportActionBar(myToolbar);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         invalidateOptionsMenu();
 
         Button profileButton = (Button) findViewById(R.id.buttonProfile);
@@ -31,14 +32,12 @@ public class HomeActivity extends ChickBidActivity {
                 startActivity(profileIntent);
             }
         });
-
         itemsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(itemsIntent);
             }
         });
-
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
