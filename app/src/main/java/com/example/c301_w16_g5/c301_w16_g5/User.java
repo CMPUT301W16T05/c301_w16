@@ -23,7 +23,7 @@ public class User extends GenericModel<GenericView> {
     private String chickenExperience;
 
     // My chickens should contain all chickens owned by
-    // user or currently in user's posession
+    // user OR currently in user's posession, i.e. borrowed chickens
     private ArrayList<Chicken> myChickens;
     private ArrayList<Notification> myNotifications;
 

@@ -9,4 +9,7 @@ package com.example.c301_w16_g5.c301_w16_g5;
  * @see     User
  */
 public class SearchException extends Exception {
+    public SearchException(String detailMessage) {
+        super(detailMessage);
+    }
 }
