@@ -16,14 +16,21 @@ import java.util.ArrayList;
  * @see     BorrowerChickenProfileActivity
  */
 public class ChickenController {
+    public ChickenController() {
+    }
+
     public ArrayList<Chicken> getAllChickensInPossession() {
         return UserController.getCurrentUser().getMyChickens();
     }
 
     // chicken lending management
     public ArrayList<Chicken> getBorrowedFromOthers() {
-        // TODO: implement
-        return null;
+        ArrayList<Chicken> all_chickens = getAllChickensInPossession();
+        ArrayList<Chicken> borrowed_chickens = new ArrayList<Chicken>();
+        for (Chicken chicken : all_chickens) {
+            //TODO: fill this. Possibly need to add equals on User.
+        }
+        return borrowed_chickens;
     }
 
     public ArrayList<Chicken> getBorrowedFromMe() {
