@@ -29,11 +29,11 @@ public class HomeActivity extends ChickBidActivity {
         invalidateOptionsMenu();
 
         Button profileButton = (Button) findViewById(R.id.buttonProfile);
-        Button itemsButton = (Button) findViewById(R.id.buttonItems);
+        Button chickensButton = (Button) findViewById(R.id.buttonChickens);
         Button searchButton = (Button) findViewById(R.id.buttonSearch);
 
         final Intent profileIntent = new Intent(this, UserProfileActivity.class);
-        final Intent itemsIntent = new Intent(this, ItemViews.class);
+        final Intent chickensIntent = new Intent(this, ItemViews.class);
         final Intent searchIntent = new Intent(this, SearchActivity.class);
 
         profileButton.setOnClickListener(new View.OnClickListener() {
@@ -42,10 +42,10 @@ public class HomeActivity extends ChickBidActivity {
                 startActivity(profileIntent);
             }
         });
-        itemsButton.setOnClickListener(new View.OnClickListener() {
+        chickensButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(itemsIntent);
+                startActivity(chickensIntent);
             }
         });
         searchButton.setOnClickListener(new View.OnClickListener() {

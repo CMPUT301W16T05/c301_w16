@@ -6,7 +6,47 @@
     android:fitsSystemWindows="true"
     tools:context="com.example.c301_w16_g5.c301_w16_g5.HomeActivity">
 
-    <include layout="@layout/navbar"/>
-    <include layout="@layout/content_home" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include layout="@layout/navbar"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorAccent"
+            android:text="@string/profile"
+            android:id="@+id/buttonProfile"
+            android:layout_above="@+id/buttonChickens"
+            android:layout_margin="16dp"
+            android:textStyle="bold"
+            android:typeface="normal" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorAccent"
+            android:text="@string/Chickens"
+            android:id="@+id/buttonChickens"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="16dp"
+            android:textStyle="bold"
+            android:typeface="normal" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorAccent"
+            android:text="@string/Search"
+            android:id="@+id/buttonSearch"
+            android:layout_below="@+id/buttonChickens"
+            android:layout_marginTop="8dp"
+            android:layout_margin="16dp"
+            android:textStyle="bold"
+            android:typeface="normal" />
+
+    </RelativeLayout>
 
 </android.support.design.widget.CoordinatorLayout>

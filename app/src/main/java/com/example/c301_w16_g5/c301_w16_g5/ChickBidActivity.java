@@ -1,6 +1,7 @@
 package com.example.c301_w16_g5.c301_w16_g5;
 
 import android.content.Intent;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -30,6 +31,13 @@ public abstract class ChickBidActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem menuItem) {
         switch (menuItem.getItemId()) {
+            case R.id.home:
+                /*
+                FIXME: doesn't work as wanted
+                should go to previous activity instance not to parent
+                 */
+                NavUtils.navigateUpFromSameTask(this);
+                break;
             case R.id.home_button:
                 startActivity(new Intent(this, HomeActivity.class));
                 break;

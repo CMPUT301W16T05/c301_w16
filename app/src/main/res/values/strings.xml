@@ -31,12 +31,12 @@
 
     <!-- Strings related to navigation bar -->
     <string name="navbar_home">Home</string>
-    <string name="navbar_notificications">Notifications</string>
+    <string name="navbar_notifications">Notifications</string>
 
     <!-- Strings related to buttons -->
     <string name="profile">Profile</string>
     <string name="Search">Search</string>
-    <string name="Items">Items</string>
+    <string name="Chickens">Chickens</string>
     <string name="title_activity_notifications">NotificationsActivity</string>
 
     <string name="hello_world">Hello world!</string>
