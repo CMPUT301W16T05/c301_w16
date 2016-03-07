@@ -2,6 +2,8 @@ package com.example.c301_w16_g5.c301_w16_g5;
 
 import java.util.ArrayList;
 
+import io.searchbox.annotations.JestId;
+
 /**
  * A <code>Chicken</code> is the item of trade around which the application is
  * based.  Users borrow chickens from other users who own them, determined by
@@ -35,6 +37,9 @@ public class Chicken extends GenericModel<GenericView> {
     private User borrower;
     private ArrayList<Bid> bids;
     private Photograph photo;
+
+    @JestId
+    protected String id;
 
     public Chicken() {
         bids = new ArrayList<Bid>();
@@ -105,5 +110,13 @@ public class Chicken extends GenericModel<GenericView> {
 
     public void setPhoto(Photograph photo) {
         this.photo = photo;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

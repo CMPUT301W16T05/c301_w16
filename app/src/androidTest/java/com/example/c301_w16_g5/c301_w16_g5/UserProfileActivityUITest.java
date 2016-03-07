@@ -11,7 +11,7 @@ public class UserProfileActivityUITest extends ActivityInstrumentationTestCase2 
     Activity activity;
 
     public UserProfileActivityUITest() {
-        super(AddChickenActivity.class);
+        super(AddProfileActivity.class);
     }
 
     protected void setUp() throws Exception {
@@ -19,10 +19,10 @@ public class UserProfileActivityUITest extends ActivityInstrumentationTestCase2 
         instrumentation = getInstrumentation();
         activity = getActivity();
     }
-
+/*
     public void testViewVisible() {
         ViewAsserts.assertOnScreen(activity.getWindow().getDecorView(),
                 activity.findViewById(R.id.toolbar));
     }
-
+*/
 }

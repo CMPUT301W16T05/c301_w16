@@ -19,10 +19,10 @@ public class NotificationsActivityUITest extends ActivityInstrumentationTestCase
         instrumentation = getInstrumentation();
         activity = getActivity();
     }
-
+/*
     public void testViewVisible() {
         ViewAsserts.assertOnScreen(activity.getWindow().getDecorView(),
                 activity.findViewById(R.id.toolbar));
     }
-
+*/
 }

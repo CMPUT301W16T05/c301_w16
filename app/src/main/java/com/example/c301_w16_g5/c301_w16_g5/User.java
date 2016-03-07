@@ -2,6 +2,8 @@ package com.example.c301_w16_g5.c301_w16_g5;
 
 import java.util.ArrayList;
 
+import io.searchbox.annotations.JestId;
+
 /**
  * A <code>User</code> is an operator of the application.  Interactions between
  * users include lending/borrowing chickens, and viewing other users' profiles.
@@ -21,6 +23,9 @@ public class User extends GenericModel<GenericView> {
     private String email;
     private String phoneNumber;
     private String chickenExperience;
+
+    @JestId
+    protected String id;
 
     // My chickens should contain all chickens owned by
     // user OR currently in user's posession, i.e. borrowed chickens
@@ -99,6 +104,14 @@ public class User extends GenericModel<GenericView> {
 
     public void setChickenExperience(String chickenExperience) {
         this.chickenExperience = chickenExperience;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     // basic chicken management
