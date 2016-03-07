@@ -24,6 +24,7 @@ public class Chicken extends GenericModel<GenericView> {
     public enum ChickenStatus {
         AVAILABLE,
         BORROWED,
+        BIDDED,
         NOT_AVAILABLE
     }
 
@@ -89,17 +90,6 @@ public class Chicken extends GenericModel<GenericView> {
         return bids;
     }
 
-    public Bid getAcceptedBid() throws Exception {
-        ArrayList<Bid> bids = getBids();
-
-        for (Bid bid : bids) {
-            if (bid.getBidStatus() == Bid.BidStatus.ACCEPTED) {
-                return bid;
-            }
-        }
-
-        throw new Exception("No accepted bid exists.");
-    }
 
     public User getBorrower() {
         return borrower;

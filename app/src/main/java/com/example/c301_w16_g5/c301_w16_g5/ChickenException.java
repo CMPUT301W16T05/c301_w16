@@ -11,4 +11,7 @@ package com.example.c301_w16_g5.c301_w16_g5;
  * @see     ChickenController
  */
 public class ChickenException extends Exception {
+    public ChickenException(String detailMessage) {
+        super(detailMessage);
+    }
 }
