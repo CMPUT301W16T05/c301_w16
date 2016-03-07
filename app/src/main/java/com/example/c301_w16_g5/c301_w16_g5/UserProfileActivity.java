@@ -16,12 +16,26 @@ import android.view.View;
  * @see     UserController
  */
 public class UserProfileActivity extends ChickBidActivity {
+
+    private User testUser;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
         Toolbar toolbar = (Toolbar) findViewById(R.id.nav_toolbar);
         setSupportActionBar(toolbar);
+
+        // show back arrow at top left
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        
+    }
+
+
 }
