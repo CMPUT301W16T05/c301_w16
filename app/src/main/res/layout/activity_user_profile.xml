@@ -6,21 +6,98 @@
     android:fitsSystemWindows="true"
     tools:context="com.example.c301_w16_g5.c301_w16_g5.UserProfileActivity">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <include layout="@layout/navbar"
-            android:id="@+id/include" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <include layout="@layout/navbar"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Large Text"
-            android:id="@+id/textView"
+            android:id="@+id/usernameTextView"
             android:layout_alignParentEnd="true"
-            android:layout_below="@+id/include"
-            android:layout_alignParentStart="true" />
-    </RelativeLayout>
+            android:layout_alignParentStart="true"
+            android:padding="16dp"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimaryDark" />
+
+        <!-- TODO: cite source
+             Adding a line to android layout
+             http://stackoverflow.com/questions/5049852/android-drawing-separator-divider-line-in-layout
+             Answer by Alex Kucherenko on Apr 23 2012
+             Accessed by Satyen Akolkar on Mar 7 2016 -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorAccent"/>
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:id="@+id/nameTextView"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentStart="true"
+                    android:textColor="@color/colorTextSecondary"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:id="@+id/phoneNumberTextView"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentStart="true"
+                    android:textColor="@color/colorTextSecondary"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:id="@+id/emailTextView"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentStart="true"
+                        android:textColor="@color/colorTextSecondary"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:id="@+id/chickenExperienceTextView"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentStart="true"
+                    android:textColor="@color/colorTextSecondary"/>
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@drawable/ic_mode_edit_white_48dp" />
 
 </android.support.design.widget.CoordinatorLayout>

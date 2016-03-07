@@ -6,6 +6,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.TextView;
 
 /**
  * <code>UserProfileActivity</code> provides a view of a user's profile information.
@@ -19,6 +20,12 @@ public class UserProfileActivity extends ChickBidActivity {
 
     private User testUser; // TODO: remove
 
+    private TextView usernameTextView;
+    private TextView nameTextView;
+    private TextView emailTextView;
+    private TextView phoneTextView;
+    private TextView experienceTextView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,13 +38,34 @@ public class UserProfileActivity extends ChickBidActivity {
 
         // TODO: remove
         testUser = new User("Test_User", "Test", "User", "test@user.com", "1234", "None");
+
+        usernameTextView = (TextView) findViewById(R.id.usernameTextView);
+        nameTextView = (TextView) findViewById(R.id.nameTextView);
+        emailTextView = (TextView) findViewById(R.id.emailTextView);
+        phoneTextView = (TextView) findViewById(R.id.phoneNumberTextView);
+        experienceTextView = (TextView) findViewById(R.id.chickenExperienceTextView);
+
+        // TODO: disable fab if user profile is not of logged in user
+        // should perform the check and disable in onStart. create a method and call it in onStart
+        FloatingActionButton editProfileFAB = (FloatingActionButton) findViewById(R.id.fab);
+        editProfileFAB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
     }
 
     @Override
     protected void onStart() {
         super.onStart();
 
-        
+        usernameTextView.setText(testUser.getUsername());
+        nameTextView.setText(testUser.getFirstName() + " " + testUser.getLastName());
+        emailTextView.setText(testUser.getEmail());
+        phoneTextView.setText(testUser.getPhoneNumber());
+        experienceTextView.setText(testUser.getChickenExperience());
     }
 
 
