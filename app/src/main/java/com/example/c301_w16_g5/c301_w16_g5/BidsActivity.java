@@ -16,7 +16,7 @@ import android.view.View;
  * @see     Bid
  * @see     User
  */
-public class BidsActivity extends AppCompatActivity {
+public class BidsActivity extends ChickBidActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -2,6 +2,7 @@ package com.example.c301_w16_g5.c301_w16_g5;
 
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
