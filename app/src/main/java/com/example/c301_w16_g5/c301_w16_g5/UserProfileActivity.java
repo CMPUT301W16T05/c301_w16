@@ -17,7 +17,7 @@ import android.view.View;
  */
 public class UserProfileActivity extends ChickBidActivity {
 
-    private User testUser;
+    private User testUser; // TODO: remove
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +28,9 @@ public class UserProfileActivity extends ChickBidActivity {
 
         // show back arrow at top left
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        // TODO: remove
+        testUser = new User("Test_User", "Test", "User", "test@user.com", "1234", "None");
     }
 
     @Override
