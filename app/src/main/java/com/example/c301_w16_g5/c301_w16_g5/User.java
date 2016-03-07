@@ -114,6 +114,10 @@ public class User extends GenericModel<GenericView> {
         return myChickens.get(index);
     }
 
+    public ArrayList<Chicken> getMyChickens() {
+        return myChickens;
+    }
+
     public boolean hasChicken(Chicken chicken){
         return myChickens.contains(chicken);
     }
@@ -124,22 +128,6 @@ public class User extends GenericModel<GenericView> {
 
     public void removeAllChickens() {
         myChickens = new ArrayList<Chicken>();
-    }
-
-    // chicken lending management
-    public ArrayList<Chicken> getBorrowedFromOthers() {
-        // TODO: implement
-        return null;
-    }
-
-    public ArrayList<Chicken> getBorrowedFromMe() {
-        // TODO: implement
-        return null;
-    }
-
-    public ArrayList<Chicken> getChickensWithBids() {
-        // TODO: implement
-        return null;
     }
 
     public ArrayList<Notification> getNotifications() {

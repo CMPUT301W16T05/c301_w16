@@ -14,6 +14,7 @@ public class NotificationsActivity extends ChickBidActivity {
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.nav_toolbar);
         setSupportActionBar(myToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         invalidateOptionsMenu();
     }
 }
