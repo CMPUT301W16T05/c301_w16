@@ -1,5 +1,6 @@
 package com.example.c301_w16_g5.c301_w16_g5;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -45,14 +46,15 @@ public class UserProfileActivity extends ChickBidActivity {
         phoneTextView = (TextView) findViewById(R.id.phoneNumberTextView);
         experienceTextView = (TextView) findViewById(R.id.chickenExperienceTextView);
 
+        final Intent editProfileIntent = new Intent(this, EditProfileActivity.class);
+
         // TODO: disable fab if user profile is not of logged in user
         // should perform the check and disable in onStart. create a method and call it in onStart
         FloatingActionButton editProfileFAB = (FloatingActionButton) findViewById(R.id.fab);
         editProfileFAB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                startActivity(editProfileIntent);
             }
         });
     }
