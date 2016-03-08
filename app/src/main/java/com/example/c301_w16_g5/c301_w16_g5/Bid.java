@@ -19,19 +19,19 @@ public class Bid extends GenericModel<GenericView> {
         REJECTED
     }
 
-    private User bidder;
+    private String bidder_id;
     private double amount;
     private BidStatus bidStatus;
     private Location location;
 
-    public Bid(User bidder, Double amount) {
-        this.bidder = bidder;
+    public Bid(String username, Double amount) {
+        this.bidder_id = username;
         this.amount = amount;
         this.bidStatus = BidStatus.UNDECIDED;
     }
 
-    public User getBidder() {
-        return bidder;
+    public String getBidderID() {
+        return bidder_id;
     }
 
     public double getAmount() {

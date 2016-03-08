@@ -7,10 +7,14 @@ import android.test.ViewAsserts;
 import android.widget.ArrayAdapter;
 
 /**
- * Created by Hailey on 2016-02-11.
+ * UI test for the app's Search screen.
+ *
+ * @author  Hailey
+ * @version 1.4, 03/07/2016
+ * @see     SearchActivity
+ * @see     SearchController
  */
-public class SearchActivityUITest extends ActivityInstrumentationTestCase2 {
-    Activity activity;
+public class SearchActivityUITest extends ToolbarActivityUITest {
 
     public SearchActivityUITest() {
         super(SearchActivity.class);

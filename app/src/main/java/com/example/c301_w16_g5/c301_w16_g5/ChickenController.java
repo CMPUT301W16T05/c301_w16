@@ -28,9 +28,9 @@ public class ChickenController {
 
         for (Chicken chicken : all_chickens) {
             if (((chicken.getChickenStatus() == Chicken.ChickenStatus.BORROWED) &&
-                (!chicken.getOwner().equals(current_user))) ||
+                (!chicken.getOwnerID().equals(current_user.getUsername()))) ||
                 ((chicken.getChickenStatus() != Chicken.ChickenStatus.BORROWED) &&
-                (chicken.getOwner().equals(current_user)))){
+                (chicken.getOwnerID().equals(current_user.getUsername())))){
 
                 possessed_chickens.add(chicken);
             }
@@ -48,7 +48,7 @@ public class ChickenController {
 
         for (Chicken chicken : all_chickens) {
             if ((chicken.getChickenStatus() == Chicken.ChickenStatus.BORROWED) &&
-                (!chicken.getOwner().equals(current_user))) {
+                (!chicken.getOwnerID().equals(current_user.getUsername()))) {
                 borrowed_chickens.add(chicken);
             }
         }
@@ -64,7 +64,7 @@ public class ChickenController {
 
         for (Chicken chicken : all_chickens) {
             if ((chicken.getChickenStatus() == Chicken.ChickenStatus.BORROWED) &&
-                    (chicken.getOwner().equals(current_user))) {
+                    (chicken.getOwnerID().equals(current_user.getUsername()))) {
                 borrowed_chickens.add(chicken);
             }
         }
@@ -80,7 +80,7 @@ public class ChickenController {
 
         for (Chicken chicken : all_chickens) {
             if ((chicken.getChickenStatus() == Chicken.ChickenStatus.BIDDED) &&
-                    (chicken.getOwner().equals(current_user))) {
+                    (chicken.getOwnerID().equals(current_user.getUsername()))) {
                 bidded_chickens.add(chicken);
             }
         }

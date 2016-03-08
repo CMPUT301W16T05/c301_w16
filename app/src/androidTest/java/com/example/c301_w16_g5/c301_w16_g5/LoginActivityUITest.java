@@ -5,6 +5,13 @@ import android.app.Instrumentation;
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.ViewAsserts;
 
+/**
+ * UI test for the app's Login screen.
+ *
+ * @author  Hailey
+ * @version 1.4, 03/07/2016
+ * @see     LoginActivity
+ */
 public class LoginActivityUITest extends ActivityInstrumentationTestCase2 {
 
     Instrumentation instrumentation;
@@ -19,10 +26,18 @@ public class LoginActivityUITest extends ActivityInstrumentationTestCase2 {
         instrumentation = getInstrumentation();
         activity = getActivity();
     }
-/*
-    public void testViewVisible() {
+
+    public void testTextFieldsVisible() {
         ViewAsserts.assertOnScreen(activity.getWindow().getDecorView(),
-                activity.findViewById(R.id.toolbar));
+                activity.findViewById(R.id.email));
+
+        ViewAsserts.assertOnScreen(activity.getWindow().getDecorView(),
+                activity.findViewById(R.id.password));
     }
-*/
+
+    public void testButtonVisible() {
+        ViewAsserts.assertOnScreen(activity.getWindow().getDecorView(),
+            activity.findViewById(R.id.email_sign_in_button));
+    }
+
 }
