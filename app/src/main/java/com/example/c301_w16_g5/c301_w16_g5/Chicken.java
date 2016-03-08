@@ -29,17 +29,16 @@ public class Chicken extends GenericModel<GenericView> {
         BIDDED,
         NOT_AVAILABLE
     }
+    @JestId
+    protected String id;
 
     private String name;
     private String description;
     private ChickenStatus chickenStatus;
-    private String owner_id;
-    private String borrower_id;
+    private String owner_username;
+    private String borrower_username;
     private ArrayList<Bid> bids;
     private Photograph photo;
-
-    @JestId
-    protected String id;
 
     public Chicken() {
         bids = new ArrayList<Bid>();
@@ -50,7 +49,7 @@ public class Chicken extends GenericModel<GenericView> {
         this.name = name;
         this.description = description;
         this.chickenStatus = chickenStatus;
-        this.owner_id = owner_username;
+        this.owner_username = owner_username;
         this.bids = new ArrayList<Bid>();
     }
 
@@ -76,12 +75,12 @@ public class Chicken extends GenericModel<GenericView> {
         this.chickenStatus = chickenStatus;
     }
 
-    public String getOwnerID() {
-        return owner_id;
+    public String getOwnerUsername() {
+        return owner_username;
     }
 
-    public void setOwnerID(String owner_id) {
-        this.owner_id = owner_id;
+    public void setOwnerUsername(String owner_username) {
+        this.owner_username = owner_username;
     }
 
     public String getDescription() {
@@ -97,12 +96,12 @@ public class Chicken extends GenericModel<GenericView> {
     }
 
 
-    public String getBorrowerID() {
-        return borrower_id;
+    public String getBorrowerUsername() {
+        return borrower_username;
     }
 
-    public void setBorrowerID(String borrower_id) {
-        this.borrower_id = borrower_id;
+    public void setBorrowerUsername(String borrower_username) {
+        this.borrower_username = borrower_username;
     }
 
     public Photograph getPhoto() {

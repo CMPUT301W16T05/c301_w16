@@ -108,16 +108,16 @@ public class SearchController {
         source.put("description", chicken.getDescription());
         source.put("chickenStatus", chicken.getChickenStatus().toString());
 
-        if (chicken.getOwnerID() == null) {
+        if (chicken.getOwnerUsername() == null) {
             source.put("owner", "none");
         } else {
-            source.put("owner", chicken.getOwnerID());
+            source.put("owner", chicken.getOwnerUsername());
         }
 
-        if (chicken.getBorrowerID() == null) {
+        if (chicken.getBorrowerUsername() == null) {
             source.put("borrower", "none");
         } else {
-            source.put("borrower", chicken.getBorrowerID());
+            source.put("borrower", chicken.getBorrowerUsername());
         }
 
         return source;

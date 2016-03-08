@@ -8,76 +8,62 @@ public class BorrowTest extends ActivityInstrumentationTestCase2 {
     public BorrowTest() {
         super(HomeActivity.class);
     }
-/*
-    private User user = User.getCurrentUser();
-*/
-    public Chicken chicken1 = new Chicken();
-    public Chicken chicken2 = new Chicken();
-    public Chicken chicken3 = new Chicken();
-    public Chicken chicken4 = new Chicken();
-    ArrayList<Chicken> listOfThings = new ArrayList<Chicken>();
+
+    public User user;
+
+    public Chicken chicken1;
+    public Chicken chicken2;
+    public Chicken chicken3;
+    public Chicken chicken4;
+
+    public ChickenController chickenController;
 
     /*
      * Create a list of reference items with which to test.
      */
-    /*
     protected void setUp() throws Exception {
         super.setUp();
 
-        chicken1.setName("Name");
-        chicken1.setDescription("Description");
-        chicken1.setChickenStatus(Chicken.ChickenStatus.AVAILABLE);
-        chicken1.setOwner(user);
+        user = ChickBidsTestHelper.genericUser1();
 
-        chicken2.setName("Name");
-        chicken2.setDescription("Description");
-        chicken2.setChickenStatus(Chicken.ChickenStatus.BORROWED);
-        chicken2.setOwner(user);
+        chicken1 = ChickBidsTestHelper.genericChicken1_AvailUser1();
+        chicken2 = ChickBidsTestHelper.genericChicken4_BorrUser4();
+        chicken3 = ChickBidsTestHelper.genericChicken6_BidUser1();
+        chicken4 = ChickBidsTestHelper.genericChicken5_BorrUser1();
 
-        chicken3.setName("Name");
-        chicken3.setDescription("Description");
-        chicken3.setChickenStatus(Chicken.ChickenStatus.AVAILABLE);
-        chicken3.setOwner(new User());
+        user.addChicken(chicken1);
+        user.addChicken(chicken2);
+        user.addChicken(chicken3);
+        user.addChicken(chicken4);
 
-        chicken4.setName("Name");
-        chicken4.setDescription("Description");
-        chicken4.setChickenStatus(Chicken.ChickenStatus.BORROWED);
-        chicken4.setOwner(new User());
-
-        listOfThings.add(chicken1);
-        listOfThings.add(chicken2);
-        listOfThings.add(chicken3);
-        listOfThings.add(chicken4);
+        chickenController = ChickBidsTestHelper.getChickenController();
     }
-*/
+
     /* US 06.01.01
      * Will require testing an activity and verifying that upon launching the
      * sub-activity only displays items belonging to another user and have status
      * 'borrowed'
      */
-    /*
     public void testGetBorrowedFromOthers(){
-        ArrayList<Chicken> borrowedThings = user.getChickensBorrowed();
+        ArrayList<Chicken> borrowedThings = chickenController.getBorrowedFromOthers(user);
 
         ArrayList<Chicken> expectedCase = new ArrayList<Chicken>();
-        expectedCase.add(chicken4);
+        expectedCase.add(chicken2);
 
         assertTrue(borrowedThings.equals(expectedCase));
     }
-*/
+
     /* US 06.02.01
      * Will require testing an activity and verifying that upon launching the
      * sub-activity only displays items belonging to self and have status
      * 'borrowed'
      */
-    /*
     public void testGetBorrowedFromMe(){
-        ArrayList<Chicken> myBorrowedThings = user.getChickensLent();
+        ArrayList<Chicken> myBorrowedThings = chickenController.getBorrowedFromMe(user);
 
         ArrayList<Chicken> expectedCase = new ArrayList<Chicken>();
-        expectedCase.add(chicken2);
+        expectedCase.add(chicken4);
 
         assertTrue(myBorrowedThings.equals(expectedCase));
     }
-*/
 }

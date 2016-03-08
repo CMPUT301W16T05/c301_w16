@@ -24,6 +24,7 @@ public class User extends GenericModel<GenericView> {
     private String phoneNumber;
     private String chickenExperience;
 
+    // TODO: Remove this and store on username instead.
     @JestId
     protected String id;
 
@@ -31,11 +32,6 @@ public class User extends GenericModel<GenericView> {
     // user OR currently in user's posession, i.e. borrowed chickens
     private ArrayList<Chicken> myChickens;
     private ArrayList<Notification> myNotifications;
-
-    // For existing users
-    public User(String username) {
-        // TODO: Figure out how to retrieve old user
-    }
 
     /**
      * For new users.
