@@ -31,7 +31,7 @@
                 android:value=".LoginActivity" />
         </activity>
         <activity
-            android:name=".MyChickenListActivity"
+            android:name=".ItemViews"
             android:label="@string/title_activity_item_views"
             android:parentActivityName=".HomeActivity">
             <meta-data
