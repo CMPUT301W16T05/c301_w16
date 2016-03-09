@@ -106,11 +106,6 @@ public class LoginActivity extends ChickBidActivity {
         return email.contains("@");
     }
 
-    @Override
-    public void update(Observable observable, Object data) {
-        //TODO: fill in with update data
-    }
-
     /**
      * Represents an asynchronous login/registration task used to authenticate
      * the user.
