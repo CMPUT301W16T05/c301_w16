@@ -23,10 +23,9 @@ public class EditProfileActivity extends UserProfileActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_profile);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.nav_toolbar);
-        setSupportActionBar(toolbar);
+        //setContentView(R.layout.activity_edit_profile);
+        //Toolbar toolbar = (Toolbar) findViewById(R.id.nav_toolbar);
+        //setSupportActionBar(toolbar);
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
-
 }
