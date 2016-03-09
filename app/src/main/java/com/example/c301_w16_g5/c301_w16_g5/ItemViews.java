@@ -19,6 +19,9 @@ import android.view.ViewGroup;
 
 import android.widget.TextView;
 
+/**
+ * sample comment
+ */
 public class ItemViews extends ChickBidActivity {
 
     /**
