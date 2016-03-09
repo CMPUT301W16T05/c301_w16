@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.Observer;
+
 /**
  * This activity is responsible for placing the toolbar at the top of every
  * activity screen.  It will be inherited from by the other activities (except
@@ -15,7 +17,7 @@ import android.view.MenuItem;
  * @author  Satyen
  * @version 1.4, 03/02/2016
  */
-public abstract class ChickBidActivity extends AppCompatActivity {
+public abstract class ChickBidActivity extends AppCompatActivity implements Observer {
 
     @Override
     protected void onCreate(Bundle savedInstanceBundle) {
