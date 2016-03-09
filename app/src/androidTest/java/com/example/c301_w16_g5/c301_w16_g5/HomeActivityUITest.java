@@ -9,6 +9,7 @@ import android.test.ViewAsserts;
  * @version 1.4, 03/07/2016
  * @see     HomeActivity
  */
+/*
 public class HomeActivityUITest extends ToolbarActivityUITest {
 
     public HomeActivityUITest() {
@@ -25,4 +26,4 @@ public class HomeActivityUITest extends ToolbarActivityUITest {
         ViewAsserts.assertOnScreen(activity.getWindow().getDecorView(),
                 activity.findViewById(R.id.buttonSearch));
     }
-}
+}*/

@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
  * @see     SearchActivity
  * @see     SearchController
  */
+/*
 public class SearchActivityUITest extends ToolbarActivityUITest {
 
     public SearchActivityUITest() {
@@ -86,5 +87,5 @@ public class SearchActivityUITest extends ToolbarActivityUITest {
         assertEquals(0, arrayAdapter.getCount()); // number of results
     }
     */
-}
+//}
 

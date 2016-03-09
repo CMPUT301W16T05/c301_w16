@@ -1,5 +1,7 @@
 package com.example.c301_w16_g5.c301_w16_g5;
 
+import io.searchbox.annotations.JestId;
+
 /**
  * A <code>Bid</code> can be placed by a user upon a chicken they would like to borrow, and
  * then possibly accepted by the owner of that chicken.
@@ -18,6 +20,9 @@ public class Bid extends GenericModel<GenericView> {
         ACCEPTED,
         REJECTED
     }
+
+    @JestId
+    private String id;
 
     private String bidder_username;
     private double amount;
@@ -53,5 +58,13 @@ public class Bid extends GenericModel<GenericView> {
 
     public void setLocation(Location location) {
         this.location = location;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

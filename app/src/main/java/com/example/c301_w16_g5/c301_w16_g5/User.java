@@ -143,5 +143,9 @@ public class User extends GenericModel<GenericView> {
         // TODO: implement
         return myNotifications;
     }
+
+    public void addNotification(Notification notification) {
+        myNotifications.add(notification);
+    }
 }
 
