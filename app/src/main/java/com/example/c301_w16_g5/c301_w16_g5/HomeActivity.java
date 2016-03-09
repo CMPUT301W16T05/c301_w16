@@ -13,7 +13,7 @@ import android.widget.Button;
  * @author  Satyen
  * @version 1.4, 03/02/2016
  * @see     UserProfileActivity
- * @see     MyChickenListActivity
+ * @see     ItemViews
  * @see     SearchActivity
  */
 public class HomeActivity extends ChickBidActivity {
