@@ -153,6 +153,7 @@ public class SearchController {
                 if (result.isSucceeded()) {
                     user = parseUser(result.getSourceAsString());
                 } else {
+                    user = null;
                     Log.i("TODO","Getting the user failed");
                 }
             } catch (IOException e) {

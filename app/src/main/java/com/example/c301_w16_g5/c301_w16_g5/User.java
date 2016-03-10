@@ -1,6 +1,10 @@
 package com.example.c301_w16_g5.c301_w16_g5;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.ArrayList;
+import java.util.List;
 
 import io.searchbox.annotations.JestId;
 
@@ -15,7 +19,7 @@ import io.searchbox.annotations.JestId;
  * @see     EditProfileActivity
  * @see     UserController
  */
-public class User extends GenericModel<GenericView> {
+public class User extends GenericModel<GenericView> implements Parcelable {
     // profile info
     private String username;
     private String firstName;
@@ -147,5 +151,49 @@ public class User extends GenericModel<GenericView> {
     public void addNotification(Notification notification) {
         myNotifications.add(notification);
     }
+
+
+    // Code created by Android Parcelable Generator plugin.
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.username);
+        dest.writeString(this.firstName);
+        dest.writeString(this.lastName);
+        dest.writeString(this.email);
+        dest.writeString(this.phoneNumber);
+        dest.writeString(this.chickenExperience);
+        dest.writeString(this.id);
+        dest.writeList(this.myChickens);
+        dest.writeList(this.myNotifications);
+    }
+
+    protected User(Parcel in) {
+        this.username = in.readString();
+        this.firstName = in.readString();
+        this.lastName = in.readString();
+        this.email = in.readString();
+        this.phoneNumber = in.readString();
+        this.chickenExperience = in.readString();
+        this.id = in.readString();
+        this.myChickens = new ArrayList<Chicken>();
+        in.readList(this.myChickens, List.class.getClassLoader());
+        this.myNotifications = new ArrayList<Notification>();
+        in.readList(this.myNotifications, List.class.getClassLoader());
+    }
+
+    public static final Parcelable.Creator<User> CREATOR = new Parcelable.Creator<User>() {
+        public User createFromParcel(Parcel source) {
+            return new User(source);
+        }
+
+        public User[] newArray(int size) {
+            return new User[size];
+        }
+    };
 }
 

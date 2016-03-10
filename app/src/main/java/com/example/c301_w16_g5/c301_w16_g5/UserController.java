@@ -1,30 +1,43 @@
 package com.example.c301_w16_g5.c301_w16_g5;
 
+import android.content.Intent;
+import android.os.AsyncTask;
+
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 /**
  * Created by shahzeb on 03/03/16.
  */
 public class UserController {
-    // TODO: do we just want a single user for an instance of the application?
     // Singleton
     transient private static User user = null;
 
     public User getUser(String username) {
-        SearchController searchController = ChickBidsApplication.getSearchController();
+        AsyncTask<String, Void, User> task = new SearchController.GetUserByUsernameTask();
+
+        task.execute(username);
 
         try {
-            user = searchController.getUserFromServer(username);
-        } catch (SearchException e) {
-            user = searchController.putUsernameOnServer(username);
+            this.user = task.get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
         }
 
         return user;
     }
 
-    public static User getCurrentUser() {
+    public void updateUser(User user) {
+
+    }
+
+    public User getCurrentUser() {
         return user;
     }
 
-
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

@@ -47,6 +47,7 @@ public class ChickBidsTestHelper {
     public static String description_4 = "This chicken can act";
 
     private static ChickenController chickenController = new ChickenController();
+    private static UserController userController = new UserController();
 
     public static User genericUser1() {
         return new User(username_1, first_name_1, last_name_1, email_1, phone_1, user_experience_1);
@@ -98,5 +99,9 @@ public class ChickBidsTestHelper {
 
     public static ChickenController getChickenController() {
         return chickenController;
+    }
+
+    public static UserController getUserController() {
+        return userController;
     }
 }

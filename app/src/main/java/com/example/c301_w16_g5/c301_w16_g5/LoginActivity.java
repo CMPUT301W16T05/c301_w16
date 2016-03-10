@@ -52,6 +52,9 @@ public class LoginActivity extends ChickBidActivity {
      */
     private static final int REQUEST_READ_CONTACTS = 0;
 
+    public static final int CREATE_USER_EXTRA_CODE = 1;
+    public static final String CREATE_USER_EXTRA_KEY = "create_user_extra_key";
+
     /**
      * A dummy authentication store containing known user names and passwords.
      * TODO: remove after connecting to a real authentication system.
@@ -83,7 +86,7 @@ public class LoginActivity extends ChickBidActivity {
             @Override
             public void onClick(View view) {
                 startActivity(intent);
-                attemptLogin();
+                attemptLoginDummy();
             }
         });
 
@@ -97,8 +100,26 @@ public class LoginActivity extends ChickBidActivity {
      * If there are form errors (invalid email, missing fields, etc.), the
      * errors are presented and no actual login attempt is made.
      */
+    private void attemptLoginDummy() {}
     private void attemptLogin() {
+        String username = mEmailView.getText().toString();
+        UserController userController = ChickBidsApplication.getUserController();
+        User user = userController.getUser(username);
 
+        if (user == null) {
+            Intent intent = new Intent(this, AddProfileActivity.class);
+            intent.putExtra(CREATE_USER_EXTRA_KEY, username);
+            startActivityForResult(intent, CREATE_USER_EXTRA_CODE);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // TODO: Get user here back from activity
+        User user = null;
+
+        UserController userController = ChickBidsApplication.getUserController();
+        userController.setUser(user);
     }
 
     private boolean isEmailValid(String email) {
