@@ -285,7 +285,8 @@ public class SearchController {
 
     public static Chicken parseChicken(String source) {
         String[] attrList = source.split("\"");
-        Chicken chicken = new Chicken(attrList[3],attrList[7],Chicken.ChickenStatus.valueOf(attrList[11]),attrList[15]);
+        Chicken chicken = new Chicken(attrList[3],attrList[7],attrList[15]);
+        chicken.setChickenStatus(Chicken.ChickenStatus.valueOf(attrList[11]));
 
         if (!attrList[19].equals("none")) {
             chicken.setBorrowerUsername(attrList[19]);

@@ -111,7 +111,7 @@ public class User extends GenericModel<GenericView> {
     }
 
     // basic chicken management
-    public void addChicken(Chicken chicken) {
+    protected void addChicken(Chicken chicken) {
         myChickens.add(chicken);
     }
 

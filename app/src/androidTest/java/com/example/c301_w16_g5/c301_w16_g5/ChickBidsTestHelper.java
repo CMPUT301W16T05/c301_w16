@@ -65,27 +65,35 @@ public class ChickBidsTestHelper {
     }
 
     public static Chicken genericChicken1_AvailUser1() {
-        return new Chicken(chicken_name_1, description_1, Chicken.ChickenStatus.AVAILABLE, username_1);
+        return new Chicken(chicken_name_1, description_1, username_1);
     }
 
     public static Chicken genericChicken2_BidUser2() {
-        return new Chicken(chicken_name_2, description_2, Chicken.ChickenStatus.BIDDED, username_2);
+        Chicken chicken = new Chicken(chicken_name_2, description_2, username_2);
+        chicken.setChickenStatus(Chicken.ChickenStatus.BIDDED);
+        return chicken;
     }
 
     public static Chicken genericChicken3_AvailUser3() {
-        return new Chicken(chicken_name_3, description_3, Chicken.ChickenStatus.AVAILABLE, username_3);
+        return new Chicken(chicken_name_3, description_3, username_3);
     }
 
     public static Chicken genericChicken4_BorrUser4() {
-        return new Chicken(chicken_name_4, description_4, Chicken.ChickenStatus.BORROWED, username_4);
+        Chicken chicken = new Chicken(chicken_name_4, description_4, username_4);
+        chicken.setChickenStatus(Chicken.ChickenStatus.BORROWED);
+        return chicken;
     }
 
     public static Chicken genericChicken5_BorrUser1() {
-        return new Chicken(chicken_name_5, description_1, Chicken.ChickenStatus.BORROWED, username_1);
+        Chicken chicken = new Chicken(chicken_name_5, description_1, username_1);
+        chicken.setChickenStatus(Chicken.ChickenStatus.BORROWED);
+        return chicken;
     }
 
     public static Chicken genericChicken6_BidUser1() {
-        return new Chicken(chicken_name_6, description_2, Chicken.ChickenStatus.BIDDED, username_1);
+        Chicken chicken = new Chicken(chicken_name_6, description_2, username_1);
+        chicken.setChickenStatus(Chicken.ChickenStatus.BIDDED);
+        return chicken;
     }
 
     public static ChickenController getChickenController() {
