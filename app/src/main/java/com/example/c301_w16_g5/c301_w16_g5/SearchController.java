@@ -434,23 +434,6 @@ public class SearchController {
         return notification;
     }
 
-    public User getUserFromServer(String username) throws SearchException {
-        return null;
-    }
-
-    public User putUsernameOnServer(String username) {
-        return null;
-    }
-
-    public ArrayList<Chicken> getAllChickensForUser(User user) {
-        // Return all chickens from server that are in users possession or
-        // owned by user.
-        // This includes:
-        // - Owned by user
-        // - Borrowed by user
-        return null;
-    }
-
     public static void verifyClient() {
         if (client == null) {
             DroidClientConfig.Builder builder = new DroidClientConfig.Builder("http://cmput301.softwareprocess.es:8080");
