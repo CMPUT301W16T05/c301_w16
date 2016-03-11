@@ -1,11 +1,6 @@
 package com.example.c301_w16_g5.c301_w16_g5;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
 
 /**
  * This is the view the user sees when they are updating their profile information.
@@ -19,6 +14,12 @@ import android.view.View;
  * @see     UserController
  */
 public class EditProfileActivity extends UserProfileActivity {
+
+    public static final int CREATE_USER_EXTRA_REQ_CODE = 11;
+    public static final String CREATE_USER_EXTRA_KEY = "create_user_extra_key";
+    public static final String CREATE_USER_USERNAME_EXTRA_KEY = "create_user_username_extra_key";
+
+    public static final int UPDATE_USER_EXTRA_REQ_CODE = 21;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
