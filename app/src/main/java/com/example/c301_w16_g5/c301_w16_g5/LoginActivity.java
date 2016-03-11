@@ -72,7 +72,7 @@ public class LoginActivity extends ChickBidActivity {
         User user = new User("chicken", "Chicken", "Run", "blah@email.com", "800-299-5999", "Not much");
         ChickBidsApplication.getUserController().setUser(user);
     }
-    
+
     private void attemptLogin() {
         String username = mEmailView.getText().toString();
         UserController userController = ChickBidsApplication.getUserController();

@@ -19,8 +19,6 @@ import android.widget.EditText;
  */
 public class EditProfileActivity extends ChickBidActivity {
 
-    private User testUser; // TODO: remove
-
     public static final String CREATE_USER_USERNAME_EXTRA_KEY = "create_user_username_extra_key";
     public static final String UPDATE_USER_EXTRA_KEY = "update_user_extra_key";
 
@@ -54,9 +52,6 @@ public class EditProfileActivity extends ChickBidActivity {
         // show back arrow at top left
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        // TODO: remove
-        testUser = new User("Test_User", "Test", "User", "test@user.com", "1234", "None");
-
         usernameEditText = (EditText) findViewById(R.id.usernameEditText);
         nameEditText = (EditText) findViewById(R.id.nameEditText);
         emailEditText = (EditText) findViewById(R.id.emailEditText);
@@ -68,11 +63,13 @@ public class EditProfileActivity extends ChickBidActivity {
     protected void onStart() {
         super.onStart();
 
-        usernameEditText.setText(testUser.getUsername());
-        nameEditText.setText("Username: " + testUser.getFirstName() + " " + testUser.getLastName());
-        emailEditText.setText("Email: " + testUser.getEmail());
-        phoneEditText.setText("Phone: " + testUser.getPhoneNumber());
-        experienceEditText.setText("Experience: " + testUser.getChickenExperience());
+        User user = ChickBidsApplication.getUserController().getCurrentUser();
+
+        usernameEditText.setText(user.getUsername());
+        nameEditText.setText("Username: " + user.getFirstName() + " " + user.getLastName());
+        emailEditText.setText("Email: " + user.getEmail());
+        phoneEditText.setText("Phone: " + user.getPhoneNumber());
+        experienceEditText.setText("Experience: " + user.getChickenExperience());
     }
 
     private void updateUser() {
