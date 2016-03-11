@@ -39,6 +39,13 @@
     <string name="Chickens">Chickens</string>
     <string name="title_activity_notifications">NotificationsActivity</string>
 
+    <!-- Strings related to Item Profile -->
+    <string name="item_profile_owned">Owned</string>
+    <string name="item_profile_owned_with_bids">Received Bids</string>
+    <string name="item_profile_lent">Lent</string>
+    <string name="item_profile_borrowed">Borrowed</string>
+    <string name="item_profile_bids_placed">My Bidded</string>
+
     <string name="hello_world">Hello world!</string>
 
 </resources>

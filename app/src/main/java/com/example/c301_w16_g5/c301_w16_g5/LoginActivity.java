@@ -68,7 +68,11 @@ public class LoginActivity extends ChickBidActivity {
      * If there are form errors (invalid email, missing fields, etc.), the
      * errors are presented and no actual login attempt is made.
      */
-    private void attemptLoginDummy() {}
+    private void attemptLoginDummy() {
+        User user = new User("chicken", "Chicken", "Run", "blah@email.com", "800-299-5999", "Not much");
+        ChickBidsApplication.getUserController().setUser(user);
+    }
+    
     private void attemptLogin() {
         String username = mEmailView.getText().toString();
         UserController userController = ChickBidsApplication.getUserController();
