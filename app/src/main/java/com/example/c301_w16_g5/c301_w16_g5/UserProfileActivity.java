@@ -19,8 +19,6 @@ import android.widget.TextView;
  */
 public class UserProfileActivity extends ChickBidActivity {
 
-    private User testUser; // TODO: remove
-
     private TextView usernameTextView;
     private TextView nameTextView;
     private TextView emailTextView;
@@ -37,9 +35,6 @@ public class UserProfileActivity extends ChickBidActivity {
         // show back arrow at top left
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        // TODO: remove
-        testUser = new User("Test_User", "Test", "User", "test@user.com", "1234", "None");
-
         usernameTextView = (TextView) findViewById(R.id.usernameTextView);
         nameTextView = (TextView) findViewById(R.id.nameTextView);
         emailTextView = (TextView) findViewById(R.id.emailTextView);
@@ -54,6 +49,8 @@ public class UserProfileActivity extends ChickBidActivity {
         editProfileFAB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                User user = ChickBidsApplication.getUserController().getCurrentUser();
+                editProfileIntent.putExtra(EditProfileActivity.UPDATE_USER_EXTRA_KEY, user);
                 startActivity(editProfileIntent);
             }
         });
@@ -63,11 +60,13 @@ public class UserProfileActivity extends ChickBidActivity {
     protected void onStart() {
         super.onStart();
 
-        usernameTextView.setText(testUser.getUsername());
-        nameTextView.setText(testUser.getFirstName() + " " + testUser.getLastName());
-        emailTextView.setText(testUser.getEmail());
-        phoneTextView.setText(testUser.getPhoneNumber());
-        experienceTextView.setText(testUser.getChickenExperience());
+        User user = ChickBidsApplication.getUserController().getCurrentUser();
+
+        usernameTextView.setText(user.getUsername());
+        nameTextView.setText("Username: " + user.getFirstName() + " " + user.getLastName());
+        emailTextView.setText("Email: " + user.getEmail());
+        phoneTextView.setText("Phone: " + user.getPhoneNumber());
+        experienceTextView.setText("Experience: " + user.getChickenExperience());
     }
 
 
