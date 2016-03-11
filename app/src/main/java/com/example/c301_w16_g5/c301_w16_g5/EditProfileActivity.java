@@ -21,11 +21,8 @@ public class EditProfileActivity extends ChickBidActivity {
 
     private User testUser; // TODO: remove
 
-    public static final int CREATE_USER_EXTRA_REQ_CODE = 11;
-    public static final String CREATE_USER_EXTRA_KEY = "create_user_extra_key";
     public static final String CREATE_USER_USERNAME_EXTRA_KEY = "create_user_username_extra_key";
-
-    public static final int UPDATE_USER_EXTRA_REQ_CODE = 21;
+    public static final String UPDATE_USER_EXTRA_KEY = "update_user_extra_key";
 
     private EditText usernameEditText;
     private EditText nameEditText;
@@ -33,9 +30,22 @@ public class EditProfileActivity extends ChickBidActivity {
     private EditText phoneEditText;
     private EditText experienceEditText;
 
+    private User updated_user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        /* TODO: Check the incoming intent's extra for either of the
+         keys defined above. Edit or create user depending on the
+         extra key passed in.
+         Ideally, update the updated_user locally and then override
+         onPause or something and call updateUser() below. */
+
+        //setContentView(R.layout.activity_edit_profile);
+        //Toolbar toolbar = (Toolbar) findViewById(R.id.nav_toolbar);
+        //setSupportActionBar(toolbar);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         setContentView(R.layout.activity_edit_profile);
         Toolbar toolbar = (Toolbar) findViewById(R.id.nav_toolbar);
@@ -63,5 +73,9 @@ public class EditProfileActivity extends ChickBidActivity {
         emailEditText.setText("Email: " + testUser.getEmail());
         phoneEditText.setText("Phone: " + testUser.getPhoneNumber());
         experienceEditText.setText("Experience: " + testUser.getChickenExperience());
+    }
+
+    private void updateUser() {
+        ChickBidsApplication.getUserController().setUser(updated_user);
     }
 }
