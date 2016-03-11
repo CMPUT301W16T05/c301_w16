@@ -164,4 +164,21 @@ public class ChickenController {
 
         chicken.getBids().add(bid);
     }
+
+    // Input Validation
+    public static boolean validateChickenName(String name) {
+        return UserController.genericValidateLettersNumbersOnly(name);
+    }
+
+    public static boolean validateChickenDescription(String description) {
+        return description.length() > 0;
+    }
+
+    public static boolean validateChickenStatus(Chicken.ChickenStatus status) {
+        // http://stackoverflow.com/questions/1509614/check-valid-enum-values-before-using-enum
+        for (Chicken.ChickenStatus s : Chicken.ChickenStatus.values()) {
+            if (s == status) return true;
+        }
+        return false;
+    }
 }
