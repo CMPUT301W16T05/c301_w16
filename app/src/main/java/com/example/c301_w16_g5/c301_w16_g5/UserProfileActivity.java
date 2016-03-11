@@ -54,6 +54,7 @@ public class UserProfileActivity extends ChickBidActivity {
         editProfileFAB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                editProfileIntent.putExtra("currentInfo", testUser);
                 startActivity(editProfileIntent);
             }
         });
@@ -64,10 +65,10 @@ public class UserProfileActivity extends ChickBidActivity {
         super.onStart();
 
         usernameTextView.setText(testUser.getUsername());
-        nameTextView.setText(testUser.getFirstName() + " " + testUser.getLastName());
-        emailTextView.setText(testUser.getEmail());
-        phoneTextView.setText(testUser.getPhoneNumber());
-        experienceTextView.setText(testUser.getChickenExperience());
+        nameTextView.setText("Username: " + testUser.getFirstName() + " " + testUser.getLastName());
+        emailTextView.setText("Email: " + testUser.getEmail());
+        phoneTextView.setText("Phone: " + testUser.getPhoneNumber());
+        experienceTextView.setText("Experience: " + testUser.getChickenExperience());
     }
 
 
