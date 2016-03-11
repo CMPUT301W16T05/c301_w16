@@ -17,7 +17,7 @@ import java.util.Observer;
  * @author  Satyen
  * @version 1.4, 03/02/2016
  */
-public abstract class ChickBidActivity extends AppCompatActivity implements GenericView {
+public abstract class ChickBidActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceBundle) {
