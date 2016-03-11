@@ -27,13 +27,21 @@ import java.util.ArrayList;
  */
 public class ItemViews extends ChickBidActivity {
 
+    private enum TabCategory {
+        OWNED,
+        OWNED_WITH_BIDS,
+        LENT,
+        BORROWED,
+        BIDS_PLACED
+    }
+
     private TabLayout.Tab tab_owned;
     private TabLayout.Tab tab_owned_with_bids;
     private TabLayout.Tab tab_lent;
     private TabLayout.Tab tab_borrowed;
     private TabLayout.Tab tab_bids_placed;
 
-    private ArrayList<Chicken> listOfChickens = new ArrayList<Chicken>();   
+    private ArrayList<Chicken> listOfChickens = new ArrayList<Chicken>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,11 +54,11 @@ public class ItemViews extends ChickBidActivity {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
 
-        TabLayout.Tab tab_owned = tabLayout.newTab().setText(R.string.item_profile_owned);
-        TabLayout.Tab tab_owned_with_bids = tabLayout.newTab().setText(R.string.item_profile_owned_with_bids);
-        TabLayout.Tab tab_lent = tabLayout.newTab().setText(R.string.item_profile_lent);
-        TabLayout.Tab tab_borrowed = tabLayout.newTab().setText(R.string.item_profile_borrowed);
-        TabLayout.Tab tab_bids_placed = tabLayout.newTab().setText(R.string.item_profile_bids_placed);
+        TabLayout.Tab tab_owned = tabLayout.newTab().setText(R.string.item_profile_owned).setTag(TabCategory.OWNED);
+        TabLayout.Tab tab_owned_with_bids = tabLayout.newTab().setText(R.string.item_profile_owned_with_bids).setTag(TabCategory.OWNED_WITH_BIDS);
+        TabLayout.Tab tab_lent = tabLayout.newTab().setText(R.string.item_profile_lent).setTag(TabCategory.LENT);
+        TabLayout.Tab tab_borrowed = tabLayout.newTab().setText(R.string.item_profile_borrowed).setTag(TabCategory.BORROWED);
+        TabLayout.Tab tab_bids_placed = tabLayout.newTab().setText(R.string.item_profile_bids_placed).setTag(TabCategory.BIDS_PLACED);
 
         tabLayout.addTab(tab_owned);
         tabLayout.addTab(tab_owned_with_bids);
@@ -96,11 +104,19 @@ public class ItemViews extends ChickBidActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    private void updateListView(TabCategory tabCategory) {
+
+    }
+
+    private void addListViewToTab(TabLayout.Tab tab) {
+        updateListView((TabCategory) tab.getTag());
+    }
+
     public class ItemTabListener implements TabLayout.OnTabSelectedListener {
 
         @Override
         public void onTabSelected(TabLayout.Tab tab) {
-
+            addListViewToTab(tab);
         }
 
         @Override
