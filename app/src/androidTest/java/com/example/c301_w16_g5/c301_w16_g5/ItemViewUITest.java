@@ -24,7 +24,7 @@ public class ItemViewUITest extends ActivityInstrumentationTestCase2 {
 
     public void testViewVisible() {
         ViewAsserts.assertOnScreen(activity.getWindow().getDecorView(),
-                activity.findViewById(R.id.toolbar));
+                activity.findViewById(R.id.nav_toolbar));
     }
 
 }

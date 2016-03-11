@@ -1,6 +1,10 @@
 package com.example.c301_w16_g5.c301_w16_g5;
 
+import android.os.AsyncTask;
+
 import java.util.ArrayList;
+
+import io.searchbox.core.Search;
 
 /**
  * This class is responsible for operating on the <code>Chicken</code> model to
@@ -20,7 +24,8 @@ public class ChickenController {
     }
 
     // Chickens
-    public ArrayList<Chicken> getAllChickensInPossession(User current_user) {
+    public ArrayList<Chicken> getAllChickensInPossession() {
+        User current_user = ChickBidsApplication.getUserController().getCurrentUser();
         ArrayList<Chicken> all_chickens = current_user.getMyChickens();
         ArrayList<Chicken> possessed_chickens = new ArrayList<Chicken>();
 
@@ -38,8 +43,9 @@ public class ChickenController {
     }
 
     // chicken lending management
-    public ArrayList<Chicken> getBorrowedFromOthers(User current_user) {
-        ArrayList<Chicken> all_chickens = getAllChickensInPossession(current_user);
+    public ArrayList<Chicken> getBorrowedFromOthers() {
+        User current_user = ChickBidsApplication.getUserController().getCurrentUser();
+        ArrayList<Chicken> all_chickens = getAllChickensInPossession();
         ArrayList<Chicken> borrowed_chickens = new ArrayList<Chicken>();
 
         for (Chicken chicken : all_chickens) {
@@ -52,8 +58,9 @@ public class ChickenController {
         return borrowed_chickens;
     }
 
-    public ArrayList<Chicken> getBorrowedFromMe(User current_user) {
-        ArrayList<Chicken> all_chickens = getAllChickensInPossession(current_user);
+    public ArrayList<Chicken> getBorrowedFromMe() {
+        User current_user = ChickBidsApplication.getUserController().getCurrentUser();
+        ArrayList<Chicken> all_chickens = getAllChickensInPossession();
         ArrayList<Chicken> borrowed_chickens = new ArrayList<Chicken>();
 
         for (Chicken chicken : all_chickens) {
@@ -66,8 +73,9 @@ public class ChickenController {
         return borrowed_chickens;
     }
 
-    public ArrayList<Chicken> getChickensWithBids(User current_user) {
-        ArrayList<Chicken> all_chickens = getAllChickensInPossession(current_user);
+    public ArrayList<Chicken> getChickensWithBids() {
+        User current_user = ChickBidsApplication.getUserController().getCurrentUser();
+        ArrayList<Chicken> all_chickens = getAllChickensInPossession();
         ArrayList<Chicken> bidded_chickens = new ArrayList<Chicken>();
 
         for (Chicken chicken : all_chickens) {
@@ -78,6 +86,13 @@ public class ChickenController {
         }
 
         return bidded_chickens;
+    }
+
+    public void saveChicken(Chicken chicken) {
+        User current_user = ChickBidsApplication.getUserController().getCurrentUser();
+        AsyncTask<Chicken, Void, Chicken> task = new SearchController.AddChickenTask();
+        task.execute(chicken);
+        current_user.addChicken(chicken);
     }
 
     // Bids
@@ -148,5 +163,22 @@ public class ChickenController {
         }
 
         chicken.getBids().add(bid);
+    }
+
+    // Input Validation
+    public static boolean validateChickenName(String name) {
+        return UserController.genericValidateLettersNumbersOnly(name);
+    }
+
+    public static boolean validateChickenDescription(String description) {
+        return description.length() > 0;
+    }
+
+    public static boolean validateChickenStatus(Chicken.ChickenStatus status) {
+        // http://stackoverflow.com/questions/1509614/check-valid-enum-values-before-using-enum
+        for (Chicken.ChickenStatus s : Chicken.ChickenStatus.values()) {
+            if (s == status) return true;
+        }
+        return false;
     }
 }

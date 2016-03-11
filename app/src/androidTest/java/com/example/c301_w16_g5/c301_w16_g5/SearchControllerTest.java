@@ -18,8 +18,7 @@ public class SearchControllerTest extends ActivityInstrumentationTestCase2 {
     public void testAddChickenTask() {
         User user = new User("jsmith", "John", "Smith", "jsmith@gmail.com",
                 "5875555555", "Loads");
-        Chicken chicken = new Chicken("Bob", "Very friendly",
-                Chicken.ChickenStatus.AVAILABLE, user.getUsername());
+        Chicken chicken = new Chicken("Bob", "Very friendly", user.getUsername());
 
         AsyncTask<Chicken, Void, Chicken> executable = new SearchController.AddChickenTask();
         executable.execute(chicken);
@@ -28,8 +27,7 @@ public class SearchControllerTest extends ActivityInstrumentationTestCase2 {
     public void testAddUserTask() {
         User user = new User("jsmith", "John", "Smith", "jsmith@gmail.com",
                 "5875555555", "Not Much");
-        Chicken chicken = new Chicken("Bob", "Very friendly",
-                Chicken.ChickenStatus.AVAILABLE, user.getUsername());
+        Chicken chicken = new Chicken("Bob", "Very friendly", user.getUsername());
         user.addChicken(chicken);
 
         AsyncTask<User, Void, Void> executable = new SearchController.AddUserTask();
@@ -38,7 +36,7 @@ public class SearchControllerTest extends ActivityInstrumentationTestCase2 {
 
     public void testGetUserByUsernameTask() {
         User user = new User("jsmith", "John", "Smith", "jsmith@gmail.com", "5875555555", "Not Much");
-        Chicken chicken = new Chicken("Bob", "Very friendly", Chicken.ChickenStatus.AVAILABLE, "jsmith");
+        Chicken chicken = new Chicken("Bob", "Very friendly", "jsmith");
         Notification notification = new Notification("Urgent");
 
         AsyncTask<Chicken, Void, Chicken> executable = new SearchController.AddChickenTask();
@@ -97,7 +95,7 @@ public class SearchControllerTest extends ActivityInstrumentationTestCase2 {
     }
 
     public void testGetChickenByIdTask() {
-        Chicken chicken1 = new Chicken("Bob", "Very friendly", Chicken.ChickenStatus.AVAILABLE, "jsmith");
+        Chicken chicken1 = new Chicken("Bob", "Very friendly", "jsmith");
         Chicken chicken2 = new Chicken();
         Chicken chicken3 = new Chicken();
         Bid bid = new Bid("jsmith",10.00);
@@ -218,7 +216,7 @@ public class SearchControllerTest extends ActivityInstrumentationTestCase2 {
             e.printStackTrace();
         }
 
-        assertEquals(chickens.size(),11);
-        assertEquals(chickens.get(0).getName(),"Bob");
+        assertEquals(11, chickens.size());
+        assertEquals("Bob", chickens.get(0).getName());
     }
 }

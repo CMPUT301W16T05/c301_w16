@@ -40,15 +40,14 @@ public class Chicken extends GenericModel<GenericView> {
     private ArrayList<Bid> bids;
     private Photograph photo;
 
-    public Chicken() {
+    protected Chicken() {
         bids = new ArrayList<Bid>();
     }
 
-    public Chicken(String name, String description, ChickenStatus chickenStatus,
-                   String owner_username) {
+    public Chicken(String name, String description, String owner_username) {
         this.name = name;
         this.description = description;
-        this.chickenStatus = chickenStatus;
+        this.chickenStatus = ChickenStatus.AVAILABLE;
         this.owner_username = owner_username;
         this.bids = new ArrayList<Bid>();
     }

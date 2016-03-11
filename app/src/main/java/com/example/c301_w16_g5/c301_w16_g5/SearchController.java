@@ -153,6 +153,7 @@ public class SearchController {
                 if (result.isSucceeded()) {
                     user = parseUser(result.getSourceAsString());
                 } else {
+                    user = null;
                     Log.i("TODO","Getting the user failed");
                 }
             } catch (IOException e) {
@@ -285,7 +286,8 @@ public class SearchController {
 
     public static Chicken parseChicken(String source) {
         String[] attrList = source.split("\"");
-        Chicken chicken = new Chicken(attrList[3],attrList[7],Chicken.ChickenStatus.valueOf(attrList[11]),attrList[15]);
+        Chicken chicken = new Chicken(attrList[3],attrList[7],attrList[15]);
+        chicken.setChickenStatus(Chicken.ChickenStatus.valueOf(attrList[11]));
 
         if (!attrList[19].equals("none")) {
             chicken.setBorrowerUsername(attrList[19]);
@@ -430,23 +432,6 @@ public class SearchController {
         }
 
         return notification;
-    }
-
-    public User getUserFromServer(String username) throws SearchException {
-        return null;
-    }
-
-    public User putUsernameOnServer(String username) {
-        return null;
-    }
-
-    public ArrayList<Chicken> getAllChickensForUser(User user) {
-        // Return all chickens from server that are in users possession or
-        // owned by user.
-        // This includes:
-        // - Owned by user
-        // - Borrowed by user
-        return null;
     }
 
     public static void verifyClient() {

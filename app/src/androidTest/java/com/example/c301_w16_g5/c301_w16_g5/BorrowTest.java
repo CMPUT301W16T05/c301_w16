@@ -17,6 +17,7 @@ public class BorrowTest extends ActivityInstrumentationTestCase2 {
     public Chicken chicken4;
 
     public ChickenController chickenController;
+    public UserController userController;
 
     /*
      * Create a list of reference items with which to test.
@@ -37,6 +38,8 @@ public class BorrowTest extends ActivityInstrumentationTestCase2 {
         user.addChicken(chicken4);
 
         chickenController = ChickBidsTestHelper.getChickenController();
+        userController = ChickBidsTestHelper.getUserController();
+        userController.setUser(user);
     }
 
     /* US 06.01.01
@@ -45,7 +48,7 @@ public class BorrowTest extends ActivityInstrumentationTestCase2 {
      * 'borrowed'
      */
     public void testGetBorrowedFromOthers(){
-        ArrayList<Chicken> borrowedThings = chickenController.getBorrowedFromOthers(user);
+        ArrayList<Chicken> borrowedThings = chickenController.getBorrowedFromOthers();
 
         ArrayList<Chicken> expectedCase = new ArrayList<Chicken>();
         expectedCase.add(chicken2);
@@ -59,7 +62,7 @@ public class BorrowTest extends ActivityInstrumentationTestCase2 {
      * 'borrowed'
      */
     public void testGetBorrowedFromMe(){
-        ArrayList<Chicken> myBorrowedThings = chickenController.getBorrowedFromMe(user);
+        ArrayList<Chicken> myBorrowedThings = chickenController.getBorrowedFromMe();
 
         ArrayList<Chicken> expectedCase = new ArrayList<Chicken>();
         expectedCase.add(chicken4);
