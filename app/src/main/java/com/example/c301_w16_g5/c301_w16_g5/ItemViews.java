@@ -57,13 +57,13 @@ public class ItemViews extends ChickBidActivity {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         //tabLayout.setupWithViewPager(mViewPager);
-        tabLayout.addTab(tabLayout.newTab().setText("@strings/item_profile_owned"));
-        tabLayout.addTab(tabLayout.newTab().setText("@strings/item_profile_owned_with_bids"));
-        tabLayout.addTab(tabLayout.newTab().setText("@strings/item_profile_lent"));
-        tabLayout.addTab(tabLayout.newTab().setText("@strings/item_profile_borrowed"));
-        tabLayout.addTab(tabLayout.newTab().setText("@strings/item_profile_placed"));
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.item_profile_owned));
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.item_profile_owned_with_bids));
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.item_profile_lent));
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.item_profile_borrowed));
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.item_profile_bids_placed));
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.add_chicken_fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
