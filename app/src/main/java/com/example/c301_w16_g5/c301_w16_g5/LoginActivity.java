@@ -53,8 +53,8 @@ public class LoginActivity extends ChickBidActivity {
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(intent);
                 attemptLoginDummy();
+                startActivity(intent);
             }
         });
 
@@ -77,30 +77,8 @@ public class LoginActivity extends ChickBidActivity {
         if (user == null) {
             Intent intent = new Intent(this, AddProfileActivity.class);
             intent.putExtra(EditProfileActivity.CREATE_USER_USERNAME_EXTRA_KEY, username);
-            startActivityForResult(intent, EditProfileActivity.CREATE_USER_EXTRA_REQ_CODE);
+            startActivity(intent);
         }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        // TODO: Get user here back from activity
-        User user = null;
-
-        switch (requestCode) {
-            case EditProfileActivity.CREATE_USER_EXTRA_REQ_CODE:
-                user = data.getExtras().getParcelable(EditProfileActivity.CREATE_USER_EXTRA_KEY);
-                break;
-            default:
-                break;
-        }
-
-        UserController userController = ChickBidsApplication.getUserController();
-        userController.setUser(user);
-    }
-
-    private boolean isEmailValid(String email) {
-        //TODO: Replace this with your own logic
-        return email.contains("@");
     }
 
     /**
