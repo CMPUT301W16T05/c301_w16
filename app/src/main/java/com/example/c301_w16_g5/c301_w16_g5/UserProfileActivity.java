@@ -67,7 +67,6 @@ public class UserProfileActivity extends ChickBidActivity {
         super.onStart();
 
         user = ChickBidsApplication.getUserController().getCurrentUser();
-        user.getUsername();
 
         usernameTextView.setText(user.getUsername());
         nameTextView.setText("Username: " + user.getFirstName() + " " + user.getLastName());

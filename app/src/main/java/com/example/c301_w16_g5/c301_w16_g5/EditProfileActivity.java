@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -32,7 +33,7 @@ public class EditProfileActivity extends ChickBidActivity {
     private EditText phoneEditText;
     private EditText experienceEditText;
 
-    private User updated_user;
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,40 +62,62 @@ public class EditProfileActivity extends ChickBidActivity {
         emailEditText = (EditText) findViewById(R.id.emailEditText);
         phoneEditText = (EditText) findViewById(R.id.phoneEditText);
         experienceEditText = (EditText) findViewById(R.id.experienceEditText);
-
-//        Button saveButton = (Button) findViewById(R.id.buttonSave);
-//        saveButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                ChickBidsApplication.getUserController().setUser(updated_user);
-//
-//                Intent intent = new Intent(this, UserProfileActivity.class);
-//                setResult(Activity.RESULT_OK, intent);
-//                finish();
-//            }
-//        });
     }
 
     @Override
     protected void onStart() {
         super.onStart();
 
-        User user = ChickBidsApplication.getUserController().getCurrentUser();
+        user = ChickBidsApplication.getUserController().getCurrentUser();
 
         usernameEditText.setText(user.getUsername());
-        nameEditText.setText("Name: " + user.getFirstName() + " " + user.getLastName());
-        emailEditText.setText("Email: " + user.getEmail());
-        phoneEditText.setText("Phone: " + user.getPhoneNumber());
-        experienceEditText.setText("Experience: " + user.getChickenExperience());
+//        nameEditText.setText("Name: " + user.getFirstName() + " " + user.getLastName());
+//        emailEditText.setText("Email: " + user.getEmail());
+//        phoneEditText.setText("Phone: " + user.getPhoneNumber());
+//        experienceEditText.setText("Experience: " + user.getChickenExperience());
+
+        nameEditText.setText(user.getFirstName() + " " + user.getLastName());
+        emailEditText.setText(user.getEmail());
+        phoneEditText.setText(user.getPhoneNumber());
+        experienceEditText.setText(user.getChickenExperience());
     }
 
     public void updateUser(View view) {
-//        ChickBidsApplication.getUserController().setUser(updated_user);
+
+        getUpdatedUserInfo();
+//      ChickBidsApplication.getUserController().setUser(updated_user);
 
         Intent intent = new Intent(this, UserProfileActivity.class);
         setResult(Activity.RESULT_OK, intent);
         finish();
     }
 
+    private void getUpdatedUserInfo() {
+        String username = ((EditText) findViewById(R.id.usernameEditText)).getText().toString();
+        // validate username
+        user.setUsername(username);
+
+//        String firstName = ((EditText) findViewById(R.id.firstNameEditText)).getText().toString()
+//        // validate firstName
+//        user.setfirstName(firstName);
+
+//        String lastName = ((EditText) findViewById(R.id.lastNameEditText)).getText().toString()
+//        // validate lastName
+//        user.setlastName(lastName);
+        user.setFirstName("newfirst");
+        user.setLastName("newlast");
+
+        String email = ((EditText) findViewById(R.id.emailEditText)).getText().toString();
+        // validate email
+        user.setEmail(email);
+
+        String phone = ((EditText) findViewById(R.id.phoneEditText)).getText().toString();
+        // validate phone
+        user.setPhoneNumber(phone);
+
+        String experience = ((EditText) findViewById(R.id.experienceEditText)).getText().toString();
+        // validate experience
+        user.setChickenExperience(experience);
+    }
 
 }
