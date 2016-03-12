@@ -23,6 +23,16 @@
 
     </android.support.design.widget.AppBarLayout>
 
+    <TextView
+        android:id="@+id/chickenListTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="22dp"
+        android:text="Title"
+        android:textColor="@color/colorTextSecondary"
+        android:padding="10dp" />
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
