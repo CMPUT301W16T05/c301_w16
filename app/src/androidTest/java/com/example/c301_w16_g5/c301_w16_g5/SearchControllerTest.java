@@ -216,7 +216,7 @@ public class SearchControllerTest extends ActivityInstrumentationTestCase2 {
             e.printStackTrace();
         }
 
-        assertEquals(11, chickens.size());
-        assertEquals("Bob", chickens.get(0).getName());
+        assertEquals("Bob",chickens.get(0).getName());
+        assertEquals(chickens.size(),26);
     }
 }
