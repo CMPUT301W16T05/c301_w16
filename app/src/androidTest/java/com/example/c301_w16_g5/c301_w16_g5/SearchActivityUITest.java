@@ -1,13 +1,7 @@
 package com.example.c301_w16_g5.c301_w16_g5;
 
-import android.app.Activity;
-import android.test.ActivityInstrumentationTestCase2;
-import android.test.UiThreadTest;
-import android.test.ViewAsserts;
-import android.widget.ArrayAdapter;
-
 /**
- * UI test for the app's Search screen.
+ * UI test for the app's SearchController screen.
  *
  * @author  Hailey
  * @version 1.4, 03/07/2016
