@@ -50,6 +50,7 @@ public class UserController {
     }
 
     public static boolean validateUsername(String username) {
+        // TODO: ensure username is not already taken
         return genericValidateLettersNumbersOnly(username);
     }
 

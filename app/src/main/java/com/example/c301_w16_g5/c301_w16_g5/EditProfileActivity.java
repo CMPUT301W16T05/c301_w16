@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 /**
  * This is the view the user sees when they are updating their profile information.
@@ -42,11 +43,6 @@ public class EditProfileActivity extends ChickBidActivity {
          Ideally, update the updated_user locally and then override
          onPause or something and call updateUser() below. */
 
-        //setContentView(R.layout.activity_edit_profile);
-        //Toolbar toolbar = (Toolbar) findViewById(R.id.nav_toolbar);
-        //setSupportActionBar(toolbar);
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         setContentView(R.layout.activity_edit_profile);
         Toolbar toolbar = (Toolbar) findViewById(R.id.nav_toolbar);
         setSupportActionBar(toolbar);
@@ -77,43 +73,61 @@ public class EditProfileActivity extends ChickBidActivity {
     }
 
     public void updateUser(View view) {
-
-        getUpdatedUserInfo();
-//      ChickBidsApplication.getUserController().setUser(updated_user);
+        try {
+            getUpdatedUserInfo();
+        } catch (UserException e) {
+            // display error to user and don't update info
+            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         Intent intent = new Intent(this, DisplayProfileActivity.class);
         setResult(Activity.RESULT_OK, intent);
         finish();
     }
 
-    private void getUpdatedUserInfo() {
+    private void getUpdatedUserInfo() throws UserException {
         String username = ((EditText) findViewById(R.id.usernameEditText)).getText().toString();
-        // validate username
-        user.setUsername(username);
+        if (ChickBidsApplication.getUserController().validateNames(username)) {
+            user.setUsername(username);
+        } else {
+            throw new UserException("Invalid username");
+        }
 
         String firstName = ((EditText) findViewById(R.id.firstNameEditText)).getText().toString();
-//        if (ChickBidsApplication.getUserController().validateNames(firstName)) {
-//            user.setFirstName(firstName);
-//        } else {
-//            throw new UserException("Invalid first name");
-//        }
-        user.setFirstName(firstName);
+        if (ChickBidsApplication.getUserController().validateNames(firstName)) {
+            user.setFirstName(firstName);
+        } else {
+            throw new UserException("Invalid first name");
+        }
 
         String lastName = ((EditText) findViewById(R.id.lastNameEditText)).getText().toString();
-        // validate lastName
-        user.setLastName(lastName);
+        if (ChickBidsApplication.getUserController().validateNames(lastName)) {
+            user.setLastName(lastName);
+        } else {
+            throw new UserException("Invalid last name");
+        }
 
         String email = ((EditText) findViewById(R.id.emailEditText)).getText().toString();
-        // validate email
-        user.setEmail(email);
+        if (ChickBidsApplication.getUserController().validateEmail(email)) {
+            user.setEmail(email);
+        } else {
+            throw new UserException("Invalid email");
+        }
 
         String phone = ((EditText) findViewById(R.id.phoneEditText)).getText().toString();
-        // validate phone
-        user.setPhoneNumber(phone);
+        if (ChickBidsApplication.getUserController().validatePhoneNumber(phone)) {
+            user.setPhoneNumber(phone);
+        } else {
+            throw new UserException("Invalid phone number");
+        }
 
         String experience = ((EditText) findViewById(R.id.experienceEditText)).getText().toString();
-        // validate experience
-        user.setChickenExperience(experience);
+        if (ChickBidsApplication.getUserController().validateChickenExperience(experience)) {
+            user.setChickenExperience(experience);
+        } else {
+            throw new UserException("Invalid chicken experience description");
+        }
     }
 
 }

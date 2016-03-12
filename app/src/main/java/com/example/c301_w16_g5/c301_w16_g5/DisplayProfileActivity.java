@@ -4,10 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -75,7 +72,7 @@ public class DisplayProfileActivity extends ChickBidActivity {
         experienceTextView.setText("Experience: " + user.getChickenExperience());
     }
 
-    /** Called upon return to the main activity */
+    /** Called upon return to DisplayProfileActivity */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -88,13 +85,4 @@ public class DisplayProfileActivity extends ChickBidActivity {
             }
         }
     }
-
-    /** Called when the user clicks on an entry in the ListView */
-    protected void editUserInfo(View view) {
-        // allows editing/deleting of an entry
-        Intent intent = new Intent(this, EditProfileActivity.class);
-//        intent.putExtra(EditProfileActivity.UPDATE_USER_EXTRA_KEY, user);
-        startActivityForResult(intent, EDIT_PROFILE_REQUEST);
-    }
-
 }
