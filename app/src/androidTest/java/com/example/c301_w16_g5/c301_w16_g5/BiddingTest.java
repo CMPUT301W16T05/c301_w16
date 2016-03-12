@@ -79,13 +79,13 @@ public class BiddingTest extends ActivityInstrumentationTestCase2 {
 
     // US 05.04.01
     public void testGetBiddedItems() {
-        assertFalse(user1.getChickensWithBids().contains(chicken1));
-        assertFalse(user1.getChickensWithBids().contains(chicken2));
+        assertFalse(user1.getMyChickensWithBids().contains(chicken1));
+        assertFalse(user1.getMyChickensWithBids().contains(chicken2));
 
         Bid bid1 = new Bid(user2, 4.0, chicken1);
-        assertTrue(user1.getChickensWithBids().contains(chicken1));
+        assertTrue(user1.getMyChickensWithBids().contains(chicken1));
         Bid bid2 = new Bid(user2, 5.0, chicken2);
-        assertTrue(user1.getChickensWithBids().contains(chicken2));
+        assertTrue(user1.getMyChickensWithBids().contains(chicken2));
     }
 
     // US 05.05.01
@@ -105,11 +105,11 @@ public class BiddingTest extends ActivityInstrumentationTestCase2 {
         assertTrue(bid2.getStatus() == Bid.Status.PENDING_APPROVAL);
 
         // test non-owner cannot accept bid
-        user2.acceptBid(bid2);
+        user2.acceptBidForChicken(bid2);
         assertTrue(bid2.getStatus() == Bid.Status.PENDING_APPROVAL);
 
         // test owner can accept bid
-        user1.acceptBid(bid1);
+        user1.acceptBidForChicken(bid1);
         assertTrue(bid1.getStatus() == Bid.Status.ACCEPTED);
         assertTrue(bid2.getStatus() == Bid.Status.DECLINED);
 

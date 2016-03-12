@@ -48,7 +48,7 @@ public class BorrowTest extends ActivityInstrumentationTestCase2 {
      * 'borrowed'
      */
     public void testGetBorrowedFromOthers(){
-        ArrayList<Chicken> borrowedThings = chickenController.getBorrowedFromOthers();
+        ArrayList<Chicken> borrowedThings = chickenController.getChickensBorrowedFromOthers();
 
         ArrayList<Chicken> expectedCase = new ArrayList<Chicken>();
         expectedCase.add(chicken2);
@@ -62,7 +62,7 @@ public class BorrowTest extends ActivityInstrumentationTestCase2 {
      * 'borrowed'
      */
     public void testGetBorrowedFromMe(){
-        ArrayList<Chicken> myBorrowedThings = chickenController.getBorrowedFromMe();
+        ArrayList<Chicken> myBorrowedThings = chickenController.getChickensLentByMe();
 
         ArrayList<Chicken> expectedCase = new ArrayList<Chicken>();
         expectedCase.add(chicken4);

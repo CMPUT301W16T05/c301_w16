@@ -14,7 +14,7 @@ import io.searchbox.annotations.JestId;
  * @see     User
  * @see     Bid
  * @see     Photograph
- * @see     SearchController
+ * @see     ElasticSearchBackend
  * @see     ChickenController
  * @see     ChickenActivity
  * @see     AddChickenActivity

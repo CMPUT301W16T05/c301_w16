@@ -14,7 +14,7 @@ public class UserController {
     transient private static User user = null;
 
     public User getUser(String username) {
-        AsyncTask<String, Void, User> task = new SearchController.GetUserByUsernameTask();
+        AsyncTask<String, Void, User> task = new ElasticSearchBackend.GetUserByUsernameTask();
 
         task.execute(username);
 

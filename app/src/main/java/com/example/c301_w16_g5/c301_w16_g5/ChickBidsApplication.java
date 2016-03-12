@@ -9,7 +9,7 @@ import android.app.Application;
  * @author  Shahzeb
  * @version 1.4, 03/02/2016
  * @see     ChickenController
- * @see     SearchController
+ * @see     ElasticSearchBackend
  * @see     UserController
  */
 public class ChickBidsApplication extends Application {

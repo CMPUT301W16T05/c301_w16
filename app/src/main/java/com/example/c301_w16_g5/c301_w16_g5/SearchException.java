@@ -5,7 +5,7 @@ package com.example.c301_w16_g5.c301_w16_g5;
  *
  * @author  Shahzeb
  * @version 1.4, 03/02/2016
- * @see     SearchController
+ * @see     ElasticSearchBackend
  * @see     User
  */
 public class SearchException extends Exception {
