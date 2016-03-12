@@ -30,7 +30,9 @@ public class UserController {
     }
 
     public void updateUser(User user) {
-
+        SearchController searchController = ChickBidsApplication.getSearchController();
+        searchController.updateUserInDatabase(user);
+        setUser(user);
     }
 
     public User getCurrentUser() {
