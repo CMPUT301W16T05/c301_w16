@@ -3,13 +3,9 @@ package com.example.c301_w16_g5.c301_w16_g5;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 /**
  * This is the view the user sees when they are updating their profile information.
@@ -19,7 +15,7 @@ import android.widget.TextView;
  * @version 1.4, 03/02/2016
  * @see     User
  * @see     AddProfileActivity
- * @see     UserProfileActivity
+ * @see     DisplayProfileActivity
  * @see     UserController
  */
 public class EditProfileActivity extends ChickBidActivity {
@@ -85,7 +81,7 @@ public class EditProfileActivity extends ChickBidActivity {
         getUpdatedUserInfo();
 //      ChickBidsApplication.getUserController().setUser(updated_user);
 
-        Intent intent = new Intent(this, UserProfileActivity.class);
+        Intent intent = new Intent(this, DisplayProfileActivity.class);
         setResult(Activity.RESULT_OK, intent);
         finish();
     }

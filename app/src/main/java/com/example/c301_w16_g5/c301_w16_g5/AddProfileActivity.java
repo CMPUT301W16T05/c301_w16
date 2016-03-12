@@ -1,11 +1,7 @@
 package com.example.c301_w16_g5.c301_w16_g5;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 
 /**
  * This is the view the user sees when they are initially inputting their profile information.
@@ -15,10 +11,10 @@ import android.view.View;
  * @version 1.4, 03/02/2016
  * @see     User
  * @see     EditProfileActivity
- * @see     UserProfileActivity
+ * @see     DisplayProfileActivity
  * @see     UserController
  */
-public class AddProfileActivity extends UserProfileActivity {
+public class AddProfileActivity extends DisplayProfileActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
