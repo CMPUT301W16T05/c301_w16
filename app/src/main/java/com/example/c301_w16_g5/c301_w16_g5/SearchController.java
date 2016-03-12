@@ -18,6 +18,7 @@ import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 import io.searchbox.client.JestResult;
+import io.searchbox.core.Delete;
 import io.searchbox.core.DocumentResult;
 import io.searchbox.core.Get;
 import io.searchbox.core.Index;
@@ -32,17 +33,16 @@ import io.searchbox.core.SearchResult;
  */
 public class SearchController {
     private static JestDroidClient client;
-    public enum SearchType {
-        GENERAL,
-        USER
-    }
 
     public static class SearchChickenTask extends AsyncTask<String, Void, ArrayList<Chicken>> {
         @Override
         protected ArrayList<Chicken> doInBackground(String... searches) {
             verifyClient();
-            String query = searches[0];
+            String keyword = searches[0];
             ArrayList<Chicken> chickens = new ArrayList<Chicken>();
+
+            String query = "{ \"query\" : { \" query_string\" : { \"query\" : \"" + keyword +
+                    "\" } } }";
 
             Search search = new Search.Builder(query).addIndex("c301w16t05").addType("chicken").build();
 
@@ -93,6 +93,30 @@ public class SearchController {
         }
     }
 
+    public static class UpdateChickenTask extends AsyncTask<Chicken, Void, Chicken> {
+        @Override
+        protected Chicken doInBackground(Chicken... chickens) {
+            verifyClient();
+            Chicken chicken = chickens[0];
+            Map<String, String> source = formatChicken(chicken);
+
+            Index index = new Index.Builder(source).index("c301w16t05").type("chicken")
+                    .id(chicken.getId()).build();
+            try {
+                DocumentResult result = client.execute(index);
+                if (result.isSucceeded()) {
+                    chicken.setId(result.getId());
+                } else {
+                    Log.i("TODO","Updating chicken failed");
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return chicken;
+        }
+    }
+
     public static class GetChickenByIdTask extends AsyncTask<String, Void, Chicken> {
         @Override
         protected Chicken doInBackground(String... ids) {
@@ -116,6 +140,23 @@ public class SearchController {
         }
     }
 
+    public static class DeleteChickenTask extends AsyncTask<String, Void, Void> {
+        @Override
+        protected Void doInBackground(String... ids) {
+            verifyClient();
+            String id = ids[0];
+
+            Delete delete = new Delete.Builder(id).index("c301w16t05").type("chicken").build();
+            try {
+                client.execute(delete);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+    }
+
     public static class AddUserTask extends AsyncTask<User, Void, Void> {
         @Override
         protected Void doInBackground(User... users) {
@@ -128,7 +169,6 @@ public class SearchController {
             try {
                 DocumentResult result = client.execute(index);
                 if (result.isSucceeded()) {
-                    user.setId(result.getId());
                 } else {
                     Log.i("TODO","Adding a user failed");
                 }
@@ -164,6 +204,23 @@ public class SearchController {
         }
     }
 
+    public static class DeleteUserTask extends AsyncTask<String, Void, Void> {
+        @Override
+        protected Void doInBackground(String... usernames) {
+            verifyClient();
+            String username = usernames[0];
+
+            Delete delete = new Delete.Builder(username).index("c301w16t05").type("user").build();
+            try {
+                client.execute(delete);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+    }
+
     public static class AddBidTask extends AsyncTask<Bid, Void, Bid> {
         @Override
         protected Bid doInBackground(Bid... bids) {
@@ -178,6 +235,29 @@ public class SearchController {
                     bid.setId(result.getId());
                 } else {
                     Log.i("TODO","Adding a bid failed");
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return bid;
+        }
+    }
+
+    public static class UpdateBidTask extends AsyncTask<Bid, Void, Bid> {
+        @Override
+        protected Bid doInBackground(Bid... bids) {
+            verifyClient();
+            Bid bid = bids[0];
+            Map<String, String> source = formatBid(bid);
+
+            Index index = new Index.Builder(source).index("c301w16t05").type("bid").id(bid.getId())
+                    .build();
+            try {
+                DocumentResult result = client.execute(index);
+                if (result.isSucceeded()) {
+                } else {
+                    Log.i("TODO","Updating bid failed");
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -210,6 +290,23 @@ public class SearchController {
         }
     }
 
+    public static class DeleteBidTask extends AsyncTask<String, Void, Void> {
+        @Override
+        protected Void doInBackground(String... ids) {
+            verifyClient();
+            String id = ids[0];
+
+            Delete delete = new Delete.Builder(id).index("c301w16t05").type("bid").build();
+            try {
+                client.execute(delete);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+    }
+
     public static class AddNotificationTask extends AsyncTask<Notification, Void, Notification> {
         @Override
         protected Notification doInBackground(Notification... notifications) {
@@ -223,7 +320,30 @@ public class SearchController {
                 if (result.isSucceeded()) {
                     notification.setId(result.getId());
                 } else {
-                    Log.i("TODO","Adding a bid failed");
+                    Log.i("TODO","Adding a notification failed");
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return notification;
+        }
+    }
+
+    public static class UpdateNotificationTask extends AsyncTask<Notification, Void, Notification> {
+        @Override
+        protected Notification doInBackground(Notification... notifications) {
+            verifyClient();
+            Notification notification = notifications[0];
+            Map<String, String> source = formatNotification(notification);
+
+            Index index = new Index.Builder(source).index("c301w16t05").type("notification")
+                    .id(notification.getId()).build();
+            try {
+                DocumentResult result = client.execute(index);
+                if (result.isSucceeded()) {
+                } else {
+                    Log.i("TODO","Updating notification failed");
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -246,13 +366,30 @@ public class SearchController {
                 if (result.isSucceeded()) {
                     notification = parseNotification(result.getSourceAsString());
                 } else {
-                    Log.i("TODO","Getting the bid failed");
+                    Log.i("TODO","Getting the notification failed");
                 }
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
             return notification;
+        }
+    }
+
+    public static class DeleteNotificationTask extends AsyncTask<String, Void, Void> {
+        @Override
+        protected Void doInBackground(String... ids) {
+            verifyClient();
+            String id = ids[0];
+
+            Delete delete = new Delete.Builder(id).index("c301w16t05").type("notification").build();
+            try {
+                client.execute(delete);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return null;
         }
     }
 
