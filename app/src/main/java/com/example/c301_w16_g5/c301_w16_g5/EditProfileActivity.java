@@ -5,6 +5,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 /**
  * This is the view the user sees when they are updating their profile information.
@@ -66,7 +67,7 @@ public class EditProfileActivity extends ChickBidActivity {
         User user = ChickBidsApplication.getUserController().getCurrentUser();
 
         usernameEditText.setText(user.getUsername());
-        nameEditText.setText("Username: " + user.getFirstName() + " " + user.getLastName());
+        nameEditText.setText("Name: " + user.getFirstName() + " " + user.getLastName());
         emailEditText.setText("Email: " + user.getEmail());
         phoneEditText.setText("Phone: " + user.getPhoneNumber());
         experienceEditText.setText("Experience: " + user.getChickenExperience());
@@ -75,4 +76,6 @@ public class EditProfileActivity extends ChickBidActivity {
     private void updateUser() {
         ChickBidsApplication.getUserController().setUser(updated_user);
     }
+
+
 }
