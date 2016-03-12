@@ -99,13 +99,6 @@ public class ChickenController {
         return bidded_chickens;
     }
 
-    public void saveChickenForMe(Chicken chicken) {
-        User current_user = ChickBidsApplication.getUserController().getCurrentUser();
-        ChickBidsApplication.getSearchController().addChickenToDatabase(chicken);
-        current_user.addChicken(chicken);
-    }
-
-
     public ArrayList<Chicken> getChickensBiddedOnByMe() {
         User current_user = ChickBidsApplication.getUserController().getCurrentUser();
         ArrayList<Chicken> all_chickens = current_user.getMyChickens();
@@ -119,6 +112,19 @@ public class ChickenController {
         }
 
         return my_bidded_chickens;
+    }
+
+    public void saveChickenForMe(Chicken chicken) {
+        User current_user = ChickBidsApplication.getUserController().getCurrentUser();
+        ChickBidsApplication.getSearchController().addChickenToDatabase(chicken);
+        current_user.addChicken(chicken);
+    }
+
+    public void updateChickenForMe(Chicken updated_chicken) {
+        User current_user = ChickBidsApplication.getUserController().getCurrentUser();
+        ChickBidsApplication.getSearchController().updateChickenInDatabase(updated_chicken);
+        current_user.deleteChickenForId(updated_chicken.getId());
+        current_user.addChicken(updated_chicken);
     }
 
     // Bids

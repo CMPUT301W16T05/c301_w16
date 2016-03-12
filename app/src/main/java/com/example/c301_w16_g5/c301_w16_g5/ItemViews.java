@@ -67,7 +67,7 @@ public class ItemViews extends ChickBidActivity {
 
         tabLayout.setOnTabSelectedListener(new ItemTabListener());
 
-        updateListOfChickenForTab(tab_possession);
+        updateForTab(tab_possession);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.add_chicken_fab);
         // TODO: Add chicken here
@@ -135,9 +135,15 @@ public class ItemViews extends ChickBidActivity {
         }
     }
 
-    private void updateListOfChickenForTab(TabLayout.Tab tab) {
+    private void updateForTab(TabLayout.Tab tab) {
         updateList((TabCategory) tab.getTag());
+        refreshTableTitle(tab.getText().toString());
         refreshTableView();
+    }
+
+    private void refreshTableTitle(String text) {
+        TextView textView = (TextView) findViewById(R.id.chickenListTitle);
+        textView.setText(text);
     }
 
     private void fillTableView() {
@@ -200,7 +206,7 @@ public class ItemViews extends ChickBidActivity {
 
         @Override
         public void onTabSelected(TabLayout.Tab tab) {
-            updateListOfChickenForTab(tab);
+            updateForTab(tab);
         }
 
         @Override
