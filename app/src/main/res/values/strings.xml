@@ -47,5 +47,6 @@
     <string name="item_profile_bids_placed">My Bidded</string>
 
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_chicken_profile">ChickenProfileActivity</string>
 
 </resources>
