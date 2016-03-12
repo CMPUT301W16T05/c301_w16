@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main_content"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".MyChickenListActivity">
 
     <android.support.design.widget.AppBarLayout
@@ -23,11 +23,62 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/container"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        android:layout_height="match_parent">
+
+    <!--
+    1/19/16 - citizen conn
+    http://stackoverflow.com/questions/6513718/how-to-make-a-scrollable-tablelayout
+    -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TableLayout
+                android:id="@+id/chickenListTable"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp" >
+
+                <TableRow>
+                    <TextView
+                        android:text="Chicken"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textColor="@color/colorTextSecondary"
+                        android:layout_weight="0.35"/>
+                    <TextView
+                        android:text="Owner"
+                        android:textSize="18dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorTextSecondary"
+                        android:layout_weight="0.40"/>
+
+                    <TextView
+                        android:text="Status"
+                        android:textSize="18dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textColor="@color/colorTextSecondary"
+                        android:textStyle="bold"
+                        android:layout_weight="0.25"/>
+                </TableRow>
+
+            </TableLayout>
+
+        </LinearLayout>
+    </ScrollView>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/add_chicken_fab"
@@ -37,4 +88,6 @@
         android:layout_margin="@dimen/fab_margin"
         android:src="@drawable/ic_add_white_48dp" />
 
-</android.support.design.widget.CoordinatorLayout>
+    </FrameLayout>
+
+</LinearLayout>
