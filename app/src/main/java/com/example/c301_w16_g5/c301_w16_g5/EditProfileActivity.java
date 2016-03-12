@@ -1,9 +1,12 @@
 package com.example.c301_w16_g5.c301_w16_g5;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -58,6 +61,18 @@ public class EditProfileActivity extends ChickBidActivity {
         emailEditText = (EditText) findViewById(R.id.emailEditText);
         phoneEditText = (EditText) findViewById(R.id.phoneEditText);
         experienceEditText = (EditText) findViewById(R.id.experienceEditText);
+
+//        Button saveButton = (Button) findViewById(R.id.buttonSave);
+//        saveButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                ChickBidsApplication.getUserController().setUser(updated_user);
+//
+//                Intent intent = new Intent(this, UserProfileActivity.class);
+//                setResult(Activity.RESULT_OK, intent);
+//                finish();
+//            }
+//        });
     }
 
     @Override
@@ -73,8 +88,12 @@ public class EditProfileActivity extends ChickBidActivity {
         experienceEditText.setText("Experience: " + user.getChickenExperience());
     }
 
-    private void updateUser() {
-        ChickBidsApplication.getUserController().setUser(updated_user);
+    public void updateUser(View view) {
+//        ChickBidsApplication.getUserController().setUser(updated_user);
+
+        Intent intent = new Intent(this, UserProfileActivity.class);
+        setResult(Activity.RESULT_OK, intent);
+        finish();
     }
 
 
