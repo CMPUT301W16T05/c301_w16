@@ -3,12 +3,9 @@ package com.example.c301_w16_g5.c301_w16_g5;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 /**
  * This is the view the user sees when they are updating their profile information.
@@ -18,7 +15,7 @@ import android.widget.TextView;
  * @version 1.4, 03/02/2016
  * @see     User
  * @see     AddProfileActivity
- * @see     UserProfileActivity
+ * @see     DisplayProfileActivity
  * @see     UserController
  */
 public class EditProfileActivity extends ChickBidActivity {
@@ -27,12 +24,13 @@ public class EditProfileActivity extends ChickBidActivity {
     public static final String UPDATE_USER_EXTRA_KEY = "update_user_extra_key";
 
     private EditText usernameEditText;
-    private EditText nameEditText;
+    private EditText firstNameEditText;
+    private EditText lastNameEditText;
     private EditText emailEditText;
     private EditText phoneEditText;
     private EditText experienceEditText;
 
-    private User updated_user;
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,44 +55,61 @@ public class EditProfileActivity extends ChickBidActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         usernameEditText = (EditText) findViewById(R.id.usernameEditText);
-        nameEditText = (EditText) findViewById(R.id.nameEditText);
+        firstNameEditText = (EditText) findViewById(R.id.firstNameEditText);
+        lastNameEditText = (EditText) findViewById(R.id.lastNameEditText);
         emailEditText = (EditText) findViewById(R.id.emailEditText);
         phoneEditText = (EditText) findViewById(R.id.phoneEditText);
         experienceEditText = (EditText) findViewById(R.id.experienceEditText);
-
-//        Button saveButton = (Button) findViewById(R.id.buttonSave);
-//        saveButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                ChickBidsApplication.getUserController().setUser(updated_user);
-//
-//                Intent intent = new Intent(this, UserProfileActivity.class);
-//                setResult(Activity.RESULT_OK, intent);
-//                finish();
-//            }
-//        });
     }
 
     @Override
     protected void onStart() {
         super.onStart();
 
-        User user = ChickBidsApplication.getUserController().getCurrentUser();
+        user = ChickBidsApplication.getUserController().getCurrentUser();
 
         usernameEditText.setText(user.getUsername());
-        nameEditText.setText("Name: " + user.getFirstName() + " " + user.getLastName());
-        emailEditText.setText("Email: " + user.getEmail());
-        phoneEditText.setText("Phone: " + user.getPhoneNumber());
-        experienceEditText.setText("Experience: " + user.getChickenExperience());
+        firstNameEditText.setText(user.getFirstName());
+        lastNameEditText.setText(user.getLastName());
+        emailEditText.setText(user.getEmail());
+        phoneEditText.setText(user.getPhoneNumber());
+        experienceEditText.setText(user.getChickenExperience());
     }
 
     public void updateUser(View view) {
-//        ChickBidsApplication.getUserController().setUser(updated_user);
 
-        Intent intent = new Intent(this, UserProfileActivity.class);
+        getUpdatedUserInfo();
+//      ChickBidsApplication.getUserController().setUser(updated_user);
+
+        Intent intent = new Intent(this, DisplayProfileActivity.class);
         setResult(Activity.RESULT_OK, intent);
         finish();
     }
 
+    private void getUpdatedUserInfo() {
+        String username = ((EditText) findViewById(R.id.usernameEditText)).getText().toString();
+        // validate username
+        user.setUsername(username);
+
+        String firstName = ((EditText) findViewById(R.id.firstNameEditText)).getText().toString();
+        // validate firstName
+        user.setFirstName(firstName);
+
+        String lastName = ((EditText) findViewById(R.id.lastNameEditText)).getText().toString();
+        // validate lastName
+        user.setLastName(lastName);
+
+        String email = ((EditText) findViewById(R.id.emailEditText)).getText().toString();
+        // validate email
+        user.setEmail(email);
+
+        String phone = ((EditText) findViewById(R.id.phoneEditText)).getText().toString();
+        // validate phone
+        user.setPhoneNumber(phone);
+
+        String experience = ((EditText) findViewById(R.id.experienceEditText)).getText().toString();
+        // validate experience
+        user.setChickenExperience(experience);
+    }
 
 }
