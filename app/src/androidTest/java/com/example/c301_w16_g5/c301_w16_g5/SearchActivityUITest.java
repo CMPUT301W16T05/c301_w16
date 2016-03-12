@@ -1,5 +1,10 @@
 package com.example.c301_w16_g5.c301_w16_g5;
 
+import android.app.Activity;
+import android.app.Instrumentation;
+import android.test.ActivityInstrumentationTestCase2;
+import android.test.ViewAsserts;
+
 /**
  * UI test for the app's SearchController screen.
  *
@@ -8,11 +13,29 @@ package com.example.c301_w16_g5.c301_w16_g5;
  * @see     SearchActivity
  * @see     SearchController
  */
-/*
-public class SearchActivityUITest extends ToolbarActivityUITest {
+
+public class SearchActivityUITest extends ActivityInstrumentationTestCase2 {
+
+    Instrumentation instrumentation;
+    Activity activity;
 
     public SearchActivityUITest() {
         super(SearchActivity.class);
+    }
+
+    protected void setUp() throws Exception {
+        super.setUp();
+        instrumentation = getInstrumentation();
+        activity = getActivity();
+    }
+
+    public void testViewVisible() {
+        ViewAsserts.assertOnScreen(activity.getWindow().getDecorView(),
+                activity.findViewById(R.id.nav_toolbar));
+        ViewAsserts.assertOnScreen(activity.getWindow().getDecorView(),
+                activity.findViewById(R.id.searchView));
+        ViewAsserts.assertOnScreen(activity.getWindow().getDecorView(),
+                activity.findViewById(R.id.listView));
     }
 /*
     protected void setUp() throws Exception {
@@ -81,5 +104,5 @@ public class SearchActivityUITest extends ToolbarActivityUITest {
         assertEquals(0, arrayAdapter.getCount()); // number of results
     }
     */
-//}
+}
 

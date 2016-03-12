@@ -14,6 +14,7 @@ public class EditProfileActivityTest extends ActivityInstrumentationTestCase2 {
     }
 
     public void testStart() throws Exception {
+        ChickBidsApplication.getUserController().setUser(new User("un", "f", "l", "abc@email.com", "780-123-4567", "some"));
         Activity activity = getActivity();
     }
 

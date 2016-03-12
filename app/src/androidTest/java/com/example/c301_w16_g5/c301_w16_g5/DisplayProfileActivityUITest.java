@@ -6,25 +6,25 @@ import android.test.ActivityInstrumentationTestCase2;
 import android.test.ViewAsserts;
 
 /**
- * UI test for the app's Home screen.
+ * UI test for the app's Display Profile screen.
  *
  * @author  Hailey
  * @version 1.4, 03/07/2016
- * @see     HomeActivity
+ * @see     EditProfileActivity
+ * @see     User
  */
-
-public class HomeActivityUITest extends ActivityInstrumentationTestCase2 {
-
+public class DisplayProfileActivityUITest extends ActivityInstrumentationTestCase2 {
     Instrumentation instrumentation;
     Activity activity;
 
-    public HomeActivityUITest() {
-        super(HomeActivity.class);
+    public DisplayProfileActivityUITest() {
+        super(DisplayProfileActivity.class);
     }
 
     protected void setUp() throws Exception {
         super.setUp();
         instrumentation = getInstrumentation();
+        ChickBidsApplication.getUserController().setUser(new User("un", "f", "l", "abc@email.com", "780-123-4567", "some"));
         activity = getActivity();
     }
 
@@ -33,14 +33,12 @@ public class HomeActivityUITest extends ActivityInstrumentationTestCase2 {
                 activity.findViewById(R.id.nav_toolbar));
     }
 
-    public void testButtonsVisible() {
-        ViewAsserts.assertOnScreen(activity.getWindow().getDecorView(),
-                activity.findViewById(R.id.buttonProfile));
+    public void testTextVisible() {
+        fail();  // TODO
+    }
 
+    public void testButtonVisible() {
         ViewAsserts.assertOnScreen(activity.getWindow().getDecorView(),
-                activity.findViewById(R.id.buttonChickens));
-
-        ViewAsserts.assertOnScreen(activity.getWindow().getDecorView(),
-                activity.findViewById(R.id.buttonSearch));
+                activity.findViewById(R.id.fab));
     }
 }
