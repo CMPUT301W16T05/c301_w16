@@ -28,7 +28,8 @@ public class EditProfileActivity extends ChickBidActivity {
     public static final String UPDATE_USER_EXTRA_KEY = "update_user_extra_key";
 
     private EditText usernameEditText;
-    private EditText nameEditText;
+    private EditText firstNameEditText;
+    private EditText lastNameEditText;
     private EditText emailEditText;
     private EditText phoneEditText;
     private EditText experienceEditText;
@@ -58,7 +59,8 @@ public class EditProfileActivity extends ChickBidActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         usernameEditText = (EditText) findViewById(R.id.usernameEditText);
-        nameEditText = (EditText) findViewById(R.id.nameEditText);
+        firstNameEditText = (EditText) findViewById(R.id.firstNameEditText);
+        lastNameEditText = (EditText) findViewById(R.id.lastNameEditText);
         emailEditText = (EditText) findViewById(R.id.emailEditText);
         phoneEditText = (EditText) findViewById(R.id.phoneEditText);
         experienceEditText = (EditText) findViewById(R.id.experienceEditText);
@@ -71,12 +73,8 @@ public class EditProfileActivity extends ChickBidActivity {
         user = ChickBidsApplication.getUserController().getCurrentUser();
 
         usernameEditText.setText(user.getUsername());
-//        nameEditText.setText("Name: " + user.getFirstName() + " " + user.getLastName());
-//        emailEditText.setText("Email: " + user.getEmail());
-//        phoneEditText.setText("Phone: " + user.getPhoneNumber());
-//        experienceEditText.setText("Experience: " + user.getChickenExperience());
-
-        nameEditText.setText(user.getFirstName() + " " + user.getLastName());
+        firstNameEditText.setText(user.getFirstName());
+        lastNameEditText.setText(user.getLastName());
         emailEditText.setText(user.getEmail());
         phoneEditText.setText(user.getPhoneNumber());
         experienceEditText.setText(user.getChickenExperience());
@@ -97,15 +95,13 @@ public class EditProfileActivity extends ChickBidActivity {
         // validate username
         user.setUsername(username);
 
-//        String firstName = ((EditText) findViewById(R.id.firstNameEditText)).getText().toString()
-//        // validate firstName
-//        user.setfirstName(firstName);
+        String firstName = ((EditText) findViewById(R.id.firstNameEditText)).getText().toString();
+        // validate firstName
+        user.setFirstName(firstName);
 
-//        String lastName = ((EditText) findViewById(R.id.lastNameEditText)).getText().toString()
-//        // validate lastName
-//        user.setlastName(lastName);
-        user.setFirstName("newfirst");
-        user.setLastName("newlast");
+        String lastName = ((EditText) findViewById(R.id.lastNameEditText)).getText().toString();
+        // validate lastName
+        user.setLastName(lastName);
 
         String email = ((EditText) findViewById(R.id.emailEditText)).getText().toString();
         // validate email
