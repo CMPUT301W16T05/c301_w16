@@ -23,6 +23,16 @@ public class ElasticSearchBackendTest extends ActivityInstrumentationTestCase2 {
         executable.execute(chicken);
     }
 
+    public void testDeleteChickenTask() {
+        ElasticSearchBackend.DeleteChickenTask deleteChickenTask = new ElasticSearchBackend.DeleteChickenTask();
+        deleteChickenTask.execute("yTQftaIcRuGJ_hBC3l09tg");
+    }
+
+    public void testDeleteBidTask() {
+        ElasticSearchBackend.DeleteBidTask deleteBidTask = new ElasticSearchBackend.DeleteBidTask();
+        deleteBidTask.execute("3uQtrnPmRfqu9QxKKahRrA");
+    }
+
     public void testAddUserTask() {
         User user = new User("jsmith", "John", "Smith", "jsmith@gmail.com",
                 "5875555555", "Not Much");
@@ -216,6 +226,6 @@ public class ElasticSearchBackendTest extends ActivityInstrumentationTestCase2 {
         }
 
         assertEquals("Bob",chickens.get(0).getName());
-        assertEquals(chickens.size(),26);
+        assertEquals(chickens.size(),4);
     }
 }
