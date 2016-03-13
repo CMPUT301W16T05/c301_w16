@@ -83,15 +83,7 @@
 
             <!-- TODO: add parent -->
         </activity>
-        <activity
-            android:name=".ChickenProfileActivity"
-            android:label="@string/title_activity_chicken_profile"
-            android:parentActivityName=".ItemViews"
-            android:theme="@style/AppTheme">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.c301_w16_g5.c301_w16_g5.ItemViews" />
-        </activity>
+        <activity android:name=".ChickenProfileActivity"></activity>
     </application>
 
 </manifest>
