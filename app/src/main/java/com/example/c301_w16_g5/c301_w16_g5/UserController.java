@@ -12,9 +12,8 @@ public class UserController {
 
     public User getUser(String username) {
         SearchController searchController = ChickBidsApplication.getSearchController();
-        searchController.getUserFromDatabase(username);
 
-        return user;
+        return searchController.getUserFromDatabase(username);
     }
 
     public void updateUser(User user) {
@@ -59,7 +58,7 @@ public class UserController {
     }
 
     public static boolean validatePhoneNumber(String number) {
-        return number.matches("[0-9]{3}-[0-9]{3}-[0-9]{4}");
+        return number.matches("[0-9]{3}-[0-9]{3}-[0-9]{4}|[0-9]{10}]");
     }
 
     public static boolean validateChickenExperience(String experience) {
