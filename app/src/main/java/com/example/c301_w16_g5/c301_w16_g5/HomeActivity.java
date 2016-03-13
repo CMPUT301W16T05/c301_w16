@@ -12,7 +12,7 @@ import android.widget.Button;
  *
  * @author  Satyen
  * @version 1.4, 03/02/2016
- * @see     UserProfileActivity
+ * @see     DisplayProfileActivity
  * @see     ItemViews
  * @see     SearchActivity
  */
@@ -32,7 +32,7 @@ public class HomeActivity extends ChickBidActivity {
         Button chickensButton = (Button) findViewById(R.id.buttonChickens);
         Button searchButton = (Button) findViewById(R.id.buttonSearch);
 
-        final Intent profileIntent = new Intent(this, UserProfileActivity.class);
+        final Intent profileIntent = new Intent(this, DisplayProfileActivity.class);
         final Intent chickensIntent = new Intent(this, ItemViews.class);
         final Intent searchIntent = new Intent(this, SearchActivity.class);
 

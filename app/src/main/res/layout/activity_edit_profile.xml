@@ -33,28 +33,67 @@
             android:layout_height="1dp"
             android:background="@color/colorAccent"/>
 
+        <!--Android add TableLayout and LinearLayout together?-->
+        <!--http://stackoverflow.com/questions/32837466/android-add-tablelayout-and-linearlayout-together-->
+        <!--Answered Sep 29 '15 at 6:54 by Phan Văn Linh-->
+        <!--Accessed by Hailey Musselman on Mar 12 2016-->
         <TableLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight = "1"
             android:padding="16dp">
 
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Name:"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentStart="true"
+                    android:textColor="@color/colorTextSecondary"/>
                 <EditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:id="@+id/nameEditText"
+                    android:id="@+id/firstNameEditText"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentStart="true"
-                    android:textColor="@color/colorTextSecondary"/>
+                    android:textColor="@color/colorTextSecondary"
+                    android:textStyle="bold"/>
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:id="@+id/lastNameEditText"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentStart="true"
+                    android:textColor="@color/colorTextSecondary"
+                    android:textStyle="bold"/>
+                </LinearLayout>
             </TableRow>
 
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Email:"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentStart="true"
+                    android:textColor="@color/colorTextSecondary"/>
                 <EditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -62,13 +101,26 @@
                     android:id="@+id/emailEditText"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentStart="true"
-                    android:textColor="@color/colorTextSecondary"/>
+                    android:textColor="@color/colorTextSecondary"
+                    android:textStyle="bold"/>
+                </LinearLayout>
             </TableRow>
 
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Phone:"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentStart="true"
+                    android:textColor="@color/colorTextSecondary"/>
                 <EditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -76,12 +128,26 @@
                     android:id="@+id/phoneEditText"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentStart="true"
-                    android:textColor="@color/colorTextSecondary"/>
+                    android:textColor="@color/colorTextSecondary"
+                    android:textStyle="bold"/>
+                </LinearLayout>
             </TableRow>
 
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Experience:"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentStart="true"
+                    android:textColor="@color/colorTextSecondary"/>
                 <EditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -89,9 +155,24 @@
                     android:id="@+id/experienceEditText"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentStart="true"
-                    android:textColor="@color/colorTextSecondary"/>
+                    android:textColor="@color/colorTextSecondary"
+                    android:textStyle="bold"/>
+                </LinearLayout>
             </TableRow>
         </TableLayout>
+        <Button
+            android:id="@+id/buttonSave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/buttonSave"
+            android:textSize="16.5dp"
+            android:onClick="updateUser"
+            android:background="@color/colorAccent"
+            android:layout_marginTop="8dp"
+            android:layout_margin="16dp"
+            android:textStyle="bold"
+            android:typeface="normal"/>
+
     </LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>

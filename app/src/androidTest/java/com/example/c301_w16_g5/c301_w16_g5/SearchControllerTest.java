@@ -1,222 +1,74 @@
 package com.example.c301_w16_g5.c301_w16_g5;
 
-import android.os.AsyncTask;
 import android.test.ActivityInstrumentationTestCase2;
-import android.util.Log;
 
-import java.util.ArrayList;
-import java.util.concurrent.ExecutionException;
+import io.searchbox.core.Search;
 
 /**
- * Created by athompso on 3/6/16.
+ * Created by Hailey on 2016-02-11.
  */
 public class SearchControllerTest extends ActivityInstrumentationTestCase2 {
     public SearchControllerTest() {
-        super(SearchActivity.class);
+        super(Search.class);
     }
+/*
+    // US 04.01.01
+    public void testSearchByKeywords() {
+        Chicken chicken1 = new Chicken("Bob", "Friendly chicken",
+                Chicken.ChickenStatus.AVAILABLE, new User("username"));
+        Chicken chicken2 = new Chicken("Joe", "Friendly and social chicken",
+                Chicken.ChickenStatus.AVAILABLE, new User("username"));
+        Chicken chicken3 = new Chicken("Fred", "Shy chicken",
+                Chicken.ChickenStatus.AVAILABLE, new User("username"));
+        Chicken chicken4 = new Chicken("Shirley", "Angry chicken",
+                Chicken.ChickenStatus.AVAILABLE, new User("username"));
+        Chicken chicken5 = new Chicken("Ethel", "Shy chicken",
+                Chicken.ChickenStatus.BORROWED, new User("username"));
 
-    public void testAddChickenTask() {
-        User user = new User("jsmith", "John", "Smith", "jsmith@gmail.com",
-                "5875555555", "Loads");
-        Chicken chicken = new Chicken("Bob", "Very friendly", user.getUsername());
+        // subject to change based on how chickens are stored
+        ChickenDatabase allChickens = new ChickenDataBase();
+        allChickens.add(chicken1);
+        allChickens.add(chicken2);
+        allChickens.add(chicken3);
+        allChickens.add(chicken4);
+        allChickens.add(chicken5);
+        SearchController search = new SearchController();
+        search.setDatabase(allChickens);
 
-        AsyncTask<Chicken, Void, Chicken> executable = new SearchController.AddChickenTask();
-        executable.execute(chicken);
+        // test normal functionality
+        String keywords1 = "Friendly";
+        ArrayList<Chicken> results = new ArrayList<Chicken>();
+        results.add(chicken1);
+        results.add(chicken2);
+        assertEquals(results, search.searchFor(keywords1));
+
+        // test no input
+        String keywords2 = "";
+        try {
+            search.searchFor(keywords2);
+        } catch (Exception e) {
+            // success
+        }
+
+        // test search with no match
+        String keywords3 = "rooster Bob";
+        results = new ArrayList<Chicken>();
+        assertEquals(results, search.searchFor(keywords3));
+
+        // test search whose results are reduced because at least one matching item is borrowed
+        String keywords4 = "Shy chicken";
+        results = new ArrayList<Chicken>();
+        results.add(chicken3);
+        assertEquals(results, search.searchFor(keywords4));
+
+        // test adding punctuation (ensure it's ignored)
+        // and that order doesn't matter
+        // and that results are case-insensitive
+        String keywords5 = "chicken, friendly";
+        results = new ArrayList<Chicken>();
+        results.add(chicken1);
+        results.add(chicken2);
+        assertEquals(results, search.searchFor(keywords5));
     }
-
-    public void testAddUserTask() {
-        User user = new User("jsmith", "John", "Smith", "jsmith@gmail.com",
-                "5875555555", "Not Much");
-        Chicken chicken = new Chicken("Bob", "Very friendly", user.getUsername());
-        user.addChicken(chicken);
-
-        AsyncTask<User, Void, Void> executable = new SearchController.AddUserTask();
-        executable.execute(user);
-    }
-
-    public void testGetUserByUsernameTask() {
-        User user = new User("jsmith", "John", "Smith", "jsmith@gmail.com", "5875555555", "Not Much");
-        Chicken chicken = new Chicken("Bob", "Very friendly", "jsmith");
-        Notification notification = new Notification("Urgent");
-
-        AsyncTask<Chicken, Void, Chicken> executable = new SearchController.AddChickenTask();
-        executable.execute(chicken);
-        Chicken chicken2 = new Chicken();
-        try {
-            chicken2 = executable.get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-        user.addChicken(chicken2);
-
-        AsyncTask<Notification, Void, Notification> executable1 = new SearchController.AddNotificationTask();
-        executable1.execute(notification);
-        Notification notification2 = new Notification("a");
-        try {
-            notification2 = executable1.get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-        user.addNotification(notification2);
-
-        AsyncTask<User, Void, Void> executable2 = new SearchController.AddUserTask();
-        executable2.execute(user);
-
-        User user2 = new User("a","a","a","a","a","a");
-
-        SearchController.GetUserByUsernameTask getUserTask = new SearchController.GetUserByUsernameTask();
-        getUserTask.execute("jsmith");
-
-        try {
-            user2 = getUserTask.get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-
-        assertEquals(user2.getUsername(),"jsmith");
-        assertEquals(user2.getFirstName(),"John");
-        assertEquals(user2.getLastName(),"Smith");
-        assertEquals(user2.getEmail(),"jsmith@gmail.com");
-        assertEquals(user2.getPhoneNumber(),"5875555555");
-        assertEquals(user2.getChickenExperience(),"Not Much");
-
-        assertEquals(user2.getChicken(0).getName(),chicken.getName());
-        assertEquals(user2.getChicken(0).getDescription(),chicken.getDescription());
-        assertEquals(user2.getChicken(0).getChickenStatus(),chicken.getChickenStatus());
-        assertEquals(user2.getChicken(0).getOwnerUsername(),chicken.getOwnerUsername());
-
-        assertEquals(user2.getNotifications().get(0).getMessage(),notification.getMessage());
-    }
-
-    public void testGetChickenByIdTask() {
-        Chicken chicken1 = new Chicken("Bob", "Very friendly", "jsmith");
-        Chicken chicken2 = new Chicken();
-        Chicken chicken3 = new Chicken();
-        Bid bid = new Bid("jsmith",10.00);
-
-        AsyncTask<Bid, Void, Bid> executable1 = new SearchController.AddBidTask();
-        executable1.execute(bid);
-        Bid bid2 = new Bid("a",0.00);
-        try {
-            bid2 = executable1.get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-        chicken1.getBids().add(bid2);
-
-        AsyncTask<Chicken, Void, Chicken> executable = new SearchController.AddChickenTask();
-        executable.execute(chicken1);
-        try {
-            chicken3 = executable.get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-
-        SearchController.GetChickenByIdTask getChickenTask = new SearchController.GetChickenByIdTask();
-        getChickenTask.execute(chicken3.getId());
-        try {
-            chicken2 = getChickenTask.get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-
-        assertEquals(chicken1.getName(), chicken2.getName());
-        assertEquals(chicken1.getDescription(), chicken2.getDescription());
-        assertEquals(chicken1.getChickenStatus(), chicken2.getChickenStatus());
-        assertEquals(chicken1.getOwnerUsername(), chicken2.getOwnerUsername());
-
-        assertEquals(chicken1.getBids().get(0).getBidderUsername(), bid.getBidderUsername());
-        assertEquals(chicken1.getBids().get(0).getAmount(), bid.getAmount());
-        assertEquals(chicken1.getBids().get(0).getBidStatus(), bid.getBidStatus());
-    }
-
-    public void testGetNotificationByIdTask() {
-        Notification notification1 = new Notification("test");
-        Notification notification2 = new Notification("a");
-        Notification notification3 = new Notification("a");
-
-        AsyncTask<Notification, Void, Notification> executable = new SearchController.AddNotificationTask();
-        executable.execute(notification1);
-
-        try {
-             notification2 = executable.get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-
-        SearchController.GetNotificationByIdTask getNotificationTask = new SearchController.GetNotificationByIdTask();
-        getNotificationTask.execute(notification2.getId());
-        try {
-            notification3 = getNotificationTask.get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-
-        assertEquals(notification1.getMessage(), notification3.getMessage());
-        assertEquals(notification1.getDate(), notification2.getDate());
-    }
-
-    public void testGetBidByIdTask() {
-        Bid bid1 = new Bid("jsmith",10.00);
-        Bid bid2 = new Bid("a",0.00);
-        Bid bid3 = new Bid("a",0.00);
-
-        AsyncTask<Bid, Void, Bid> executable = new SearchController.AddBidTask();
-        executable.execute(bid1);
-
-        try {
-            bid2 = executable.get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-
-        SearchController.GetBidByIdTask getBidTask = new SearchController.GetBidByIdTask();
-        getBidTask.execute(bid2.getId());
-        try {
-            bid3 = getBidTask.get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-
-        assertEquals(bid1.getBidderUsername(),bid3.getBidderUsername());
-        assertEquals(bid1.getAmount(),bid3.getAmount());
-        assertEquals(bid1.getBidStatus(),bid3.getBidStatus());
-    }
-
-    public void testSearchChickenTask() {
-        ArrayList<Chicken> chickens = new ArrayList<Chicken>();
-
-        SearchController.SearchChickenTask searchTask = new SearchController.SearchChickenTask();
-        searchTask.execute("Bob");
-        try {
-            chickens = searchTask.get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-
-        assertEquals(11, chickens.size());
-        assertEquals("Bob", chickens.get(0).getName());
-    }
+    */
 }

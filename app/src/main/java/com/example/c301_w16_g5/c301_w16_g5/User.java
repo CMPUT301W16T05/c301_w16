@@ -14,7 +14,7 @@ import io.searchbox.annotations.JestId;
  *
  * @author  Hailey
  * @version 1.4, 03/02/2016
- * @see     UserProfileActivity
+ * @see     DisplayProfileActivity
  * @see     AddProfileActivity
  * @see     EditProfileActivity
  * @see     UserController
@@ -33,7 +33,8 @@ public class User extends GenericModel<GenericView> implements Parcelable {
     protected String id;
 
     // My chickens should contain all chickens owned by
-    // user OR currently in user's posession, i.e. borrowed chickens
+    // user OR currently in user's posession OR chickens the
+    // user has bidded on
     private ArrayList<Chicken> myChickens;
     private ArrayList<Notification> myNotifications;
 
@@ -115,7 +116,7 @@ public class User extends GenericModel<GenericView> implements Parcelable {
     }
 
     // basic chicken management
-    protected void addChicken(Chicken chicken) {
+    public void addChicken(Chicken chicken) {
         myChickens.add(chicken);
     }
 
@@ -141,6 +142,15 @@ public class User extends GenericModel<GenericView> implements Parcelable {
 
     public void removeAllChickens() {
         myChickens = new ArrayList<Chicken>();
+    }
+
+    public void deleteChickenForId(String id) {
+        for (Chicken chicken : myChickens) {
+            if (chicken.getId() == id) {
+                myChickens.remove(chicken);
+                break;
+            }
+        }
     }
 
     public ArrayList<Notification> getNotifications() {

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.example.c301_w16_g5.c301_w16_g5.UserProfileActivity">
+    tools:context=".DisplayProfileActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -100,6 +100,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
         android:layout_margin="@dimen/fab_margin"
-        android:src="@drawable/ic_mode_edit_white_48dp" />
+        android:src="@drawable/ic_mode_edit_white_48dp"/>
 
 </android.support.design.widget.CoordinatorLayout>
