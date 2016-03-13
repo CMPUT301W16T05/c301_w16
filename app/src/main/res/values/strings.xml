@@ -25,7 +25,7 @@
     <string name="title_activity_item_profile">Chicken Profile</string>
     <string name="title_activity_notices">Notifications</string>
     <string name="title_activity_bids">Bids</string>
-    <string name="title_activity_add_item">Add Chicken</string>
+    <string name="title_activity_add_chicken">Add Chicken</string>
     <string name="title_activity_add_profile">Add Profile</string>
     <string name="title_activity_user_profile">User Profile</string>
 
