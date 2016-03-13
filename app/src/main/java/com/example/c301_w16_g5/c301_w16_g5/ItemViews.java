@@ -1,5 +1,6 @@
 package com.example.c301_w16_g5.c301_w16_g5;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -60,12 +61,12 @@ public class ItemViews extends ChickBidActivity {
 
         tabLayout.setOnTabSelectedListener(new ItemTabListener());
 
+        final Intent addChickenIntent = new Intent(this, AddChickenActivity.class);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.add_chicken_fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                startActivity(addChickenIntent);
             }
         });
 
