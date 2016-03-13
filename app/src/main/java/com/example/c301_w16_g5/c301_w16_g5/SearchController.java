@@ -6,12 +6,72 @@ import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 /**
- * Created by athompso on 3/11/16.
+ * <code>SearchController</code> handles calls to objects and methods inside the
+ * ElasticSearchBackend class.
+ *
+ * @author  Alex
+ * @version 1.4, 03/02/2016
+ * @see     Chicken
+ * @see     User
+ * @see     Notification
+ * @see     Bid
+ * @see     ElasticSearchBackend
  */
 public class SearchController {
 
     public ArrayList<Chicken> searchByKeyword(String keyword) {
         ArrayList<Chicken> chickens = new ArrayList<Chicken>();
+
+        /* this doesn't work yet
+        ElasticSearchBackend.SearchChickenTask searchTask = new ElasticSearchBackend.SearchChickenTask();
+        searchTask.execute(keyword);
+        try {
+            chickens = searchTask.get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        */
+
+        return chickens;
+    }
+
+    public ArrayList<Chicken> getChickensBorrowedByUser(User user) {
+        ArrayList<Chicken> chickens = new ArrayList<Chicken>();
+
+        /* this doesn't work yet
+        ElasticSearchBackend.GetChickensBorrowedByUserTask getChickensTask
+                = new ElasticSearchBackend.GetChickensBorrowedByUserTask();
+        getChickensTask.execute(user);
+        try {
+            chickens = getChickensTask.get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        */
+
+        return chickens;
+    }
+
+    public ArrayList<Chicken> getChickensBidOnByUser(User user) {
+        ArrayList<Chicken> chickens = new ArrayList<Chicken>();
+
+        /* this doesn't work yet
+        ElasticSearchBackend.GetChickensBidOnByUserTask getChickensTask
+                = new ElasticSearchBackend.GetChickensBidOnByUserTask();
+        getChickensTask.execute(user);
+        try {
+            chickens = getChickensTask.get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        */
+
         return chickens;
     }
 
@@ -150,7 +210,7 @@ public class SearchController {
     public Bid addBidToDatabase(Bid bid) {
         AsyncTask<Bid, Void, Bid> executable = new ElasticSearchBackend.AddBidTask();
         executable.execute(bid);
-        Bid bid2 = new Bid("a", 0.00);
+        Bid bid2 = new Bid("a", "a", 0.00);
         try {
             bid2 = executable.get();
         } catch (InterruptedException e) {
@@ -165,7 +225,7 @@ public class SearchController {
     public Bid updateBidInDatabase(Bid bid) {
         AsyncTask<Bid, Void, Bid> executable = new ElasticSearchBackend.UpdateBidTask();
         executable.execute(bid);
-        Bid bid2 = new Bid("a", 0.00);
+        Bid bid2 = new Bid("a", "a", 0.00);
         try {
             bid2 = executable.get();
         } catch (InterruptedException e) {
@@ -180,7 +240,7 @@ public class SearchController {
     public Bid getBidFromDatabase(String id) {
         ElasticSearchBackend.GetBidByIdTask getBidTask = new ElasticSearchBackend.GetBidByIdTask();
         getBidTask.execute(id);
-        Bid bid = new Bid("a", 0.00);
+        Bid bid = new Bid("a", "a", 0.00);
         try {
             bid = getBidTask.get();
         } catch (InterruptedException e) {

@@ -26,10 +26,20 @@ import io.searchbox.core.Search;
 import io.searchbox.core.SearchResult;
 
 /**
- * This class will be the anomaly compared to the other controllers.
- * This will be used directly from models and also from views.
- * E.g.Chicken will eventually use this to fill its local ArrayList on
- *  initializing.
+ * <code>ElasticSearchBackend</code> is responsible for all calls to elasticsearch, including
+ * adding, updating, getting, and removing Chickens, Users, Notifications and Bids from the
+ * database. Keyword and term-specific searches are also handled here.
+ *
+ * verifyClient() method was originally written by earthiverse for the Lab 7 materials. Other
+ * methods are altered and expanded versions of the Lab 7 lonelytwitter elasticsearch methods.
+ *
+ * @author  Alex
+ * @version 1.4, 03/02/2016
+ * @see     Chicken
+ * @see     User
+ * @see     Notification
+ * @see     Bid
+ * @see     SearchController
  */
 public class ElasticSearchBackend {
     private static JestDroidClient client;
@@ -41,8 +51,8 @@ public class ElasticSearchBackend {
             String keyword = searches[0];
             ArrayList<Chicken> chickens = new ArrayList<Chicken>();
 
-            String query = "{ \"query\" : { \" query_string\" : { \"query\" : \"" + keyword +
-                    "\" } } }";
+            String query = "{ \"query\" : { \"term\" : { \"_all\" : \"" + keyword
+                    + "\" } } }";
 
             Search search = new Search.Builder(query).addIndex("c301w16t05").addType("chicken").build();
 
@@ -55,7 +65,7 @@ public class ElasticSearchBackend {
                         chickens.add(chicken);
                     }
                 } else {
-                    Log.i("INFO","SearchController failed");
+                    Log.i("INFO","Search failed");
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -65,11 +75,82 @@ public class ElasticSearchBackend {
         }
     }
 
-    // TODO: Problem with setting chicken ID
-    // Since two tasks are simultaneous, sometimes the main code will run before the chicken ID is
-    // set, so if the chicken ID is accessed to soon it is null. The current fix is to capture the
-    // chicken returned by this method in a new chicken object, identical to the old one except it
-    // has an ID set.
+    public static class GetChickensBorrowedByUserTask extends AsyncTask<User, Void, ArrayList<Chicken>> {
+        @Override
+        protected ArrayList<Chicken> doInBackground(User... users) {
+            verifyClient();
+            User user = users[0];
+            ArrayList<Chicken> chickens = new ArrayList<Chicken>();
+
+            String query = "{ \"query\" : { \"match\" : { \"borrower\" : \"" + user.getUsername()
+                     + "\" } } }";
+
+            Search search = new Search.Builder(query).addIndex("c301w16t05").addType("chicken").build();
+
+            try {
+                SearchResult result = client.execute(search);
+                if (result.isSucceeded()) {
+                    List<String> chickenStrings = result.getSourceAsStringList();
+                    for (String chickenString : chickenStrings) {
+                        Chicken chicken = parseChicken(chickenString);
+                        chickens.add(chicken);
+                    }
+                } else {
+                    Log.i("INFO","Search failed");
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return chickens;
+        }
+    }
+
+    public static class GetChickensBidOnByUserTask extends AsyncTask<User, Void, ArrayList<Chicken>> {
+        @Override
+        protected ArrayList<Chicken> doInBackground(User... users) {
+            verifyClient();
+            User user = users[0];
+            ArrayList<Chicken> chickens = new ArrayList<Chicken>();
+
+            String query = "{ \"query\" : { \"match\" : { \"bidder\" : \"" + user.getUsername()
+                    + "\" } } }";
+
+            Search search = new Search.Builder(query).addIndex("c301w16t05").addType("bid").build();
+
+            try {
+                SearchResult result = client.execute(search);
+                if (result.isSucceeded()) {
+                    List<String> bidStrings = result.getSourceAsStringList();
+                    for (String bidString : bidStrings) {
+                        Bid bid = parseBid(bidString);
+
+                        Get get = new Get.Builder("c301w16t05", bid.getChickenId()).type("chicken").build();
+                        Chicken chicken = new Chicken();
+                        try {
+                            JestResult result2 = client.execute(get);
+                            if (result2.isSucceeded()) {
+                                chicken = parseChicken(result.getSourceAsString());
+                            } else {
+                                Log.i("INFO","Getting the chicken failed");
+                            }
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        chickens.add(chicken);
+
+                    }
+                } else {
+                    Log.i("INFO","Search failed");
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return chickens;
+        }
+    }
+
     public static class AddChickenTask extends AsyncTask<Chicken, Void, Chicken> {
         @Override
         protected Chicken doInBackground(Chicken... chickens) {
@@ -83,7 +164,7 @@ public class ElasticSearchBackend {
                 if (result.isSucceeded()) {
                     chicken.setId(result.getId());
                 } else {
-                    Log.i("TODO","Adding a chicken failed");
+                    Log.i("INFO","Adding a chicken failed");
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -107,7 +188,7 @@ public class ElasticSearchBackend {
                 if (result.isSucceeded()) {
                     chicken.setId(result.getId());
                 } else {
-                    Log.i("TODO","Updating chicken failed");
+                    Log.i("INFO","Updating chicken failed");
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -130,7 +211,7 @@ public class ElasticSearchBackend {
                 if (result.isSucceeded()) {
                     chicken = parseChicken(result.getSourceAsString());
                 } else {
-                    Log.i("TODO","Getting the chicken failed");
+                    Log.i("INFO","Getting the chicken failed");
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -170,7 +251,7 @@ public class ElasticSearchBackend {
                 DocumentResult result = client.execute(index);
                 if (result.isSucceeded()) {
                 } else {
-                    Log.i("TODO","Adding a user failed");
+                    Log.i("INFO","Adding a user failed");
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -194,7 +275,7 @@ public class ElasticSearchBackend {
                     user = parseUser(result.getSourceAsString());
                 } else {
                     user = null;
-                    Log.i("TODO","Getting the user failed");
+                    Log.i("INFO","Getting the user failed");
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -234,7 +315,7 @@ public class ElasticSearchBackend {
                 if (result.isSucceeded()) {
                     bid.setId(result.getId());
                 } else {
-                    Log.i("TODO","Adding a bid failed");
+                    Log.i("INFO","Adding a bid failed");
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -257,7 +338,7 @@ public class ElasticSearchBackend {
                 DocumentResult result = client.execute(index);
                 if (result.isSucceeded()) {
                 } else {
-                    Log.i("TODO","Updating bid failed");
+                    Log.i("INFO","Updating bid failed");
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -272,7 +353,7 @@ public class ElasticSearchBackend {
         protected Bid doInBackground(String... ids) {
             verifyClient();
             String id = ids[0];
-            Bid bid = new Bid("a",1.0);
+            Bid bid = new Bid("a","a",1.0);
 
             Get get = new Get.Builder("c301w16t05", id).type("bid").build();
             try {
@@ -280,7 +361,7 @@ public class ElasticSearchBackend {
                 if (result.isSucceeded()) {
                     bid = parseBid(result.getSourceAsString());
                 } else {
-                    Log.i("TODO","Getting the bid failed");
+                    Log.i("INFO","Getting the bid failed");
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -320,7 +401,7 @@ public class ElasticSearchBackend {
                 if (result.isSucceeded()) {
                     notification.setId(result.getId());
                 } else {
-                    Log.i("TODO","Adding a notification failed");
+                    Log.i("INFO","Adding a notification failed");
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -343,7 +424,7 @@ public class ElasticSearchBackend {
                 DocumentResult result = client.execute(index);
                 if (result.isSucceeded()) {
                 } else {
-                    Log.i("TODO","Updating notification failed");
+                    Log.i("INFO","Updating notification failed");
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -366,7 +447,7 @@ public class ElasticSearchBackend {
                 if (result.isSucceeded()) {
                     notification = parseNotification(result.getSourceAsString());
                 } else {
-                    Log.i("TODO","Getting the notification failed");
+                    Log.i("INFO","Getting the notification failed");
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -533,6 +614,7 @@ public class ElasticSearchBackend {
 
         // TODO: add location when we implement that
         source.put("bidder", bid.getBidderUsername());
+        source.put("chicken", bid.getChickenId());
         source.put("amount",String.valueOf(bid.getAmount()));
         source.put("bidStatus",bid.getBidStatus().toString());
 
@@ -541,9 +623,9 @@ public class ElasticSearchBackend {
 
     public static Bid parseBid(String source) {
         String[] attrList = source.split("\"");
-        Bid bid = new Bid(attrList[3],Double.parseDouble(attrList[7]));
+        Bid bid = new Bid(attrList[3],attrList[7],Double.parseDouble(attrList[11]));
 
-        bid.setBidStatus(Bid.BidStatus.valueOf(attrList[11]));
+        bid.setBidStatus(Bid.BidStatus.valueOf(attrList[14]));
         return bid;
     }
 

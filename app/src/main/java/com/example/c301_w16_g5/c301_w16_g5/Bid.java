@@ -25,18 +25,24 @@ public class Bid extends GenericModel<GenericView> {
     private String id;
 
     private String bidder_username;
+    private String chicken_id;
     private double amount;
     private BidStatus bidStatus;
     private Location location;
 
-    public Bid(String bidder_username, Double amount) {
+    public Bid(String bidder_username, String chicken_id, Double amount) {
         this.bidder_username = bidder_username;
+        this.chicken_id = chicken_id;
         this.amount = amount;
         this.bidStatus = BidStatus.UNDECIDED;
     }
 
     public String getBidderUsername() {
         return bidder_username;
+    }
+
+    public String getChickenId() {
+        return chicken_id;
     }
 
     public double getAmount() {

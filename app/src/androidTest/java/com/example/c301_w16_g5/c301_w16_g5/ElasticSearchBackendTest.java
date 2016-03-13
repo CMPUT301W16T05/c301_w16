@@ -97,11 +97,11 @@ public class ElasticSearchBackendTest extends ActivityInstrumentationTestCase2 {
         Chicken chicken1 = new Chicken("Bob", "Very friendly", "jsmith");
         Chicken chicken2 = new Chicken();
         Chicken chicken3 = new Chicken();
-        Bid bid = new Bid("jsmith",10.00);
+        Bid bid = new Bid("jsmith", "b", 10.00);
 
         AsyncTask<Bid, Void, Bid> executable1 = new ElasticSearchBackend.AddBidTask();
         executable1.execute(bid);
-        Bid bid2 = new Bid("a",0.00);
+        Bid bid2 = new Bid("a", "a", 0.00);
         try {
             bid2 = executable1.get();
         } catch (InterruptedException e) {
@@ -172,9 +172,9 @@ public class ElasticSearchBackendTest extends ActivityInstrumentationTestCase2 {
     }
 
     public void testGetBidByIdTask() {
-        Bid bid1 = new Bid("jsmith",10.00);
-        Bid bid2 = new Bid("a",0.00);
-        Bid bid3 = new Bid("a",0.00);
+        Bid bid1 = new Bid("jsmith", "b", 10.00);
+        Bid bid2 = new Bid("a", "a", 0.00);
+        Bid bid3 = new Bid("a", "a", 0.00);
 
         AsyncTask<Bid, Void, Bid> executable = new ElasticSearchBackend.AddBidTask();
         executable.execute(bid1);
