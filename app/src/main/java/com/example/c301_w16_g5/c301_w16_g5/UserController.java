@@ -1,8 +1,5 @@
 package com.example.c301_w16_g5.c301_w16_g5;
 
-import android.os.AsyncTask;
-
-import java.util.concurrent.ExecutionException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -14,17 +11,8 @@ public class UserController {
     transient private static User user = null;
 
     public User getUser(String username) {
-        AsyncTask<String, Void, User> task = new ElasticSearchBackend.GetUserByUsernameTask();
-
-        task.execute(username);
-
-        try {
-            this.user = task.get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
+        SearchController searchController = ChickBidsApplication.getSearchController();
+        searchController.getUserFromDatabase(username);
 
         return user;
     }
@@ -32,6 +20,12 @@ public class UserController {
     public void updateUser(User user) {
         SearchController searchController = ChickBidsApplication.getSearchController();
         searchController.updateUserInDatabase(user);
+        setUser(user);
+    }
+
+    public void saveUser(User user) {
+        SearchController searchController = ChickBidsApplication.getSearchController();
+        searchController.addUserToDatabase(user);
         setUser(user);
     }
 
