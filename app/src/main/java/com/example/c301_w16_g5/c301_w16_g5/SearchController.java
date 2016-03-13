@@ -1,6 +1,7 @@
 package com.example.c301_w16_g5.c301_w16_g5;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
@@ -136,7 +137,7 @@ public class SearchController {
     }
 
     public User getUserFromDatabase(String username) {
-        User user = new User("a","a","a","a","a","a");
+        User user =  null;
 
         ElasticSearchBackend.GetUserByUsernameTask getUserTask = new ElasticSearchBackend.GetUserByUsernameTask();
         getUserTask.execute(username);
