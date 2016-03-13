@@ -23,7 +23,6 @@ public class SearchController {
     public ArrayList<Chicken> searchByKeyword(String keyword) {
         ArrayList<Chicken> chickens = new ArrayList<Chicken>();
 
-        /* this doesn't work yet
         ElasticSearchBackend.SearchChickenTask searchTask = new ElasticSearchBackend.SearchChickenTask();
         searchTask.execute(keyword);
         try {
@@ -33,15 +32,15 @@ public class SearchController {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
-        */
 
         return chickens;
     }
 
+    /* these two methods are no longer necessary
     public ArrayList<Chicken> getChickensBorrowedByUser(User user) {
         ArrayList<Chicken> chickens = new ArrayList<Chicken>();
 
-        /* this doesn't work yet
+
         ElasticSearchBackend.GetChickensBorrowedByUserTask getChickensTask
                 = new ElasticSearchBackend.GetChickensBorrowedByUserTask();
         getChickensTask.execute(user);
@@ -52,7 +51,6 @@ public class SearchController {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
-        */
 
         return chickens;
     }
@@ -60,7 +58,6 @@ public class SearchController {
     public ArrayList<Chicken> getChickensBidOnByUser(User user) {
         ArrayList<Chicken> chickens = new ArrayList<Chicken>();
 
-        /* this doesn't work yet
         ElasticSearchBackend.GetChickensBidOnByUserTask getChickensTask
                 = new ElasticSearchBackend.GetChickensBidOnByUserTask();
         getChickensTask.execute(user);
@@ -71,10 +68,11 @@ public class SearchController {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
-        */
+
 
         return chickens;
     }
+    */
 
     public Chicken addChickenToDatabase(Chicken chicken) {
         AsyncTask<Chicken, Void, Chicken> executable = new ElasticSearchBackend.AddChickenTask();

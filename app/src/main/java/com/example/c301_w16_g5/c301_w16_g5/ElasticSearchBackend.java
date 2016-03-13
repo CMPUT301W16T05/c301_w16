@@ -51,9 +51,7 @@ public class ElasticSearchBackend {
             String keyword = searches[0];
             ArrayList<Chicken> chickens = new ArrayList<Chicken>();
 
-            String query = "{ \"query\" : { \"term\" : { \"_all\" : \"" + keyword
-                    + "\" } } }";
-
+            String query = "{ \"query\" : { \"query_string\" : { \"query\" : \"" + keyword + "\" } } }";
             Search search = new Search.Builder(query).addIndex("c301w16t05").addType("chicken").build();
 
             try {
@@ -75,6 +73,7 @@ public class ElasticSearchBackend {
         }
     }
 
+    /* these two methods are no longer necessary
     public static class GetChickensBorrowedByUserTask extends AsyncTask<User, Void, ArrayList<Chicken>> {
         @Override
         protected ArrayList<Chicken> doInBackground(User... users) {
@@ -150,6 +149,7 @@ public class ElasticSearchBackend {
             return chickens;
         }
     }
+    */
 
     public static class AddChickenTask extends AsyncTask<Chicken, Void, Chicken> {
         @Override
@@ -499,6 +499,12 @@ public class ElasticSearchBackend {
             source.put("bids", bids);
         }
 
+        if (chicken.getPhoto() == null) {
+            source.put("photo", "none");
+        } else {
+            // TODO: Implement this when you put photos in elasticsearch
+        }
+
         return source;
     }
 
@@ -529,13 +535,16 @@ public class ElasticSearchBackend {
             }
         }
 
+        if (!attrList[27].equals("none")) {
+            // TODO: Implemetn this once you put photos in elasticsearch
+        }
+
         return chicken;
     }
 
     public static Map<String, String> formatUser(User user) {
         Map<String, String> source = new LinkedHashMap<>();
 
-        // TODO: Figure out how you want to store notifications in elasticsearch
         source.put("username", user.getUsername());
         source.put("firstName", user.getFirstName());
         source.put("lastName", user.getLastName());
@@ -612,11 +621,16 @@ public class ElasticSearchBackend {
     public static Map<String, String> formatBid(Bid bid) {
         Map<String, String> source = new LinkedHashMap<>();
 
-        // TODO: add location when we implement that
         source.put("bidder", bid.getBidderUsername());
         source.put("chicken", bid.getChickenId());
         source.put("amount",String.valueOf(bid.getAmount()));
         source.put("bidStatus",bid.getBidStatus().toString());
+
+        if (bid.getLocation() == null) {
+            source.put("location", "none");
+        } else {
+            // TODO: Implement this once you put locations into elasticsearch
+        }
 
         return source;
     }
@@ -625,7 +639,11 @@ public class ElasticSearchBackend {
         String[] attrList = source.split("\"");
         Bid bid = new Bid(attrList[3],attrList[7],Double.parseDouble(attrList[11]));
 
-        bid.setBidStatus(Bid.BidStatus.valueOf(attrList[14]));
+        bid.setBidStatus(Bid.BidStatus.valueOf(attrList[15]));
+
+        if (!attrList[19].equals("none")) {
+            // TODO: Implement this once you put locations into elasticsearch
+        }
         return bid;
     }
 
