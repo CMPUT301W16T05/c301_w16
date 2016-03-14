@@ -24,6 +24,10 @@
             android:textStyle="bold"
             android:textColor="@color/colorPrimaryDark"
             android:minEms="1"/>
+        <!--source:
+         http://stackoverflow.com/questions/3188719/how-can-i-set-a-minimum-width-in-characters-for-a-textview
+        answered by Adrian on Jun 4 '11
+        accessed by Hailey on Mar 13 '16-->
 
         <!-- TODO: cite source
              Adding a line to android layout
@@ -39,6 +43,12 @@
         <!--http://stackoverflow.com/questions/32837466/android-add-tablelayout-and-linearlayout-together-->
         <!--Answered Sep 29 '15 at 6:54 by Phan Văn Linh-->
         <!--Accessed by Hailey Musselman on Mar 12 2016-->
+
+        <!--Android EditText with multiple Lines automatic line break
+        source:
+        http://stackoverflow.com/questions/10313417/android-edittext-with-multiple-lines-automatic-line-break
+        answered by Aerrow on Apr 25 '12
+        accessed by Hailey on Mar 13 '16-->
         <TableLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
