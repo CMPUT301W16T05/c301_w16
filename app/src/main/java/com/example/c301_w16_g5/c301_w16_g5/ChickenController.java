@@ -116,13 +116,13 @@ public class ChickenController {
 
     public void saveChickenForMe(Chicken chicken) {
         User current_user = ChickBidsApplication.getUserController().getCurrentUser();
-        ChickBidsApplication.getSearchController().addChickenToDatabase(chicken);
+        chicken = ChickBidsApplication.getSearchController().addChickenToDatabase(chicken);
         current_user.addChicken(chicken);
     }
 
     public void updateChickenForMe(Chicken updated_chicken) {
         User current_user = ChickBidsApplication.getUserController().getCurrentUser();
-        ChickBidsApplication.getSearchController().updateChickenInDatabase(updated_chicken);
+        updated_chicken = ChickBidsApplication.getSearchController().updateChickenInDatabase(updated_chicken);
         current_user.deleteChickenForId(updated_chicken.getId());
         current_user.addChicken(updated_chicken);
     }
@@ -206,7 +206,7 @@ public class ChickenController {
             throw new ChickenException("Bid is not high enough");
         }
 
-        searchController.addBidToDatabase(bid);
+        bid = searchController.addBidToDatabase(bid);
         User current_user = ChickBidsApplication.getUserController().getCurrentUser();
         chicken.getBids().add(bid);
         current_user.addChicken(chicken);
