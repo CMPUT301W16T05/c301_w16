@@ -47,7 +47,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:id="@+id/firstNameEditText"
+                        android:id="@+id/nameEditText"
                         android:ems="5"
                         android:singleLine='true'
                         android:layout_alignParentEnd="true"
@@ -55,17 +55,6 @@
                         android:textColor="@color/colorTextSecondary"
                         android:textStyle="bold"
                         android:minEms="1"/>
-                    <EditText
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:id="@+id/lastNameEditText"
-                        android:singleLine='true'
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentStart="true"
-                        android:textColor="@color/colorTextSecondary"
-                        android:textStyle="bold"
-                        android:minEms="1"/>
                 </LinearLayout>
             </TableRow>
 
@@ -80,21 +69,21 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="Email:"
+                        android:text="Status:"
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentStart="true"
                         android:textColor="@color/colorTextSecondary"/>
-                    <EditText
+
+                    <Spinner
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:id="@+id/emailEditText"
-                        android:maxLength="22"
+                        android:id="@+id/statusSpinner"
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentStart="true"
                         android:textColor="@color/colorTextSecondary"
                         android:textStyle="bold"
-                        android:minEms="1"/>
+                        android:minEms="1" />
                 </LinearLayout>
             </TableRow>
 
@@ -109,7 +98,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="Phone:"
+                        android:text="Description:"
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentStart="true"
                         android:textColor="@color/colorTextSecondary"/>
@@ -117,8 +106,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:id="@+id/phoneEditText"
-                        android:maxLength="12"
+                        android:id="@+id/descriptionEditText"
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentStart="true"
                         android:textColor="@color/colorTextSecondary"
@@ -127,43 +115,15 @@
                 </LinearLayout>
             </TableRow>
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="Experience:"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentStart="true"
-                        android:textColor="@color/colorTextSecondary"/>
-                    <EditText
-                        android:id="@+id/experienceEditText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:ems="8"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textColor="@color/colorTextSecondary"
-                        android:textStyle="bold"
-                        android:minEms="1"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentStart="true"
-                        />
-                </LinearLayout>
-            </TableRow>
         </TableLayout>
+
         <Button
             android:id="@+id/buttonSave"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/buttonSave"
             android:textSize="16.5dp"
-            android:onClick="updateUser"
+            android:onClick="addChicken"
             android:background="@color/colorAccent"
             android:layout_marginTop="8dp"
             android:layout_margin="16dp"
