@@ -3,10 +3,13 @@ package com.example.c301_w16_g5.c301_w16_g5;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * A login screen that offers login via email/password.
@@ -36,53 +39,57 @@ public class LoginActivity extends ChickBidActivity {
     private UserLoginTask mAuthTask = null;
 
     // UI references.
-    private TextView mEmailView;
-    private View mProgressView;
-    private View mLoginFormView;
+//    private TextView mEmailView;
+//    private View mProgressView;
+//    private View mLoginFormView;
+
+    private User user;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        // Set up the login form.
-        mEmailView = (TextView) findViewById(R.id.email);
-
-        final Intent intent = new Intent(this, HomeActivity.class);
-        Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
-        mEmailSignInButton.setOnClickListener(new OnClickListener() {
+        Button signInButton = (Button) findViewById(R.id.sign_in_button);
+        signInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                attemptLoginDummy();
-                startActivity(intent);
+                // get username from EditText
+                attemptLogin();
             }
         });
 
-        mLoginFormView = findViewById(R.id.login_form);
-        mProgressView = findViewById(R.id.login_progress);
+//        mLoginFormView = findViewById(R.id.login_form);
+//        mProgressView = findViewById(R.id.login_progress);
     }
-
 
     /**
      * Attempts to sign in or register the account specified by the login form.
      * If there are form errors (invalid email, missing fields, etc.), the
      * errors are presented and no actual login attempt is made.
      */
-    private void attemptLoginDummy() {
-        User user = new User("chicken", "Chicken", "Run", "blah@email.com", "800-299-5999", "Not much");
-        ChickBidsApplication.getUserController().setUser(user);
-    }
-
     private void attemptLogin() {
-        String username = mEmailView.getText().toString();
+        String username = ((EditText) findViewById(R.id.usernameEntered)).getText().toString();
         UserController userController = ChickBidsApplication.getUserController();
-        User user = userController.getUser(username);
 
-        if (user == null) {
-            Intent intent = new Intent(this, AddProfileActivity.class);
-            intent.putExtra(EditProfileActivity.CREATE_USER_USERNAME_EXTRA_KEY, username);
-            startActivity(intent);
+        if (username.trim().length() < 1 || userController.validateNames(username) == false) {
+            Toast.makeText(getApplicationContext(),
+                    "Username should contain letters and numbers only.",
+                    Toast.LENGTH_SHORT).show();
+            return;
         }
+        user = userController.getUser(username);
+
+        Intent intent;
+        if (user == null) {
+            intent = new Intent(this, EditProfileActivity.class);
+            userController.setUser(new User(username, "", "", "", "", ""));
+            intent.putExtra("PROFILE_REQUEST", EditProfileActivity.CREATE_USER_USERNAME_EXTRA_KEY);
+        } else {
+            userController.setUser(user);
+            intent = new Intent(this, HomeActivity.class);
+        }
+        startActivity(intent);
     }
 
     /**

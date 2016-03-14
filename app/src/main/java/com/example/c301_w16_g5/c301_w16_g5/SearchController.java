@@ -1,6 +1,7 @@
 package com.example.c301_w16_g5.c301_w16_g5;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
@@ -22,7 +23,6 @@ public class SearchController {
     public ArrayList<Chicken> searchByKeyword(String keyword) {
         ArrayList<Chicken> chickens = new ArrayList<Chicken>();
 
-        /* this doesn't work yet
         ElasticSearchBackend.SearchChickenTask searchTask = new ElasticSearchBackend.SearchChickenTask();
         searchTask.execute(keyword);
         try {
@@ -32,15 +32,15 @@ public class SearchController {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
-        */
 
         return chickens;
     }
 
+    /* these two methods are no longer necessary
     public ArrayList<Chicken> getChickensBorrowedByUser(User user) {
         ArrayList<Chicken> chickens = new ArrayList<Chicken>();
 
-        /* this doesn't work yet
+
         ElasticSearchBackend.GetChickensBorrowedByUserTask getChickensTask
                 = new ElasticSearchBackend.GetChickensBorrowedByUserTask();
         getChickensTask.execute(user);
@@ -51,7 +51,6 @@ public class SearchController {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
-        */
 
         return chickens;
     }
@@ -59,7 +58,6 @@ public class SearchController {
     public ArrayList<Chicken> getChickensBidOnByUser(User user) {
         ArrayList<Chicken> chickens = new ArrayList<Chicken>();
 
-        /* this doesn't work yet
         ElasticSearchBackend.GetChickensBidOnByUserTask getChickensTask
                 = new ElasticSearchBackend.GetChickensBidOnByUserTask();
         getChickensTask.execute(user);
@@ -70,10 +68,11 @@ public class SearchController {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
-        */
+
 
         return chickens;
     }
+    */
 
     public Chicken addChickenToDatabase(Chicken chicken) {
         AsyncTask<Chicken, Void, Chicken> executable = new ElasticSearchBackend.AddChickenTask();
@@ -136,7 +135,7 @@ public class SearchController {
     }
 
     public User getUserFromDatabase(String username) {
-        User user = new User("a","a","a","a","a","a");
+        User user =  null;
 
         ElasticSearchBackend.GetUserByUsernameTask getUserTask = new ElasticSearchBackend.GetUserByUsernameTask();
         getUserTask.execute(username);

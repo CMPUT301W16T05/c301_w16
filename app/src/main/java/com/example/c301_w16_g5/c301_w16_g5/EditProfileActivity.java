@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -33,6 +34,8 @@ public class EditProfileActivity extends ChickBidActivity {
 
     private User user;
 
+    private String activityType;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +52,18 @@ public class EditProfileActivity extends ChickBidActivity {
 
         // show back arrow at top left
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        Intent intent = getIntent();
+        activityType = intent.getStringExtra("PROFILE_REQUEST");
+        if (activityType.equals(CREATE_USER_USERNAME_EXTRA_KEY)) {
+            // source:
+            // http://stackoverflow.com/questions/3438276/change-title-bar-text-in-android
+            // answered by Paresh Mayani on Aug 9 '10
+            // accessed by Hailey on Mar 13 '16
+            getSupportActionBar().setTitle("Add Profile");
+        } else if (activityType.equals(UPDATE_USER_EXTRA_KEY)) {
+
+        }
 
         usernameEditText = (EditText) findViewById(R.id.usernameEditText);
         firstNameEditText = (EditText) findViewById(R.id.firstNameEditText);
@@ -81,13 +96,26 @@ public class EditProfileActivity extends ChickBidActivity {
             return;
         }
 
-        Intent intent = new Intent(this, DisplayProfileActivity.class);
-        setResult(Activity.RESULT_OK, intent);
-        finish();
+        Intent intent;
+        if (activityType.equals(UPDATE_USER_EXTRA_KEY)) {
+            intent = new Intent(this, DisplayProfileActivity.class);
+            ChickBidsApplication.getUserController().updateUser(user);
+            startActivity(intent);
+        } else if (activityType.equals(CREATE_USER_USERNAME_EXTRA_KEY)) {
+            intent = new Intent(this, HomeActivity.class);
+            ChickBidsApplication.getUserController().saveUser(user);
+            startActivity(intent);
+        }
     }
+
 
     private void getUpdatedUserInfo() throws UserException {
         String username = ((EditText) findViewById(R.id.usernameEditText)).getText().toString();
+
+        if (ChickBidsApplication.getUserController().usernameInUse(username)) {
+            throw new UserException("Username already in use");
+        }
+
         if (ChickBidsApplication.getUserController().validateNames(username)) {
             user.setUsername(username);
         } else {

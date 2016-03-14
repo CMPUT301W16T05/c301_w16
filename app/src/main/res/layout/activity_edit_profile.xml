@@ -17,11 +17,17 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:id="@+id/usernameEditText"
+            android:maxLength="20"
             android:layout_alignParentEnd="true"
             android:layout_alignParentStart="true"
             android:padding="16dp"
             android:textStyle="bold"
-            android:textColor="@color/colorPrimaryDark" />
+            android:textColor="@color/colorPrimaryDark"
+            android:minEms="1"/>
+        <!--source:
+         http://stackoverflow.com/questions/3188719/how-can-i-set-a-minimum-width-in-characters-for-a-textview
+        answered by Adrian on Jun 4 '11
+        accessed by Hailey on Mar 13 '16-->
 
         <!-- TODO: cite source
              Adding a line to android layout
@@ -37,6 +43,12 @@
         <!--http://stackoverflow.com/questions/32837466/android-add-tablelayout-and-linearlayout-together-->
         <!--Answered Sep 29 '15 at 6:54 by Phan Văn Linh-->
         <!--Accessed by Hailey Musselman on Mar 12 2016-->
+
+        <!--Android EditText with multiple Lines automatic line break
+        source:
+        http://stackoverflow.com/questions/10313417/android-edittext-with-multiple-lines-automatic-line-break
+        answered by Aerrow on Apr 25 '12
+        accessed by Hailey on Mar 13 '16-->
         <TableLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -63,19 +75,24 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:id="@+id/firstNameEditText"
+                    android:ems="5"
+                    android:singleLine='true'
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentStart="true"
                     android:textColor="@color/colorTextSecondary"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold"
+                    android:minEms="1"/>
                 <EditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:id="@+id/lastNameEditText"
+                    android:singleLine='true'
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentStart="true"
                     android:textColor="@color/colorTextSecondary"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold"
+                    android:minEms="1"/>
                 </LinearLayout>
             </TableRow>
 
@@ -99,10 +116,12 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:id="@+id/emailEditText"
+                    android:maxLength="22"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentStart="true"
                     android:textColor="@color/colorTextSecondary"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold"
+                    android:minEms="1"/>
                 </LinearLayout>
             </TableRow>
 
@@ -126,10 +145,12 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:id="@+id/phoneEditText"
+                    android:maxLength="12"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentStart="true"
                     android:textColor="@color/colorTextSecondary"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold"
+                    android:minEms="1"/>
                 </LinearLayout>
             </TableRow>
 
@@ -149,14 +170,17 @@
                     android:layout_alignParentStart="true"
                     android:textColor="@color/colorTextSecondary"/>
                 <EditText
+                    android:id="@+id/experienceEditText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:ems="8"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:id="@+id/experienceEditText"
+                    android:textColor="@color/colorTextSecondary"
+                    android:textStyle="bold"
+                    android:minEms="1"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentStart="true"
-                    android:textColor="@color/colorTextSecondary"
-                    android:textStyle="bold"/>
+                    />
                 </LinearLayout>
             </TableRow>
         </TableLayout>

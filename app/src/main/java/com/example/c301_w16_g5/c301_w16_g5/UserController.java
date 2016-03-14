@@ -1,8 +1,5 @@
 package com.example.c301_w16_g5.c301_w16_g5;
 
-import android.os.AsyncTask;
-
-import java.util.concurrent.ExecutionException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -14,24 +11,20 @@ public class UserController {
     transient private static User user = null;
 
     public User getUser(String username) {
-        AsyncTask<String, Void, User> task = new ElasticSearchBackend.GetUserByUsernameTask();
+        SearchController searchController = ChickBidsApplication.getSearchController();
 
-        task.execute(username);
-
-        try {
-            this.user = task.get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-
-        return user;
+        return searchController.getUserFromDatabase(username);
     }
 
     public void updateUser(User user) {
         SearchController searchController = ChickBidsApplication.getSearchController();
         searchController.updateUserInDatabase(user);
+        setUser(user);
+    }
+
+    public void saveUser(User user) {
+        SearchController searchController = ChickBidsApplication.getSearchController();
+        searchController.addUserToDatabase(user);
         setUser(user);
     }
 
@@ -52,12 +45,16 @@ public class UserController {
     }
 
     public static boolean validateUsername(String username) {
-        // TODO: ensure username is not already taken
-        return genericValidateLettersNumbersOnly(username);
+        return genericValidateLettersNumbersOnly(username) && username.length() > 0;
+    }
+
+    public static boolean usernameInUse(String username) {
+        return ChickBidsApplication.getUserController().getUser(username) != null &&
+                !ChickBidsApplication.getUserController().getCurrentUser().getUsername().equals(username);
     }
 
     public static boolean validateNames(String name) {
-        return genericValidateLettersNumbersOnly(name);
+        return genericValidateLettersNumbersOnly(name) && name.length() > 0;
     }
 
     public static boolean validateEmail(String email) {
@@ -65,7 +62,7 @@ public class UserController {
     }
 
     public static boolean validatePhoneNumber(String number) {
-        return number.matches("[0-9]{3}-[0-9]{3}-[0-9]{4}");
+        return number.matches("[0-9]{3}-[0-9]{3}-[0-9]{4}") || number.matches("[0-9]{10}");
     }
 
     public static boolean validateChickenExperience(String experience) {
