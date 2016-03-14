@@ -45,8 +45,12 @@ public class UserController {
     }
 
     public static boolean validateUsername(String username) {
-        // TODO: ensure username is not already taken
         return genericValidateLettersNumbersOnly(username) && username.length() > 0;
+    }
+
+    public static boolean usernameInUse(String username) {
+        return ChickBidsApplication.getUserController().getUser(username) != null &&
+                !ChickBidsApplication.getUserController().getCurrentUser().getUsername().equals(username);
     }
 
     public static boolean validateNames(String name) {

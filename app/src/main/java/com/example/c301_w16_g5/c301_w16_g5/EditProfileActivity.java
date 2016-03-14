@@ -107,11 +107,12 @@ public class EditProfileActivity extends ChickBidActivity {
 
     private void getUpdatedUserInfo() throws UserException {
         String username = ((EditText) findViewById(R.id.usernameEditText)).getText().toString();
+
+        if (ChickBidsApplication.getUserController().usernameInUse(username)) {
+            throw new UserException("Username already in use");
+        }
+
         if (ChickBidsApplication.getUserController().validateNames(username)) {
-            if (ChickBidsApplication.getUserController().getUser(username) != null &&
-                    !ChickBidsApplication.getUserController().getCurrentUser().getUsername().equals(username)) {
-                throw new UserException("Username already in use");
-            }
             user.setUsername(username);
         } else {
             throw new UserException("Invalid username");
