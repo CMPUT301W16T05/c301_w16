@@ -4,7 +4,14 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Created by shahzeb on 03/03/16.
+ * This class is responsible for operating on the <code>User</code> model to
+ * perform complicated actions.
+ *
+ * @author  Shahzeb
+ * @version 1.4, 03/02/2016
+ * @see     User
+ * @see     EditProfileActivity
+ * @see     DisplayProfileActivity
  */
 public class UserController {
     // Singleton

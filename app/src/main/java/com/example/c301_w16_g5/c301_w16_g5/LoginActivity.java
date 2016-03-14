@@ -3,12 +3,10 @@ package com.example.c301_w16_g5.c301_w16_g5;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -50,7 +48,7 @@ public class LoginActivity extends ChickBidActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        Button signInButton = (Button) findViewById(R.id.sign_in_button);
+        Button signInButton = (Button) findViewById(R.id.signInButton);
         signInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
