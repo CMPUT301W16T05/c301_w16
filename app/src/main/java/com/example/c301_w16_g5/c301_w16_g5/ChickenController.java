@@ -118,6 +118,7 @@ public class ChickenController {
         User current_user = ChickBidsApplication.getUserController().getCurrentUser();
         chicken = ChickBidsApplication.getSearchController().addChickenToDatabase(chicken);
         current_user.addChicken(chicken);
+        ChickBidsApplication.getUserController().updateUser(current_user);
     }
 
     public void updateChickenForMe(Chicken updated_chicken) {

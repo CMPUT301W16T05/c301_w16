@@ -63,6 +63,7 @@ public class AddChickenActivity extends ChickBidActivity {
             chicken = new Chicken(nameEditText.getText().toString(),
                     descriptionEditText.getText().toString(),
                     ChickBidsApplication.getUserController().getCurrentUser().getUsername());
+
             ChickBidsApplication.getChickenController().saveChickenForMe(chicken);
         }
     }
