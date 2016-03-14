@@ -34,6 +34,8 @@ public class EditProfileActivity extends ChickBidActivity {
 
     private User user;
 
+    private String activityType;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,11 +54,10 @@ public class EditProfileActivity extends ChickBidActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Intent intent = getIntent();
-        String editType = intent.getStringExtra("PROFILE_REQUEST");
-
-        if (editType.equals(CREATE_USER_USERNAME_EXTRA_KEY)) {
+        activityType = intent.getStringExtra("PROFILE_REQUEST");
+        if (activityType.equals(CREATE_USER_USERNAME_EXTRA_KEY)) {
             getSupportActionBar().setTitle("Add Profile");
-        } else if (editType.equals(UPDATE_USER_EXTRA_KEY)) {
+        } else if (activityType.equals(UPDATE_USER_EXTRA_KEY)) {
 
         }
 
@@ -91,9 +92,14 @@ public class EditProfileActivity extends ChickBidActivity {
             return;
         }
 
-        Intent intent = new Intent(this, DisplayProfileActivity.class);
-        setResult(Activity.RESULT_OK, intent);
-        finish();
+        Intent intent;
+        if (activityType.equals(UPDATE_USER_EXTRA_KEY)) {
+            intent = new Intent(this, DisplayProfileActivity.class);
+            startActivity(intent);
+        } else if (activityType.equals(CREATE_USER_USERNAME_EXTRA_KEY)) {
+            intent = new Intent(this, HomeActivity.class);
+            startActivity(intent);
+        }
     }
 
     private void getUpdatedUserInfo() throws UserException {

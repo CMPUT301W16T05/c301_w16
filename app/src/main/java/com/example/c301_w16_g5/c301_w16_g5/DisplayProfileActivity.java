@@ -55,7 +55,8 @@ public class DisplayProfileActivity extends ChickBidActivity {
         editProfileFAB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivityForResult(editProfileIntent, EDIT_PROFILE_REQUEST);
+//                startActivityForResult(editProfileIntent, EDIT_PROFILE_REQUEST);
+                startActivity(editProfileIntent);
             }
         });
     }
@@ -73,17 +74,17 @@ public class DisplayProfileActivity extends ChickBidActivity {
         experienceTextView.setText("Experience: " + user.getChickenExperience());
     }
 
-    /** Called upon return to DisplayProfileActivity */
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        switch(requestCode) {
-            case (EDIT_PROFILE_REQUEST) : {
-                if (resultCode == Activity.RESULT_OK) {
-
-                } else if (resultCode == Activity.RESULT_CANCELED) {}
-                break;
-            }
-        }
-    }
+//    /** Called upon return to DisplayProfileActivity */
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        switch(requestCode) {
+//            case (EDIT_PROFILE_REQUEST) : {
+//                if (resultCode == Activity.RESULT_OK) {
+//
+//                } else if (resultCode == Activity.RESULT_CANCELED) {}
+//                break;
+//            }
+//        }
+//    }
 }
