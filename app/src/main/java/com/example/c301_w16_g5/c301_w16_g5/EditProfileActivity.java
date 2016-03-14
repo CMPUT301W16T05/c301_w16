@@ -98,6 +98,7 @@ public class EditProfileActivity extends ChickBidActivity {
             startActivity(intent);
         } else if (activityType.equals(CREATE_USER_USERNAME_EXTRA_KEY)) {
             intent = new Intent(this, HomeActivity.class);
+            ChickBidsApplication.getUserController().saveUser(user);
             startActivity(intent);
         }
     }
