@@ -14,17 +14,12 @@ import android.support.v7.widget.Toolbar;
  * @see     DisplayProfileActivity
  * @see     UserController
  */
-public class AddProfileActivity extends ChickBidActivity {
+public class AddProfileActivity extends EditProfileActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_add_profile);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.nav_toolbar);
-        setSupportActionBar(toolbar);
-
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
 }

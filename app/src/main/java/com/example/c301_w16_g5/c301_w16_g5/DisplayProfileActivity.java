@@ -47,6 +47,7 @@ public class DisplayProfileActivity extends ChickBidActivity {
         experienceTextView = (TextView) findViewById(R.id.chickenExperienceTextView);
 
         editProfileIntent = new Intent(this, EditProfileActivity.class);
+        editProfileIntent.putExtra("PROFILE_REQUEST", EditProfileActivity.UPDATE_USER_EXTRA_KEY);
 
         // TODO: disable fab if user profile is not of logged in user
         // should perform the check and disable in onStart. create a method and call it in onStart
@@ -54,7 +55,8 @@ public class DisplayProfileActivity extends ChickBidActivity {
         editProfileFAB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivityForResult(editProfileIntent, EDIT_PROFILE_REQUEST);
+//                startActivityForResult(editProfileIntent, EDIT_PROFILE_REQUEST);
+                startActivity(editProfileIntent);
             }
         });
     }
@@ -72,17 +74,17 @@ public class DisplayProfileActivity extends ChickBidActivity {
         experienceTextView.setText("Experience: " + user.getChickenExperience());
     }
 
-    /** Called upon return to DisplayProfileActivity */
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        switch(requestCode) {
-            case (EDIT_PROFILE_REQUEST) : {
-                if (resultCode == Activity.RESULT_OK) {
-
-                } else if (resultCode == Activity.RESULT_CANCELED) {}
-                break;
-            }
-        }
-    }
+//    /** Called upon return to DisplayProfileActivity */
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        switch(requestCode) {
+//            case (EDIT_PROFILE_REQUEST) : {
+//                if (resultCode == Activity.RESULT_OK) {
+//
+//                } else if (resultCode == Activity.RESULT_CANCELED) {}
+//                break;
+//            }
+//        }
+//    }
 }
