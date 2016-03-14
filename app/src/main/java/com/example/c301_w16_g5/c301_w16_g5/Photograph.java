@@ -14,8 +14,7 @@ import android.os.Parcelable;
  * @see     User
  * @see     Chicken
  * @see     AddChickenActivity
- * @see     ChickenActivity
- * @see     EditProfileActivity
+ * @see     EditChickenActivity
  * @see     ChickenController
  */
 public class Photograph implements Parcelable{

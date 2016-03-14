@@ -14,6 +14,14 @@ import android.widget.ImageView;
 import android.widget.Scroller;
 import android.widget.Spinner;
 
+/**
+ * This view displays the profile information for a particular chicken.
+ *
+ * @author  Robin
+ * @version 1.4, 03/12/2016
+ * @see     Chicken
+ * @see     ChickenController
+ */
 public class ChickenProfileActivity extends ChickBidActivity {
 
     //TODO:

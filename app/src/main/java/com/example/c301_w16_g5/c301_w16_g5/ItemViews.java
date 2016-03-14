@@ -18,7 +18,13 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 /**
- * sample comment
+ * Displays tab-headed lists of various sets of chickens (owned, bidded, lent,
+ * etc.)
+ *
+ * @author  Shahzeb
+ * @version 1.4, 03/08/2016
+ * @see     Chicken
+ * @see     ChickenController
  */
 public class ItemViews extends ChickBidActivity  {
 

@@ -6,6 +6,15 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+/**
+ * This is the view the user sees when they are looking at their notifications,
+ * indicating activity related to chickens they own or have bidded on.
+ * Notifications are shown in a list format.
+ *
+ * @author  Hailey
+ * @version 1.4, 03/14/2016
+ * @see     Notification
+ */
 public class NotificationsActivity extends ChickBidActivity {
 
     @Override

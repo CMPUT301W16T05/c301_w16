@@ -98,7 +98,6 @@ public class Chicken extends GenericModel<GenericView> implements Parcelable {
         return bids;
     }
 
-
     public String getBorrowerUsername() {
         return borrower_username;
     }

@@ -10,6 +10,16 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+/**
+ * This view is where a user may add a new chicken their chickens, i.e.
+ * the chickens that they may choose to lend out to others for a bidded amount.
+ *
+ * @author  Hailey
+ * @version 1.4, 03/02/2016
+ * @see     Chicken
+ * @see     ChickenController
+ * @see     User
+ */
 public class AddChickenActivity extends ChickBidActivity {
 
     public static final String CREATE_CHICKEN_EXTRA_KEY = "create_chicken_extra_key";
