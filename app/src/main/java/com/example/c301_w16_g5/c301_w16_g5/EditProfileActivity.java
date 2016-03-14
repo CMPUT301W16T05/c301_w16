@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -85,6 +86,17 @@ public class EditProfileActivity extends ChickBidActivity {
         emailEditText.setText(user.getEmail());
         phoneEditText.setText(user.getPhoneNumber());
         experienceEditText.setText(user.getChickenExperience());
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        if (activityType.equals(CREATE_USER_USERNAME_EXTRA_KEY)) {
+            menu.clear();
+            onCreateOptionsMenu(menu);
+            menu.removeItem(R.id.home_button);
+            menu.removeItem(R.id.notifications_button);
+        }
+        return true;
     }
 
     public void updateUser(View view) {
