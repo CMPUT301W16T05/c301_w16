@@ -5,12 +5,13 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-public class ChickenProfileActivity extends AppCompatActivity implements View.OnClickListener {
+public class ChickenProfileActivity extends ChickBidActivity implements View.OnClickListener {
 
     private static final int RESULT_LOAD_IMAGE = 1;
     ImageView imageToUpload, downloadedImage;
@@ -22,6 +23,11 @@ public class ChickenProfileActivity extends AppCompatActivity implements View.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chicken_profile);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.nav_toolbar);
+        setSupportActionBar(toolbar);
+
+        // show back arrow at top left
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         imageToUpload = (ImageView) findViewById(R.id.imageToUpload);
 

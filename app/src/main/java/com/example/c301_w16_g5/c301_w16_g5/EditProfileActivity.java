@@ -126,7 +126,7 @@ public class EditProfileActivity extends ChickBidActivity {
         if (ChickBidsApplication.getUserController().validateNames(firstName)) {
             user.setFirstName(firstName);
         } else {
-            throw new UserException("Invalid first name");
+            //throw new UserException("Invalid first name");
         }
 
         String lastName = ((EditText) findViewById(R.id.lastNameEditText)).getText().toString();

@@ -1,5 +1,6 @@
 package com.example.c301_w16_g5.c301_w16_g5;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -190,6 +191,7 @@ public class ItemViews extends ChickBidActivity {
             @Override
             public void onClick(View view) {
                 // TODO: load chicken profile
+                launch_editChicken();
             }
         });
 
@@ -216,5 +218,10 @@ public class ItemViews extends ChickBidActivity {
         @Override
         public void onTabReselected(TabLayout.Tab tab) {
         }
+    }
+
+    public void launch_editChicken(){
+        Intent intent = new Intent(this, ChickenProfileActivity.class);
+        startActivity(intent);
     }
 }
