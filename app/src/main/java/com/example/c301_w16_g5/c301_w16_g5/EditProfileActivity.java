@@ -56,13 +56,13 @@ public class EditProfileActivity extends ChickBidActivity {
 
         Intent intent = getIntent();
         activityType = intent.getStringExtra("PROFILE_REQUEST");
-        if (activityType.equals(CREATE_USER_USERNAME_EXTRA_KEY)) {
+        if (activityType != null && activityType.equals(CREATE_USER_USERNAME_EXTRA_KEY)) {
             // source:
             // http://stackoverflow.com/questions/3438276/change-title-bar-text-in-android
             // answered by Paresh Mayani on Aug 9 '10
             // accessed by Hailey on Mar 13 '16
             getSupportActionBar().setTitle("Add Profile");
-        } else if (activityType.equals(UPDATE_USER_EXTRA_KEY)) {
+        } else if (activityType != null && activityType.equals(UPDATE_USER_EXTRA_KEY)) {
 
         }
 
@@ -90,7 +90,7 @@ public class EditProfileActivity extends ChickBidActivity {
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        if (activityType.equals(CREATE_USER_USERNAME_EXTRA_KEY)) {
+        if (activityType != null && activityType.equals(CREATE_USER_USERNAME_EXTRA_KEY)) {
             menu.clear();
             onCreateOptionsMenu(menu);
             menu.removeItem(R.id.home_button);

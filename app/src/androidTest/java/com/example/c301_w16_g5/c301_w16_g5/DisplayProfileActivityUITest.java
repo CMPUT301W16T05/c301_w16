@@ -34,7 +34,16 @@ public class DisplayProfileActivityUITest extends ActivityInstrumentationTestCas
     }
 
     public void testTextVisible() {
-        fail();  // TODO
+        ViewAsserts.assertOnScreen(activity.getWindow().getDecorView(),
+                activity.findViewById(R.id.usernameTextView));
+        ViewAsserts.assertOnScreen(activity.getWindow().getDecorView(),
+                activity.findViewById(R.id.nameTextView));
+        ViewAsserts.assertOnScreen(activity.getWindow().getDecorView(),
+                activity.findViewById(R.id.chickenExperienceTextView));
+        ViewAsserts.assertOnScreen(activity.getWindow().getDecorView(),
+                activity.findViewById(R.id.phoneNumberTextView));
+        ViewAsserts.assertOnScreen(activity.getWindow().getDecorView(),
+                activity.findViewById(R.id.emailTextView));
     }
 
     public void testButtonVisible() {

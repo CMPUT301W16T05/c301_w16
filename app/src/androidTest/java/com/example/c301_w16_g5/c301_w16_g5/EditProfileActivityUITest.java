@@ -34,12 +34,19 @@ public class EditProfileActivityUITest extends ActivityInstrumentationTestCase2 
                 activity.findViewById(R.id.nav_toolbar));
     }
 
-    public void testTextVisible() {
-        fail();  // TODO
-    }
-
-    public void testEditProfile() {
-        fail();  // TODO
+    public void testEditTextVisible() {
+        ViewAsserts.assertOnScreen(activity.getWindow().getDecorView(),
+                activity.findViewById(R.id.usernameEditText));
+        ViewAsserts.assertOnScreen(activity.getWindow().getDecorView(),
+                activity.findViewById(R.id.firstNameEditText));
+        ViewAsserts.assertOnScreen(activity.getWindow().getDecorView(),
+                activity.findViewById(R.id.lastNameEditText));
+        ViewAsserts.assertOnScreen(activity.getWindow().getDecorView(),
+                activity.findViewById(R.id.phoneEditText));
+        ViewAsserts.assertOnScreen(activity.getWindow().getDecorView(),
+                activity.findViewById(R.id.emailEditText));
+        ViewAsserts.assertOnScreen(activity.getWindow().getDecorView(),
+                activity.findViewById(R.id.experienceEditText));
     }
 
     public void testButtonVisible() {
