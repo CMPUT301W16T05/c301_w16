@@ -60,11 +60,6 @@ public class SearchActivityUITest extends ActivityInstrumentationTestCase2 {
         activity.getChickenList().add(chicken5);
     }
 
-    public void testViewVisible() {
-        ViewAsserts.assertOnScreen(activity.getWindow().getDecorView(),
-                activity.findViewById(R.id.toolbar));
-    }
-
     @UiThreadTest
     public void testShowSearchResults() {
         SearchActivity sa = (SearchActivity) getActivity();

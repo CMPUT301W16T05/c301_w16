@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Instrumentation;
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.ViewAsserts;
+import android.widget.EditText;
 
 /**
  * UI test for the app's Login screen.
@@ -16,6 +17,7 @@ public class LoginActivityUITest extends ActivityInstrumentationTestCase2 {
 
     Instrumentation instrumentation;
     Activity activity;
+    EditText usernameEditText;
 
     public LoginActivityUITest() {
         super(LoginActivity.class);
@@ -25,19 +27,19 @@ public class LoginActivityUITest extends ActivityInstrumentationTestCase2 {
         super.setUp();
         instrumentation = getInstrumentation();
         activity = getActivity();
+        usernameEditText = (EditText) activity.findViewById(R.id.usernameEntered);
     }
 
     public void testTextFieldsVisible() {
-        ViewAsserts.assertOnScreen(activity.getWindow().getDecorView(),
-                activity.findViewById(R.id.email));
+        ViewAsserts.assertOnScreen(activity.getWindow().getDecorView(), usernameEditText);
 
         ViewAsserts.assertOnScreen(activity.getWindow().getDecorView(),
-                activity.findViewById(R.id.password));
+                activity.findViewById(R.id.appTitle));
     }
 
     public void testButtonVisible() {
         ViewAsserts.assertOnScreen(activity.getWindow().getDecorView(),
-            activity.findViewById(R.id.email_sign_in_button));
+            activity.findViewById(R.id.signInButton));
     }
 
 }
