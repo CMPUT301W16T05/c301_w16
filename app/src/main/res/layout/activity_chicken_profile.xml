@@ -5,140 +5,111 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:context="com.example.c301_w16_g5.c301_w16_g5.EditProfileActivity">
-
-    <LinearLayout
-        android:orientation="vertical"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <include layout="@layout/navbar"/>
 
-        <TableLayout
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
+            <include layout="@layout/navbar"/>
 
-            <TableRow>
-                <TextView
-                    android:id="@+id/tvName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="Name"
-                    android:textColor="#FF000000"/>
-                <EditText
-                    android:id="@+id/etName"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="EditName"
-                    android:textColor="#FF000000"
-                    android:textSize="15dp"
-                    android:backgroundTint="#c53737" />
-            </TableRow>
-            <TableRow>
-                <TextView
-                    android:id="@+id/tvDescription"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="Description"
-                    android:textColor="#FF000000"/>
-                <EditText
-                    android:id="@+id/etDescription"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="EditDescription"
-                    android:textColor="#FF000000"
-                    android:textSize="15dp"
-                    android:backgroundTint="#c53737" />
-            </TableRow>
-            <TableRow>
-                <TextView
-                    android:id="@+id/tvStatus"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="Status"
-                    android:textColor="#FF000000"/>
-                <EditText
-                    android:id="@+id/etStatus"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="EditStatus"
-                    android:textColor="#FF000000"
-                    android:textSize="15dp"
-                    android:backgroundTint="#c53737" />
-            </TableRow>
-            <TableRow>
-                <TextView
-                    android:id="@+id/tvOwner"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="Owner"
-                    android:textColor="#FF000000"/>
-                <EditText
-                    android:id="@+id/etOwner"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="EditOwner"
-                    android:textColor="#FF000000"
-                    android:textSize="15dp"
-                    android:backgroundTint="#c53737" />
-            </TableRow>
-            <TableRow>
-                <TextView
-                    android:id="@+id/tvBorrower"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="Borrow"
-                    android:textColor="#FF000000"/>
-                <EditText
-                    android:id="@+id/etBorrower"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="EditName"
-                    android:textColor="#FF000000"
-                    android:textSize="15dp"
-                    android:backgroundTint="#c53737" />
-            </TableRow>
-            <TableRow>
-                <TextView
-                    android:id="@+id/tvBids"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="Bids"
-                    android:textColor="#FF000000"/>
-                <EditText
-                    android:id="@+id/etBids"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="EditBorrower"
-                    android:textColor="#FF000000"
-                    android:textSize="15dp"
-                    android:backgroundTint="#c53737" />
-            </TableRow>
-
-            <TableRow>
-                <ImageView
-                    android:id="@+id/imageToUpload"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_width="150dp"
-                    android:layout_height = "150dp" />
-
-                <Button
-                    android:id="@+id/bUploadImage"
-                    android:text="SelectImage"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/textView"
-                    android:layout_alignParentStart="true"
-                    android:layout_column="1" />
-
-            </TableRow>
-
-            <TableRow
+            <TableLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content">
 
-            </TableRow>
-        </TableLayout>
+                <TableRow>
+                    <TextView
+                        android:id="@+id/tvName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="Name"
+                        android:textColor="@color/colorTextSecondary"/>
+                    <EditText
+                        android:id="@+id/etName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="EditName"
+                        android:textColor="@color/colorTextSecondary"
+                        android:backgroundTint="@color/colorTextSecondary"
+                        android:textSize="15dp" />
+                </TableRow>
+                <TableRow>
+                    <TextView
+                        android:id="@+id/tvStatus"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Status"
+                        android:textColor="@color/colorTextSecondary"/>
+                    <Spinner
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:id="@+id/editstatusSpinner"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentStart="true"
+                        android:textColor="@color/colorTextSecondary"
+                        android:textStyle="bold"
+                        android:minEms="1" />
+                </TableRow>
+                <TableRow>
+                    <TextView
+                        android:id="@+id/tvDescription"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Description"
+                        android:textColor="@color/colorTextSecondary"/>
+                    <EditText
+                        android:id="@+id/etDescription"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="EditDescription"
+                        android:textColor="@color/colorTextSecondary"
+                        android:textSize="15dp"
+                        android:backgroundTint="#c53737"
+                        android:inputType="textMultiLine"/>
+                </TableRow>
+                <TableRow>
+                    <TextView
+                        android:id="@+id/tvBids"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Bids"
+                        android:textColor="@color/colorTextSecondary"/>
+                    <EditText
+                        android:id="@+id/etBids"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Replace with bid view"
+                        android:textColor="@color/colorTextSecondary"
+                        android:textSize="15dp"
+                        android:backgroundTint="#c53737" />
+                </TableRow>
 
+                </TableLayout>
+            <ImageView
+                android:id="@+id/imageToUpload"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="150dp"
+                android:layout_height="150dp" />
+            <Button
+                android:id="@+id/bUploadImage"
+                android:text="SelectImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView"
+                android:layout_alignParentStart="true"
+                android:layout_column="1" />
 
-    </LinearLayout>
+            <Button
+                android:id="@+id/editChicken_saveButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:text="Save Changes"
+                />
+        </LinearLayout>
+    </ScrollView>
 
 </android.support.design.widget.CoordinatorLayout>

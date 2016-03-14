@@ -1,5 +1,6 @@
 package com.example.c301_w16_g5.c301_w16_g5;
 
+import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -19,6 +20,7 @@ import android.os.Parcelable;
  */
 public class Photograph implements Parcelable{
 
+    private Uri image = null;
 
     @Override
     public int describeContents() {
@@ -29,7 +31,16 @@ public class Photograph implements Parcelable{
     public void writeToParcel(Parcel dest, int flags) {
     }
 
-    public Photograph() {
+    public Photograph(Uri image_) {
+        this.image = image_;
+    }
+
+    public Uri getImage() {
+        return image;
+    }
+
+    public void setImage(Uri image) {
+        this.image = image;
     }
 
     protected Photograph(Parcel in) {

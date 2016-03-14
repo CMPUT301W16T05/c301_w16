@@ -20,7 +20,7 @@ import java.util.ArrayList;
 /**
  * sample comment
  */
-public class ItemViews extends ChickBidActivity {
+public class ItemViews extends ChickBidActivity  {
 
     private enum TabCategory {
         POSSESSION,
@@ -41,6 +41,7 @@ public class ItemViews extends ChickBidActivity {
     private ArrayList<Chicken> listOfChickens = new ArrayList<Chicken>();
 
     private ListView listView;
+    private Chicken currentChicken;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -186,12 +187,14 @@ public class ItemViews extends ChickBidActivity {
 
         row.setPadding(4, 4, 4, 4);
 
+        currentChicken = chicken;
+
         // Clicking on row will allow the user to edit.
         row.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // TODO: load chicken profile
-                launch_editChicken();
+                launch_editChicken(currentChicken);
             }
         });
 
@@ -220,8 +223,9 @@ public class ItemViews extends ChickBidActivity {
         }
     }
 
-    public void launch_editChicken(){
+    public void launch_editChicken(Chicken chicken){
         Intent intent = new Intent(this, ChickenProfileActivity.class);
+        intent.putExtra("chickenEdit", chicken);
         startActivity(intent);
     }
 }
