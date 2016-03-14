@@ -3,6 +3,7 @@ package com.example.c301_w16_g5.c301_w16_g5;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 
@@ -54,5 +55,13 @@ public class HomeActivity extends ChickBidActivity {
                 startActivity(searchIntent);
             }
         });
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        menu.clear();
+        onCreateOptionsMenu(menu);
+        menu.removeItem(R.id.home_button);
+        return true;
     }
 }

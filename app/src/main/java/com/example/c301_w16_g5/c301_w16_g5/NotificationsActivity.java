@@ -18,4 +18,12 @@ public class NotificationsActivity extends ChickBidActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         invalidateOptionsMenu();
     }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        menu.clear();
+        onCreateOptionsMenu(menu);
+        menu.removeItem(R.id.notifications_button);
+        return true;
+    }
 }
