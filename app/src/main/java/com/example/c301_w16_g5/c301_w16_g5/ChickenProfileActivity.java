@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-public class ChickenProfileActivity extends ChickBidActivity implements View.OnClickListener {
+public class ChickenProfileActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final int RESULT_LOAD_IMAGE = 1;
     ImageView imageToUpload, downloadedImage;

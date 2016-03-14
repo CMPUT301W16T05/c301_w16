@@ -10,6 +10,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <include layout="@layout/navbar"/>
 
         <TableLayout
             android:layout_width="match_parent"
@@ -28,7 +29,8 @@
                     android:layout_height="wrap_content"
                     android:text="EditName"
                     android:textColor="#FF000000"
-                    android:textSize="15dp" />
+                    android:textSize="15dp"
+                    android:backgroundTint="#c53737" />
             </TableRow>
             <TableRow>
                 <TextView
@@ -38,12 +40,13 @@
                     android:text="Description"
                     android:textColor="#FF000000"/>
                 <EditText
-                    android:id="@+id/etName"
+                    android:id="@+id/etDescription"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="EditDescription"
                     android:textColor="#FF000000"
-                    android:textSize="15dp"/>
+                    android:textSize="15dp"
+                    android:backgroundTint="#c53737" />
             </TableRow>
             <TableRow>
                 <TextView
@@ -53,12 +56,13 @@
                     android:text="Status"
                     android:textColor="#FF000000"/>
                 <EditText
-                    android:id="@+id/etName"
+                    android:id="@+id/etStatus"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="EditStatus"
                     android:textColor="#FF000000"
-                    android:textSize="15dp"/>
+                    android:textSize="15dp"
+                    android:backgroundTint="#c53737" />
             </TableRow>
             <TableRow>
                 <TextView
@@ -68,12 +72,13 @@
                     android:text="Owner"
                     android:textColor="#FF000000"/>
                 <EditText
-                    android:id="@+id/etName"
+                    android:id="@+id/etOwner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="EditOwner"
                     android:textColor="#FF000000"
-                    android:textSize="15dp"/>
+                    android:textSize="15dp"
+                    android:backgroundTint="#c53737" />
             </TableRow>
             <TableRow>
                 <TextView
@@ -83,12 +88,13 @@
                     android:text="Borrow"
                     android:textColor="#FF000000"/>
                 <EditText
-                    android:id="@+id/etName"
+                    android:id="@+id/etBorrower"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="EditName"
                     android:textColor="#FF000000"
-                    android:textSize="15dp"/>
+                    android:textSize="15dp"
+                    android:backgroundTint="#c53737" />
             </TableRow>
             <TableRow>
                 <TextView
@@ -98,12 +104,13 @@
                     android:text="Bids"
                     android:textColor="#FF000000"/>
                 <EditText
-                    android:id="@+id/etName"
+                    android:id="@+id/etBids"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="EditBorrower"
                     android:textColor="#FF000000"
-                    android:textSize="15dp"/>
+                    android:textSize="15dp"
+                    android:backgroundTint="#c53737" />
             </TableRow>
 
             <TableRow>
