@@ -95,6 +95,7 @@ public class EditProfileActivity extends ChickBidActivity {
         Intent intent;
         if (activityType.equals(UPDATE_USER_EXTRA_KEY)) {
             intent = new Intent(this, DisplayProfileActivity.class);
+            ChickBidsApplication.getUserController().updateUser(user);
             startActivity(intent);
         } else if (activityType.equals(CREATE_USER_USERNAME_EXTRA_KEY)) {
             intent = new Intent(this, HomeActivity.class);
@@ -103,9 +104,14 @@ public class EditProfileActivity extends ChickBidActivity {
         }
     }
 
+
     private void getUpdatedUserInfo() throws UserException {
         String username = ((EditText) findViewById(R.id.usernameEditText)).getText().toString();
         if (ChickBidsApplication.getUserController().validateNames(username)) {
+            if (ChickBidsApplication.getUserController().getUser(username) != null &&
+                    !ChickBidsApplication.getUserController().getCurrentUser().getUsername().equals(username)) {
+                throw new UserException("Username already in use");
+            }
             user.setUsername(username);
         } else {
             throw new UserException("Invalid username");
