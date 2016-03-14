@@ -17,6 +17,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:id="@+id/usernameEditText"
+            android:maxLength="20"
             android:layout_alignParentEnd="true"
             android:layout_alignParentStart="true"
             android:padding="16dp"
@@ -64,6 +65,8 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:id="@+id/firstNameEditText"
+                    android:ems="5"
+                    android:singleLine='true'
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentStart="true"
                     android:textColor="@color/colorTextSecondary"
@@ -74,6 +77,7 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:id="@+id/lastNameEditText"
+                    android:singleLine='true'
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentStart="true"
                     android:textColor="@color/colorTextSecondary"
@@ -102,6 +106,7 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:id="@+id/emailEditText"
+                    android:maxLength="22"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentStart="true"
                     android:textColor="@color/colorTextSecondary"
@@ -130,6 +135,7 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:id="@+id/phoneEditText"
+                    android:maxLength="12"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentStart="true"
                     android:textColor="@color/colorTextSecondary"
@@ -154,15 +160,17 @@
                     android:layout_alignParentStart="true"
                     android:textColor="@color/colorTextSecondary"/>
                 <EditText
+                    android:id="@+id/experienceEditText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:ems="8"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:id="@+id/experienceEditText"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentStart="true"
                     android:textColor="@color/colorTextSecondary"
                     android:textStyle="bold"
-                    android:minEms="1"/>
+                    android:minEms="1"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentStart="true"
+                    />
                 </LinearLayout>
             </TableRow>
         </TableLayout>
