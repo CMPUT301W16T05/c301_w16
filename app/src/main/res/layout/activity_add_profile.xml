@@ -7,6 +7,5 @@
     tools:context="com.example.c301_w16_g5.c301_w16_g5.AddProfileActivity">
 
     <include layout="@layout/navbar" />
-    <include layout="@layout/content_add_profile" />
 
 </android.support.design.widget.CoordinatorLayout>

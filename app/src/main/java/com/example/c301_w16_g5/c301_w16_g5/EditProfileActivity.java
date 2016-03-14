@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -49,6 +50,15 @@ public class EditProfileActivity extends ChickBidActivity {
 
         // show back arrow at top left
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        Intent intent = getIntent();
+        String editType = intent.getStringExtra("PROFILE_REQUEST");
+
+        if (editType.equals(CREATE_USER_USERNAME_EXTRA_KEY)) {
+            getSupportActionBar().setTitle("Add Profile");
+        } else if (editType.equals(UPDATE_USER_EXTRA_KEY)) {
+
+        }
 
         usernameEditText = (EditText) findViewById(R.id.usernameEditText);
         firstNameEditText = (EditText) findViewById(R.id.firstNameEditText);

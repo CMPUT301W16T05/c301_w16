@@ -46,11 +46,11 @@ public class UserController {
 
     public static boolean validateUsername(String username) {
         // TODO: ensure username is not already taken
-        return genericValidateLettersNumbersOnly(username);
+        return genericValidateLettersNumbersOnly(username) && username.length() > 0;
     }
 
     public static boolean validateNames(String name) {
-        return genericValidateLettersNumbersOnly(name);
+        return genericValidateLettersNumbersOnly(name) && name.length() > 0;
     }
 
     public static boolean validateEmail(String email) {
@@ -58,7 +58,7 @@ public class UserController {
     }
 
     public static boolean validatePhoneNumber(String number) {
-        return number.matches("[0-9]{3}-[0-9]{3}-[0-9]{4}|[0-9]{10}]");
+        return number.matches("[0-9]{3}-[0-9]{3}-[0-9]{4}") || number.matches("[0-9]{10}");
     }
 
     public static boolean validateChickenExperience(String experience) {

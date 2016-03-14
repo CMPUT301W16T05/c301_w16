@@ -82,8 +82,9 @@ public class LoginActivity extends ChickBidActivity {
 
         Intent intent;
         if (user == null) {
-            intent = new Intent(this, AddProfileActivity.class);
-//            intent.putExtra(EditProfileActivity.CREATE_USER_USERNAME_EXTRA_KEY, username);
+            intent = new Intent(this, EditProfileActivity.class);
+            userController.setUser(new User(username, "", "", "", "", ""));
+            intent.putExtra("PROFILE_REQUEST", EditProfileActivity.CREATE_USER_USERNAME_EXTRA_KEY);
         } else {
             userController.setUser(user);
             intent = new Intent(this, HomeActivity.class);

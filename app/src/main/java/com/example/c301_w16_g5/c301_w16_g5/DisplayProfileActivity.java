@@ -47,6 +47,7 @@ public class DisplayProfileActivity extends ChickBidActivity {
         experienceTextView = (TextView) findViewById(R.id.chickenExperienceTextView);
 
         editProfileIntent = new Intent(this, EditProfileActivity.class);
+        editProfileIntent.putExtra("PROFILE_REQUEST", EditProfileActivity.UPDATE_USER_EXTRA_KEY);
 
         // TODO: disable fab if user profile is not of logged in user
         // should perform the check and disable in onStart. create a method and call it in onStart
