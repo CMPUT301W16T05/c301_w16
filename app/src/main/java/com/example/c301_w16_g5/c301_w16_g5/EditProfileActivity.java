@@ -1,10 +1,8 @@
 package com.example.c301_w16_g5.c301_w16_g5;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
@@ -17,7 +15,6 @@ import android.widget.Toast;
  * @author  Hailey
  * @version 1.4, 03/02/2016
  * @see     User
- * @see     AddProfileActivity
  * @see     DisplayProfileActivity
  * @see     UserController
  */
@@ -25,7 +22,7 @@ public class EditProfileActivity extends ChickBidActivity {
 
     public static final String PROFILE_EXTRA_KEY = "PROFILE_REQUEST";
 
-    public static final String CREATE_USER_USERNAME_EXTRA_KEY = "create_user_username_extra_key";
+    public static final String CREATE_USER_EXTRA_KEY = "create_user_username_extra_key";
     public static final String UPDATE_USER_EXTRA_KEY = "update_user_extra_key";
 
     private EditText usernameEditText;
@@ -65,7 +62,7 @@ public class EditProfileActivity extends ChickBidActivity {
 
         Intent intent = getIntent();
         activityType = intent.getStringExtra(PROFILE_EXTRA_KEY);
-        if (activityType != null && activityType.equals(CREATE_USER_USERNAME_EXTRA_KEY)) {
+        if (activityType != null && activityType.equals(CREATE_USER_EXTRA_KEY)) {
             // source:
             // http://stackoverflow.com/questions/3438276/change-title-bar-text-in-android
             // answered by Paresh Mayani on Aug 9 '10
@@ -94,7 +91,7 @@ public class EditProfileActivity extends ChickBidActivity {
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        if (activityType != null && activityType.equals(CREATE_USER_USERNAME_EXTRA_KEY)) {
+        if (activityType != null && activityType.equals(CREATE_USER_EXTRA_KEY)) {
             menu.clear();
             onCreateOptionsMenu(menu);
             menu.removeItem(R.id.home_button);
@@ -117,7 +114,7 @@ public class EditProfileActivity extends ChickBidActivity {
             intent = new Intent(this, DisplayProfileActivity.class);
             ChickBidsApplication.getUserController().updateUser(user);
             startActivity(intent);
-        } else if (activityType.equals(CREATE_USER_USERNAME_EXTRA_KEY)) {
+        } else if (activityType.equals(CREATE_USER_EXTRA_KEY)) {
             intent = new Intent(this, HomeActivity.class);
             ChickBidsApplication.getUserController().saveUser(user);
             startActivity(intent);
