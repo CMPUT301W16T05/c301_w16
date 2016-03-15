@@ -69,16 +69,15 @@ public class EditProfileActivity extends ChickBidActivity {
             // accessed by Hailey on Mar 13 '16
             getSupportActionBar().setTitle(R.string.title_activity_add_profile);
         } else if (activityType != null && activityType.equals(UPDATE_USER_EXTRA_KEY)) {
+            fillUserInformation();
+
             // 2016-03-15 : http://stackoverflow.com/questions/6731017/how-to-make-an-edittext-uneditable-disabled
             usernameEditText.setEnabled(false);
             usernameEditText.setClickable(false);
         }
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-
+    private void fillUserInformation() {
         user = ChickBidsApplication.getUserController().getCurrentUser();
 
         usernameEditText.setText(user.getUsername());
@@ -109,18 +108,8 @@ public class EditProfileActivity extends ChickBidActivity {
             return;
         }
 
-        Intent intent;
-        if (activityType.equals(UPDATE_USER_EXTRA_KEY)) {
-            intent = new Intent(this, DisplayProfileActivity.class);
-            ChickBidsApplication.getUserController().updateUser(user);
-            startActivity(intent);
-        } else if (activityType.equals(CREATE_USER_EXTRA_KEY)) {
-            intent = new Intent(this, HomeActivity.class);
-            ChickBidsApplication.getUserController().saveUser(user);
-            startActivity(intent);
-        }
+        finish();
     }
-
 
     private void getUpdatedUserInfo() throws UserException {
         String username = ((EditText) findViewById(R.id.usernameEditText)).getText().toString();
