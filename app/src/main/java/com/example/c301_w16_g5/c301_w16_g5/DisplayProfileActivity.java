@@ -1,6 +1,5 @@
 package com.example.c301_w16_g5.c301_w16_g5;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -47,7 +46,7 @@ public class DisplayProfileActivity extends ChickBidActivity {
         experienceTextView = (TextView) findViewById(R.id.chickenExperienceTextView);
 
         editProfileIntent = new Intent(this, EditProfileActivity.class);
-        editProfileIntent.putExtra("PROFILE_REQUEST", EditProfileActivity.UPDATE_USER_EXTRA_KEY);
+        editProfileIntent.putExtra(EditProfileActivity.PROFILE_EXTRA_KEY, EditProfileActivity.UPDATE_USER_EXTRA_KEY);
 
         // TODO: disable fab if user profile is not of logged in user
         // should perform the check and disable in onStart. create a method and call it in onStart

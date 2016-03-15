@@ -15,7 +15,6 @@ import io.searchbox.annotations.JestId;
  * @author  Hailey
  * @version 1.4, 03/02/2016
  * @see     DisplayProfileActivity
- * @see     AddProfileActivity
  * @see     EditProfileActivity
  * @see     UserController
  */

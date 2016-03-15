@@ -7,7 +7,6 @@ package com.example.c301_w16_g5.c301_w16_g5;
  * @author  Hailey
  * @version 1.4, 03/12/2016
  * @see     User
- * @see     AddProfileActivity
  * @see     EditProfileActivity
  */
 public class UserException extends Exception {

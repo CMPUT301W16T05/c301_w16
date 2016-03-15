@@ -23,6 +23,8 @@ import android.widget.Toast;
  */
 public class EditProfileActivity extends ChickBidActivity {
 
+    public static final String PROFILE_EXTRA_KEY = "PROFILE_REQUEST";
+
     public static final String CREATE_USER_USERNAME_EXTRA_KEY = "create_user_username_extra_key";
     public static final String UPDATE_USER_EXTRA_KEY = "update_user_extra_key";
 
@@ -54,24 +56,26 @@ public class EditProfileActivity extends ChickBidActivity {
         // show back arrow at top left
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        Intent intent = getIntent();
-        activityType = intent.getStringExtra("PROFILE_REQUEST");
-        if (activityType != null && activityType.equals(CREATE_USER_USERNAME_EXTRA_KEY)) {
-            // source:
-            // http://stackoverflow.com/questions/3438276/change-title-bar-text-in-android
-            // answered by Paresh Mayani on Aug 9 '10
-            // accessed by Hailey on Mar 13 '16
-            getSupportActionBar().setTitle("Add Profile");
-        } else if (activityType != null && activityType.equals(UPDATE_USER_EXTRA_KEY)) {
-
-        }
-
         usernameEditText = (EditText) findViewById(R.id.usernameEditText);
         firstNameEditText = (EditText) findViewById(R.id.firstNameEditText);
         lastNameEditText = (EditText) findViewById(R.id.lastNameEditText);
         emailEditText = (EditText) findViewById(R.id.emailEditText);
         phoneEditText = (EditText) findViewById(R.id.phoneEditText);
         experienceEditText = (EditText) findViewById(R.id.experienceEditText);
+
+        Intent intent = getIntent();
+        activityType = intent.getStringExtra(PROFILE_EXTRA_KEY);
+        if (activityType != null && activityType.equals(CREATE_USER_USERNAME_EXTRA_KEY)) {
+            // source:
+            // http://stackoverflow.com/questions/3438276/change-title-bar-text-in-android
+            // answered by Paresh Mayani on Aug 9 '10
+            // accessed by Hailey on Mar 13 '16
+            getSupportActionBar().setTitle(R.string.title_activity_add_profile);
+        } else if (activityType != null && activityType.equals(UPDATE_USER_EXTRA_KEY)) {
+            // 2016-03-15 : http://stackoverflow.com/questions/6731017/how-to-make-an-edittext-uneditable-disabled
+            usernameEditText.setEnabled(false);
+            usernameEditText.setClickable(false);
+        }
     }
 
     @Override
