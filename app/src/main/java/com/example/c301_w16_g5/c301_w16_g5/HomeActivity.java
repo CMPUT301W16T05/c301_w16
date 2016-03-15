@@ -64,4 +64,11 @@ public class HomeActivity extends ChickBidActivity {
         menu.removeItem(R.id.home_button);
         return true;
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        User current_user = ChickBidsApplication.getUserController().getCurrentUser();
+        ChickBidsApplication.getUserController().updateUser(current_user);
+    }
 }

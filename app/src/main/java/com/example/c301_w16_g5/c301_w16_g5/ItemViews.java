@@ -1,16 +1,13 @@
 package com.example.c301_w16_g5.c301_w16_g5;
 
 import android.content.Intent;
-import android.support.design.widget.TabLayout;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ListView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -37,6 +34,8 @@ public class ItemViews extends ChickBidActivity  {
         BIDS_PLACED
     }
 
+    private TabLayout tabLayout;
+
     private TabLayout.Tab tab_possession;
     private TabLayout.Tab tab_owned;
     private TabLayout.Tab tab_owned_with_bids;
@@ -45,9 +44,6 @@ public class ItemViews extends ChickBidActivity  {
     private TabLayout.Tab tab_bids_placed;
 
     private ArrayList<Chicken> listOfChickens = new ArrayList<Chicken>();
-
-    private ListView listView;
-    private Chicken currentChicken;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +54,7 @@ public class ItemViews extends ChickBidActivity  {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout = (TabLayout) findViewById(R.id.tabs);
 
         tab_possession = tabLayout.newTab().setText(R.string.item_profile_possession).setTag(TabCategory.POSSESSION);
         tab_owned = tabLayout.newTab().setText(R.string.item_profile_owned).setTag(TabCategory.OWNED);
@@ -86,9 +82,7 @@ public class ItemViews extends ChickBidActivity  {
                 startActivity(addChickenIntent);
             }
         });
-
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -114,13 +108,18 @@ public class ItemViews extends ChickBidActivity  {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updateForTab(tabLayout.getTabAt(tabLayout.getSelectedTabPosition()));
+    }
+
     private void updateList(TabCategory tabCategory) {
         ChickenController chickenController = ChickBidsApplication.getChickenController();
 
         switch (tabCategory) {
             case POSSESSION:
                 listOfChickens = chickenController.getAllChickensInMyPossession();
-                listOfChickens.add(new Chicken("Bob", "chicken", ChickBidsApplication.getUserController().getCurrentUser().getUsername()));
                 break;
             case OWNED:
                 listOfChickens = chickenController.getMyOwnedChickens();
@@ -136,7 +135,6 @@ public class ItemViews extends ChickBidActivity  {
                 break;
             case BIDS_PLACED:
                 listOfChickens = chickenController.getChickensBiddedOnByMe();
-                listOfChickens.add(new Chicken("Tim", "chicken also", ChickBidsApplication.getUserController().getCurrentUser().getUsername()));
                 break;
             default:
                 break;
@@ -147,6 +145,13 @@ public class ItemViews extends ChickBidActivity  {
         updateList((TabCategory) tab.getTag());
         refreshTableTitle(tab.getText().toString());
         refreshTableView();
+    }
+
+
+    private void refreshTableView() {
+        TableLayout tableLayout = (TableLayout) findViewById(R.id.chickenListTable);
+        tableLayout.removeViews(1, tableLayout.getChildCount() - 1);
+        fillTableView();
     }
 
     private void refreshTableTitle(String text) {
@@ -160,7 +165,7 @@ public class ItemViews extends ChickBidActivity  {
         }
     }
 
-    private void addChickenToTable(Chicken chicken) {
+    private void addChickenToTable(final Chicken chicken) {
         /*  1/19/16 - Aby Mathew
             http://stackoverflow.com/questions/18207470/adding-table-rows-dynamically-in-android
          */
@@ -193,24 +198,18 @@ public class ItemViews extends ChickBidActivity  {
 
         row.setPadding(4, 4, 4, 4);
 
-        currentChicken = chicken;
-
+        final Intent intent = new Intent(this, ChickenProfileActivity.class);
         // Clicking on row will allow the user to edit.
         row.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // TODO: load chicken profile
-                launch_editChicken(currentChicken);
+                intent.putExtra("chickenEdit", chicken);
+                startActivity(intent);
             }
         });
 
         tableLayout.addView(row);
-    }
-
-    private void refreshTableView() {
-        TableLayout tableLayout = (TableLayout) findViewById(R.id.chickenListTable);
-        tableLayout.removeViews(1, tableLayout.getChildCount()-1);
-        fillTableView();
     }
 
     public class ItemTabListener implements TabLayout.OnTabSelectedListener {
@@ -227,11 +226,5 @@ public class ItemViews extends ChickBidActivity  {
         @Override
         public void onTabReselected(TabLayout.Tab tab) {
         }
-    }
-
-    public void launch_editChicken(Chicken chicken){
-        Intent intent = new Intent(this, ChickenProfileActivity.class);
-        intent.putExtra("chickenEdit", chicken);
-        startActivity(intent);
     }
 }

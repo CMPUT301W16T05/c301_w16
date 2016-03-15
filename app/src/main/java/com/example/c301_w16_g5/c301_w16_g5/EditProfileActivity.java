@@ -108,6 +108,12 @@ public class EditProfileActivity extends ChickBidActivity {
             return;
         }
 
+        if (activityType.equals(UPDATE_USER_EXTRA_KEY)) {
+            ChickBidsApplication.getUserController().updateUser(user);
+        } else if (activityType.equals(CREATE_USER_EXTRA_KEY)) {
+            ChickBidsApplication.getUserController().saveUser(user);
+        }
+
         finish();
     }
 
