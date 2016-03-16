@@ -156,6 +156,14 @@ public class SearchController {
         deleteUserTask.execute(username);
     }
 
+    public void changeUsernameInDatabase(User user, String oldUsername) {
+        AsyncTask<User, Void, Void> executable = new ElasticSearchBackend.AddUserTask();
+        executable.execute(user);
+
+        ElasticSearchBackend.DeleteUserTask deleteUserTask = new ElasticSearchBackend.DeleteUserTask();
+        deleteUserTask.execute(oldUsername);
+    }
+
     public Notification addNotificationToDatabase(Notification notification) {
         AsyncTask<Notification, Void, Notification> executable = new ElasticSearchBackend.AddNotificationTask();
         executable.execute(notification);
