@@ -17,17 +17,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/searchView"
-            android:layout_below="@+id/include2"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_below="@+id/include2" />
 
         <ListView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/listView"
+            android:id="@+id/searchResults"
             android:layout_below="@+id/searchView"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true" />
+            android:divider="@color/colorAccent"
+            android:dividerHeight="4px"
+            />
+        <!--How to change color of Android ListView separator line?-->
+        <!--http://stackoverflow.com/questions/2372415/how-to-change-color-of-android-listview-separator-line-->
+        <!--answered by jeremynealbrown on Mar 3 '10-->
+        <!--accessed by Hailey Musselman on Mar 16 '16-->
 
     </RelativeLayout>
 </android.support.design.widget.CoordinatorLayout>

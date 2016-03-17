@@ -1,0 +1,48 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:weightSum="3">
+    <!--Linear Layout and weight in Android-->
+    <!--http://stackoverflow.com/questions/2698817/linear-layout-and-weight-in-android-->
+    <!--answered by Anke on Dec 23 '10-->
+    <!--accessed by Hailey Musselman on Mar 16 '16-->
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:paddingLeft="5dp"
+        android:paddingRight="10dp">
+
+        <TextView
+            android:id="@+id/chickenName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="22sp"
+            android:textColor="@color/colorTextSecondary"
+            android:paddingTop="5dp"/>
+
+        <TextView
+            android:id="@+id/chickenDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/colorTextSecondary"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/chickenStatus"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="22sp"
+        android:textColor="@color/colorTextSecondary"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:layout_weight="1" />
+
+</LinearLayout>
