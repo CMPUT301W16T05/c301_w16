@@ -263,4 +263,54 @@ public class SearchController {
         ElasticSearchBackend.DeleteBidTask deleteBidTask = new ElasticSearchBackend.DeleteBidTask();
         deleteBidTask.execute(id);
     }
+
+    public Location addLocationToDatabase(Location location) {
+        AsyncTask<Location, Void, Location> executable = new ElasticSearchBackend.AddLocationTask();
+        executable.execute(location);
+        Location location1 = new Location(0.00, 0.00);
+        try {
+            location1 = executable.get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        return location1;
+    }
+
+    public Location updateLocationInDatabase(Location location) {
+        AsyncTask<Location, Void, Location> executable = new ElasticSearchBackend.UpdateLocationTask();
+        executable.execute(location);
+        Location location1 = new Location(0.00, 0.00);
+        try {
+            location1 = executable.get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        return location1;
+    }
+
+    public Location getLocationFromDatabase(String id) {
+        ElasticSearchBackend.GetLocationByIdTask getLocationTask = new ElasticSearchBackend.GetLocationByIdTask();
+        getLocationTask.execute(id);
+        Location location = new Location(0.00, 0.00);
+        try {
+            location = getLocationTask.get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        return location;
+    }
+
+    public void removeLocationFromDatabase(String id) {
+        ElasticSearchBackend.DeleteLocationTask deleteLocationTask = new ElasticSearchBackend.DeleteLocationTask();
+        deleteLocationTask.execute(id);
+    }
 }
