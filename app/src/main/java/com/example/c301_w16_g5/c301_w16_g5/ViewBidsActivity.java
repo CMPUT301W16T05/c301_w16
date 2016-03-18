@@ -16,8 +16,10 @@ public class ViewBidsActivity extends ChickBidActivity {
         setSupportActionBar(toolbar);
 
         // show back arrow at top left
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
+
+
 
 
 }

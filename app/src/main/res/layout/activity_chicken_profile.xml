@@ -109,6 +109,14 @@
                 android:layout_gravity="bottom"
                 android:text="Save Changes"
                 />
+
+            <Button
+                android:id="@+id/editChicken_viewBidsButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:text="View Bids"
+                />
         </LinearLayout>
     </ScrollView>
 

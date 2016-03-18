@@ -36,7 +36,7 @@ public class ChickenProfileActivity extends ChickBidActivity {
 
     private static final int RESULT_LOAD_IMAGE = 1;
     ImageView imageToUpload, downloadedImage;
-    Button bUploadImage, saveButton;
+    Button bUploadImage, saveButton, viewBidsButton;
     EditText etName, etDescription;
     Spinner status;
     Chicken editChicken;
@@ -57,6 +57,7 @@ public class ChickenProfileActivity extends ChickBidActivity {
         imageToUpload = (ImageView) findViewById(R.id.imageToUpload);
         bUploadImage = (Button) findViewById(R.id.bUploadImage);
         saveButton = (Button) findViewById(R.id.editChicken_saveButton);
+        viewBidsButton = (Button) findViewById(R.id.editChicken_viewBidsButton);
 
         etName = (EditText) findViewById(R.id.etName);
         status = (Spinner) findViewById(R.id.editstatusSpinner);
@@ -79,6 +80,14 @@ public class ChickenProfileActivity extends ChickBidActivity {
                 //ChickBidsApplication.getChickenController().updateChickenForMe(editChicken);
 
                 finish();
+            }
+        });
+
+        final Intent viewBidIntent = new Intent(this, ViewBidsActivity.class);
+        viewBidsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(viewBidIntent);
             }
         });
     }
