@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -35,12 +36,27 @@ public class SearchesActivity extends AppCompatActivity {
         handleIntent(getIntent());
     }
 
+    @Override
+    protected void onNewIntent(Intent intent) {
+        setIntent(intent);
+        handleIntent(intent);
+    }
+
     public void handleIntent(Intent intent) {
         // Get the intent, verify the action and get the query
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
             doMySearch(query);
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -61,8 +77,11 @@ public class SearchesActivity extends AppCompatActivity {
 
     public void doMySearch(String query) {
         chickens = ChickBidsApplication.getSearchController().searchByKeyword(query);
+        if (chickens.size() == 0) {
+            Toast.makeText(getApplicationContext(), "No Results", Toast.LENGTH_SHORT).show();
+        }
 
-        adapter = new ChickenAdapter(this, chickens); /* NEW! */
+        adapter = new ChickenAdapter(this, chickens);
         searchResults.setAdapter(adapter);
     }
 }
