@@ -13,12 +13,29 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
+/* the following two tutorials were used to produce this class:
+   - http://developer.android.com/guide/topics/search/search-dialog.html
+   - http://developer.android.com/training/search/setup.html
+   accessed March 18, 2016 by Hailey Musselman
+ */
+
+
+/**
+ * Activity that allows a user to perform a keyword search for chickens
+ * in the database, displaying a list of the results.
+ *
+ * @author  Hailey
+ * @version 1.5, 03/19/2016
+ * @see     SearchController
+ * @see     Chicken
+ */
 public class SearchesActivity extends AppCompatActivity {
     private ArrayList<Chicken> chickens = new ArrayList<Chicken>();
     private ArrayAdapter<Chicken> adapter;
@@ -33,6 +50,16 @@ public class SearchesActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         searchResults = (ListView) findViewById(R.id.searchResults);
+        searchResults.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Chicken chicken = adapter.getItem(i);
+
+                Toast.makeText(getApplicationContext(), "Clicked on " + chicken.getName(), Toast.LENGTH_SHORT).show();
+                // TODO: make the intent, start the viewing activity
+            }
+        });
+
         handleIntent(getIntent());
     }
 
