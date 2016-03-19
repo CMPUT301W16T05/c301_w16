@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/search"
+        android:title="@string/Search"
+        app:showAsAction="collapseActionView|ifRoom"
+        app:actionViewClass="android.support.v7.widget.SearchView" />
+</menu>
+    <!--for line: app:actionViewClass="android.support.v7.widget.SearchView"-->
+    <!--http://stackoverflow.com/questions/14517551/nullpointerexception-in-android-code-->
+    <!--answered by IdleGandalf on Dec 14 '13-->
+    <!--accessed by Hailey Musselman on Mar 18 '16-->

@@ -25,8 +25,7 @@
             android:id="@+id/searchResults"
             android:layout_below="@+id/searchView"
             android:divider="@color/colorAccent"
-            android:dividerHeight="4px"
-            />
+            android:dividerHeight="4px" />
         <!--How to change color of Android ListView separator line?-->
         <!--http://stackoverflow.com/questions/2372415/how-to-change-color-of-android-listview-separator-line-->
         <!--answered by jeremynealbrown on Mar 3 '10-->
