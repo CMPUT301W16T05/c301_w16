@@ -37,6 +37,7 @@
     <string name="profile">Profile</string>
     <string name="Search">Search</string>
     <string name="Chickens">Chickens</string>
+    <string name="Logout">Logout</string>
     <string name="title_activity_notifications">NotificationsActivity</string>
 
     <!-- Strings related to Item Profile -->

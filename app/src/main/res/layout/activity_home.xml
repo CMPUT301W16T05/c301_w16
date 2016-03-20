@@ -42,9 +42,21 @@
             android:text="@string/Search"
             android:id="@+id/buttonSearch"
             android:layout_below="@+id/buttonChickens"
-            android:layout_marginTop="8dp"
             android:layout_margin="16dp"
             android:textStyle="bold"
+            android:typeface="normal" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimaryDark"
+            android:text="@string/Logout"
+            android:id="@+id/buttonLogout"
+            android:layout_below="@+id/buttonSearch"
+            android:layout_marginTop="8dp"
+            android:layout_margin="16dp"
+            android:paddingTop="8dp"
+            android:textStyle="normal"
             android:typeface="normal" />
 
     </RelativeLayout>

@@ -5,11 +5,10 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.TableLayout;
-import android.widget.TableRow;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -45,6 +44,9 @@ public class ItemViews extends ChickBidActivity  {
 
     private ArrayList<Chicken> listOfChickens = new ArrayList<Chicken>();
 
+    private ArrayAdapter<Chicken> adapter;
+    private ListView listView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +57,7 @@ public class ItemViews extends ChickBidActivity  {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         tabLayout = (TabLayout) findViewById(R.id.tabs);
+        listView = (ListView) findViewById(R.id.chickenList);
 
         tab_possession = tabLayout.newTab().setText(R.string.item_profile_possession).setTag(TabCategory.POSSESSION);
         tab_owned = tabLayout.newTab().setText(R.string.item_profile_owned).setTag(TabCategory.OWNED);
@@ -72,10 +75,20 @@ public class ItemViews extends ChickBidActivity  {
 
         tabLayout.setOnTabSelectedListener(new ItemTabListener());
 
+        final Intent editChickenIntent = new Intent(this, ChickenProfileActivity.class);
+        // Mar 20, 2016 - http://stackoverflow.com/questions/9097723/adding-an-onclicklistener-to-listview-android
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Chicken chicken = (Chicken) listView.getItemAtPosition(position);
+                editChickenIntent.putExtra("chickenEdit", chicken);
+                startActivity(editChickenIntent);
+            }
+        });
+
         final Intent addChickenIntent = new Intent(this, AddChickenActivity.class);
         updateForTab(tab_possession);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.add_chicken_fab);
-        // TODO: Add chicken here
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -85,33 +98,15 @@ public class ItemViews extends ChickBidActivity  {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        super.onCreateOptionsMenu(menu);
-
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_item_views, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
     protected void onResume() {
         super.onResume();
         updateForTab(tabLayout.getTabAt(tabLayout.getSelectedTabPosition()));
+    }
+
+    private void updateForTab(TabLayout.Tab tab) {
+        updateList((TabCategory) tab.getTag());
+        refreshTableTitle(tab.getText().toString());
+        refreshList();
     }
 
     private void updateList(TabCategory tabCategory) {
@@ -141,75 +136,14 @@ public class ItemViews extends ChickBidActivity  {
         }
     }
 
-    private void updateForTab(TabLayout.Tab tab) {
-        updateList((TabCategory) tab.getTag());
-        refreshTableTitle(tab.getText().toString());
-        refreshTableView();
-    }
-
-
-    private void refreshTableView() {
-        TableLayout tableLayout = (TableLayout) findViewById(R.id.chickenListTable);
-        tableLayout.removeViews(1, tableLayout.getChildCount() - 1);
-        fillTableView();
-    }
-
     private void refreshTableTitle(String text) {
         TextView textView = (TextView) findViewById(R.id.chickenListTitle);
         textView.setText(text);
     }
 
-    private void fillTableView() {
-        for (Chicken chicken : listOfChickens) {
-            addChickenToTable(chicken);
-        }
-    }
-
-    private void addChickenToTable(final Chicken chicken) {
-        /*  1/19/16 - Aby Mathew
-            http://stackoverflow.com/questions/18207470/adding-table-rows-dynamically-in-android
-         */
-        TableLayout tableLayout = (TableLayout) findViewById(R.id.chickenListTable);
-
-        // Add new row.
-        TableRow row = new TableRow(this);
-
-        TextView date = new TextView(this);
-        date.setTextSize(18);
-        date.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
-        date.setText(chicken.getName());
-        date.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT, 0.35f));
-
-        TextView station = new TextView(this);
-        station.setTextSize(18);
-        station.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
-        station.setText(chicken.getOwnerUsername());
-        station.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT, 0.40f));
-
-        TextView cost = new TextView(this);
-        cost.setTextSize(18);
-        cost.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
-        cost.setText(chicken.getChickenStatus().toString());
-        cost.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT, 0.25f));
-
-        row.addView(date);
-        row.addView(station);
-        row.addView(cost);
-
-        row.setPadding(4, 4, 4, 4);
-
-        final Intent intent = new Intent(this, ChickenProfileActivity.class);
-        // Clicking on row will allow the user to edit.
-        row.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // TODO: load chicken profile
-                intent.putExtra("chickenEdit", chicken);
-                startActivity(intent);
-            }
-        });
-
-        tableLayout.addView(row);
+    private void refreshList() {
+        adapter = new ChickenAdapter(this, listOfChickens);
+        listView.setAdapter(adapter);
     }
 
     public class ItemTabListener implements TabLayout.OnTabSelectedListener {

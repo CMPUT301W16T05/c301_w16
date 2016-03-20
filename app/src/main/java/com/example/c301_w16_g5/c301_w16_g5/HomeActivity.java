@@ -32,6 +32,7 @@ public class HomeActivity extends ChickBidActivity {
         Button profileButton = (Button) findViewById(R.id.buttonProfile);
         Button chickensButton = (Button) findViewById(R.id.buttonChickens);
         Button searchButton = (Button) findViewById(R.id.buttonSearch);
+        Button logoutButton = (Button) findViewById(R.id.buttonLogout);
 
         final Intent profileIntent = new Intent(this, DisplayProfileActivity.class);
         final Intent chickensIntent = new Intent(this, ItemViews.class);
@@ -53,6 +54,12 @@ public class HomeActivity extends ChickBidActivity {
             @Override
             public void onClick(View v) {
                 startActivity(searchIntent);
+            }
+        });
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }
