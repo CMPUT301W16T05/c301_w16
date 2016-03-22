@@ -609,12 +609,13 @@ public class ElasticSearchBackend {
 
         if (!attrList[23].equals("none")) {
             String[] bids = attrList[23].split(",");
-            for (String chickenId : bids) {
-                Get get = new Get.Builder("c301w16t05", chickenId).type("bid").build();
+            for (String bidId : bids) {
+                Get get = new Get.Builder("c301w16t05", bidId).type("bid").build();
                 try {
                     JestResult result = client.execute(get);
                     if (result.isSucceeded()) {
                         Bid bid = parseBid(result.getSourceAsString());
+                        bid.setId(bidId);
                         chicken.getBids().add(bid);
                     } else {
                         Log.i("TODO","Getting the chicken failed");
@@ -677,6 +678,7 @@ public class ElasticSearchBackend {
                     JestResult result = client.execute(get);
                     if (result.isSucceeded()) {
                         Chicken chicken = parseChicken(result.getSourceAsString());
+                        chicken.setId(chickenId);
                         user.addChicken(chicken);
                     } else {
                         Log.i("TODO","Getting the chicken failed");
@@ -695,6 +697,7 @@ public class ElasticSearchBackend {
                     JestResult result = client.execute(get);
                     if (result.isSucceeded()) {
                         Notification notification = parseNotification(result.getSourceAsString());
+                        notification.setId(notifId);
                         user.addNotification(notification);
                     } else {
                         Log.i("TODO","Getting the bid failed");

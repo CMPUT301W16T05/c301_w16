@@ -34,8 +34,10 @@ public class SearchActivityUITest extends ActivityInstrumentationTestCase2 {
                 activity.findViewById(R.id.nav_toolbar));
         ViewAsserts.assertOnScreen(activity.getWindow().getDecorView(),
                 activity.findViewById(R.id.searchView));
+        /*
         ViewAsserts.assertOnScreen(activity.getWindow().getDecorView(),
                 activity.findViewById(R.id.listView));
+                */
     }
 /*
     protected void setUp() throws Exception {

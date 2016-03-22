@@ -8,7 +8,7 @@ import android.test.ActivityInstrumentationTestCase2;
  */
 public class UserProfileTest extends ActivityInstrumentationTestCase2 {
     public UserProfileTest() {
-        super(AddProfileActivity.class);
+        super(EditProfileActivity.class);
     }
 /*
     // US 03.01.01

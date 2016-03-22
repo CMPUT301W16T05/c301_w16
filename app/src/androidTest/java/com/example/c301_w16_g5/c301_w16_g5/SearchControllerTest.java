@@ -11,6 +11,32 @@ public class SearchControllerTest extends ActivityInstrumentationTestCase2 {
     public SearchControllerTest() {
         super(Search.class);
     }
+
+    public void testGetChickenFromDatabase() {
+        SearchController sc = new SearchController();
+        Chicken chicken = sc.getChickenFromDatabase("3eYlWldXRvyNNq3uhsoH8w");
+
+        assertEquals(chicken.getId(),"3eYlWldXRvyNNq3uhsoH8w");
+    }
+
+    public void testGetUserFromDatabase() {
+        SearchController sc = new SearchController();
+        User user = sc.getUserFromDatabase("test2");
+        Chicken chicken = new Chicken("Anne","sweet","test2");
+
+        chicken = sc.addChickenToDatabase(chicken);
+        assertFalse(chicken.getId() == null);
+
+        user.addChicken(chicken);
+        sc.addUserToDatabase(user);
+
+        User user1 = sc.getUserFromDatabase("test2");
+        Chicken chicken1 = user1.getChicken(0);
+        Chicken chicken2 = user1.getChicken(1);
+
+        assertFalse(chicken.getId() == null);
+        assertFalse(chicken.getId() == null);
+    }
 /*
     // US 04.01.01
     public void testSearchByKeywords() {
