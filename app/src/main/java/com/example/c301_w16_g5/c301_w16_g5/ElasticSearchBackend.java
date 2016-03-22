@@ -785,9 +785,7 @@ public class ElasticSearchBackend {
 
     public static Location parseLocation(String source) {
         String[] attrList = source.split("\"");
-        Location location = new Location(Double.parseDouble(attrList[3]), Double.parseDouble(attrList[7]));
-
-        return location;
+        return new Location(Double.parseDouble(attrList[3]), Double.parseDouble(attrList[7]));
     }
 
     public static void verifyClient() {

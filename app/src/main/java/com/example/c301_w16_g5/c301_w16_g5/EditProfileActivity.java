@@ -120,46 +120,46 @@ public class EditProfileActivity extends ChickBidActivity {
     private void getUpdatedUserInfo() throws UserException {
         String username = ((EditText) findViewById(R.id.usernameEditText)).getText().toString();
 
-        if (ChickBidsApplication.getUserController().usernameInUse(username)) {
+        if (UserController.usernameInUse(username)) {
             throw new UserException("Username already in use");
         }
 
-        if (ChickBidsApplication.getUserController().validateNames(username)) {
+        if (UserController.validateNames(username)) {
             user.setUsername(username);
         } else {
             throw new UserException("Invalid username");
         }
 
         String firstName = ((EditText) findViewById(R.id.firstNameEditText)).getText().toString();
-        if (ChickBidsApplication.getUserController().validateNames(firstName)) {
+        if (UserController.validateNames(firstName)) {
             user.setFirstName(firstName);
         } else {
             //throw new UserException("Invalid first name");
         }
 
         String lastName = ((EditText) findViewById(R.id.lastNameEditText)).getText().toString();
-        if (ChickBidsApplication.getUserController().validateNames(lastName)) {
+        if (UserController.validateNames(lastName)) {
             user.setLastName(lastName);
         } else {
             throw new UserException("Invalid last name");
         }
 
         String email = ((EditText) findViewById(R.id.emailEditText)).getText().toString();
-        if (ChickBidsApplication.getUserController().validateEmail(email)) {
+        if (UserController.validateEmail(email)) {
             user.setEmail(email);
         } else {
             throw new UserException("Invalid email");
         }
 
         String phone = ((EditText) findViewById(R.id.phoneEditText)).getText().toString();
-        if (ChickBidsApplication.getUserController().validatePhoneNumber(phone)) {
+        if (UserController.validatePhoneNumber(phone)) {
             user.setPhoneNumber(phone);
         } else {
             throw new UserException("Invalid phone number");
         }
 
         String experience = ((EditText) findViewById(R.id.experienceEditText)).getText().toString();
-        if (ChickBidsApplication.getUserController().validateChickenExperience(experience)) {
+        if (UserController.validateChickenExperience(experience)) {
             user.setChickenExperience(experience);
         } else {
             throw new UserException("Invalid chicken experience description");

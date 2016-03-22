@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:textStyle="bold"
         android:textSize="22dp"
-        android:text="Title"
+        android:text="@string/title_activity_item_views"
         android:textColor="@color/colorTextSecondary"
         android:padding="10dp" />
 
