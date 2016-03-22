@@ -100,6 +100,7 @@ public class ItemViews extends ChickBidActivity  {
     @Override
     protected void onResume() {
         super.onResume();
+        ChickBidsApplication.getChickenController().popupNotificationToast(this);
         updateForTab(tabLayout.getTabAt(tabLayout.getSelectedTabPosition()));
     }
 

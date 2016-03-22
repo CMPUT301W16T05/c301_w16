@@ -1,6 +1,7 @@
 package com.example.c301_w16_g5.c301_w16_g5;
 
-import android.os.AsyncTask;
+import android.content.Context;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -182,22 +183,43 @@ public class ChickenController {
 
     public void acceptBidForChicken(Bid bid, Chicken chicken) {
         SearchController searchController = ChickBidsApplication.getSearchController();
+        UserController userController = ChickBidsApplication.getUserController();
 
         bid.setBidStatus(Bid.BidStatus.ACCEPTED);
 
         for (Bid b : chicken.getBids()) {
             if (b != bid) {
+                User user = searchController.getUserFromDatabase(b.getBidderUsername());
+                removeChickenForBidFromUser(user, b);
                 searchController.removeBidFromDatabase(b.getId());
+                userController.updateUser(user);
             }
         }
         chicken.getBids().clear();
         chicken.getBids().add(bid);
+        userController.updateUser(userController.getCurrentUser());
     }
 
     public void rejectBidForChicken(Bid bid) {
         SearchController searchController = ChickBidsApplication.getSearchController();
         bid.setBidStatus(Bid.BidStatus.REJECTED);
         searchController.updateBidInDatabase(bid);
+
+        User user = searchController.getUserFromDatabase(bid.getBidderUsername());
+        removeChickenForBidFromUser(user, bid);
+    }
+
+    private void removeChickenForBidFromUser(User user, Bid bid) {
+        ArrayList<Chicken> chickens = user.getMyChickens();
+        for (Chicken c : chickens) {
+            if (c.getBids().contains(bid)) {
+                chickens.remove(c);
+                break;
+            }
+        }
+
+        UserController userController = ChickBidsApplication.getUserController();
+        userController.updateUser(user);
     }
 
     public void putBidOnChicken(Bid bid, Chicken chicken) throws ChickenException {
@@ -211,6 +233,45 @@ public class ChickenController {
         User current_user = ChickBidsApplication.getUserController().getCurrentUser();
         chicken.getBids().add(bid);
         current_user.addChicken(chicken);
+        addNotificationForBid(bid);
+    }
+
+    // Notifications
+    public void addNotificationForBid(Bid bid) {
+        SearchController searchController = ChickBidsApplication.getSearchController();
+        User current_user = ChickBidsApplication.getUserController().getCurrentUser();
+
+        String notificationMessage = Notification.notificationMessageBuilderForBid(bid);
+        Notification notification = new Notification(notificationMessage);
+        notification = searchController.addNotificationToDatabase(notification);
+        current_user.addNotification(notification);
+    }
+
+    public void dismissNotification(Notification notification) {
+        SearchController searchController = ChickBidsApplication.getSearchController();
+        User current_user = ChickBidsApplication.getUserController().getCurrentUser();
+
+        current_user.getNotifications().remove(notification);
+        searchController.removeNotificationFromDatabase(notification.getId());
+    }
+
+    public void dismissAllNotifications() {
+        ArrayList<Notification> notifications = (ArrayList) ChickBidsApplication.getUserController().getCurrentUser().getNotifications().clone();
+        for (Notification n : notifications) {
+            dismissNotification(n);
+        }
+    }
+
+    public boolean userHasNotifications() {
+        User current_user = ChickBidsApplication.getUserController().getCurrentUser();
+        return !current_user.getNotifications().isEmpty();
+    }
+
+    public void popupNotificationToast(Context context) {
+        Toast toast = Toast.makeText(context, R.string.pending_notifications, Toast.LENGTH_LONG);
+        // TODO: re-enable later
+//        if (userHasNotifications())
+            toast.show();
     }
 
     // Input Validation

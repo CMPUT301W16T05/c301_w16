@@ -73,6 +73,12 @@ public class DisplayProfileActivity extends ChickBidActivity {
         experienceTextView.setText("Experience: " + user.getChickenExperience());
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        ChickBidsApplication.getChickenController().popupNotificationToast(this);
+    }
+
 //    /** Called upon return to DisplayProfileActivity */
 //    @Override
 //    protected void onActivityResult(int requestCode, int resultCode, Intent data) {

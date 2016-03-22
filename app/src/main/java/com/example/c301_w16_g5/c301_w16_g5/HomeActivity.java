@@ -65,6 +65,12 @@ public class HomeActivity extends ChickBidActivity {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        ChickBidsApplication.getChickenController().popupNotificationToast(this);
+    }
+
+    @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         menu.clear();
         onCreateOptionsMenu(menu);
