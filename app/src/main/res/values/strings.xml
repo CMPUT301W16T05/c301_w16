@@ -53,5 +53,6 @@
     <string name="buttonSave">SAVE</string>
     <string name="title_activity_searches">Chicken Search</string>
     <string name="pending_notifications">You have some pending notifications</string>
+    <string name="title_activity_edit_chicken">EditChickenActivity</string>
 
 </resources>

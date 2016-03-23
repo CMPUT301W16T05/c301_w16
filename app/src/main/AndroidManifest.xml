@@ -94,8 +94,19 @@
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
-            <meta-data android:name="android.app.searchable"
+
+            <meta-data
+                android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
+        </activity>
+        <activity
+            android:name=".EditChickenActivity"
+            android:label="@string/title_activity_edit_chicken"
+            android:parentActivityName=".ChickenProfileActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.c301_w16_g5.c301_w16_g5.ChickenProfileActivity" />
         </activity>
     </application>
 
