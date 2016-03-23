@@ -37,8 +37,8 @@ public class ChickenProfileActivity extends ChickBidActivity {
     private static final int RESULT_LOAD_IMAGE = 1;
     ImageView imageToUpload, downloadedImage;
     Button bUploadImage, saveButton;
-    EditText etName, etDescription;
-    Spinner status;
+    EditText tvName, tvDescription, tvStatus;
+    //Spinner status;
     Chicken editChicken;
 
     @Override
@@ -58,10 +58,10 @@ public class ChickenProfileActivity extends ChickBidActivity {
         bUploadImage = (Button) findViewById(R.id.bUploadImage);
         saveButton = (Button) findViewById(R.id.editChicken_saveButton);
 
-        etName = (EditText) findViewById(R.id.etName);
-        status = (Spinner) findViewById(R.id.editstatusSpinner);
-        status.setAdapter(new ArrayAdapter<Enum>(this, android.R.layout.simple_spinner_dropdown_item, Chicken.ChickenStatus.values()));
-        etDescription = (EditText) findViewById(R.id.etDescription);
+        tvName = (EditText) findViewById(R.id.chickenNameTextView);
+       // status = (Spinner) findViewById(R.id.editstatusSpinner);
+        //status.setAdapter(new ArrayAdapter<Enum>(this, android.R.layout.simple_spinner_dropdown_item, Chicken.ChickenStatus.values()));
+        tvDescription = (EditText) findViewById(R.id.tvDescription);
 
         //bUploadImage.setOnClickListener(this);
         bUploadImage.setOnClickListener(new View.OnClickListener() {
@@ -87,8 +87,8 @@ public class ChickenProfileActivity extends ChickBidActivity {
     protected void onStart() {
         super.onStart();
 
-        etName.setText(editChicken.getName());
-        etDescription.setText(editChicken.getDescription());
+        tvName.setText(editChicken.getName());
+        tvDescription.setText(editChicken.getDescription());
       //  if(editChicken.getPhoto().getImage() != null) {
       //      imageToUpload.setImageURI(editChicken.getPhoto().getImage());
       //  }
