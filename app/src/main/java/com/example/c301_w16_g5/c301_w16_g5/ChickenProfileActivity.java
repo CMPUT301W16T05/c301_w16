@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Scroller;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 /**
  * This view displays the profile information for a particular chicken.
@@ -35,11 +36,11 @@ public class ChickenProfileActivity extends ChickBidActivity {
      */
 
     private static final int RESULT_LOAD_IMAGE = 1;
-    ImageView imageToUpload, downloadedImage;
-    Button bUploadImage, saveButton;
-    EditText tvName, tvDescription, tvStatus;
+    ImageView imageToUpload;
+    Button bUploadImage;
+    TextView tvName, tvOwner, tvDescription, tvBorrower, tvStatus;
     //Spinner status;
-    Chicken editChicken;
+    Chicken currentChicken;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,18 +53,21 @@ public class ChickenProfileActivity extends ChickBidActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Bundle b = getIntent().getExtras();
-        editChicken = b.getParcelable("chickenEdit");
+        currentChicken = b.getParcelable("chickenEdit");
 
         imageToUpload = (ImageView) findViewById(R.id.imageToUpload);
         bUploadImage = (Button) findViewById(R.id.bUploadImage);
-        saveButton = (Button) findViewById(R.id.editChicken_saveButton);
 
-        tvName = (EditText) findViewById(R.id.chickenNameTextView);
-       // status = (Spinner) findViewById(R.id.editstatusSpinner);
+        tvName = (TextView) findViewById(R.id.tvName);
+        tvOwner = (TextView) findViewById(R.id.tvOwner);
+        tvDescription = (TextView) findViewById(R.id.tvDescription);
+        tvBorrower = (TextView) findViewById(R.id.tvBorrower);
+        tvStatus = (TextView) findViewById(R.id.tvStatus);
+
+        //status = (Spinner) findViewById(R.id.editstatusSpinner);
         //status.setAdapter(new ArrayAdapter<Enum>(this, android.R.layout.simple_spinner_dropdown_item, Chicken.ChickenStatus.values()));
-        tvDescription = (EditText) findViewById(R.id.tvDescription);
 
-        //bUploadImage.setOnClickListener(this);
+
         bUploadImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,22 +77,14 @@ public class ChickenProfileActivity extends ChickBidActivity {
             }
         });
 
-        saveButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                //ChickBidsApplication.getChickenController().updateChickenForMe(editChicken);
-
-                finish();
-            }
-        });
     }
 
     @Override
     protected void onStart() {
         super.onStart();
+        setTextFields(currentChicken);
 
-        tvName.setText(editChicken.getName());
-        tvDescription.setText(editChicken.getDescription());
+
       //  if(editChicken.getPhoto().getImage() != null) {
       //      imageToUpload.setImageURI(editChicken.getPhoto().getImage());
       //  }
@@ -107,9 +103,17 @@ public class ChickenProfileActivity extends ChickBidActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && data != null){
             Uri selectedImage = data.getData();
-            editChicken.setPhoto(new Photograph(selectedImage));
+            currentChicken.setPhoto(new Photograph(selectedImage));
             imageToUpload.setImageURI(selectedImage);
         }
+    }
+
+    private void setTextFields(Chicken chicken){
+        tvName.setText(chicken.getName());
+        tvOwner.setText(chicken.getOwnerUsername());
+        tvOwner.setText(chicken.getBorrowerUsername());
+        tvDescription.setText(chicken.getDescription());
+        tvStatus.setText(chicken.getChickenStatus().toString());
     }
 
 

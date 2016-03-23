@@ -15,7 +15,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:id="@+id/chickenNameTextView"
+            android:id="@+id/tvName"
             android:layout_alignParentEnd="true"
             android:layout_alignParentStart="true"
             android:padding="16dp"
@@ -32,64 +32,74 @@
             android:layout_height="match_parent"
             android:padding="16dp">
 
-                <TableRow>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:id="@+id/tvName"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentStart="true"
-                        android:textColor="@color/colorTextSecondary"/>
-                </TableRow>
-                <TableRow>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:id="@+id/tvStatus"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentStart="true"
-                        android:textColor="@color/colorTextSecondary"/>
-                </TableRow>
-                <TableRow>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:id="@+id/tvDescription"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentStart="true"
-                        android:textColor="@color/colorTextSecondary"/>
-                </TableRow>
-                <TableRow>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:id="@+id/tvBids"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentStart="true"
-                        android:textColor="@color/colorTextSecondary"/>
-                </TableRow>
-                <TableRow>
-                    <ImageView
-                        android:id="@+id/imageToUpload"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_width="150dp"
-                        android:layout_height="150dp" />
-                </TableRow>
+            <TableRow>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:id="@+id/tvOwner"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentStart="true"
+                    android:textColor="@color/colorTextSecondary"/>
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:id="@+id/tvBorrower"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentStart="true"
+                    android:textColor="@color/colorTextSecondary"/>
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:id="@+id/tvStatus"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentStart="true"
+                    android:textColor="@color/colorTextSecondary"/>
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:id="@+id/tvDescription"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentStart="true"
+                    android:textColor="@color/colorTextSecondary"/>
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:id="@+id/tvBids"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentStart="true"
+                    android:textColor="@color/colorTextSecondary"/>
+            </TableRow>
+            <TableRow>
+                <ImageView
+                    android:id="@+id/imageToUpload"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp" />
+            </TableRow>
 
-                <TableRow>
-                    <Button
-                        android:id="@+id/bUploadImage"
-                        android:text="SelectImage"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/textView"
-                        android:layout_alignParentStart="true"
-                        android:layout_column="1" />
-                </TableRow>
+            <TableRow>
+                <Button
+                    android:id="@+id/bUploadImage"
+                    android:text="SelectImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textView"
+                    android:layout_alignParentStart="true"
+                    android:layout_column="1" />
+            </TableRow>
             </TableLayout>
 
 
