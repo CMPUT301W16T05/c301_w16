@@ -36,6 +36,7 @@ public class User extends GenericModel<GenericView> implements Parcelable {
     // user has bidded on
     private ArrayList<Chicken> myChickens;
     private ArrayList<Notification> myNotifications;
+    private ArrayList<Letter> myLetters;
 
     /**
      * For new users.
@@ -55,6 +56,7 @@ public class User extends GenericModel<GenericView> implements Parcelable {
         this.chickenExperience = chickenExperience;
         this.myChickens = new ArrayList<Chicken>();
         this.myNotifications = new ArrayList<Notification>();
+        this.myLetters = new ArrayList<Letter>();
     }
 
     // profile management
@@ -161,6 +163,14 @@ public class User extends GenericModel<GenericView> implements Parcelable {
         myNotifications.add(notification);
     }
 
+    public ArrayList<Letter> getLetters() {
+        return myLetters;
+    }
+
+    public void addLetter(Letter letter) {
+        myLetters.add(letter);
+    }
+
 
     // Code created by Android Parcelable Generator plugin.
     @Override
@@ -179,6 +189,7 @@ public class User extends GenericModel<GenericView> implements Parcelable {
         dest.writeString(this.id);
         dest.writeList(this.myChickens);
         dest.writeList(this.myNotifications);
+        dest.writeList(this.myLetters);
     }
 
     protected User(Parcel in) {
@@ -193,6 +204,8 @@ public class User extends GenericModel<GenericView> implements Parcelable {
         in.readList(this.myChickens, List.class.getClassLoader());
         this.myNotifications = new ArrayList<Notification>();
         in.readList(this.myNotifications, List.class.getClassLoader());
+        this.myLetters = new ArrayList<Letter>();
+        in.readList(this.myLetters, List.class.getClassLoader());
     }
 
     public static final Parcelable.Creator<User> CREATOR = new Parcelable.Creator<User>() {

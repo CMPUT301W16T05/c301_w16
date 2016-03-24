@@ -2,6 +2,8 @@ package com.example.c301_w16_g5.c301_w16_g5;
 
 import android.test.ActivityInstrumentationTestCase2;
 
+import java.util.ArrayList;
+
 import io.searchbox.core.Search;
 
 /**
@@ -36,6 +38,47 @@ public class SearchControllerTest extends ActivityInstrumentationTestCase2 {
 
         assertFalse(chicken.getId() == null);
         assertFalse(chicken.getId() == null);
+    }
+
+    public void testGetLettersForUser() {
+        SearchController sc = new SearchController();
+        User user = sc.getUserFromDatabase("alex");
+
+        assertFalse(user.getId() == null);
+
+        ArrayList<Letter> letters = sc.getLettersForUser(user);
+
+        //assertTrue(letters.size() == 1);
+        assertEquals(letters.get(0).getMessage(), "Hey");
+        assertEquals(letters.get(0).getToUsername(), "alex");
+        assertEquals(letters.get(0).getFromUsername(), "jsmith");
+
+    }
+
+    public void testUpdateUserInDatabase() {
+        SearchController sc = new SearchController();
+        User user = sc.getUserFromDatabase("hailey12");
+
+        assertTrue(user.getLetters() != null);
+
+        sc.updateUserInDatabase(user);
+    }
+
+    public void testGetUserFromDatabase2() {
+        SearchController sc = new SearchController();
+        Letter letter = new Letter("Hello", "alex", "jsmith");
+        User user = sc.getUserFromDatabase("alex");
+
+        assertFalse(user.getId() == null);
+
+        letter = sc.addLetterToDatabase(letter);
+        assertFalse(letter.getId() == null);
+
+        user.addLetter(letter);
+        sc.updateUserInDatabase(user);
+
+        User user2 = sc.getUserFromDatabase("alex");
+        assertEquals(user2.getLetters().get(0).getMessage(), "Hello");
     }
 /*
     // US 04.01.01

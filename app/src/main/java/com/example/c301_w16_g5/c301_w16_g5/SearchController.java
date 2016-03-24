@@ -36,44 +36,6 @@ public class SearchController {
         return chickens;
     }
 
-    /* these two methods are no longer necessary
-    public ArrayList<Chicken> getChickensBorrowedByUser(User user) {
-        ArrayList<Chicken> chickens = new ArrayList<Chicken>();
-
-
-        ElasticSearchBackend.GetChickensBorrowedByUserTask getChickensTask
-                = new ElasticSearchBackend.GetChickensBorrowedByUserTask();
-        getChickensTask.execute(user);
-        try {
-            chickens = getChickensTask.get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-
-        return chickens;
-    }
-
-    public ArrayList<Chicken> getChickensBidOnByUser(User user) {
-        ArrayList<Chicken> chickens = new ArrayList<Chicken>();
-
-        ElasticSearchBackend.GetChickensBidOnByUserTask getChickensTask
-                = new ElasticSearchBackend.GetChickensBidOnByUserTask();
-        getChickensTask.execute(user);
-        try {
-            chickens = getChickensTask.get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-
-
-        return chickens;
-    }
-    */
-
     public Chicken addChickenToDatabase(Chicken chicken) {
         AsyncTask<Chicken, Void, Chicken> executable = new ElasticSearchBackend.AddChickenTask();
         executable.execute(chicken);
@@ -312,5 +274,76 @@ public class SearchController {
     public void removeLocationFromDatabase(String id) {
         ElasticSearchBackend.DeleteLocationTask deleteLocationTask = new ElasticSearchBackend.DeleteLocationTask();
         deleteLocationTask.execute(id);
+    }
+
+    public Letter addLetterToDatabase(Letter letter) {
+        AsyncTask<Letter, Void, Letter> executable = new ElasticSearchBackend.AddLetterTask();
+        executable.execute(letter);
+        Letter letter2 = new Letter("a","a","a");
+        try {
+            letter2 = executable.get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        return letter2;
+    }
+
+    public Letter updateLetterInDatabase(Letter letter) {
+        AsyncTask<Letter, Void, Letter> executable = new ElasticSearchBackend.UpdateLetterTask();
+        executable.execute(letter);
+        Letter letter1 = new Letter("a","a","a");
+        try {
+            letter1 = executable.get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        return letter1;
+    }
+
+    public Letter getLetterFromDatabase(String id) {
+        ElasticSearchBackend.GetLetterByIdTask getLetterTask = new ElasticSearchBackend.GetLetterByIdTask();
+        getLetterTask.execute(id);
+        Letter letter = new Letter("a","a","a");
+        try {
+            letter = getLetterTask.get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        return letter;
+    }
+
+    public void removeLetterFromDatabase(String id) {
+        ElasticSearchBackend.DeleteLetterTask deleteLetterTask = new ElasticSearchBackend.DeleteLetterTask();
+        deleteLetterTask.execute(id);
+    }
+
+    public ArrayList<Letter> getLettersForUser(User user) {
+        ArrayList<Letter> letters = new ArrayList<Letter>();
+
+        ElasticSearchBackend.GetLettersForUserTask getLettersTask
+                = new ElasticSearchBackend.GetLettersForUserTask();
+        getLettersTask.execute(user);
+        try {
+            letters = getLettersTask.get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        return letters;
+    }
+
+    private boolean checkOffline() {
+        return Boolean.FALSE;
     }
 }
