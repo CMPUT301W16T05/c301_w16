@@ -181,9 +181,15 @@ public class ChickenController {
         throw new ChickenException("No accepted bid exists.");
     }
 
-    public void acceptBidForChicken(Bid bid, Chicken chicken) {
+    public void acceptBidForChicken(Bid bid) throws ChickenException {
         SearchController searchController = ChickBidsApplication.getSearchController();
         UserController userController = ChickBidsApplication.getUserController();
+
+        Chicken chicken = getChickenForBidForCurrentUser(bid);
+
+        if (!userController.getCurrentUser().getUsername().equals(chicken.getOwnerUsername())) {
+            throw new ChickenException("Cannot accept bid if not the owner");
+        }
 
         bid.setBidStatus(Bid.BidStatus.ACCEPTED);
 
@@ -197,11 +203,33 @@ public class ChickenController {
         }
         chicken.getBids().clear();
         chicken.getBids().add(bid);
+        chicken.setChickenStatus(Chicken.ChickenStatus.BORROWED);
+        chicken = searchController.updateChickenInDatabase(chicken);
+
         userController.updateUser(userController.getCurrentUser());
     }
 
-    public void rejectBidForChicken(Bid bid) {
+    private Chicken getChickenForBidForCurrentUser(Bid bid) throws ChickenException {
+        ArrayList<Chicken> chickens = ChickBidsApplication.getUserController().getCurrentUser().getMyChickens();
+        for (Chicken c : chickens) {
+            if (c.getBids().contains(bid)) {
+                return c;
+            }
+        }
+
+        throw new ChickenException("No chicken exists for bid");
+    }
+
+    public void rejectBidForChicken(Bid bid) throws ChickenException {
         SearchController searchController = ChickBidsApplication.getSearchController();
+        UserController userController = ChickBidsApplication.getUserController();
+
+        Chicken chicken = getChickenForBidForCurrentUser(bid);
+
+        if (!userController.getCurrentUser().getUsername().equals(chicken.getOwnerUsername())) {
+            throw new ChickenException("Cannot accept bid if not the owner");
+        }
+
         bid.setBidStatus(Bid.BidStatus.REJECTED);
         searchController.updateBidInDatabase(bid);
 
@@ -227,6 +255,9 @@ public class ChickenController {
 
         if (bid.getAmount() < getHighestBidForChicken(chicken)) {
             throw new ChickenException("Bid is not high enough");
+        } else if ((chicken.getChickenStatus() == Chicken.ChickenStatus.NOT_AVAILABLE)
+            || (chicken.getChickenStatus() == Chicken.ChickenStatus.BORROWED)) {
+            throw new ChickenException("Bid cannot be placed on borrowed or not available chickens");
         }
 
         bid = searchController.addBidToDatabase(bid);
@@ -237,6 +268,14 @@ public class ChickenController {
     }
 
     // Notifications
+    public void addNotification(Notification notification) {
+        SearchController searchController = ChickBidsApplication.getSearchController();
+        User current_user = ChickBidsApplication.getUserController().getCurrentUser();
+
+        notification = searchController.addNotificationToDatabase(notification);
+        current_user.addNotification(notification);
+    }
+
     public void addNotificationForBid(Bid bid) {
         SearchController searchController = ChickBidsApplication.getSearchController();
         User current_user = ChickBidsApplication.getUserController().getCurrentUser();

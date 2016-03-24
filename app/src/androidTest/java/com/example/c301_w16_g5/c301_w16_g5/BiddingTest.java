@@ -5,137 +5,217 @@ import android.test.ActivityInstrumentationTestCase2;
 import java.util.ArrayList;
 
 public class BiddingTest extends ActivityInstrumentationTestCase2 {
-/*
-    public User user1 = new User();
-    public User user2 = new User();
-    public User user3 = new User();
+    public User user1;
+    public User user2;
+    public User user3;
 
-    public Chicken chicken1 = new Chicken();
-    public Chicken chicken2 = new Chicken();
-    public Chicken chicken3 = new Chicken();
-*/
+    public Chicken chicken1;
+    public Chicken chicken2;
+    public Chicken chicken3;
+
+    public ChickenController chickenController;
+    public UserController userController;
+
     public BiddingTest() {
         super(HomeActivity.class);
     }
-/*
+
     protected void setUp() throws Exception {
         super.setUp();
 
-        chicken1.setName("Name 1");
-        chicken1.setDescription("Description 1");
-        chicken1.setChickenStatus(Chicken.ChickenStatus.AVAILABLE);
-        chicken1.setOwner(user1);
+        user1 = ChickBidsTestHelper.genericUser1();
+        user2 = ChickBidsTestHelper.genericUser2();
+        user3 = ChickBidsTestHelper.genericUser3();
 
-        chicken2.setName("Name 2");
-        chicken2.setDescription("Description 2");
-        chicken2.setChickenStatus(Chicken.ChickenStatus.AVAILABLE);
-        chicken2.setOwner(user1);
+        chicken1 = new Chicken(ChickBidsTestHelper.chicken_name_1, ChickBidsTestHelper.description_1, ChickBidsTestHelper.username_1);
+        chicken2 = new Chicken(ChickBidsTestHelper.chicken_name_2, ChickBidsTestHelper.description_2, ChickBidsTestHelper.username_1);
+        chicken3 = new Chicken(ChickBidsTestHelper.chicken_name_3, ChickBidsTestHelper.description_3, ChickBidsTestHelper.username_2);
 
-        chicken3.setName("Name 3");
-        chicken3.setDescription("Description 3");
-        chicken3.setChickenStatus(Chicken.ChickenStatus.AVAILABLE);
-        chicken3.setOwner(user2);
+        chickenController = ChickBidsTestHelper.getChickenController();
+        userController = ChickBidsApplication.getUserController();
     }
 
     // US 05.01.01
     public void testPlaceBid() {
-        user2.setBalance(10.0);
+        userController.setUser(user2);
 
         // test bid place on available item
-        Bid bid1 = new Bid(user2, 5.0, chicken1);
-        assertTrue(chicken1.hasBid(bid1));
+        Bid bid1 = new Bid(user2.getUsername(), chicken1.getId(), ChickBidsTestHelper.amount_1);
+        try {
+            chickenController.putBidOnChicken(bid1, chicken1);
+        } catch (ChickenException e) {
+            fail();
+        }
+
+        assertTrue(chicken1.getBids().contains(bid1));
 
         // test bid on unavailable item
         chicken2.setChickenStatus(Chicken.ChickenStatus.NOT_AVAILABLE);
-        Bid bid2 = new Bid(user2, 5.0, chicken2);
-        assertFalse(chicken2.hasBid(bid2));
+        Bid bid2 = new Bid(user2.getUsername(), chicken2.getId(), ChickBidsTestHelper.amount_2);
 
-        user2.setBalance(0.0);
-        try {
-            Bid bid3 = new Bid(user2, 5.0, chicken2);
-        } catch (Exception e) {}
+        assertTrue(chicken2.getBids().contains(bid2));
     }
 
     // US 05.02.01
     public void testGetMyPlacedBids() {
-        Bid bid1 = new Bid(user2, 4.0, chicken1); // bid owned by user 2
-        Bid bid2 = new Bid(user1, 4.0, chicken3); // bid owned by user 1
 
-        ArrayList<Bid> my_bids = user2.getBids();
-        assertTrue(my_bids.contains(bid1));
-        assertFalse(my_bids.contains(bid2));
+        userController.setUser(user2);
+        Bid bid1 = new Bid(user2.getUsername(), chicken1.getId(), ChickBidsTestHelper.amount_1);
+        try {
+            chickenController.putBidOnChicken(bid1, chicken1);
+        } catch (ChickenException e) {
+            fail();
+        }
 
-        bid2 = new Bid(user2, 5.0, chicken2);
-        my_bids = user2.getBids();
-        assertTrue(my_bids.contains(bid2));
+        userController.setUser(user1);
+        Bid bid2 = new Bid(user1.getUsername(), chicken3.getId(), ChickBidsTestHelper.amount_2);
+        try {
+            chickenController.putBidOnChicken(bid2, chicken3);
+        } catch (ChickenException e) {
+            fail();
+        }
+
+        userController.setUser(user2);
+        ArrayList<Chicken> user2_chicken = chickenController.getMyChickensWithBids();
+        assertTrue(user2_chicken.contains(chicken1));
+        assertFalse(user2_chicken.contains(chicken3));
     }
 
     // US 05.03.01
     public void testReceiveBidNotification() {
         assertTrue(user1.getNotifications().size() == 0);
-        Bid bid1 = new Bid(user2, 4.0, chicken1);
+
+        userController.setUser(user2);
+        Bid bid1 = new Bid(user2.getUsername(), chicken1.getId(), ChickBidsTestHelper.amount_1);
+        try {
+            chickenController.putBidOnChicken(bid1, chicken1);
+        } catch (ChickenException e) {
+            fail();
+        }
+
         assertTrue(user1.getNotifications().size() == 1);
     }
 
     // US 05.04.01
     public void testGetBiddedItems() {
-        assertFalse(user1.getMyChickensWithBids().contains(chicken1));
-        assertFalse(user1.getMyChickensWithBids().contains(chicken2));
+        userController.setUser(user1);
+        assertFalse(chickenController.getMyChickensWithBids().contains(chicken1));
+        assertFalse(chickenController.getMyChickensWithBids().contains(chicken2));
 
-        Bid bid1 = new Bid(user2, 4.0, chicken1);
-        assertTrue(user1.getMyChickensWithBids().contains(chicken1));
-        Bid bid2 = new Bid(user2, 5.0, chicken2);
-        assertTrue(user1.getMyChickensWithBids().contains(chicken2));
+        userController.setUser(user2);
+        Bid bid1 = new Bid(user2.getUsername(), chicken1.getId(), ChickBidsTestHelper.amount_1);
+        try {
+            chickenController.putBidOnChicken(bid1, chicken1);
+        } catch (ChickenException e) {
+            fail();
+        }
+        assertTrue(chickenController.getMyChickensWithBids().contains(chicken1));
+
+        Bid bid2 = new Bid(user2.getUsername(), chicken2.getId(), ChickBidsTestHelper.amount_2);
+        try {
+            chickenController.putBidOnChicken(bid2, chicken2);
+        } catch (ChickenException e) {
+            fail();
+        }
+        assertTrue(chickenController.getMyChickensWithBids().contains(chicken2));
     }
 
     // US 05.05.01
     public void testGetBidsForItem() {
         assertTrue(chicken1.getBids().size() == 0);
 
-        Bid bid1 = new Bid(user2, 4.0, chicken1);
+        userController.setUser(user2);
+        Bid bid1 = new Bid(user2.getUsername(), chicken1.getId(), ChickBidsTestHelper.amount_1);
+        try {
+            chickenController.putBidOnChicken(bid1, chicken1);
+        } catch (ChickenException e) {
+            fail();
+        }
+
         assertTrue(chicken1.getBids().contains(bid1));
     }
 
     // US 05.06.01
     public void testAcceptBid() {
-        Bid bid1 = new Bid(user2, 4.0, chicken1);
-        Bid bid2 = new Bid(user3, 5.0, chicken1);
+        userController.setUser(user3);
+        Bid bid2 = new Bid(user3.getUsername(), chicken1.getId(), ChickBidsTestHelper.amount_2);
+        try {
+            chickenController.putBidOnChicken(bid2, chicken1);
+        } catch (ChickenException e) {
+            fail();
+        }
 
-        assertTrue(bid1.getStatus() == Bid.Status.PENDING_APPROVAL);
-        assertTrue(bid2.getStatus() == Bid.Status.PENDING_APPROVAL);
+        userController.setUser(user2);
+        Bid bid1 = new Bid(user2.getUsername(), chicken1.getId(), ChickBidsTestHelper.amount_1);
+        try {
+            chickenController.putBidOnChicken(bid1, chicken1);
+        } catch (ChickenException e) {
+            fail();
+        }
+        assertTrue(bid1.getBidStatus() == Bid.BidStatus.UNDECIDED);
 
         // test non-owner cannot accept bid
-        user2.acceptBidForChicken(bid2);
-        assertTrue(bid2.getStatus() == Bid.Status.PENDING_APPROVAL);
+        userController.setUser(user2);
+        try {
+            chickenController.acceptBidForChicken(bid1);
+            fail();
+        } catch (ChickenException e) {
+        }
+        assertTrue(bid1.getBidStatus() == Bid.BidStatus.UNDECIDED);
 
         // test owner can accept bid
-        user1.acceptBidForChicken(bid1);
-        assertTrue(bid1.getStatus() == Bid.Status.ACCEPTED);
-        assertTrue(bid2.getStatus() == Bid.Status.DECLINED);
+        userController.setUser(user1);
+        try {
+            chickenController.acceptBidForChicken(bid1);
+        } catch (ChickenException e) {
+            fail();
+        }
+        assertTrue(bid1.getBidStatus() == Bid.BidStatus.ACCEPTED);
+        assertTrue(bid2.getBidStatus() == Bid.BidStatus.REJECTED);
 
-//        assertTrue(chicken1.getPossessor() == user2);
-        assertTrue(user2.hasChicken(chicken1));
+        assertTrue(chicken1.getChickenStatus() == Chicken.ChickenStatus.BORROWED);
     }
 
     // US 05.07.01
     public void testDeclineBid() {
-        Bid bid1 = new Bid(user2, 4.0, chicken1);
-        Bid bid2 = new Bid(user3, 5.0, chicken1);
+        userController.setUser(user2);
+        Bid bid1 = new Bid(user2.getUsername(), chicken1.getId(), ChickBidsTestHelper.amount_2);
+        try {
+            chickenController.putBidOnChicken(bid1, chicken1);
+        } catch (ChickenException e) {
+            fail();
+        }
 
-        assertTrue(bid1.getStatus() == Bid.Status.PENDING_APPROVAL);
-        assertTrue(bid2.getStatus() == Bid.Status.PENDING_APPROVAL);
+        userController.setUser(user3);
+        Bid bid2 = new Bid(user3.getUsername(), chicken1.getId(), ChickBidsTestHelper.amount_1);
+        try {
+            chickenController.putBidOnChicken(bid2, chicken1);
+        } catch (ChickenException e) {
+            fail();
+        }
+
+        assertTrue(bid1.getBidStatus() == Bid.BidStatus.UNDECIDED);
+        assertTrue(bid2.getBidStatus() == Bid.BidStatus.UNDECIDED);
 
         // test non-owners of chicken cannot decline bids
-        user2.declineBid(bid2);
-        assertTrue(bid2.getStatus() == Bid.Status.PENDING_APPROVAL);
+        userController.setUser(user2);
+        try {
+            chickenController.rejectBidForChicken(bid2);
+            fail();
+        } catch (ChickenException e) {
+        }
+        assertTrue(bid2.getBidStatus() == Bid.BidStatus.UNDECIDED);
 
         // test owner of chicken can decline bids
-        user1.declineBid(bid1);
-        assertTrue(bid1.getStatus() == Bid.Status.DECLINED);
-        assertTrue(bid2.getStatus() == Bid.Status.PENDING_APPROVAL);
+        userController.setUser(user1);
+        try {
+            chickenController.rejectBidForChicken(bid1);
+        } catch (ChickenException e) {
+            fail();
+        }
+        assertTrue(bid2.getBidStatus() == Bid.BidStatus.UNDECIDED);
+        assertTrue(bid1.getBidStatus() == Bid.BidStatus.REJECTED);
 
-//        assertTrue(chicken1.getPossessor() == user1);
-        assertTrue(user1.hasChicken(chicken1));
+        assertTrue(chicken1.getChickenStatus() != Chicken.ChickenStatus.BORROWED);
     }
-    */
 }
