@@ -75,14 +75,14 @@ public class ItemViews extends ChickBidActivity  {
 
         tabLayout.setOnTabSelectedListener(new ItemTabListener());
 
-        final Intent editChickenIntent = new Intent(this, ChickenProfileActivity.class);
+        final Intent viewChickenIntent = new Intent(this, ChickenProfileActivity.class);
         // Mar 20, 2016 - http://stackoverflow.com/questions/9097723/adding-an-onclicklistener-to-listview-android
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Chicken chicken = (Chicken) listView.getItemAtPosition(position);
-                editChickenIntent.putExtra("chickenEdit", chicken);
-                startActivity(editChickenIntent);
+                viewChickenIntent.putExtra("selectedChicken", chicken);
+                startActivity(viewChickenIntent);
             }
         });
 
