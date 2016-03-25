@@ -23,7 +23,10 @@ public class EditChickenActivity extends AppCompatActivity {
 
     Chicken currentChicken;
 
-    EditText etName, etOwner, etDescription, etBorrower, etStatus;
+    TextView name;
+    TextView status;
+    EditText description;
+
     ImageView imageToUpload;
     Button bUploadImage, saveButton;
 
@@ -31,14 +34,17 @@ public class EditChickenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_chicken);
-        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
 
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.nav_toolbar);
+//        setSupportActionBar(toolbar);
+//
+//        // back button
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        etName = (EditText) findViewById(R.id.editChicken_etName);
-        etStatus = (EditText) findViewById(R.id.editChicken_etStatus);
-        etDescription = (EditText) findViewById(R.id.editChicken_etDescription);
+        name = (TextView) findViewById(R.id.editChicken_etName);
+        status = (TextView) findViewById(R.id.editChicken_etStatus);
+        description = (EditText) findViewById(R.id.editChicken_etDescription);
+
         imageToUpload = (ImageView) findViewById(R.id.editChicken_imageToUpload);
         bUploadImage = (Button) findViewById(R.id.editChicken_bUploadImage);
         saveButton = (Button) findViewById(R.id.editChicken_saveButton);
@@ -83,19 +89,17 @@ public class EditChickenActivity extends AppCompatActivity {
 
 
     private void setTextFields(Chicken chicken){
-        etName.setText(chicken.getName());
-        //etOwner.setText(chicken.getOwnerUsername());
-        //tvOwner.setText(chicken.getBorrowerUsername());
-        etDescription.setText(chicken.getDescription());
-        etStatus.setText(chicken.getChickenStatus().toString());
+        name.setText(chicken.getName());
+        status.setText(chicken.getChickenStatus().toString());
+        description.setText(chicken.getDescription());
+
         if(chicken.getPicture() != null){
             imageToUpload.setImageURI(chicken.getPicture());
         };
     }
 
     private void saveTextFields(){
-        currentChicken.setName(etName.getText().toString());
-        currentChicken.setDescription(etDescription.getText().toString());
+        currentChicken.setDescription(description.getText().toString());
     }
 
     private void launch_GalleryPick() {

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,169 +10,93 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="0">
         <include layout="@layout/navbar"/>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/colorAccent"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2">
 
-        <TableLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="16dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/editChicken_etName"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_weight="1"
+            android:layout_margin="16dp"/>
 
-            <TableRow>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:id="@+id/editChicken_tvName"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentStart="true"
-                    android:text="OWNER: "
-                    android:textSize="16sp"
-                    android:textColor="@color/colorTextSecondary"/>
-                <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:id="@+id/editChicken_etName"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentStart="true"
-                    android:textColor="@color/colorTextSecondary"/>
-            </TableRow>
-            <!--
-            <TableRow>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:id="@+id/editChicken_tvOwnerPrompt"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentStart="true"
-                    android:text="OWNER: "
-                    android:textSize="16sp"
-                    android:textColor="@color/colorTextSecondary"/>
-                <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:id="@+id/editChicken_etOwner"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentStart="true"
-                    android:textColor="@color/colorTextSecondary"/>
-            </TableRow>
-            <TableRow>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:id="@+id/editChicken_tvBorrowerPrompt"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentStart="true"
-                    android:text="BORROWER: "
-                    android:textSize="16sp"
-                    android:textColor="@color/colorTextSecondary"/>
-                <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:id="@+id/editChicken_etBorrower"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentStart="true"
-                    android:textColor="@color/colorTextSecondary"/>
-            </TableRow>
-            -->
-            <TableRow>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:id="@+id/editChicken_tvStatusPrompt"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentStart="true"
-                    android:text="STATUS   : "
-                    android:textSize="16sp"
-                    android:textColor="@color/colorTextSecondary"/>
-                <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:id="@+id/editChicken_etStatus"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentStart="true"
-                    android:textColor="@color/colorTextSecondary"/>
-            </TableRow>
-            <TableRow>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:id="@+id/editChicken_tvDescriptionPrompt"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentStart="true"
-                    android:text="DESCRIPTION: "
-                    android:textSize="16sp"
-                    android:textColor="@color/colorTextSecondary"/>
-            </TableRow>
-            <TableRow>
-                <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:id="@+id/editChicken_etDescription"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentStart="true"
-                    android:textColor="@color/colorTextSecondary"/>
-            </TableRow>
-            <TableRow>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:id="@+id/editChicken_tvBids"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentStart="true"
-                    android:textColor="@color/colorTextSecondary"/>
-            </TableRow>
-            <TableRow>
-                <ImageView
-                    android:id="@+id/editChicken_imageToUpload"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/editChicken_etStatus"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:layout_margin="16dp"/>
+        </LinearLayout>
 
-                <include layout="@layout/content_edit_chicken"
-                    android:layout_column="1" />
-            </TableRow>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorAccent"/>
 
-            <TableRow>
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/editChicken_etDescription"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:textColor="@color/colorTextSecondary"
+        android:layout_margin="16dp"/>
 
-                <Button
-                    android:id="@+id/editChicken_bUploadImage"
-                    android:text="SelectImage"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/textView"
-                    android:layout_alignParentStart="true"
-                    android:layout_column="0" />
-
-                <Button
-                    android:id="@+id/editChicken_saveButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:text="Save Changes"
-                    android:layout_column="19" />
-            </TableRow>
-            <TableRow></TableRow>
-        </TableLayout>
-
-
-
-
+    <ImageView
+        android:id="@+id/editChicken_imageToUpload"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="150dp"
+        android:layout_height="150dp" />
     </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:gravity="center|bottom">
 
-</android.support.design.widget.CoordinatorLayout>
+        <Button
+            android:id="@+id/editChicken_bUploadImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Select Image"
+            android:textSize="16.5dp"
+            android:background="@color/colorAccent"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:textStyle="bold"
+            android:typeface="normal"/>
+
+        <Button
+            android:id="@+id/editChicken_saveButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Save Changes"
+            android:textSize="16.5dp"
+            android:background="@color/colorAccent"
+            android:layout_margin="16dp"
+            android:textStyle="bold"
+            android:typeface="normal"/>
+        </LinearLayout>
+    </LinearLayout>
+    </android.support.design.widget.CoordinatorLayout>
