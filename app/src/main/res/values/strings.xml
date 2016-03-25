@@ -49,10 +49,10 @@
     <string name="item_profile_bids_placed">My Bidded</string>
 
     <string name="hello_world">Hello world!</string>
-    <string name="title_activity_chicken_profile">ChickenProfileActivity</string>
+    <string name="title_activity_chicken_profile">Chicken Profile</string>
     <string name="buttonSave">SAVE</string>
     <string name="title_activity_searches">Chicken Search</string>
     <string name="pending_notifications">You have some pending notifications</string>
-    <string name="title_activity_edit_chicken">EditChickenActivity</string>
+    <string name="title_activity_edit_chicken">Edit Chicken</string>
 
 </resources>

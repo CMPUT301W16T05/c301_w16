@@ -5,8 +5,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -17,8 +15,8 @@ import android.widget.TextView;
 
 public class EditChickenActivity extends AppCompatActivity {
 
-    public static final String EDITTING_CHICKEN = "editting chicken";
-    public static final String EDITTED_CHICKEN = "editted chicken";
+    public static final String EDITING_CHICKEN = "editing chicken";
+    public static final String EDITED_CHICKEN = "edited chicken";
     private static final int RESULT_LOAD_IMAGE = 1;
 
     Chicken currentChicken;
@@ -34,12 +32,11 @@ public class EditChickenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_chicken);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.nav_toolbar);
+        setSupportActionBar(toolbar);
 
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.nav_toolbar);
-//        setSupportActionBar(toolbar);
-//
-//        // back button
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        // show back arrow at top left
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         name = (TextView) findViewById(R.id.editChicken_etName);
         status = (TextView) findViewById(R.id.editChicken_etStatus);
@@ -50,7 +47,7 @@ public class EditChickenActivity extends AppCompatActivity {
         saveButton = (Button) findViewById(R.id.editChicken_saveButton);
 
         Bundle b = getIntent().getExtras();
-        currentChicken = b.getParcelable(EDITTING_CHICKEN);
+        currentChicken = b.getParcelable(EDITING_CHICKEN);
 
         bUploadImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,7 +61,7 @@ public class EditChickenActivity extends AppCompatActivity {
             public void onClick(View v) {
                 saveTextFields();
                 Intent returnIntent = new Intent();
-                returnIntent.putExtra(EDITTED_CHICKEN, currentChicken);
+                returnIntent.putExtra(EDITED_CHICKEN, currentChicken);
                 setResult(Activity.RESULT_OK, returnIntent);
                 finish();
             }
