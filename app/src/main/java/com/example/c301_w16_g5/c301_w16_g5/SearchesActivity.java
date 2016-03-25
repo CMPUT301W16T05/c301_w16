@@ -4,9 +4,11 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -103,6 +105,26 @@ public class SearchesActivity extends AppCompatActivity {
         searchView.setSearchableInfo(
                 searchManager.getSearchableInfo(getComponentName()));
 
+        // So back button only needs to be pressed once to return to Home
+        // http://stackoverflow.com/questions/19918500/android-searchview-setonactionexpandlistener-on-honeycomb-3-2
+        // answered by Fenil on Aug 28 '14
+        // accessed by Hailey Musselman on Mar 24 '16
+        MenuItem menuItem =  menu.findItem(R.id.search);
+        MenuItemCompat.setOnActionExpandListener(menuItem,
+                new MenuItemCompat.OnActionExpandListener() {
+            @Override
+            public boolean onMenuItemActionCollapse(MenuItem item) {
+                // go back to the Home screen
+                finish();
+                return true; // Return true to collapse action view
+            }
+
+            @Override
+            public boolean onMenuItemActionExpand(MenuItem item) {
+                // insert extra functionality here if needed
+                return true; // Return true to expand action view
+            }
+        });
         return true;
     }
 
