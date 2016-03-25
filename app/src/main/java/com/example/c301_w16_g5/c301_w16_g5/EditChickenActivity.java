@@ -1,5 +1,6 @@
 package com.example.c301_w16_g5.c301_w16_g5;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -58,7 +59,7 @@ public class EditChickenActivity extends AppCompatActivity {
                 saveTextFields();
                 Intent returnIntent = new Intent();
                 returnIntent.putExtra(EDITTED_CHICKEN, currentChicken);
-                setResult(ChickenProfileActivity.RESULT_UPDATE_CHICKEN);
+                setResult(Activity.RESULT_OK, returnIntent);
                 finish();
             }
         });
