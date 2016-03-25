@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -52,7 +53,7 @@ public class EditChickenActivity extends AppCompatActivity {
         bUploadImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                launch_GalleryPick();
+                launchGalleryPick();
             }
         });
 
@@ -84,6 +85,18 @@ public class EditChickenActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                Intent viewChickenIntent = new Intent(this, ChickenProfileActivity.class);
+                viewChickenIntent.putExtra("selectedChicken", currentChicken);
+                startActivity(viewChickenIntent);
+                break;
+        }
+        return true;
+    }
+
 
     private void setTextFields(Chicken chicken){
         name.setText(chicken.getName());
@@ -99,7 +112,7 @@ public class EditChickenActivity extends AppCompatActivity {
         currentChicken.setDescription(description.getText().toString());
     }
 
-    private void launch_GalleryPick() {
+    private void launchGalleryPick() {
         Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(galleryIntent, RESULT_LOAD_IMAGE);
     }
