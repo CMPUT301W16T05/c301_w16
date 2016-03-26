@@ -1,6 +1,5 @@
 package com.example.c301_w16_g5.c301_w16_g5;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -14,7 +13,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class EditChickenActivity extends AppCompatActivity {
+public class EditChickenActivity extends ChickBidActivity {
 
     public static final String EDITING_CHICKEN = "editing chicken";
     public static final String EDITED_CHICKEN = "edited chicken";
@@ -47,9 +46,6 @@ public class EditChickenActivity extends AppCompatActivity {
         bUploadImage = (Button) findViewById(R.id.editChicken_bUploadImage);
         saveButton = (Button) findViewById(R.id.editChicken_saveButton);
 
-        Bundle b = getIntent().getExtras();
-        currentChicken = b.getParcelable(EDITING_CHICKEN);
-
         bUploadImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,9 +59,6 @@ public class EditChickenActivity extends AppCompatActivity {
                 saveTextFields();
                 // TODO: uncomment once updateChickenForMe works
 //                ChickBidsApplication.getChickenController().updateChickenForMe(currentChicken);
-                Intent returnIntent = new Intent();
-                returnIntent.putExtra(EDITED_CHICKEN, currentChicken);
-                setResult(Activity.RESULT_OK, returnIntent);
                 finish();
             }
         });
@@ -74,6 +67,7 @@ public class EditChickenActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        currentChicken = ChickBidsApplication.getChickenController().getCurrentChicken();
         setTextFields(currentChicken);
     }
 

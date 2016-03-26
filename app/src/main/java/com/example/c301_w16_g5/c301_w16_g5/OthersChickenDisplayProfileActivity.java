@@ -1,18 +1,14 @@
 package com.example.c301_w16_g5.c301_w16_g5;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class OthersChickenDisplayProfileActivity extends ChickBidActivity {
 
@@ -40,8 +36,7 @@ public class OthersChickenDisplayProfileActivity extends ChickBidActivity {
         // show back arrow at top left
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        Bundle b = getIntent().getExtras();
-        currentChicken = b.getParcelable("selectedChicken");
+        currentChicken = ChickBidsApplication.getChickenController().getCurrentChicken();
 
         name = (TextView) findViewById(R.id.name);
         description = (TextView) findViewById(R.id.description);
@@ -54,7 +49,21 @@ public class OthersChickenDisplayProfileActivity extends ChickBidActivity {
         buttonViewPhoto = (Button) findViewById(R.id.buttonViewPhoto);
         buttonViewLocation = (Button) findViewById(R.id.buttonViewLocation);
 
-        // TODO: on click listeners
+        final Intent viewPhotoIntent = new Intent(this, ViewPhotoActivity.class);
+        buttonViewPhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (currentChicken.getPicture() != null) {
+//                    viewPhotoIntent.putExtra("selectedChicken", currentChicken);
+                    startActivity(viewPhotoIntent);
+                } else {
+                    Toast.makeText(getApplicationContext(),
+                            "No photo available.",
+                            Toast.LENGTH_SHORT).show();
+                    return;
+                }
+            }
+        });
     }
 
     @Override
@@ -71,20 +80,6 @@ public class OthersChickenDisplayProfileActivity extends ChickBidActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        switch (requestCode) {
-//            case (RESULT_UPDATE_CHICKEN): {
-//                if (resultCode == Activity.RESULT_OK) {
-//                    currentChicken = data.getParcelableExtra(EditChickenActivity.EDITED_CHICKEN);
-//                    setTextFields(currentChicken);
-//                    break;
-//                }
-//            }
-//        }
-//    }
 
     private void setTextFields(){
         name.setText(currentChicken.getName());

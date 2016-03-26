@@ -110,8 +110,7 @@
         </activity>
         <activity
             android:name=".OthersChickenDisplayProfileActivity"
-            android:label="@string/title_activity_chicken_profile">
-        </activity>
+            android:label="@string/title_activity_chicken_profile"></activity>
         <activity
             android:name=".EditChickenActivity"
             android:label="@string/title_activity_edit_chicken"
@@ -120,6 +119,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MyChickenDisplayProfileActivity" />
         </activity>
+        <activity android:name=".ViewPhotoActivity"></activity>
     </application>
 
 </manifest>

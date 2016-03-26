@@ -82,11 +82,10 @@ public class ItemViews extends ChickBidActivity  {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Chicken chicken = (Chicken) listView.getItemAtPosition(position);
+                ChickBidsApplication.getChickenController().setCurrentChicken(chicken);
                 if (ChickBidsApplication.getChickenController().getMyOwnedChickens().contains(chicken)) {
-                    viewMyChickenIntent.putExtra("selectedChicken", chicken);
                     startActivity(viewMyChickenIntent);
                 } else {
-                    viewOthersChickenIntent.putExtra("selectedChicken", chicken);
                     startActivity(viewOthersChickenIntent);
                 }
             }

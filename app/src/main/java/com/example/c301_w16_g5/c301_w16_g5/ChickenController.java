@@ -19,7 +19,17 @@ import java.util.ArrayList;
  * @see     BorrowerChickenProfileActivity
  */
 public class ChickenController {
+    private Chicken currentChicken;
+
     public ChickenController() {
+    }
+
+    public Chicken getCurrentChicken() {
+        return currentChicken;
+    }
+
+    public void setCurrentChicken(Chicken currentChicken) {
+        this.currentChicken = currentChicken;
     }
 
     // Chickens
