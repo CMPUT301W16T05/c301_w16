@@ -2,6 +2,7 @@ package com.example.c301_w16_g5.c301_w16_g5;
 
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -31,5 +32,15 @@ public class ViewPhotoActivity extends ChickBidActivity {
         if(currentChicken.getPicture() != null){
             imageChicken.setImageURI(currentChicken.getPicture());
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
+        }
+        return true;
     }
 }

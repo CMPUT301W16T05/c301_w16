@@ -15,8 +15,6 @@ import android.widget.TextView;
 
 public class EditChickenActivity extends ChickBidActivity {
 
-    public static final String EDITING_CHICKEN = "editing chicken";
-    public static final String EDITED_CHICKEN = "edited chicken";
     private static final int RESULT_LOAD_IMAGE = 1;
 
     Chicken currentChicken;
@@ -85,9 +83,7 @@ public class EditChickenActivity extends ChickBidActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                Intent viewChickenIntent = new Intent(this, MyChickenDisplayProfileActivity.class);
-                viewChickenIntent.putExtra("selectedChicken", currentChicken);
-                startActivity(viewChickenIntent);
+                finish();
                 break;
         }
         return true;

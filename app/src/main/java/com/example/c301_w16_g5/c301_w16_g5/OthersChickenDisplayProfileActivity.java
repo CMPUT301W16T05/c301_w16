@@ -54,7 +54,6 @@ public class OthersChickenDisplayProfileActivity extends ChickBidActivity {
             @Override
             public void onClick(View view) {
                 if (currentChicken.getPicture() != null) {
-//                    viewPhotoIntent.putExtra("selectedChicken", currentChicken);
                     startActivity(viewPhotoIntent);
                 } else {
                     Toast.makeText(getApplicationContext(),

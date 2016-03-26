@@ -55,7 +55,6 @@ public class MyChickenDisplayProfileActivity extends ChickBidActivity {
         buttonEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                launchEditChicken();
                 startActivity(editChickenIntent);
             }
         });
@@ -72,8 +71,6 @@ public class MyChickenDisplayProfileActivity extends ChickBidActivity {
             @Override
             public void onClick(View view) {
                 if (currentChicken.getPicture() != null) {
-                    viewPhotoIntent.putExtra("selectedChicken", currentChicken);
-//                    startActivityForResult(viewPhotoIntent, RESULT_UPDATE_CHICKEN);
                     startActivity(viewPhotoIntent);
                 } else {
                     Toast.makeText(getApplicationContext(),

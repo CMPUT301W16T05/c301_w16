@@ -53,10 +53,8 @@
             android:text="@string/Logout"
             android:id="@+id/buttonLogout"
             android:layout_below="@+id/buttonSearch"
-            android:layout_marginTop="8dp"
             android:layout_margin="16dp"
-            android:paddingTop="8dp"
-            android:textStyle="normal"
+            android:textStyle="bold"
             android:typeface="normal" />
 
     </RelativeLayout>
