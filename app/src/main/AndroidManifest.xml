@@ -110,11 +110,7 @@
         </activity>
         <activity
             android:name=".OthersChickenDisplayProfileActivity"
-            android:label="@string/title_activity_chicken_profile"
-            android:parentActivityName=".ItemViews">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ItemViews" />
+            android:label="@string/title_activity_chicken_profile">
         </activity>
         <activity
             android:name=".EditChickenActivity"
