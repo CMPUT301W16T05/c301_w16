@@ -1,5 +1,6 @@
 package com.example.c301_w16_g5.c301_w16_g5;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.provider.MediaStore;
@@ -80,11 +81,15 @@ public class ChickenProfileActivity extends ChickBidActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(requestCode == RESULT_UPDATE_CHICKEN && resultCode == RESULT_OK && data != null){
-            Chicken new_chicken = data.getParcelableExtra(EditChickenActivity.EDITED_CHICKEN);
-            ChickBidsApplication.getChickenController().updateChickenForMe(new_chicken);
-            setTextFields(new_chicken);
-            showToast(new_chicken.getPicture().toString());
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case (RESULT_UPDATE_CHICKEN): {
+                if (resultCode == Activity.RESULT_OK) {
+                    currentChicken = data.getParcelableExtra(EditChickenActivity.EDITED_CHICKEN);
+                    setTextFields(currentChicken);
+                    break;
+                }
+            }
         }
     }
 

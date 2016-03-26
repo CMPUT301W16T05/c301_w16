@@ -61,6 +61,8 @@ public class EditChickenActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 saveTextFields();
+                // TODO: uncomment once updateChickenForMe works
+//                ChickBidsApplication.getChickenController().updateChickenForMe(currentChicken);
                 Intent returnIntent = new Intent();
                 returnIntent.putExtra(EDITED_CHICKEN, currentChicken);
                 setResult(Activity.RESULT_OK, returnIntent);
@@ -96,7 +98,6 @@ public class EditChickenActivity extends AppCompatActivity {
         }
         return true;
     }
-
 
     private void setTextFields(Chicken chicken){
         name.setText(chicken.getName());
