@@ -54,5 +54,8 @@
     <string name="title_activity_searches">Chicken Search</string>
     <string name="pending_notifications">You have some pending notifications</string>
     <string name="title_activity_edit_chicken">Edit Chicken</string>
+    <string name="title_activity_others_chicken_display_profile">
+        OthersChickenDisplayProfileActivity
+    </string>
 
 </resources>

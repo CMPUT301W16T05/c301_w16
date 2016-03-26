@@ -101,7 +101,15 @@
                 android:resource="@xml/searchable" />
         </activity>
         <activity
-            android:name=".ChickenProfileActivity"
+            android:name=".MyChickenDisplayProfileActivity"
+            android:label="@string/title_activity_chicken_profile"
+            android:parentActivityName=".ItemViews">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ItemViews" />
+        </activity>
+        <activity
+            android:name=".OthersChickenDisplayProfileActivity"
             android:label="@string/title_activity_chicken_profile"
             android:parentActivityName=".ItemViews">
             <meta-data
@@ -111,10 +119,10 @@
         <activity
             android:name=".EditChickenActivity"
             android:label="@string/title_activity_edit_chicken"
-            android:parentActivityName=".ChickenProfileActivity">
+            android:parentActivityName=".MyChickenDisplayProfileActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ChickenProfileActivity" />
+                android:value=".MyChickenDisplayProfileActivity" />
         </activity>
     </application>
 

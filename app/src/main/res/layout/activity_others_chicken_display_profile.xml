@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.example.c301_w16_g5.c301_w16_g5.EditChickenActivity">
+    tools:context="com.example.c301_w16_g5.c301_w16_g5.OthersChickenDisplayProfileActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,28 +22,62 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:weightSum="3">
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:id="@+id/bid"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:layout_weight="2"
+                    android:hint="$/day"/>
+
+                <Button
+                    android:id="@+id/buttonBid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Bid"
+                    android:textSize="16.5dp"
+                    android:background="@color/colorAccent"
+                    android:layout_margin="16dp"
+                    android:textStyle="bold"
+                    android:typeface="normal"
+                    android:layout_weight="1"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:weightSum="2">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="16dp"
                     android:id="@+id/name"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textStyle="bold"
                     android:textColor="@color/colorPrimaryDark"
-                    android:layout_weight="1"
-                    android:layout_margin="16dp"/>
+                    android:layout_weight="1"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="16dp"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:id="@+id/status"
                     android:textStyle="bold"
                     android:textColor="@color/colorPrimaryDark"
                     android:layout_weight="1"
-                    android:gravity="right"
-                    android:layout_margin="16dp"/>
+                    android:gravity="right"/>
             </LinearLayout>
 
             <View
@@ -61,11 +95,6 @@
                 android:textColor="@color/colorTextSecondary"
                 android:layout_margin="16dp"/>
 
-            <ImageView
-                android:id="@+id/chickenImage"
-                android:layout_gravity="center_horizontal"
-                android:layout_width="150dp"
-                android:layout_height="150dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -75,11 +104,19 @@
             android:layout_weight="1"
             android:gravity="center|bottom">
 
-            <Button
-                android:id="@+id/buttonEdit"
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Edit"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:id="@+id/ownerUsername"
+                android:textColor="@color/colorTextSecondary"
+                android:layout_margin="16dp"
+                android:layout_gravity="left"/>
+            <Button
+                android:id="@+id/buttonViewBids"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="View Bids"
                 android:textSize="16.5dp"
                 android:background="@color/colorAccent"
                 android:layout_marginLeft="16dp"
@@ -87,10 +124,22 @@
                 android:textStyle="bold"
                 android:typeface="normal"/>
             <Button
-                android:id="@+id/buttonViewBids"
+                android:id="@+id/buttonViewPhoto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="View Bids"
+                android:text="View Photo"
+                android:textSize="16.5dp"
+                android:background="@color/colorAccent"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:textStyle="bold"
+                android:typeface="normal"/>
+            <Button
+                android:id="@+id/buttonViewLocation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="View Location"
                 android:textSize="16.5dp"
                 android:background="@color/colorAccent"
                 android:layout_margin="16dp"

@@ -91,7 +91,7 @@ public class EditChickenActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                Intent viewChickenIntent = new Intent(this, ChickenProfileActivity.class);
+                Intent viewChickenIntent = new Intent(this, MyChickenDisplayProfileActivity.class);
                 viewChickenIntent.putExtra("selectedChicken", currentChicken);
                 startActivity(viewChickenIntent);
                 break;
