@@ -1,7 +1,6 @@
 package com.example.c301_w16_g5.c301_w16_g5;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -18,31 +17,7 @@ import android.widget.Toast;
  * @see     UserController
  */
 public class LoginActivity extends ChickBidActivity {
-
-    /**
-     * Id to identity READ_CONTACTS permission request.
-     */
-    private static final int REQUEST_READ_CONTACTS = 0;
-
-    /**
-     * A dummy authentication store containing known user names and passwords.
-     * TODO: remove after connecting to a real authentication system.
-     */
-    private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "foo@example.com:hello", "bar@example.com:world"
-    };
-    /**
-     * Keep track of the login task to ensure we can cancel it if requested.
-     */
-    private UserLoginTask mAuthTask = null;
-
-    // UI references.
-//    private TextView mEmailView;
-//    private View mProgressView;
-//    private View mLoginFormView;
-
     private User user;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,9 +31,6 @@ public class LoginActivity extends ChickBidActivity {
                 attemptLogin();
             }
         });
-
-//        mLoginFormView = findViewById(R.id.login_form);
-//        mProgressView = findViewById(R.id.login_progress);
     }
 
     /**
@@ -81,41 +53,11 @@ public class LoginActivity extends ChickBidActivity {
         Intent intent;
         if (user == null) {
             intent = new Intent(this, EditProfileActivity.class);
-            userController.setUser(new User(username, "", "", "", "", ""));
-            intent.putExtra("PROFILE_REQUEST", EditProfileActivity.CREATE_USER_USERNAME_EXTRA_KEY);
+            intent.putExtra(EditProfileActivity.PROFILE_EXTRA_KEY, EditProfileActivity.CREATE_USER_EXTRA_KEY);
         } else {
             userController.setUser(user);
             intent = new Intent(this, HomeActivity.class);
         }
         startActivity(intent);
-    }
-
-    /**
-     * Represents an asynchronous login/registration task used to authenticate
-     * the user.
-     */
-    public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
-
-        private final String mEmail;
-
-        UserLoginTask(String email) {
-            mEmail = email;
-        }
-
-        @Override
-        protected Boolean doInBackground(Void... params) {
-            // TODO: attempt authentication against a network service.
-            return true;
-        }
-
-        @Override
-        protected void onPostExecute(final Boolean success) {
-
-        }
-
-        @Override
-        protected void onCancelled() {
-
-        }
     }
 }

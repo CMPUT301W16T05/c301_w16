@@ -1,5 +1,8 @@
 package com.example.c301_w16_g5.c301_w16_g5;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -35,44 +38,6 @@ public class SearchController {
 
         return chickens;
     }
-
-    /* these two methods are no longer necessary
-    public ArrayList<Chicken> getChickensBorrowedByUser(User user) {
-        ArrayList<Chicken> chickens = new ArrayList<Chicken>();
-
-
-        ElasticSearchBackend.GetChickensBorrowedByUserTask getChickensTask
-                = new ElasticSearchBackend.GetChickensBorrowedByUserTask();
-        getChickensTask.execute(user);
-        try {
-            chickens = getChickensTask.get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-
-        return chickens;
-    }
-
-    public ArrayList<Chicken> getChickensBidOnByUser(User user) {
-        ArrayList<Chicken> chickens = new ArrayList<Chicken>();
-
-        ElasticSearchBackend.GetChickensBidOnByUserTask getChickensTask
-                = new ElasticSearchBackend.GetChickensBidOnByUserTask();
-        getChickensTask.execute(user);
-        try {
-            chickens = getChickensTask.get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-
-
-        return chickens;
-    }
-    */
 
     public Chicken addChickenToDatabase(Chicken chicken) {
         AsyncTask<Chicken, Void, Chicken> executable = new ElasticSearchBackend.AddChickenTask();
@@ -262,5 +227,141 @@ public class SearchController {
     public void removeBidFromDatabase(String id) {
         ElasticSearchBackend.DeleteBidTask deleteBidTask = new ElasticSearchBackend.DeleteBidTask();
         deleteBidTask.execute(id);
+    }
+
+    public Location addLocationToDatabase(Location location) {
+        AsyncTask<Location, Void, Location> executable = new ElasticSearchBackend.AddLocationTask();
+        executable.execute(location);
+        Location location1 = new Location(0.00, 0.00);
+        try {
+            location1 = executable.get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        return location1;
+    }
+
+    public Location updateLocationInDatabase(Location location) {
+        AsyncTask<Location, Void, Location> executable = new ElasticSearchBackend.UpdateLocationTask();
+        executable.execute(location);
+        Location location1 = new Location(0.00, 0.00);
+        try {
+            location1 = executable.get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        return location1;
+    }
+
+    public Location getLocationFromDatabase(String id) {
+        ElasticSearchBackend.GetLocationByIdTask getLocationTask = new ElasticSearchBackend.GetLocationByIdTask();
+        getLocationTask.execute(id);
+        Location location = new Location(0.00, 0.00);
+        try {
+            location = getLocationTask.get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        return location;
+    }
+
+    public void removeLocationFromDatabase(String id) {
+        if (!checkOffline()) {
+            ElasticSearchBackend.DeleteLocationTask deleteLocationTask = new ElasticSearchBackend.DeleteLocationTask();
+            deleteLocationTask.execute(id);
+        }
+    }
+
+    public Letter addLetterToDatabase(Letter letter) {
+        Letter letter2 = null;
+
+        if (checkOffline()) {
+            AsyncTask<Letter, Void, Letter> executable = new ElasticSearchBackend.AddLetterTask();
+            executable.execute(letter);
+            try {
+                letter2 = executable.get();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return letter2;
+    }
+
+    public Letter updateLetterInDatabase(Letter letter) {
+        Letter letter1 = null;
+
+        if (checkOffline()) {
+            AsyncTask<Letter, Void, Letter> executable = new ElasticSearchBackend.UpdateLetterTask();
+            executable.execute(letter);
+            try {
+                letter1 = executable.get();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return letter1;
+    }
+
+    public Letter getLetterFromDatabase(String id) {
+        Letter letter = null;
+
+        if (!checkOffline()) {
+            ElasticSearchBackend.GetLetterByIdTask getLetterTask = new ElasticSearchBackend.GetLetterByIdTask();
+            getLetterTask.execute(id);
+            try {
+                letter = getLetterTask.get();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return letter;
+    }
+
+    public void removeLetterFromDatabase(String id) {
+        if (!checkOffline()) {
+            ElasticSearchBackend.DeleteLetterTask deleteLetterTask = new ElasticSearchBackend.DeleteLetterTask();
+            deleteLetterTask.execute(id);
+        }
+    }
+
+    public ArrayList<Letter> getLettersForUser(User user) {
+        ArrayList<Letter> letters = new ArrayList<Letter>();
+
+        if (!checkOffline()) {
+            ElasticSearchBackend.GetLettersForUserTask getLettersTask
+                    = new ElasticSearchBackend.GetLettersForUserTask();
+            getLettersTask.execute(user);
+            try {
+                letters = getLettersTask.get();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return letters;
+    }
+
+    private boolean checkOffline() {
+        return Boolean.FALSE;
     }
 }

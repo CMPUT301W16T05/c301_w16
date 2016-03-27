@@ -37,6 +37,7 @@
     <string name="profile">Profile</string>
     <string name="Search">Search</string>
     <string name="Chickens">Chickens</string>
+    <string name="Logout">Logout</string>
     <string name="title_activity_notifications">NotificationsActivity</string>
 
     <!-- Strings related to Item Profile -->
@@ -48,8 +49,14 @@
     <string name="item_profile_bids_placed">My Bidded</string>
 
     <string name="hello_world">Hello world!</string>
-    <string name="title_activity_chicken_profile">ChickenProfileActivity</string>
+    <string name="title_activity_chicken_profile">Chicken Profile</string>
     <string name="buttonSave">SAVE</string>
     <string name="title_activity_view_bids">ViewBidsActivity</string>
+    <string name="title_activity_searches">Chicken Search</string>
+    <string name="pending_notifications">You have some pending notifications</string>
+    <string name="title_activity_edit_chicken">Edit Chicken</string>
+    <string name="title_activity_others_chicken_display_profile">
+        OthersChickenDisplayProfileActivity
+    </string>
 
 </resources>

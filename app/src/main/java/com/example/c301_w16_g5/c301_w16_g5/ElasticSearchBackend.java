@@ -1,5 +1,6 @@
 package com.example.c301_w16_g5.c301_w16_g5;
 
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -73,84 +74,6 @@ public class ElasticSearchBackend {
         }
     }
 
-    /* these two methods are no longer necessary
-    public static class GetChickensBorrowedByUserTask extends AsyncTask<User, Void, ArrayList<Chicken>> {
-        @Override
-        protected ArrayList<Chicken> doInBackground(User... users) {
-            verifyClient();
-            User user = users[0];
-            ArrayList<Chicken> chickens = new ArrayList<Chicken>();
-
-            String query = "{ \"query\" : { \"match\" : { \"borrower\" : \"" + user.getUsername()
-                     + "\" } } }";
-
-            Search search = new Search.Builder(query).addIndex("c301w16t05").addType("chicken").build();
-
-            try {
-                SearchResult result = client.execute(search);
-                if (result.isSucceeded()) {
-                    List<String> chickenStrings = result.getSourceAsStringList();
-                    for (String chickenString : chickenStrings) {
-                        Chicken chicken = parseChicken(chickenString);
-                        chickens.add(chicken);
-                    }
-                } else {
-                    Log.i("INFO","Search failed");
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            return chickens;
-        }
-    }
-
-    public static class GetChickensBidOnByUserTask extends AsyncTask<User, Void, ArrayList<Chicken>> {
-        @Override
-        protected ArrayList<Chicken> doInBackground(User... users) {
-            verifyClient();
-            User user = users[0];
-            ArrayList<Chicken> chickens = new ArrayList<Chicken>();
-
-            String query = "{ \"query\" : { \"match\" : { \"bidder\" : \"" + user.getUsername()
-                    + "\" } } }";
-
-            Search search = new Search.Builder(query).addIndex("c301w16t05").addType("bid").build();
-
-            try {
-                SearchResult result = client.execute(search);
-                if (result.isSucceeded()) {
-                    List<String> bidStrings = result.getSourceAsStringList();
-                    for (String bidString : bidStrings) {
-                        Bid bid = parseBid(bidString);
-
-                        Get get = new Get.Builder("c301w16t05", bid.getChickenId()).type("chicken").build();
-                        Chicken chicken = new Chicken();
-                        try {
-                            JestResult result2 = client.execute(get);
-                            if (result2.isSucceeded()) {
-                                chicken = parseChicken(result.getSourceAsString());
-                            } else {
-                                Log.i("INFO","Getting the chicken failed");
-                            }
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                        chickens.add(chicken);
-
-                    }
-                } else {
-                    Log.i("INFO","Search failed");
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            return chickens;
-        }
-    }
-    */
-
     public static class AddChickenTask extends AsyncTask<Chicken, Void, Chicken> {
         @Override
         protected Chicken doInBackground(Chicken... chickens) {
@@ -210,6 +133,7 @@ public class ElasticSearchBackend {
                 JestResult result = client.execute(get);
                 if (result.isSucceeded()) {
                     chicken = parseChicken(result.getSourceAsString());
+                    chicken.setId(id);
                 } else {
                     Log.i("INFO","Getting the chicken failed");
                 }
@@ -273,6 +197,7 @@ public class ElasticSearchBackend {
                 JestResult result = client.execute(get);
                 if (result.isSucceeded()) {
                     user = parseUser(result.getSourceAsString());
+                    user.setId(id);
                 } else {
                     user = null;
                     Log.i("INFO","Getting the user failed");
@@ -360,6 +285,7 @@ public class ElasticSearchBackend {
                 JestResult result = client.execute(get);
                 if (result.isSucceeded()) {
                     bid = parseBid(result.getSourceAsString());
+                    bid.setId(id);
                 } else {
                     Log.i("INFO","Getting the bid failed");
                 }
@@ -446,6 +372,7 @@ public class ElasticSearchBackend {
                 JestResult result = client.execute(get);
                 if (result.isSucceeded()) {
                     notification = parseNotification(result.getSourceAsString());
+                    notification.setId(id);
                 } else {
                     Log.i("INFO","Getting the notification failed");
                 }
@@ -474,10 +401,214 @@ public class ElasticSearchBackend {
         }
     }
 
+    public static class AddLocationTask extends AsyncTask<Location, Void, Location> {
+        @Override
+        protected Location doInBackground(Location... locations) {
+            verifyClient();
+            Location location = locations[0];
+            Map<String, String> source = formatLocation(location);
+
+            Index index = new Index.Builder(source).index("c301w16t05").type("location").build();
+            try {
+                DocumentResult result = client.execute(index);
+                if (result.isSucceeded()) {
+                    location.setId(result.getId());
+                } else {
+                    Log.i("INFO","Adding a location failed");
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return location;
+        }
+    }
+
+    public static class UpdateLocationTask extends AsyncTask<Location, Void, Location> {
+        @Override
+        protected Location doInBackground(Location... locations) {
+            verifyClient();
+            Location location = locations[0];
+            Map<String, String> source = formatLocation(location);
+
+            Index index = new Index.Builder(source).index("c301w16t05").type("location")
+                    .id(location.getId()).build();
+            try {
+                DocumentResult result = client.execute(index);
+                if (result.isSucceeded()) {
+                } else {
+                    Log.i("INFO","Updating location failed");
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return location;
+        }
+    }
+
+    public static class GetLocationByIdTask extends AsyncTask<String, Void, Location> {
+        @Override
+        protected Location doInBackground(String... ids) {
+            verifyClient();
+            String id = ids[0];
+            Location location = new Location(0.00, 0.00);
+
+            Get get = new Get.Builder("c301w16t05", id).type("location").build();
+            try {
+                JestResult result = client.execute(get);
+                if (result.isSucceeded()) {
+                    location = parseLocation(result.getSourceAsString());
+                    location.setId(id);
+                } else {
+                    Log.i("INFO","Getting the location failed");
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return location;
+        }
+    }
+
+    public static class DeleteLocationTask extends AsyncTask<String, Void, Void> {
+        @Override
+        protected Void doInBackground(String... ids) {
+            verifyClient();
+            String id = ids[0];
+
+            Delete delete = new Delete.Builder(id).index("c301w16t05").type("location").build();
+            try {
+                client.execute(delete);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+    }
+
+    public static class AddLetterTask extends AsyncTask<Letter, Void, Letter> {
+        @Override
+        protected Letter doInBackground(Letter... letters) {
+            verifyClient();
+            Letter letter = letters[0];
+            Map<String, String> source = formatLetter(letter);
+
+            Index index = new Index.Builder(source).index("c301w16t05").type("letter").build();
+            try {
+                DocumentResult result = client.execute(index);
+                if (result.isSucceeded()) {
+                    letter.setId(result.getId());
+                } else {
+                    Log.i("INFO","Adding a letter failed");
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return letter;
+        }
+    }
+
+    public static class UpdateLetterTask extends AsyncTask<Letter, Void, Letter> {
+        @Override
+        protected Letter doInBackground(Letter... letters) {
+            verifyClient();
+            Letter letter = letters[0];
+            Map<String, String> source = formatLetter(letter);
+
+            Index index = new Index.Builder(source).index("c301w16t05").type("letter")
+                    .id(letter.getId()).build();
+            try {
+                DocumentResult result = client.execute(index);
+                if (result.isSucceeded()) {
+                } else {
+                    Log.i("INFO","Updating letter failed");
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return letter;
+        }
+    }
+
+    public static class GetLetterByIdTask extends AsyncTask<String, Void, Letter> {
+        @Override
+        protected Letter doInBackground(String... ids) {
+            verifyClient();
+            String id = ids[0];
+            Letter letter = new Letter("a","a","a");
+
+            Get get = new Get.Builder("c301w16t05", id).type("letter").build();
+            try {
+                JestResult result = client.execute(get);
+                if (result.isSucceeded()) {
+                    letter = parseLetter(result.getSourceAsString());
+                    letter.setId(id);
+                } else {
+                    Log.i("INFO","Getting the letter failed");
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return letter;
+        }
+    }
+
+    public static class DeleteLetterTask extends AsyncTask<String, Void, Void> {
+        @Override
+        protected Void doInBackground(String... ids) {
+            verifyClient();
+            String id = ids[0];
+
+            Delete delete = new Delete.Builder(id).index("c301w16t05").type("letter").build();
+            try {
+                client.execute(delete);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+    }
+
+    public static class GetLettersForUserTask extends AsyncTask<User, Void, ArrayList<Letter>> {
+        @Override
+        protected ArrayList<Letter> doInBackground(User... users) {
+            verifyClient();
+            User user = users[0];
+            ArrayList<Letter> letters = new ArrayList<Letter>();
+
+            String query = "{ \"query\" : { \"match\" : { \"toUsername\" : \"" + user.getUsername()
+                    + "\" } } }";
+
+            Search search = new Search.Builder(query).addIndex("c301w16t05").addType("letter").build();
+
+            try {
+                SearchResult result = client.execute(search);
+                if (result.isSucceeded()) {
+                    List<String> letterStrings = result.getSourceAsStringList();
+                    for (String letterString : letterStrings) {
+                        Letter letter = parseLetter(letterString);
+                        letters.add(letter);
+                    }
+                } else {
+                    Log.i("INFO", "Search failed");
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return letters;
+        }
+    }
+
     public static Map<String, String> formatChicken(Chicken chicken) {
         Map<String, String> source = new LinkedHashMap<>();
 
-        // TODO: Figure out how you want to store bids and photographs in elasticsearch
         source.put("name", chicken.getName());
         source.put("description", chicken.getDescription());
         source.put("chickenStatus", chicken.getChickenStatus().toString());
@@ -499,10 +630,10 @@ public class ElasticSearchBackend {
             source.put("bids", bids);
         }
 
-        if (chicken.getPhoto() == null) {
+        if (chicken.getPicture() == null) {
             source.put("photo", "none");
         } else {
-            // TODO: Implement this when you put photos in elasticsearch
+            source.put("photo", chicken.getPicture().toString());
         }
 
         return source;
@@ -519,12 +650,13 @@ public class ElasticSearchBackend {
 
         if (!attrList[23].equals("none")) {
             String[] bids = attrList[23].split(",");
-            for (String chickenId : bids) {
-                Get get = new Get.Builder("c301w16t05", chickenId).type("bid").build();
+            for (String bidId : bids) {
+                Get get = new Get.Builder("c301w16t05", bidId).type("bid").build();
                 try {
                     JestResult result = client.execute(get);
                     if (result.isSucceeded()) {
                         Bid bid = parseBid(result.getSourceAsString());
+                        bid.setId(bidId);
                         chicken.getBids().add(bid);
                     } else {
                         Log.i("TODO","Getting the chicken failed");
@@ -536,7 +668,7 @@ public class ElasticSearchBackend {
         }
 
         if (!attrList[27].equals("none")) {
-            // TODO: Implemetn this once you put photos in elasticsearch
+            chicken.setPicture(Uri.parse(attrList[27]));
         }
 
         return chicken;
@@ -572,6 +704,16 @@ public class ElasticSearchBackend {
             source.put("notifications", notifications);
         }
 
+        if (user.getLetters().isEmpty()) {
+            source.put("letters", "none");
+        } else {
+            String letters = "";
+            for (Letter letter : user.getLetters()) {
+                letters = letters + letter.getId() + ",";
+            }
+            source.put("letters", letters);
+        }
+
         return source;
     }
 
@@ -587,6 +729,7 @@ public class ElasticSearchBackend {
                     JestResult result = client.execute(get);
                     if (result.isSucceeded()) {
                         Chicken chicken = parseChicken(result.getSourceAsString());
+                        chicken.setId(chickenId);
                         user.addChicken(chicken);
                     } else {
                         Log.i("TODO","Getting the chicken failed");
@@ -605,9 +748,29 @@ public class ElasticSearchBackend {
                     JestResult result = client.execute(get);
                     if (result.isSucceeded()) {
                         Notification notification = parseNotification(result.getSourceAsString());
+                        notification.setId(notifId);
                         user.addNotification(notification);
                     } else {
-                        Log.i("TODO","Getting the bid failed");
+                        Log.i("TODO","Getting the notification failed");
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        if (!attrList[35].equals("none")) {
+            String[] letters = attrList[35].split(",");
+            for (String letterId : letters) {
+                Get get = new Get.Builder("c301w16t05", letterId).type("letter").build();
+                try {
+                    JestResult result = client.execute(get);
+                    if (result.isSucceeded()) {
+                        Letter letter = parseLetter(result.getSourceAsString());
+                        letter.setId(letterId);
+                        user.addLetter(letter);
+                    } else {
+                        Log.i("TODO","Getting the letter failed");
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -629,7 +792,7 @@ public class ElasticSearchBackend {
         if (bid.getLocation() == null) {
             source.put("location", "none");
         } else {
-            // TODO: Implement this once you put locations into elasticsearch
+            source.put("location", bid.getLocation().getId());
         }
 
         return source;
@@ -642,14 +805,25 @@ public class ElasticSearchBackend {
         bid.setBidStatus(Bid.BidStatus.valueOf(attrList[15]));
 
         if (!attrList[19].equals("none")) {
-            // TODO: Implement this once you put locations into elasticsearch
+            Get get = new Get.Builder("c301w16t05", attrList[19]).type("location").build();
+            try {
+                JestResult result = client.execute(get);
+                if (result.isSucceeded()) {
+                    Location location = parseLocation(result.getSourceAsString());
+                    bid.setLocation(location);
+                } else {
+                    Log.i("TODO","Getting the location failed");
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         return bid;
     }
 
     public static Map<String, String> formatNotification(Notification notification) {
         Map<String, String> source = new LinkedHashMap<>();
-        source.put("message",notification.getMessage());
+        source.put("message", notification.getMessage());
 
         DateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
         source.put("date", sdf.format(notification.getDate()));
@@ -669,6 +843,45 @@ public class ElasticSearchBackend {
         }
 
         return notification;
+    }
+
+    public static Map<String, String> formatLocation(Location location) {
+        Map<String, String> source = new LinkedHashMap<>();
+        source.put("latitude", String.valueOf(location.getLatitude()));
+        source.put("longitude", String.valueOf(location.getLongitude()));
+
+        return source;
+    }
+
+    public static Location parseLocation(String source) {
+        String[] attrList = source.split("\"");
+        return new Location(Double.parseDouble(attrList[3]), Double.parseDouble(attrList[7]));
+    }
+
+    public static Map<String, String> formatLetter(Letter letter) {
+        Map<String, String> source = new LinkedHashMap<>();
+        source.put("message", letter.getMessage());
+        source.put("toUsername", letter.getToUsername());
+        source.put("fromUsername", letter.getFromUsername());
+
+        DateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+        source.put("date", sdf.format(letter.getDate()));
+
+        return source;
+    }
+
+    public static Letter parseLetter(String source) {
+        String[] attrList = source.split("\"");
+        Letter letter = new Letter(attrList[3], attrList[7], attrList[11]);
+
+        DateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+        try {
+            letter.setDate(sdf.parse(attrList[15]));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return letter;
     }
 
     public static void verifyClient() {

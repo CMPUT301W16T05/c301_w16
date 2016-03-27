@@ -46,6 +46,9 @@ public class ChickBidsTestHelper {
     public static String description_3 = "This chicken can talk";
     public static String description_4 = "This chicken can act";
 
+    public static double amount_1 = 23.24;
+    public static double amount_2 = 6.22;
+
     private static ChickenController chickenController = new ChickenController();
     private static UserController userController = new UserController();
 

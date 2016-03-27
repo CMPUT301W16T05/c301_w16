@@ -1,10 +1,8 @@
 package com.example.c301_w16_g5.c301_w16_g5;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
@@ -17,13 +15,14 @@ import android.widget.Toast;
  * @author  Hailey
  * @version 1.4, 03/02/2016
  * @see     User
- * @see     AddProfileActivity
  * @see     DisplayProfileActivity
  * @see     UserController
  */
 public class EditProfileActivity extends ChickBidActivity {
 
-    public static final String CREATE_USER_USERNAME_EXTRA_KEY = "create_user_username_extra_key";
+    public static final String PROFILE_EXTRA_KEY = "PROFILE_REQUEST";
+
+    public static final String CREATE_USER_EXTRA_KEY = "create_user_username_extra_key";
     public static final String UPDATE_USER_EXTRA_KEY = "update_user_extra_key";
 
     private EditText usernameEditText;
@@ -54,30 +53,31 @@ public class EditProfileActivity extends ChickBidActivity {
         // show back arrow at top left
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        Intent intent = getIntent();
-        activityType = intent.getStringExtra("PROFILE_REQUEST");
-        if (activityType != null && activityType.equals(CREATE_USER_USERNAME_EXTRA_KEY)) {
-            // source:
-            // http://stackoverflow.com/questions/3438276/change-title-bar-text-in-android
-            // answered by Paresh Mayani on Aug 9 '10
-            // accessed by Hailey on Mar 13 '16
-            getSupportActionBar().setTitle("Add Profile");
-        } else if (activityType != null && activityType.equals(UPDATE_USER_EXTRA_KEY)) {
-
-        }
-
         usernameEditText = (EditText) findViewById(R.id.usernameEditText);
         firstNameEditText = (EditText) findViewById(R.id.firstNameEditText);
         lastNameEditText = (EditText) findViewById(R.id.lastNameEditText);
         emailEditText = (EditText) findViewById(R.id.emailEditText);
         phoneEditText = (EditText) findViewById(R.id.phoneEditText);
         experienceEditText = (EditText) findViewById(R.id.experienceEditText);
+
+        Intent intent = getIntent();
+        activityType = intent.getStringExtra(PROFILE_EXTRA_KEY);
+        if (activityType != null && activityType.equals(CREATE_USER_EXTRA_KEY)) {
+            // source:
+            // http://stackoverflow.com/questions/3438276/change-title-bar-text-in-android
+            // answered by Paresh Mayani on Aug 9 '10
+            // accessed by Hailey on Mar 13 '16
+            getSupportActionBar().setTitle(R.string.title_activity_add_profile);
+        } else if (activityType != null && activityType.equals(UPDATE_USER_EXTRA_KEY)) {
+            fillUserInformation();
+
+            // 2016-03-15 : http://stackoverflow.com/questions/6731017/how-to-make-an-edittext-uneditable-disabled
+            usernameEditText.setEnabled(false);
+            usernameEditText.setClickable(false);
+        }
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-
+    private void fillUserInformation() {
         user = ChickBidsApplication.getUserController().getCurrentUser();
 
         usernameEditText.setText(user.getUsername());
@@ -90,7 +90,7 @@ public class EditProfileActivity extends ChickBidActivity {
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        if (activityType != null && activityType.equals(CREATE_USER_USERNAME_EXTRA_KEY)) {
+        if (activityType != null && activityType.equals(CREATE_USER_EXTRA_KEY)) {
             menu.clear();
             onCreateOptionsMenu(menu);
             menu.removeItem(R.id.home_button);
@@ -108,62 +108,58 @@ public class EditProfileActivity extends ChickBidActivity {
             return;
         }
 
-        Intent intent;
         if (activityType.equals(UPDATE_USER_EXTRA_KEY)) {
-            intent = new Intent(this, DisplayProfileActivity.class);
             ChickBidsApplication.getUserController().updateUser(user);
-            startActivity(intent);
-        } else if (activityType.equals(CREATE_USER_USERNAME_EXTRA_KEY)) {
-            intent = new Intent(this, HomeActivity.class);
+        } else if (activityType.equals(CREATE_USER_EXTRA_KEY)) {
             ChickBidsApplication.getUserController().saveUser(user);
-            startActivity(intent);
         }
-    }
 
+        finish();
+    }
 
     private void getUpdatedUserInfo() throws UserException {
         String username = ((EditText) findViewById(R.id.usernameEditText)).getText().toString();
 
-        if (ChickBidsApplication.getUserController().usernameInUse(username)) {
+        if (UserController.usernameInUse(username)) {
             throw new UserException("Username already in use");
         }
 
-        if (ChickBidsApplication.getUserController().validateNames(username)) {
+        if (UserController.validateNames(username)) {
             user.setUsername(username);
         } else {
             throw new UserException("Invalid username");
         }
 
         String firstName = ((EditText) findViewById(R.id.firstNameEditText)).getText().toString();
-        if (ChickBidsApplication.getUserController().validateNames(firstName)) {
+        if (UserController.validateNames(firstName)) {
             user.setFirstName(firstName);
         } else {
-            //throw new UserException("Invalid first name");
+            throw new UserException("Invalid first name");
         }
 
         String lastName = ((EditText) findViewById(R.id.lastNameEditText)).getText().toString();
-        if (ChickBidsApplication.getUserController().validateNames(lastName)) {
+        if (UserController.validateNames(lastName)) {
             user.setLastName(lastName);
         } else {
             throw new UserException("Invalid last name");
         }
 
         String email = ((EditText) findViewById(R.id.emailEditText)).getText().toString();
-        if (ChickBidsApplication.getUserController().validateEmail(email)) {
+        if (UserController.validateEmail(email)) {
             user.setEmail(email);
         } else {
             throw new UserException("Invalid email");
         }
 
         String phone = ((EditText) findViewById(R.id.phoneEditText)).getText().toString();
-        if (ChickBidsApplication.getUserController().validatePhoneNumber(phone)) {
+        if (UserController.validatePhoneNumber(phone)) {
             user.setPhoneNumber(phone);
         } else {
             throw new UserException("Invalid phone number");
         }
 
         String experience = ((EditText) findViewById(R.id.experienceEditText)).getText().toString();
-        if (ChickBidsApplication.getUserController().validateChickenExperience(experience)) {
+        if (UserController.validateChickenExperience(experience)) {
             user.setChickenExperience(experience);
         } else {
             throw new UserException("Invalid chicken experience description");

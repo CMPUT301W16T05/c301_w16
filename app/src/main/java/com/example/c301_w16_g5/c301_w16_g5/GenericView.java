@@ -9,5 +9,5 @@ package com.example.c301_w16_g5.c301_w16_g5;
  * @version 1.4, 03/02/2016
  */
 public interface GenericView<M> {
-    public void update(M model);
+    void update(M model);
 }

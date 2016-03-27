@@ -15,7 +15,7 @@ import android.widget.Button;
  * @version 1.4, 03/02/2016
  * @see     DisplayProfileActivity
  * @see     ItemViews
- * @see     SearchActivity
+ * @see     SearchesActivity
  */
 public class HomeActivity extends ChickBidActivity {
 
@@ -32,10 +32,11 @@ public class HomeActivity extends ChickBidActivity {
         Button profileButton = (Button) findViewById(R.id.buttonProfile);
         Button chickensButton = (Button) findViewById(R.id.buttonChickens);
         Button searchButton = (Button) findViewById(R.id.buttonSearch);
+        Button logoutButton = (Button) findViewById(R.id.buttonLogout);
 
         final Intent profileIntent = new Intent(this, DisplayProfileActivity.class);
         final Intent chickensIntent = new Intent(this, ItemViews.class);
-        final Intent searchIntent = new Intent(this, SearchActivity.class);
+        final Intent searchIntent = new Intent(this, SearchesActivity.class);
 
         profileButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,6 +56,18 @@ public class HomeActivity extends ChickBidActivity {
                 startActivity(searchIntent);
             }
         });
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        ChickBidsApplication.getChickenController().popupNotificationToast(this);
     }
 
     @Override
@@ -63,5 +76,12 @@ public class HomeActivity extends ChickBidActivity {
         onCreateOptionsMenu(menu);
         menu.removeItem(R.id.home_button);
         return true;
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        User current_user = ChickBidsApplication.getUserController().getCurrentUser();
+        ChickBidsApplication.getUserController().updateUser(current_user);
     }
 }

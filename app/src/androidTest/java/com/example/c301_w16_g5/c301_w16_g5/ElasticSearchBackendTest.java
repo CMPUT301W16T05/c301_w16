@@ -11,7 +11,7 @@ import java.util.concurrent.ExecutionException;
  */
 public class ElasticSearchBackendTest extends ActivityInstrumentationTestCase2 {
     public ElasticSearchBackendTest() {
-        super(SearchActivity.class);
+        super(SearchesActivity.class);
     }
 
     public void testAddChickenTask() {
