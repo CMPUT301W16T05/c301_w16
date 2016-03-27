@@ -50,6 +50,7 @@ public class SearchesActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         final Intent viewOthersChickenIntent = new Intent(this, OthersChickenDisplayProfileActivity.class);
+        final Intent viewMyChickenIntent = new Intent(this, MyChickenDisplayProfileActivity.class);
 
         searchResults = (ListView) findViewById(R.id.searchResults);
         searchResults.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -57,7 +58,11 @@ public class SearchesActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Chicken chicken = adapter.getItem(i);
                 ChickBidsApplication.getChickenController().setCurrentChicken(chicken);
-                startActivity(viewOthersChickenIntent);
+                if (ChickBidsApplication.getChickenController().getMyOwnedChickens().contains(chicken)) {
+                    startActivity(viewMyChickenIntent);
+                } else {
+                    startActivity(viewOthersChickenIntent);
+                }
             }
         });
 

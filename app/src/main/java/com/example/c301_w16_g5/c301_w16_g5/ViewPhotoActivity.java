@@ -6,6 +6,16 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+/**
+ * <code>ViewPhotoActivity</code> provides a view of the photo attached to a
+ * chicken's profile.  This view is only accessible when the corresponding
+ * chicken actually has a photo attached to it.
+ *
+ * @author  Hailey
+ * @version 1.5, 03/27/2016
+ * @see     Chicken
+ * @see     ChickenController
+ */
 public class ViewPhotoActivity extends ChickBidActivity {
 
     TextView name;

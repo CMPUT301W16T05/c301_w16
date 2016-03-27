@@ -15,7 +15,7 @@ import android.widget.Button;
  * @version 1.4, 03/02/2016
  * @see     DisplayProfileActivity
  * @see     ItemViews
- * @see     SearchActivity
+ * @see     SearchesActivity
  */
 public class HomeActivity extends ChickBidActivity {
 

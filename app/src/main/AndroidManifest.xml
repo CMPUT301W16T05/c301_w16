@@ -43,14 +43,6 @@
                 android:value=".HomeActivity" />
         </activity>
         <activity
-            android:name=".SearchActivity"
-            android:label="@string/title_activity_search"
-            android:parentActivityName=".HomeActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".HomeActivity" />
-        </activity>
-        <activity
             android:name=".DisplayProfileActivity"
             android:label="@string/title_activity_profile"
             android:parentActivityName=".HomeActivity">

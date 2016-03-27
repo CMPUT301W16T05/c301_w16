@@ -10,6 +10,19 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * <code>OthersChickenDisplayProfileActivity</code> displays the profile
+ * information of a chicken, as well as giving the viewing user the options like
+ * bidding on that chicken.  This activity will only be called if the chicken
+ * whose profile is being viewed does not belong to the current user.
+ *
+ * @author  Hailey
+ * @version 1.5, 03/27/2016
+ * @see     Chicken
+ * @see     ChickenController
+ * @see     Bid
+ * @see     User
+ */
 public class OthersChickenDisplayProfileActivity extends ChickBidActivity {
 
     TextView name;

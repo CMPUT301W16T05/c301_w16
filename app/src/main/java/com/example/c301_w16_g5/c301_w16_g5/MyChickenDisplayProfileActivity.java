@@ -8,13 +8,14 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.net.URI;
-
 /**
- * This view displays the profile information for a particular chicken.
+ * <code>MyChickenDisplayProfileActivity</code> displays the profile
+ * information of a chicken, and gives the viewing user options such as
+ * editing that chicken.  This activity will only be called if the chicken
+ * whose profile is being viewed belongs to the current user.
  *
- * @author  Robin
- * @version 1.4, 03/12/2016
+ * @author  Robin, Hailey
+ * @version 1.5, 03/27/2016
  * @see     Chicken
  * @see     ChickenController
  */
