@@ -277,6 +277,21 @@ public class ChickenController {
         addNotificationForBid(bid);
     }
 
+    public void returnChickenToOwner(Chicken chicken) {
+        SearchController searchController = ChickBidsApplication.getSearchController();
+        UserController userController = ChickBidsApplication.getUserController();
+
+        for (Bid b : chicken.getBids()) {
+            searchController.removeBidFromDatabase(b.getId());
+        }
+
+        chicken.getBids().clear();
+        chicken.setChickenStatus(Chicken.ChickenStatus.AVAILABLE);
+        chicken = searchController.updateChickenInDatabase(chicken);
+
+        userController.updateUser(userController.getCurrentUser());
+    }
+
     // Notifications
     public void addNotification(Notification notification) {
         SearchController searchController = ChickBidsApplication.getSearchController();
@@ -318,8 +333,7 @@ public class ChickenController {
 
     public void popupNotificationToast(Context context) {
         Toast toast = Toast.makeText(context, R.string.pending_notifications, Toast.LENGTH_LONG);
-        // TODO: re-enable later
-//        if (userHasNotifications())
+        if (userHasNotifications())
             toast.show();
     }
 

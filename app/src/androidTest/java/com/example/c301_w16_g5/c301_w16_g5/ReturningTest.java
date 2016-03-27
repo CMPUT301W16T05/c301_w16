@@ -10,21 +10,27 @@ public class ReturningTest extends ActivityInstrumentationTestCase2 {
 
     private User owner, borrower;
     private Chicken chicken;
-/*
+
+    private ChickenController chickenController;
+
     protected void setUp() throws Exception{
         super.setUp();
 
-        owner = new User();
-        borrower = new User();
+        owner = ChickBidsTestHelper.genericUser1();
+        borrower = ChickBidsTestHelper.genericUser2();
 
-        chicken = new Chicken("Name", "FriendlyBird", 1.00, Chicken.ChickenStatus.BORROWED );
-        borrower.addChicken(chicken);
+        chicken = new Chicken(ChickBidsTestHelper.chicken_name_1, ChickBidsTestHelper.description_1, owner.getUsername());
+
+        chickenController = ChickBidsTestHelper.getChickenController();
+        Bid bid = new Bid(borrower.getUsername(), chicken.getId(), ChickBidsTestHelper.amount_1);
+
+        chickenController.putBidOnChicken(bid, chicken);
+        chickenController.acceptBidForChicken(bid);
     }
 
     // US 07.01.01
     public void testReturningAChicken(){
-        borrower.releaseChicken(chicken);
+        chickenController.returnChickenToOwner(chicken);
         assertTrue(chicken.getChickenStatus() == Chicken.ChickenStatus.AVAILABLE);
     }
-*/
 }
