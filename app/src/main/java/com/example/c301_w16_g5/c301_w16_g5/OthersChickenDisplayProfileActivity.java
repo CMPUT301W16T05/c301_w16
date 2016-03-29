@@ -71,6 +71,12 @@ public class OthersChickenDisplayProfileActivity extends ChickBidActivity {
                 placeBid();
             }
         });
+        buttonViewBids.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                launchViewBids();
+            }
+        });
 
         buttonViewPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,6 +91,11 @@ public class OthersChickenDisplayProfileActivity extends ChickBidActivity {
                 }
             }
         });
+    }
+
+    private void launchViewBids() {
+        Intent viewBidsIntent = new Intent(this, BidsActivity.class);
+        startActivity(viewBidsIntent);
     }
 
     private void placeBid() {
@@ -110,6 +121,16 @@ public class OthersChickenDisplayProfileActivity extends ChickBidActivity {
     protected void onStart() {
         super.onStart();
         setTextFields();
+
+        if (currentChicken.getChickenStatus() == Chicken.ChickenStatus.BORROWED) {
+            buttonPlaceBid.setVisibility(View.GONE);
+            bidAmount.setVisibility(View.GONE);
+            buttonViewBids.setVisibility(View.GONE);
+        } else {
+            buttonPlaceBid.setVisibility(View.VISIBLE);
+            bidAmount.setVisibility(View.VISIBLE);
+            buttonViewBids.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
