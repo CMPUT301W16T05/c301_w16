@@ -17,7 +17,7 @@ import android.widget.TextView;
  * <code>EditChickenActivity</code> provides a view from which a user can update
  * the description and/or photo of one of their own chickens.
  *
- * @author  Hailey
+ * @author  Hailey, Robin
  * @version 1.5, 03/27/2016
  * @see     Chicken
  * @see     ChickenController
@@ -105,7 +105,7 @@ public class EditChickenActivity extends ChickBidActivity {
 
         if(chicken.getPicture() != null){
             imageToUpload.setImageURI(chicken.getPicture());
-        };
+        }
     }
 
     private void saveTextFields(){

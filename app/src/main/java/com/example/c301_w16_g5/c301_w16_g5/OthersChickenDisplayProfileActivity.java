@@ -62,12 +62,11 @@ public class OthersChickenDisplayProfileActivity extends ChickBidActivity {
         buttonViewPhoto = (Button) findViewById(R.id.buttonViewPhoto);
         buttonViewLocation = (Button) findViewById(R.id.buttonViewLocation);
 
-        final Intent viewPhotoIntent = new Intent(this, ViewPhotoActivity.class);
         buttonViewPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (currentChicken.getPicture() != null) {
-                    startActivity(viewPhotoIntent);
+                    launchViewPhoto();
                 } else {
                     Toast.makeText(getApplicationContext(),
                             "No photo available.",
@@ -99,5 +98,10 @@ public class OthersChickenDisplayProfileActivity extends ChickBidActivity {
         status.setText(currentChicken.getChickenStatus().toString());
 
         ownerUsername.setText("Owned by " + currentChicken.getOwnerUsername());
+    }
+
+    private void launchViewPhoto(){
+        Intent viewPhotoIntent = new Intent(this, ViewPhotoActivity.class);
+        startActivity(viewPhotoIntent);
     }
 }
