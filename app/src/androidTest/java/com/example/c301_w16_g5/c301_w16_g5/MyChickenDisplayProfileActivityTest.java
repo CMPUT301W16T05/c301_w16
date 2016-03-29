@@ -13,7 +13,6 @@ public class MyChickenDisplayProfileActivityTest extends ActivityInstrumentation
 
     public void testStart() throws Exception {
         User user = new User("un", "f", "l", "abc@email.com", "780-123-4567", "some");
-        ChickBidsApplication.getUserController().setUser(user);
         ChickBidsApplication.getChickenController().setCurrentChicken(new Chicken("Bob", "Friendly chicken", user.getUsername()));
         Activity activity = getActivity();
     }
