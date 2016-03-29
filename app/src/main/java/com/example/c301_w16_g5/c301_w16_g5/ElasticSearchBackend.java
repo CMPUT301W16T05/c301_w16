@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ExecutionException;
 
 import io.searchbox.client.JestResult;
 import io.searchbox.core.Delete;
@@ -759,6 +758,7 @@ public class ElasticSearchBackend {
             }
         }
 
+        /*
         if (!attrList[35].equals("none")) {
             String[] letters = attrList[35].split(",");
             for (String letterId : letters) {
@@ -777,6 +777,7 @@ public class ElasticSearchBackend {
                 }
             }
         }
+        */
 
         return user;
     }
