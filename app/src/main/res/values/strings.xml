@@ -11,9 +11,15 @@
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
-    <string name="permission_rationale">"Contacts permissions are needed for providing email
-        completions."
-    </string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>
+
+    <string name="username_hint">username</string>
+    <string name="first_name_hint">first</string>
+    <string name="last_name_hint">last</string>
+    <string name="email_hint">name@provider.com</string>
+    <string name="phone_hint">780-666-8888</string>
+    <string name="chicken_experience_hint">experience</string>
+
     <string name="title_activity_main_screen">Home</string>
     <string name="title_activity_item_views">Chickens</string>
     <string name="action_settings">Settings</string>
@@ -28,6 +34,7 @@
     <string name="title_activity_add_chicken">Add Chicken</string>
     <string name="title_activity_add_profile">Add Profile</string>
     <string name="title_activity_user_profile">User Profile</string>
+    <string name="account_created_message">"Account created. Please click to log in."</string>
 
     <!-- Strings related to navigation bar -->
     <string name="navbar_home">Home</string>
