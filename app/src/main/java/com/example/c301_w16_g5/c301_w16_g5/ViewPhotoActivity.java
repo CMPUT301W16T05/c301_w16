@@ -3,6 +3,7 @@ package com.example.c301_w16_g5.c301_w16_g5;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -41,6 +42,8 @@ public class ViewPhotoActivity extends ChickBidActivity {
         name.setText(currentChicken.getName());
         if(currentChicken.getPicture() != null){
             imageChicken.setImageURI(currentChicken.getPicture());
+        } else {
+            imageChicken.setVisibility(View.INVISIBLE);
         }
     }
 
