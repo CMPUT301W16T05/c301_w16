@@ -63,8 +63,7 @@ public class EditChickenActivity extends ChickBidActivity {
             @Override
             public void onClick(View v) {
                 saveTextFields();
-                // TODO: uncomment once updateChickenForMe works
-//                ChickBidsApplication.getChickenController().updateChickenForMe(currentChicken);
+                ChickBidsApplication.getChickenController().updateChickenForMe(currentChicken);
                 finish();
             }
         });
