@@ -4,9 +4,15 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.searchly.jestdroid.DroidClientConfig;
 import com.searchly.jestdroid.JestClientFactory;
 import com.searchly.jestdroid.JestDroidClient;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.text.DateFormat;
@@ -58,10 +64,20 @@ public class ElasticSearchBackend {
             try {
                 SearchResult result = client.execute(search);
                 if (result.isSucceeded()) {
-                    List<String> chickenStrings = result.getSourceAsStringList();
-                    for (String chickenString : chickenStrings) {
-                        Chicken chicken = parseChicken(chickenString);
-                        chickens.add(chicken);
+                    try {
+                        JSONArray a = (new JSONObject(result.getJsonString())).getJSONObject("hits").getJSONArray("hits");
+
+                        // sadly JSONArray is not iterable so i have this ugly for loop
+                        for (int i = 0; i < a.length(); i++) {
+                            JSONObject jo = a.getJSONObject(i);
+
+                            String id = jo.getString("_id");
+                            Chicken chicken = parseChicken(jo.getString("_source"));
+                            chicken.setId(id);
+                            chickens.add(chicken);
+                        }
+                    } catch (JSONException e) {
+                        Log.i("ERROR", "Failed to parse Chicken JSON");
                     }
                 } else {
                     Log.i("INFO","Search failed");
@@ -639,7 +655,48 @@ public class ElasticSearchBackend {
         return source;
     }
 
-    public static Chicken parseChicken(String source) {
+    public static Chicken parseChicken(String str_source) {
+
+        Chicken chicken = null;
+
+        try {
+            JSONObject source = new JSONObject(str_source);
+
+            chicken = new Chicken(source.getString("name"),source.getString("description"),source.getString("owner"));
+            chicken.setChickenStatus(Chicken.ChickenStatus.valueOf(source.getString("chickenStatus")));
+
+            if (!source.getString("borrower").equals("none")) {
+                chicken.setBorrowerUsername(source.getString("borrower"));
+            }
+
+            if (!source.getString("bids").equals("none")) {
+                String[] bids = source.getString("bids").split(",");
+                for (String bidId : bids) {
+                    Get get = new Get.Builder("c301w16t05", bidId).type("bid").build();
+                    try {
+                        JestResult bidsresult = client.execute(get);
+                        if (bidsresult.isSucceeded()) {
+                            Bid bid = parseBid(bidsresult.getSourceAsString());
+                            bid.setId(bidId);
+                            chicken.getBids().add(bid);
+                        } else {
+                            Log.i("TODO","Getting the chicken failed");
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            if (!source.getString("photo").equals("none")) {
+                chicken.setPicture(Uri.parse(source.getString("picture")));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        /* older implementation
+
         String[] attrList = source.split("\"");
         Chicken chicken = new Chicken(attrList[3],attrList[7],attrList[15]);
         chicken.setChickenStatus(Chicken.ChickenStatus.valueOf(attrList[11]));
@@ -670,7 +727,7 @@ public class ElasticSearchBackend {
         if (!attrList[27].equals("none")) {
             chicken.setPicture(Uri.parse(attrList[27]));
         }
-
+        */
         return chicken;
     }
 
