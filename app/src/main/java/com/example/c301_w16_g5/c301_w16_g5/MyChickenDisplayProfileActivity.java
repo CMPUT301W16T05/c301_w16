@@ -52,11 +52,10 @@ public class MyChickenDisplayProfileActivity extends ChickBidActivity {
         buttonViewBids = (Button) findViewById(R.id.buttonViewBids);
         buttonViewPhoto = (Button) findViewById(R.id.buttonViewPhoto);
 
-        final Intent editChickenIntent = new Intent(this, EditChickenActivity.class);
         buttonEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(editChickenIntent);
+                launchEditChicken();
             }
         });
 
@@ -67,12 +66,11 @@ public class MyChickenDisplayProfileActivity extends ChickBidActivity {
             }
         });
 
-        final Intent viewPhotoIntent = new Intent(this, ViewPhotoActivity.class);
         buttonViewPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (currentChicken.getPicture() != null) {
-                    startActivity(viewPhotoIntent);
+                    launchViewPhoto();
                 } else {
                     Toast.makeText(getApplicationContext(),
                             "No photo available.",
@@ -94,5 +92,14 @@ public class MyChickenDisplayProfileActivity extends ChickBidActivity {
         name.setText(currentChicken.getName());
         description.setText(currentChicken.getDescription());
         status.setText(currentChicken.getChickenStatus().toString());
+    }
+
+    private void launchEditChicken(){
+        Intent editChickenIntent = new Intent(this, EditChickenActivity.class);
+        startActivity(editChickenIntent);
+    }
+    private void launchViewPhoto(){
+        Intent viewPhotoIntent = new Intent(this, ViewPhotoActivity.class);
+        startActivity(viewPhotoIntent);
     }
 }
