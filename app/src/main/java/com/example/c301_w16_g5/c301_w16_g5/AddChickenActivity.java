@@ -35,8 +35,8 @@ public class AddChickenActivity extends ChickBidActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        nameEditText = (EditText) findViewById(R.id.nameEditText);
-        descriptionEditText = (EditText) findViewById(R.id.descriptionEditText);
+        nameEditText = (EditText) findViewById(R.id.name);
+        descriptionEditText = (EditText) findViewById(R.id.description);
     }
 
     public void addChicken(View view) {

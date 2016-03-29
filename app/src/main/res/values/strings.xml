@@ -20,6 +20,9 @@
     <string name="phone_hint">780-666-8888</string>
     <string name="chicken_experience_hint">experience</string>
 
+    <string name="chicken_name_hint">Chicken\'s name</string>
+    <string name="chicken_description_hint">Description of chicken</string>
+
     <string name="title_activity_main_screen">Home</string>
     <string name="title_activity_item_views">Chickens</string>
     <string name="action_settings">Settings</string>
