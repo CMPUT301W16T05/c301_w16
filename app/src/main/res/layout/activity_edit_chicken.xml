@@ -27,7 +27,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/editChicken_etName"
+            android:id="@+id/name"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textStyle="bold"
             android:textColor="@color/colorPrimaryDark"
@@ -38,7 +38,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:id="@+id/editChicken_etStatus"
+            android:id="@+id/status"
             android:textStyle="bold"
             android:textColor="@color/colorPrimaryDark"
             android:layout_weight="1"
@@ -55,14 +55,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:id="@+id/editChicken_etDescription"
+        android:id="@+id/description"
         android:layout_alignParentEnd="true"
         android:layout_alignParentStart="true"
         android:textColor="@color/colorTextSecondary"
         android:layout_margin="16dp"/>
 
     <ImageView
-        android:id="@+id/editChicken_imageToUpload"
+        android:id="@+id/imageChicken"
         android:layout_gravity="center_horizontal"
         android:layout_width="150dp"
         android:layout_height="150dp" />
@@ -76,7 +76,7 @@
             android:gravity="center|bottom">
 
         <Button
-            android:id="@+id/editChicken_bUploadImage"
+            android:id="@+id/buttonUploadImage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Upload Image"
@@ -88,7 +88,7 @@
             android:typeface="normal"/>
 
         <Button
-            android:id="@+id/editChicken_saveButton"
+            android:id="@+id/buttonSave"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Save"
