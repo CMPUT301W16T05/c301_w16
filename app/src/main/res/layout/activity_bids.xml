@@ -6,7 +6,18 @@
     android:fitsSystemWindows="true"
     tools:context="com.example.c301_w16_g5.c301_w16_g5.BidsActivity">
 
-    <include layout="@layout/navbar" />
-    <include layout="@layout/content_bids" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include layout="@layout/navbar" />
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/bidsListView"
+            android:divider="@color/colorAccent"
+            android:dividerHeight="4px" />
+    </LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>
