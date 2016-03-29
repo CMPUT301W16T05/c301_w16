@@ -86,6 +86,9 @@ public class BidsActivity extends ChickBidActivity {
             Double amount = bid.getAmount();
             String bidder = bid.getBidderUsername();
 
+            final ChickenController chickenController = ChickBidsApplication.getChickenController();
+            final UserController userController = ChickBidsApplication.getUserController();
+
             // Check if an existing view is being reused, otherwise inflate the view
             if (convertView == null) {
                 convertView = LayoutInflater.from(getContext()).inflate(R.layout.bid, parent, false);
@@ -103,7 +106,6 @@ public class BidsActivity extends ChickBidActivity {
             acceptBidImageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ChickenController chickenController = ChickBidsApplication.getChickenController();
                     try {
                         chickenController.acceptBidForChicken(bid);
                     } catch (ChickenException e) {
@@ -116,7 +118,6 @@ public class BidsActivity extends ChickBidActivity {
             declineBidImageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ChickenController chickenController = ChickBidsApplication.getChickenController();
                     try {
                         chickenController.rejectBidForChicken(bid);
                     } catch (ChickenException e) {
@@ -125,6 +126,15 @@ public class BidsActivity extends ChickBidActivity {
                     refreshView();
                 }
             });
+
+            //hide accept/decline buttons if not owner
+            if (chickenController.getCurrentChicken().getOwnerUsername().equals(userController.getCurrentUser().getUsername())) {
+                acceptBidImageView.setVisibility(View.VISIBLE);
+                declineBidImageView.setVisibility(View.VISIBLE);
+            } else {
+                acceptBidImageView.setVisibility(View.GONE);
+                declineBidImageView.setVisibility(View.GONE);
+            }
 
             // Return the completed view to render on screen
             return convertView;

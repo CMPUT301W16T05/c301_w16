@@ -274,6 +274,7 @@ public class ChickenController {
         bid = searchController.addBidToDatabase(bid);
         User current_user = ChickBidsApplication.getUserController().getCurrentUser();
         chicken.getBids().add(bid);
+        chicken.setChickenStatus(Chicken.ChickenStatus.BIDDED);
         updateChickenForMe(chicken);
         current_user.addChicken(chicken);
         addNotificationForBid(bid);
