@@ -49,4 +49,8 @@ public class Notification extends GenericModel<GenericView> {
     public static String notificationMessageBuilderForBid(Bid bid) {
         return "Bid put on chicken #" + bid.getChickenId() + " by " + bid.getBidderUsername();
     }
+
+    public static String notificationMessageBuilderForMailbox(String username, String message) {
+        return username + ": " + message;
+    }
 }
