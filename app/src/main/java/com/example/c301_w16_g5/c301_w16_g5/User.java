@@ -38,6 +38,18 @@ public class User extends GenericModel<GenericView> implements Parcelable {
     private ArrayList<Notification> myNotifications;
     private ArrayList<Letter> myLetters;
 
+    public User() {
+        this.username = "";
+        this.firstName = "";
+        this.lastName = "";
+        this.email = "";
+        this.phoneNumber = "";
+        this.chickenExperience = "";
+        this.myChickens = new ArrayList<Chicken>();
+        this.myNotifications = new ArrayList<Notification>();
+        this.myLetters = new ArrayList<Letter>();
+    }
+
     /**
      * For new users.
      * @param username

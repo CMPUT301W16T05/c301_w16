@@ -42,6 +42,15 @@ import io.searchbox.core.SearchResult;
  * @see     SearchController
  */
 public class ElasticSearchBackend {
+    public static final String ELASTIC_SEARCH_URI = "http://cmput301.softwareprocess.es:8080";
+    public static final String TEAM_INDEX = "c301w16t05";
+    public static final String CHICKEN_TYPE = "chicken";
+    public static final String USER_TYPE = "user";
+    public static final String BID_TYPE = "bid";
+    public static final String NOTIFICATION_TYPE = "notification";
+    public static final String LOCATION_TYPE = "location";
+    public static final String LETTER_TYPE = "letter";
+
     private static JestDroidClient client;
 
     public static class SearchChickenTask extends AsyncTask<String, Void, ArrayList<Chicken>> {
@@ -52,7 +61,7 @@ public class ElasticSearchBackend {
             ArrayList<Chicken> chickens = new ArrayList<Chicken>();
 
             String query = "{ \"query\" : { \"query_string\" : { \"query\" : \"" + keyword + "\" } } }";
-            Search search = new Search.Builder(query).addIndex("c301w16t05").addType("chicken").build();
+            Search search = new Search.Builder(query).addIndex(TEAM_INDEX).addType(CHICKEN_TYPE).build();
 
             try {
                 SearchResult result = client.execute(search);
@@ -80,7 +89,7 @@ public class ElasticSearchBackend {
             Chicken chicken = chickens[0];
             Map<String, String> source = formatChicken(chicken);
 
-            Index index = new Index.Builder(source).index("c301w16t05").type("chicken").build();
+            Index index = new Index.Builder(source).index(TEAM_INDEX).type(CHICKEN_TYPE).build();
             try {
                 DocumentResult result = client.execute(index);
                 if (result.isSucceeded()) {
@@ -103,7 +112,7 @@ public class ElasticSearchBackend {
             Chicken chicken = chickens[0];
             Map<String, String> source = formatChicken(chicken);
 
-            Index index = new Index.Builder(source).index("c301w16t05").type("chicken")
+            Index index = new Index.Builder(source).index(TEAM_INDEX).type(CHICKEN_TYPE)
                     .id(chicken.getId()).build();
             try {
                 DocumentResult result = client.execute(index);
@@ -127,7 +136,7 @@ public class ElasticSearchBackend {
             String id = ids[0];
             Chicken chicken = new Chicken();
 
-            Get get = new Get.Builder("c301w16t05", id).type("chicken").build();
+            Get get = new Get.Builder(TEAM_INDEX, id).type(CHICKEN_TYPE).build();
             try {
                 JestResult result = client.execute(get);
                 if (result.isSucceeded()) {
@@ -150,7 +159,7 @@ public class ElasticSearchBackend {
             verifyClient();
             String id = ids[0];
 
-            Delete delete = new Delete.Builder(id).index("c301w16t05").type("chicken").build();
+            Delete delete = new Delete.Builder(id).index(TEAM_INDEX).type(CHICKEN_TYPE).build();
             try {
                 client.execute(delete);
             } catch (IOException e) {
@@ -168,7 +177,7 @@ public class ElasticSearchBackend {
             User user = users[0];
             Map<String, String> source = formatUser(user);
 
-            Index index = new Index.Builder(source).index("c301w16t05").type("user")
+            Index index = new Index.Builder(source).index(TEAM_INDEX).type(USER_TYPE)
                     .id(user.getUsername()).build();
             try {
                 DocumentResult result = client.execute(index);
@@ -191,7 +200,7 @@ public class ElasticSearchBackend {
             String id = ids[0];
             User user = new User("a","a","a","a","a","a");
 
-            Get get = new Get.Builder("c301w16t05", id).type("user").build();
+            Get get = new Get.Builder(TEAM_INDEX, id).type(USER_TYPE).build();
             try {
                 JestResult result = client.execute(get);
                 if (result.isSucceeded()) {
@@ -215,7 +224,7 @@ public class ElasticSearchBackend {
             verifyClient();
             String username = usernames[0];
 
-            Delete delete = new Delete.Builder(username).index("c301w16t05").type("user").build();
+            Delete delete = new Delete.Builder(username).index(TEAM_INDEX).type(USER_TYPE).build();
             try {
                 client.execute(delete);
             } catch (IOException e) {
@@ -233,7 +242,7 @@ public class ElasticSearchBackend {
             Bid bid = bids[0];
             Map<String, String> source = formatBid(bid);
 
-            Index index = new Index.Builder(source).index("c301w16t05").type("bid").build();
+            Index index = new Index.Builder(source).index(TEAM_INDEX).type(BID_TYPE).build();
             try {
                 DocumentResult result = client.execute(index);
                 if (result.isSucceeded()) {
@@ -256,7 +265,7 @@ public class ElasticSearchBackend {
             Bid bid = bids[0];
             Map<String, String> source = formatBid(bid);
 
-            Index index = new Index.Builder(source).index("c301w16t05").type("bid").id(bid.getId())
+            Index index = new Index.Builder(source).index(TEAM_INDEX).type(BID_TYPE).id(bid.getId())
                     .build();
             try {
                 DocumentResult result = client.execute(index);
@@ -279,7 +288,7 @@ public class ElasticSearchBackend {
             String id = ids[0];
             Bid bid = new Bid("a","a",1.0);
 
-            Get get = new Get.Builder("c301w16t05", id).type("bid").build();
+            Get get = new Get.Builder(TEAM_INDEX, id).type(BID_TYPE).build();
             try {
                 JestResult result = client.execute(get);
                 if (result.isSucceeded()) {
@@ -302,7 +311,7 @@ public class ElasticSearchBackend {
             verifyClient();
             String id = ids[0];
 
-            Delete delete = new Delete.Builder(id).index("c301w16t05").type("bid").build();
+            Delete delete = new Delete.Builder(id).index(TEAM_INDEX).type(BID_TYPE).build();
             try {
                 client.execute(delete);
             } catch (IOException e) {
@@ -320,7 +329,7 @@ public class ElasticSearchBackend {
             Notification notification = notifications[0];
             Map<String, String> source = formatNotification(notification);
 
-            Index index = new Index.Builder(source).index("c301w16t05").type("notification").build();
+            Index index = new Index.Builder(source).index(TEAM_INDEX).type(NOTIFICATION_TYPE).build();
             try {
                 DocumentResult result = client.execute(index);
                 if (result.isSucceeded()) {
@@ -343,7 +352,7 @@ public class ElasticSearchBackend {
             Notification notification = notifications[0];
             Map<String, String> source = formatNotification(notification);
 
-            Index index = new Index.Builder(source).index("c301w16t05").type("notification")
+            Index index = new Index.Builder(source).index(TEAM_INDEX).type(NOTIFICATION_TYPE)
                     .id(notification.getId()).build();
             try {
                 DocumentResult result = client.execute(index);
@@ -366,7 +375,7 @@ public class ElasticSearchBackend {
             String id = ids[0];
             Notification notification = new Notification("a");
 
-            Get get = new Get.Builder("c301w16t05", id).type("notification").build();
+            Get get = new Get.Builder(TEAM_INDEX, id).type(NOTIFICATION_TYPE).build();
             try {
                 JestResult result = client.execute(get);
                 if (result.isSucceeded()) {
@@ -389,7 +398,7 @@ public class ElasticSearchBackend {
             verifyClient();
             String id = ids[0];
 
-            Delete delete = new Delete.Builder(id).index("c301w16t05").type("notification").build();
+            Delete delete = new Delete.Builder(id).index(TEAM_INDEX).type(NOTIFICATION_TYPE).build();
             try {
                 client.execute(delete);
             } catch (IOException e) {
@@ -407,7 +416,7 @@ public class ElasticSearchBackend {
             Location location = locations[0];
             Map<String, String> source = formatLocation(location);
 
-            Index index = new Index.Builder(source).index("c301w16t05").type("location").build();
+            Index index = new Index.Builder(source).index(TEAM_INDEX).type(LOCATION_TYPE).build();
             try {
                 DocumentResult result = client.execute(index);
                 if (result.isSucceeded()) {
@@ -430,7 +439,7 @@ public class ElasticSearchBackend {
             Location location = locations[0];
             Map<String, String> source = formatLocation(location);
 
-            Index index = new Index.Builder(source).index("c301w16t05").type("location")
+            Index index = new Index.Builder(source).index(TEAM_INDEX).type(LOCATION_TYPE)
                     .id(location.getId()).build();
             try {
                 DocumentResult result = client.execute(index);
@@ -453,7 +462,7 @@ public class ElasticSearchBackend {
             String id = ids[0];
             Location location = new Location(0.00, 0.00);
 
-            Get get = new Get.Builder("c301w16t05", id).type("location").build();
+            Get get = new Get.Builder(TEAM_INDEX, id).type(LOCATION_TYPE).build();
             try {
                 JestResult result = client.execute(get);
                 if (result.isSucceeded()) {
@@ -476,7 +485,7 @@ public class ElasticSearchBackend {
             verifyClient();
             String id = ids[0];
 
-            Delete delete = new Delete.Builder(id).index("c301w16t05").type("location").build();
+            Delete delete = new Delete.Builder(id).index(TEAM_INDEX).type(LOCATION_TYPE).build();
             try {
                 client.execute(delete);
             } catch (IOException e) {
@@ -494,7 +503,7 @@ public class ElasticSearchBackend {
             Letter letter = letters[0];
             Map<String, String> source = formatLetter(letter);
 
-            Index index = new Index.Builder(source).index("c301w16t05").type("letter").build();
+            Index index = new Index.Builder(source).index(TEAM_INDEX).type(LETTER_TYPE).build();
             try {
                 DocumentResult result = client.execute(index);
                 if (result.isSucceeded()) {
@@ -517,7 +526,7 @@ public class ElasticSearchBackend {
             Letter letter = letters[0];
             Map<String, String> source = formatLetter(letter);
 
-            Index index = new Index.Builder(source).index("c301w16t05").type("letter")
+            Index index = new Index.Builder(source).index(TEAM_INDEX).type(LETTER_TYPE)
                     .id(letter.getId()).build();
             try {
                 DocumentResult result = client.execute(index);
@@ -540,7 +549,7 @@ public class ElasticSearchBackend {
             String id = ids[0];
             Letter letter = new Letter("a","a","a");
 
-            Get get = new Get.Builder("c301w16t05", id).type("letter").build();
+            Get get = new Get.Builder(TEAM_INDEX, id).type(LETTER_TYPE).build();
             try {
                 JestResult result = client.execute(get);
                 if (result.isSucceeded()) {
@@ -563,7 +572,7 @@ public class ElasticSearchBackend {
             verifyClient();
             String id = ids[0];
 
-            Delete delete = new Delete.Builder(id).index("c301w16t05").type("letter").build();
+            Delete delete = new Delete.Builder(id).index(TEAM_INDEX).type(LETTER_TYPE).build();
             try {
                 client.execute(delete);
             } catch (IOException e) {
@@ -584,7 +593,7 @@ public class ElasticSearchBackend {
             String query = "{ \"query\" : { \"match\" : { \"toUsername\" : \"" + user.getUsername()
                     + "\" } } }";
 
-            Search search = new Search.Builder(query).addIndex("c301w16t05").addType("letter").build();
+            Search search = new Search.Builder(query).addIndex(TEAM_INDEX).addType(LETTER_TYPE).build();
 
             try {
                 SearchResult result = client.execute(search);
@@ -650,7 +659,7 @@ public class ElasticSearchBackend {
         if (!attrList[23].equals("none")) {
             String[] bids = attrList[23].split(",");
             for (String bidId : bids) {
-                Get get = new Get.Builder("c301w16t05", bidId).type("bid").build();
+                Get get = new Get.Builder(TEAM_INDEX, bidId).type(BID_TYPE).build();
                 try {
                     JestResult result = client.execute(get);
                     if (result.isSucceeded()) {
@@ -723,7 +732,7 @@ public class ElasticSearchBackend {
         if (!attrList[27].equals("none")) {
             String[] chickens = attrList[27].split(",");
             for (String chickenId : chickens) {
-                Get get = new Get.Builder("c301w16t05", chickenId).type("chicken").build();
+                Get get = new Get.Builder(TEAM_INDEX, chickenId).type(CHICKEN_TYPE).build();
                 try {
                     JestResult result = client.execute(get);
                     if (result.isSucceeded()) {
@@ -742,7 +751,7 @@ public class ElasticSearchBackend {
         if (!attrList[31].equals("none")) {
             String[] notifications = attrList[31].split(",");
             for (String notifId : notifications) {
-                Get get = new Get.Builder("c301w16t05", notifId).type("notification").build();
+                Get get = new Get.Builder(TEAM_INDEX, notifId).type(NOTIFICATION_TYPE).build();
                 try {
                     JestResult result = client.execute(get);
                     if (result.isSucceeded()) {
@@ -786,14 +795,14 @@ public class ElasticSearchBackend {
         Map<String, String> source = new LinkedHashMap<>();
 
         source.put("bidder", bid.getBidderUsername());
-        source.put("chicken", bid.getChickenId());
+        source.put(CHICKEN_TYPE, bid.getChickenId());
         source.put("amount",String.valueOf(bid.getAmount()));
         source.put("bidStatus",bid.getBidStatus().toString());
 
         if (bid.getLocation() == null) {
-            source.put("location", "none");
+            source.put(LOCATION_TYPE, "none");
         } else {
-            source.put("location", bid.getLocation().getId());
+            source.put(LOCATION_TYPE, bid.getLocation().getId());
         }
 
         return source;
@@ -806,7 +815,7 @@ public class ElasticSearchBackend {
         bid.setBidStatus(Bid.BidStatus.valueOf(attrList[15]));
 
         if (!attrList[19].equals("none")) {
-            Get get = new Get.Builder("c301w16t05", attrList[19]).type("location").build();
+            Get get = new Get.Builder(TEAM_INDEX, attrList[19]).type(LOCATION_TYPE).build();
             try {
                 JestResult result = client.execute(get);
                 if (result.isSucceeded()) {
@@ -887,7 +896,7 @@ public class ElasticSearchBackend {
 
     public static void verifyClient() {
         if (client == null) {
-            DroidClientConfig.Builder builder = new DroidClientConfig.Builder("http://cmput301.softwareprocess.es:8080");
+            DroidClientConfig.Builder builder = new DroidClientConfig.Builder(ELASTIC_SEARCH_URI);
             DroidClientConfig config = builder.build();
 
             JestClientFactory factory = new JestClientFactory();

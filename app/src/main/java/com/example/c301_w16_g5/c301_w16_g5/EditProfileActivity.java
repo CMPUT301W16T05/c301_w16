@@ -69,9 +69,11 @@ public class EditProfileActivity extends ChickBidActivity {
             // http://stackoverflow.com/questions/3438276/change-title-bar-text-in-android
             // answered by Paresh Mayani on Aug 9 '10
             // accessed by Hailey on Mar 13 '16
+            user = new User();
             getSupportActionBar().setTitle(R.string.title_activity_add_profile);
             usernameEditText.setText(intent.getStringExtra(CREATE_USER_USERNAME_EXTRA_KEY));
         } else if (activityType != null && activityType.equals(UPDATE_USER_EXTRA_KEY)) {
+            user = ChickBidsApplication.getUserController().getCurrentUser();
             fillUserInformation();
 
             // 2016-03-15 : http://stackoverflow.com/questions/6731017/how-to-make-an-edittext-uneditable-disabled
@@ -81,8 +83,6 @@ public class EditProfileActivity extends ChickBidActivity {
     }
 
     private void fillUserInformation() {
-        user = ChickBidsApplication.getUserController().getCurrentUser();
-
         usernameEditText.setText(user.getUsername());
         firstNameEditText.setText(user.getFirstName());
         lastNameEditText.setText(user.getLastName());
@@ -116,6 +116,7 @@ public class EditProfileActivity extends ChickBidActivity {
             ChickBidsApplication.getUserController().saveUser(user);
         }
 
+        Toast.makeText(getApplicationContext(), R.string.account_created_message, Toast.LENGTH_LONG).show();
         finish();
     }
 

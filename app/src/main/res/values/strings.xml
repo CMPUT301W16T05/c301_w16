@@ -34,6 +34,7 @@
     <string name="title_activity_add_chicken">Add Chicken</string>
     <string name="title_activity_add_profile">Add Profile</string>
     <string name="title_activity_user_profile">User Profile</string>
+    <string name="account_created_message">"Account created. Please click to log in."</string>
 
     <!-- Strings related to navigation bar -->
     <string name="navbar_home">Home</string>
