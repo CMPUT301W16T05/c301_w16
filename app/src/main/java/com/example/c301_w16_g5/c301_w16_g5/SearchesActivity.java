@@ -58,11 +58,15 @@ public class SearchesActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Chicken chicken = adapter.getItem(i);
                 ChickBidsApplication.getChickenController().setCurrentChicken(chicken);
-                if (ChickBidsApplication.getChickenController().getMyOwnedChickens().contains(chicken)) {
-                    startActivity(viewMyChickenIntent);
-                } else {
-                    startActivity(viewOthersChickenIntent);
+
+                for (Chicken myChicken : ChickBidsApplication.getChickenController().getMyOwnedChickens()) {
+                    if (myChicken.getId().equals(chicken.getId())) {
+                        startActivity(viewMyChickenIntent);
+                        return;
+                    }
                 }
+
+                startActivity(viewOthersChickenIntent);
             }
         });
 

@@ -16,8 +16,8 @@ import java.util.ArrayList;
  * @see     Chicken
  * @see     AddChickenActivity
  * @see     EditChickenActivity
- * @see     OwnerChickenProfileActivity
- * @see     BorrowerChickenProfileActivity
+ * @see     MyChickenDisplayProfileActivity
+ * @see     OthersChickenDisplayProfileActivity
  */
 public class ChickenController {
     private Chicken currentChicken;
