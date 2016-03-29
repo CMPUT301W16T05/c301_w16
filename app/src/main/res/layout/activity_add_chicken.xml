@@ -3,133 +3,60 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.c301_w16_g5.c301_w16_g5.AddChickenActivity">
+    android:fitsSystemWindows="true"
+    tools:context="com.example.c301_w16_g5.c301_w16_g5.EditChickenActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <include layout="@layout/navbar"/>
-
-        <!--Android add TableLayout and LinearLayout together?-->
-        <!--http://stackoverflow.com/questions/32837466/android-add-tablelayout-and-linearlayout-together-->
-        <!--Answered Sep 29 '15 at 6:54 by Phan Văn Linh-->
-        <!--Accessed by Hailey Musselman on Mar 12 2016-->
-
-        <!--Android EditText with multiple Lines automatic line break
-        source:
-        http://stackoverflow.com/questions/10313417/android-edittext-with-multiple-lines-automatic-line-break
-        answered by Aerrow on Apr 25 '12
-        accessed by Hailey on Mar 13 '16-->
-        <TableLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight = "1"
-            android:padding="16dp">
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="Name:"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentStart="true"
-                        android:textColor="@color/colorTextSecondary"/>
-                    <EditText
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:id="@+id/nameEditText"
-                        android:ems="5"
-                        android:singleLine='true'
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentStart="true"
-                        android:textColor="@color/colorTextSecondary"
-                        android:textStyle="bold"
-                        android:minEms="1"/>
-                </LinearLayout>
-            </TableRow>
-
-            <!--<TableRow-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="match_parent">-->
-                <!--<LinearLayout-->
-                    <!--android:orientation="horizontal"-->
-                    <!--android:layout_width="fill_parent"-->
-                    <!--android:layout_height="wrap_content">-->
-                    <!--<TextView-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:textAppearance="?android:attr/textAppearanceLarge"-->
-                        <!--android:text="Status:"-->
-                        <!--android:layout_alignParentEnd="true"-->
-                        <!--android:layout_alignParentStart="true"-->
-                        <!--android:textColor="@color/colorTextSecondary"/>-->
-
-                    <!--<Spinner-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:textAppearance="?android:attr/textAppearanceLarge"-->
-                        <!--android:id="@+id/statusSpinner"-->
-                        <!--android:layout_alignParentEnd="true"-->
-                        <!--android:layout_alignParentStart="true"-->
-                        <!--android:textColor="@color/colorTextSecondary"-->
-                        <!--android:textStyle="bold"-->
-                        <!--android:minEms="1" />-->
-                <!--</LinearLayout>-->
-            <!--</TableRow>-->
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="Description:"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentStart="true"
-                        android:textColor="@color/colorTextSecondary"/>
-                    <EditText
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:id="@+id/descriptionEditText"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentStart="true"
-                        android:textColor="@color/colorTextSecondary"
-                        android:textStyle="bold"
-                        android:minEms="1"/>
-                </LinearLayout>
-            </TableRow>
-
-        </TableLayout>
-
-        <Button
-            android:id="@+id/buttonSave"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/buttonSave"
-            android:textSize="16.5dp"
-            android:onClick="addChicken"
-            android:background="@color/colorAccent"
-            android:layout_marginTop="8dp"
-            android:layout_margin="16dp"
-            android:textStyle="bold"
-            android:typeface="normal"/>
+            android:orientation="vertical"
+            android:layout_weight="0">
+            <include layout="@layout/navbar"/>
 
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:maxLength="20"
+                android:singleLine="true"
+                android:id="@+id/name"
+                android:textColor="@color/colorTextSecondary"
+                android:layout_margin="16dp"
+                android:hint="@string/chicken_name_hint"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:maxLength="150"
+                android:id="@+id/description"
+                android:textColor="@color/colorTextSecondary"
+                android:layout_margin="16dp"
+                android:hint="@string/chicken_description_hint"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:gravity="center|bottom">
+            <Button
+                android:id="@+id/buttonSave"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Save"
+                android:textSize="16.5dp"
+                android:background="@color/colorAccent"
+                android:layout_margin="16dp"
+                android:textStyle="bold"
+                android:typeface="normal"
+                android:onClick="addChicken"/>
+        </LinearLayout>
     </LinearLayout>
-
-</android.support.design.widget.CoordinatorLayout >
+</android.support.design.widget.CoordinatorLayout>
