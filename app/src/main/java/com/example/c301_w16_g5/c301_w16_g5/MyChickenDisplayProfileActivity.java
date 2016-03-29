@@ -60,10 +60,11 @@ public class MyChickenDisplayProfileActivity extends ChickBidActivity {
             }
         });
 
+        final Intent viewBidsIntent = new Intent(this, BidsActivity.class);
         buttonViewBids.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO
+                startActivity(viewBidsIntent);
             }
         });
 

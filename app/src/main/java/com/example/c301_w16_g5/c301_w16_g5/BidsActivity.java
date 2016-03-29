@@ -24,7 +24,9 @@ public class BidsActivity extends ChickBidActivity {
         setContentView(R.layout.activity_bids);
         Toolbar toolbar = (Toolbar) findViewById(R.id.nav_toolbar);
         setSupportActionBar(toolbar);
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
+
+
 
 }
