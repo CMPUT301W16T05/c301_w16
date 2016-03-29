@@ -300,7 +300,7 @@ public class ChickenController {
         SearchController searchController = ChickBidsApplication.getSearchController();
         User user = searchController.getUserFromDatabase(username);
 
-        Notification notification = new Notification(Notification.notificationMessageBuilderForMailbox(username, message))
+        Notification notification = new Notification(Notification.notificationMessageBuilderForMailbox(username, message));
         notification = searchController.addNotificationToDatabase(notification);
 
         user.addNotification(notification);

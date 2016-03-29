@@ -110,13 +110,17 @@ public class EditProfileActivity extends ChickBidActivity {
             return;
         }
 
+        String message = "";
         if (activityType.equals(UPDATE_USER_EXTRA_KEY)) {
+            message = getString(R.string.account_created_message);
             ChickBidsApplication.getUserController().updateUser(user);
         } else if (activityType.equals(CREATE_USER_EXTRA_KEY)) {
+            message = getString(R.string.account_updated_message);
             ChickBidsApplication.getUserController().saveUser(user);
         }
 
-        Toast.makeText(getApplicationContext(), R.string.account_created_message, Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
+
         finish();
     }
 
