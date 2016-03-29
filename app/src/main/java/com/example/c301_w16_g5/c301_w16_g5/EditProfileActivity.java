@@ -25,6 +25,8 @@ public class EditProfileActivity extends ChickBidActivity {
     public static final String CREATE_USER_EXTRA_KEY = "create_user_username_extra_key";
     public static final String UPDATE_USER_EXTRA_KEY = "update_user_extra_key";
 
+    public static final String CREATE_USER_USERNAME_EXTRA_KEY = "create_user_username_extra_key";
+
     private EditText usernameEditText;
     private EditText firstNameEditText;
     private EditText lastNameEditText;
@@ -68,6 +70,7 @@ public class EditProfileActivity extends ChickBidActivity {
             // answered by Paresh Mayani on Aug 9 '10
             // accessed by Hailey on Mar 13 '16
             getSupportActionBar().setTitle(R.string.title_activity_add_profile);
+            usernameEditText.setText(intent.getStringExtra(CREATE_USER_USERNAME_EXTRA_KEY));
         } else if (activityType != null && activityType.equals(UPDATE_USER_EXTRA_KEY)) {
             fillUserInformation();
 
@@ -100,11 +103,10 @@ public class EditProfileActivity extends ChickBidActivity {
     }
 
     public void updateUser(View view) {
-        try {
-            getUpdatedUserInfo();
-        } catch (UserException e) {
+        if (validateUpdatedUserInfo() == true) {
+            updateUserInfo();
+        } else {
             // display error to user and don't update info
-            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -117,53 +119,68 @@ public class EditProfileActivity extends ChickBidActivity {
         finish();
     }
 
-    private void getUpdatedUserInfo() throws UserException {
+    private boolean validateUpdatedUserInfo() {
         String username = ((EditText) findViewById(R.id.usernameEditText)).getText().toString();
+        String firstName = ((EditText) findViewById(R.id.firstNameEditText)).getText().toString();
+        String lastName = ((EditText) findViewById(R.id.lastNameEditText)).getText().toString();
+        String email = ((EditText) findViewById(R.id.emailEditText)).getText().toString();
+        String phone = ((EditText) findViewById(R.id.phoneEditText)).getText().toString();
+        String experience = ((EditText) findViewById(R.id.experienceEditText)).getText().toString();
+
+        String error_message = "";
+        boolean valid = false;
 
         if (UserController.usernameInUse(username)) {
-            throw new UserException("Username already in use");
+            error_message = "Username already in use";
         }
 
-        if (UserController.validateNames(username)) {
-            user.setUsername(username);
+        if (!UserController.validateNames(username)) {
+            error_message = "Invalid username";
+        }
+
+        if (!UserController.validateNames(firstName)) {
+            error_message = "Invalid first name";
+        }
+
+        if (!UserController.validateNames(lastName)) {
+            error_message = "Invalid last name";
+        }
+
+        if (!UserController.validateEmail(email)) {
+            error_message = "Invalid email";
+        }
+
+        if (!UserController.validatePhoneNumber(phone)) {
+            error_message = "Invalid phone number";
+        }
+
+        if (!UserController.validateChickenExperience(experience)) {
+            error_message = "Invalid chicken experience description";
+        }
+
+        if (error_message.isEmpty()) {
+            valid = true;
         } else {
-            throw new UserException("Invalid username");
+            Toast.makeText(getApplicationContext(), error_message, Toast.LENGTH_SHORT).show();
         }
 
+        return valid;
+    }
+
+    private void updateUserInfo() {
+        String username = ((EditText) findViewById(R.id.usernameEditText)).getText().toString();
         String firstName = ((EditText) findViewById(R.id.firstNameEditText)).getText().toString();
-        if (UserController.validateNames(firstName)) {
-            user.setFirstName(firstName);
-        } else {
-            throw new UserException("Invalid first name");
-        }
-
         String lastName = ((EditText) findViewById(R.id.lastNameEditText)).getText().toString();
-        if (UserController.validateNames(lastName)) {
-            user.setLastName(lastName);
-        } else {
-            throw new UserException("Invalid last name");
-        }
-
         String email = ((EditText) findViewById(R.id.emailEditText)).getText().toString();
-        if (UserController.validateEmail(email)) {
-            user.setEmail(email);
-        } else {
-            throw new UserException("Invalid email");
-        }
-
         String phone = ((EditText) findViewById(R.id.phoneEditText)).getText().toString();
-        if (UserController.validatePhoneNumber(phone)) {
-            user.setPhoneNumber(phone);
-        } else {
-            throw new UserException("Invalid phone number");
-        }
-
         String experience = ((EditText) findViewById(R.id.experienceEditText)).getText().toString();
-        if (UserController.validateChickenExperience(experience)) {
-            user.setChickenExperience(experience);
-        } else {
-            throw new UserException("Invalid chicken experience description");
-        }
+
+        user.setUsername(username);
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
+        user.setEmail(email);
+        user.setPhoneNumber(phone);
+        user.setChickenExperience(experience);
     }
 
 }
