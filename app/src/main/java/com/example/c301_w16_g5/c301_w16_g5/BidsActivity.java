@@ -41,17 +41,6 @@ public class BidsActivity extends ChickBidActivity {
         super.onResume();
         ArrayList<Bid> bids = ChickBidsApplication.getChickenController().getCurrentChicken().getBids();
         adapter = new BidAdapter(this, bids);
-
-        test(); // TODO: remove
-
         listView.setAdapter(adapter);
-    }
-
-    private void test() {
-        ArrayList<Bid> bids = new ArrayList<Bid>();
-        bids.add(new Bid("sakolkartest", "0", 5.00));
-        bids.add(new Bid("sakolkartest2", "0", 25.50));
-        bids.add(new Bid("sakolkartest3", "0", 15.25));
-        adapter = new BidAdapter(this, bids);
     }
 }

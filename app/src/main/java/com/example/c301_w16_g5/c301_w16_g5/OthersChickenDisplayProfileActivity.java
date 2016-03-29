@@ -3,6 +3,7 @@ package com.example.c301_w16_g5.c301_w16_g5;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -30,8 +31,9 @@ public class OthersChickenDisplayProfileActivity extends ChickBidActivity {
     TextView status;
     TextView ownerUsername;
 
-    EditText bid;
+    EditText bidAmount;
 
+    Button buttonPlaceBid;
     Button buttonViewBids;
     Button buttonViewPhoto;
     Button buttonViewLocation;
@@ -56,11 +58,19 @@ public class OthersChickenDisplayProfileActivity extends ChickBidActivity {
         status = (TextView) findViewById(R.id.status);
         ownerUsername = (TextView) findViewById((R.id.ownerUsername));
 
-        bid = (EditText) findViewById(R.id.bid);
+        bidAmount = (EditText) findViewById(R.id.bid);
 
+        buttonPlaceBid = (Button) findViewById(R.id.buttonBid);
         buttonViewBids = (Button) findViewById(R.id.buttonViewBids);
         buttonViewPhoto = (Button) findViewById(R.id.buttonViewPhoto);
         buttonViewLocation = (Button) findViewById(R.id.buttonViewLocation);
+
+        buttonPlaceBid.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                placeBid();
+            }
+        });
 
         buttonViewPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,6 +85,25 @@ public class OthersChickenDisplayProfileActivity extends ChickBidActivity {
                 }
             }
         });
+    }
+
+    private void placeBid() {
+
+        if (currentChicken.getId() == null) {
+            Toast.makeText(getApplicationContext(), "Failed To Place Bid", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        //FIXME: should this be in views?
+        Bid bid = new Bid( ChickBidsApplication.getUserController().getCurrentUser().getUsername(),
+                currentChicken.getId(),
+                Double.parseDouble(bidAmount.getText().toString()));
+        try {
+            ChickBidsApplication.getChickenController().putBidOnChicken(bid, currentChicken);
+            Toast.makeText(getApplicationContext(), "Bid Placed", Toast.LENGTH_SHORT).show();
+        } catch (ChickenException e) {
+            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override

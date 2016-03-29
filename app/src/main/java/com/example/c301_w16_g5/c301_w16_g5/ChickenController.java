@@ -1,6 +1,7 @@
 package com.example.c301_w16_g5.c301_w16_g5;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -133,10 +134,10 @@ public class ChickenController {
     }
 
     public void updateChickenForMe(Chicken updated_chicken) {
-        User current_user = ChickBidsApplication.getUserController().getCurrentUser();
+        User user = ChickBidsApplication.getUserController().getUser(updated_chicken.getOwnerUsername());
+        user.deleteChickenForId(updated_chicken.getId());
         updated_chicken = ChickBidsApplication.getSearchController().updateChickenInDatabase(updated_chicken);
-        current_user.deleteChickenForId(updated_chicken.getId());
-        current_user.addChicken(updated_chicken);
+        user.addChicken(updated_chicken);
     }
 
     // Bids
@@ -273,7 +274,8 @@ public class ChickenController {
         bid = searchController.addBidToDatabase(bid);
         User current_user = ChickBidsApplication.getUserController().getCurrentUser();
         chicken.getBids().add(bid);
-        current_user.addChicken(chicken);
+        updateChickenForMe(chicken);
+        //current_user.addChicken(chicken);
         addNotificationForBid(bid);
     }
 
