@@ -93,11 +93,13 @@ public class BidsActivity extends ChickBidActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        ChickenController chickenController = ChickBidsApplication.getChickenController();
+
         if (requestCode == LAT_LON_REQUEST) {
             if (resultCode == LocationActivity.LAT_LON_SUCCESS_CODE) {
                 LatLng latLng = data.getExtras().getParcelable(LocationActivity.LAT_LON_KEY);
                 Location location = new Location(latLng.latitude, latLng.longitude);
-                accepted_bid.setLocation(location);
+                chickenController.addLocationForBid(accepted_bid, location);
                 try {
                     ChickBidsApplication.getChickenController().acceptBidForChicken(accepted_bid);
                 } catch (ChickenException e) {

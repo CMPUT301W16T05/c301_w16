@@ -151,6 +151,11 @@ public class ChickenController {
 
     public void removeChickenForMe(Chicken chicken){
         User user = ChickBidsApplication.getUserController().getCurrentUser();
+
+        for (Bid b : chicken.getBids()) {
+            
+        }
+
         user.deleteChickenForId(chicken.getId());
         ChickBidsApplication.getSearchController().removeChickenFromDatabase(chicken.getId());
     }
@@ -389,6 +394,15 @@ public class ChickenController {
         Toast toast = Toast.makeText(context, R.string.pending_notifications, Toast.LENGTH_LONG);
         if (userHasNotifications())
             toast.show();
+    }
+
+    // Location
+    public void addLocationForBid(Bid bid, Location location) {
+        SearchController searchController = ChickBidsApplication.getSearchController();
+
+        location = searchController.addLocationToDatabase(location);
+        bid.setLocation(location);
+        searchController.updateBidInDatabase(bid);
     }
 
     // Input Validation
