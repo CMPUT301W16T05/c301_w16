@@ -112,10 +112,10 @@ public class EditProfileActivity extends ChickBidActivity {
 
         String message = "";
         if (activityType.equals(UPDATE_USER_EXTRA_KEY)) {
-            message = getString(R.string.account_created_message);
+            message = getString(R.string.account_updated_message);
             ChickBidsApplication.getUserController().updateUser(user);
         } else if (activityType.equals(CREATE_USER_EXTRA_KEY)) {
-            message = getString(R.string.account_updated_message);
+            message = getString(R.string.account_created_message);
             ChickBidsApplication.getUserController().saveUser(user);
         }
 
