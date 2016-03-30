@@ -20,6 +20,9 @@
     <string name="phone_hint">780-666-8888</string>
     <string name="chicken_experience_hint">experience</string>
 
+    <string name="chicken_name_hint">Chicken\'s name</string>
+    <string name="chicken_description_hint">Description of chicken</string>
+
     <string name="title_activity_main_screen">Home</string>
     <string name="title_activity_item_views">Chickens</string>
     <string name="action_settings">Settings</string>
@@ -35,6 +38,7 @@
     <string name="title_activity_add_profile">Add Profile</string>
     <string name="title_activity_user_profile">User Profile</string>
     <string name="account_created_message">"Account created. Please click to log in."</string>
+    <string name="account_updated_message">"Account has been updated."</string>
 
     <!-- Strings related to navigation bar -->
     <string name="navbar_home">Home</string>

@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
@@ -33,7 +32,7 @@ public class EditChickenActivity extends ChickBidActivity {
     EditText description;
 
     ImageView imageToUpload;
-    Button bUploadImage, saveButton;
+    Button buttonUploadImage, buttonSave;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,27 +44,26 @@ public class EditChickenActivity extends ChickBidActivity {
         // show back arrow at top left
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        name = (TextView) findViewById(R.id.editChicken_etName);
-        status = (TextView) findViewById(R.id.editChicken_etStatus);
-        description = (EditText) findViewById(R.id.editChicken_etDescription);
+        name = (TextView) findViewById(R.id.name);
+        status = (TextView) findViewById(R.id.status);
+        description = (EditText) findViewById(R.id.description);
 
-        imageToUpload = (ImageView) findViewById(R.id.editChicken_imageToUpload);
-        bUploadImage = (Button) findViewById(R.id.editChicken_bUploadImage);
-        saveButton = (Button) findViewById(R.id.editChicken_saveButton);
+        imageToUpload = (ImageView) findViewById(R.id.imageChicken);
+        buttonUploadImage = (Button) findViewById(R.id.buttonUploadImage);
+        buttonSave = (Button) findViewById(R.id.buttonSave);
 
-        bUploadImage.setOnClickListener(new View.OnClickListener() {
+        buttonUploadImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 launchGalleryPick();
             }
         });
 
-        saveButton.setOnClickListener(new View.OnClickListener(){
+        buttonSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 saveTextFields();
-                // TODO: uncomment once updateChickenForMe works
-//                ChickBidsApplication.getChickenController().updateChickenForMe(currentChicken);
+                ChickBidsApplication.getChickenController().updateChickenForMe(currentChicken);
                 finish();
             }
         });
