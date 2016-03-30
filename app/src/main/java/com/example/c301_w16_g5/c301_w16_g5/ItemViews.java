@@ -127,11 +127,15 @@ public class ItemViews extends ChickBidActivity  {
             case R.id.delete:
                 Chicken chicken = adapter.getItem(info.position);
 
-                if(chicken.getOwnerUsername().equals(current_user.getUsername())){
-                    ChickBidsApplication.getChickenController().removeChickenForMe(chicken);
-                    updateForTab(tabLayout.getTabAt(tabLayout.getSelectedTabPosition()));
+                if (ChickBidsApplication.getSearchController().checkOnline()) {
+                    if (chicken.getOwnerUsername().equals(current_user.getUsername())) {
+                        ChickBidsApplication.getChickenController().removeChickenForMe(chicken);
+                        updateForTab(tabLayout.getTabAt(tabLayout.getSelectedTabPosition()));
+                    } else {
+                        Toast.makeText(this, "Cannot delete a borrowed chicken.", Toast.LENGTH_LONG).show();
+                    }
                 } else {
-                    Toast.makeText(this, "Cannot delete a borrowed chicken.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "Cannot delete a chicken offline.", Toast.LENGTH_SHORT).show();
                 }
                 return true;
         }

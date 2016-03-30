@@ -36,6 +36,7 @@ import java.util.concurrent.ExecutionException;
 public class SearchController {
     private ArrayList<Chicken> offlineChickens;
 
+    //deals with offline chickens
     public SearchController() {
         offlineChickens = new ArrayList<Chicken>();
     }
@@ -81,11 +82,15 @@ public class SearchController {
                 Chicken chicken1 = addChickenToDatabase(chicken);
                 chickens.add(chicken1);
             }
+
+            offlineChickens.clear();
+            saveOfflineChickens();
         }
 
         return chickens;
     }
 
+    //deals with search
     public ArrayList<Chicken> searchByKeyword(String keyword) {
         ArrayList<Chicken> chickens = new ArrayList<Chicken>();
 
@@ -104,6 +109,7 @@ public class SearchController {
         return chickens;
     }
 
+    //chicken methods
     public Chicken addChickenToDatabase(Chicken chicken) {
         Chicken chicken2 = null;
 
@@ -170,6 +176,7 @@ public class SearchController {
         }
     }
 
+    //user methods
     public void addUserToDatabase(User user) {
         try {
             FileOutputStream fos = ChickBidsApplication.getApp().openFileOutput(user.getUsername() + ".sav", 0);
@@ -274,6 +281,7 @@ public class SearchController {
         deleteUserTask.execute(oldUsername);
     }
 
+    //notification methods
     public Notification addNotificationToDatabase(Notification notification) {
         Notification notification2 = null;
 
@@ -335,6 +343,7 @@ public class SearchController {
         }
     }
 
+    //bid methods
     public Bid addBidToDatabase(Bid bid) {
         Bid bid2 = null;
 
@@ -396,6 +405,7 @@ public class SearchController {
         }
     }
 
+    //location methods
     public Location addLocationToDatabase(Location location) {
         Location location1 = null;
 
@@ -457,6 +467,7 @@ public class SearchController {
         }
     }
 
+    //letter methods
     public Letter addLetterToDatabase(Letter letter) {
         Letter letter2 = null;
 
@@ -537,6 +548,7 @@ public class SearchController {
         return letters;
     }
 
+    //checks if device is connected to the internet
     public boolean checkOnline() {
         //Taken from http://stackoverflow.com/questions/9570237/android-check-internet-connection
         //Answer by Seshu Vinay
