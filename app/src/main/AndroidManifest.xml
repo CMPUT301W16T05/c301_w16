@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.c301_w16_g5.c301_w16_g5">
+    package="com.example.c301_w16_g5.c301_w16_g5" >
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
@@ -10,16 +10,24 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <!--
+ The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+         Google Maps Android API v2, but are recommended.
+    -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/chicken_logo"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme" >
         <activity
             android:name=".LoginActivity"
-            android:label="@string/app_name">
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,7 +37,7 @@
         <activity
             android:name=".HomeActivity"
             android:label="@string/title_activity_main_screen"
-            android:parentActivityName=".LoginActivity">
+            android:parentActivityName=".LoginActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".LoginActivity" />
@@ -37,7 +45,7 @@
         <activity
             android:name=".ItemViews"
             android:label="@string/title_activity_item_views"
-            android:parentActivityName=".HomeActivity">
+            android:parentActivityName=".HomeActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".HomeActivity" />
@@ -45,7 +53,7 @@
         <activity
             android:name=".DisplayProfileActivity"
             android:label="@string/title_activity_profile"
-            android:parentActivityName=".HomeActivity">
+            android:parentActivityName=".HomeActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".HomeActivity" />
@@ -53,7 +61,7 @@
         <activity
             android:name=".EditProfileActivity"
             android:label="@string/title_activity_edit_profile"
-            android:parentActivityName=".DisplayProfileActivity">
+            android:parentActivityName=".DisplayProfileActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".DisplayProfileActivity" />
@@ -61,7 +69,7 @@
         <activity
             android:name=".NotificationsActivity"
             android:label="@string/title_activity_notices"
-            android:parentActivityName=".HomeActivity">
+            android:parentActivityName=".HomeActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".HomeActivity" />
@@ -69,7 +77,7 @@
         <activity
             android:name=".BidsActivity"
             android:label="@string/title_activity_bids"
-            android:parentActivityName=".MyChickenDisplayProfileActivity">
+            android:parentActivityName=".MyChickenDisplayProfileActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MyChickenDisplayProfileActivity" />
@@ -77,7 +85,7 @@
         <activity
             android:name=".AddChickenActivity"
             android:label="@string/title_activity_add_chicken"
-            android:parentActivityName=".ItemViews">
+            android:parentActivityName=".ItemViews" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ItemViews" />
@@ -85,7 +93,7 @@
         <activity
             android:name=".SearchesActivity"
             android:label="@string/title_activity_searches"
-            android:launchMode="singleTop">
+            android:launchMode="singleTop" >
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
@@ -97,23 +105,38 @@
         <activity
             android:name=".MyChickenDisplayProfileActivity"
             android:label="@string/title_activity_chicken_profile"
-            android:parentActivityName=".ItemViews">
+            android:parentActivityName=".ItemViews" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ItemViews" />
         </activity>
         <activity
             android:name=".OthersChickenDisplayProfileActivity"
-            android:label="@string/title_activity_chicken_profile"></activity>
+            android:label="@string/title_activity_chicken_profile" />
         <activity
             android:name=".EditChickenActivity"
             android:label="@string/title_activity_edit_chicken"
-            android:parentActivityName=".MyChickenDisplayProfileActivity">
+            android:parentActivityName=".MyChickenDisplayProfileActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MyChickenDisplayProfileActivity" />
         </activity>
-        <activity android:name=".ViewPhotoActivity"></activity>
+        <activity android:name=".ViewPhotoActivity" />
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity
+            android:name=".LocationActivity"
+            android:label="@string/title_activity_location" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.c301_w16_g5.c301_w16_g5.BidsActivity" />
+        </activity>
     </application>
 
 </manifest>

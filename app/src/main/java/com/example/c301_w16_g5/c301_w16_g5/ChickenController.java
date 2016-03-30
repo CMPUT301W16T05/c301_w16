@@ -215,6 +215,7 @@ public class ChickenController {
         chicken.getBids().clear();
         chicken.getBids().add(bid);
         chicken.setChickenStatus(Chicken.ChickenStatus.BORROWED);
+        chicken.setBorrowerUsername(bid.getBidderUsername());
         chicken = searchController.updateChickenInDatabase(chicken);
 
         userController.updateUser(userController.getCurrentUser());

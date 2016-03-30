@@ -125,6 +125,18 @@
                 android:textStyle="bold"
                 android:typeface="normal"/>
             <Button
+                android:id="@+id/buttonReturn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Return"
+                android:textSize="16.5dp"
+                android:background="@color/colorAccent"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:textStyle="bold"
+                android:typeface="normal"
+                android:visibility="gone"/>
+            <Button
                 android:id="@+id/buttonViewPhoto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
