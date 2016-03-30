@@ -5,13 +5,19 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v7.widget.Toolbar;
+import android.view.ContextMenu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 
 import java.util.ArrayList;
+
 
 /**
  * Displays tab-headed lists of various sets of chickens (owned, bidded, lent,
@@ -75,26 +81,51 @@ public class ItemViews extends ChickBidActivity  {
 
         tabLayout.setOnTabSelectedListener(new ItemTabListener());
 
-        final Intent viewChickenIntent = new Intent(this, ChickenProfileActivity.class);
+        registerForContextMenu(listView);
+
         // Mar 20, 2016 - http://stackoverflow.com/questions/9097723/adding-an-onclicklistener-to-listview-android
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Chicken chicken = (Chicken) listView.getItemAtPosition(position);
-                viewChickenIntent.putExtra("selectedChicken", chicken);
-                startActivity(viewChickenIntent);
+                launchViewChicken(chicken);
             }
         });
 
-        final Intent addChickenIntent = new Intent(this, AddChickenActivity.class);
         updateForTab(tab_possession);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.add_chicken_fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(addChickenIntent);
+                launchAddChicken();
             }
         });
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.item_delete, menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        switch(item.getItemId()){
+            case R.id.delete:
+                Chicken chicken = adapter.getItem(info.position);
+                if(chicken.getOwnerUsername().equals(ChickBidsApplication.getUserController().getCurrentUser().getUsername())){
+                    ChickBidsApplication.getChickenController().removeChickenForMe(chicken);
+                    adapter.remove(chicken);
+                    updateForTab(tabLayout.getTabAt(tabLayout.getSelectedTabPosition()));
+                } else {
+                    Toast.makeText(this, "Cannot delete a borrowed chicken.",
+                            Toast.LENGTH_LONG).show();
+                }
+                return true;
+        }
+        return true;
     }
 
     @Override
@@ -161,5 +192,20 @@ public class ItemViews extends ChickBidActivity  {
         @Override
         public void onTabReselected(TabLayout.Tab tab) {
         }
+    }
+
+    private void deleteChicken(){
+
+    }
+
+    private void launchAddChicken(){
+        Intent addChickenIntent = new Intent(this, AddChickenActivity.class);
+        startActivity(addChickenIntent);
+    }
+
+    private void launchViewChicken(Chicken chicken){
+        Intent viewChickenIntent = new Intent(this, ChickenProfileActivity.class);
+        viewChickenIntent.putExtra("selectedChicken", chicken);
+        startActivity(viewChickenIntent);
     }
 }

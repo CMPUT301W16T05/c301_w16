@@ -33,6 +33,9 @@
     <string name="navbar_home">Home</string>
     <string name="navbar_notifications">Notifications</string>
 
+    <!-- String related to context menus -->
+    <string name="contextmenu_delete">Delete</string>
+
     <!-- Strings related to buttons -->
     <string name="profile">Profile</string>
     <string name="Search">Search</string>

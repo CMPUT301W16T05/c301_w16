@@ -129,6 +129,10 @@ public class ChickenController {
         current_user.addChicken(updated_chicken);
     }
 
+    public void removeChickenForMe(Chicken chicken){
+        ChickBidsApplication.getSearchController().removeChickenFromDatabase(chicken.getId());
+    }
+
     // Bids
     public ArrayList<Bid> getAllActiveBidsForChicken(Chicken chicken) {
         ArrayList<Bid> bids = chicken.getBids();
