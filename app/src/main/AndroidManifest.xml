@@ -21,6 +21,7 @@
 
     <application
         android:allowBackup="true"
+        android:name="com.example.c301_w16_g5.c301_w16_g5.ChickBidsApplication"
         android:icon="@mipmap/chicken_logo"
         android:label="@string/app_name"
         android:supportsRtl="true"

@@ -1,6 +1,7 @@
 package com.example.c301_w16_g5.c301_w16_g5;
 
 import android.app.Application;
+import android.os.Bundle;
 
 /**
  * <code>ChickBidsApplication</code> is the primary application class.  It
@@ -16,6 +17,18 @@ public class ChickBidsApplication extends Application {
     transient private static ChickenController chickenController = null;
     transient private static SearchController searchController = null;
     transient private static UserController userController = null;
+    private static ChickBidsApplication app;
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        app = this;
+
+    }
+
+    public static ChickBidsApplication getApp() {
+        return app;
+    }
 
     public static ChickenController getChickenController() {
         if (chickenController == null) {

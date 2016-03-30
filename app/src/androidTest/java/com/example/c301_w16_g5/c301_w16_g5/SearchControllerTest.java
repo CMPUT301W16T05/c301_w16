@@ -80,6 +80,40 @@ public class SearchControllerTest extends ActivityInstrumentationTestCase2 {
         User user2 = sc.getUserFromDatabase("alex");
         assertEquals(user2.getLetters().get(0).getMessage(), "Hello");
     }
+
+    public void testGetUserOffline() {
+        SearchController sc = ChickBidsApplication.getSearchController();
+        User user = new User("test3", "test", "test", "test@test.com", "5555555555", "Lots");
+
+        sc.addUserToDatabase(user);
+        User user1 = sc.getUserFromDatabase("test3");
+
+        assertEquals(user.getUsername(), user1.getUsername());
+        assertEquals(user.getFirstName(), user1.getFirstName());
+        assertEquals(user.getLastName(), user1.getLastName());
+        assertEquals(user.getEmail(), user1.getEmail());
+        assertEquals(user.getPhoneNumber(), user1.getPhoneNumber());
+        assertEquals(user.getChickenExperience(), user1.getChickenExperience());
+    }
+
+    public void testUpdateUserOffline() {
+        SearchController sc = ChickBidsApplication.getSearchController();
+        User user = new User("test3", "test", "test", "test@test.com", "5555555555", "Lots");
+
+        sc.addUserToDatabase(user);
+        user.setFirstName("t");
+        user.setLastName("t");
+        user.setPhoneNumber("66666666666");
+        sc.updateUserInDatabase(user);
+        User user1 = sc.getUserFromDatabase("test3");
+
+        assertEquals(user.getUsername(), user1.getUsername());
+        assertEquals(user.getFirstName(), user1.getFirstName());
+        assertEquals(user.getLastName(), user1.getLastName());
+        assertEquals(user.getEmail(), user1.getEmail());
+        assertEquals(user.getPhoneNumber(), user1.getPhoneNumber());
+        assertEquals(user.getChickenExperience(), user1.getChickenExperience());
+    }
 /*
     // US 04.01.01
     public void testSearchByKeywords() {

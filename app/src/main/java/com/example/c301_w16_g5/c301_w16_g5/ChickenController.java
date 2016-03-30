@@ -140,6 +140,15 @@ public class ChickenController {
         user.addChicken(updated_chicken);
     }
 
+    public void pushOfflineChickens() {
+        User user = ChickBidsApplication.getUserController().getCurrentUser();
+        ArrayList<Chicken> chickens = ChickBidsApplication.getSearchController().pushOfflineChickensToDatabase();
+
+        for (Chicken chicken : chickens) {
+            user.addChicken(chicken);
+        }
+    }
+
     // Bids
     public ArrayList<Bid> getAllActiveBidsForChicken(Chicken chicken) {
         ArrayList<Bid> bids = chicken.getBids();

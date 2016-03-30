@@ -38,6 +38,8 @@ public class HomeActivity extends ChickBidActivity {
         final Intent chickensIntent = new Intent(this, ItemViews.class);
         final Intent searchIntent = new Intent(this, SearchesActivity.class);
 
+        ChickBidsApplication.getChickenController().pushOfflineChickens();
+
         profileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
