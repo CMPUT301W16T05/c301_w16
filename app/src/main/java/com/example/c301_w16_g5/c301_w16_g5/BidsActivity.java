@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.model.LatLng;
 
@@ -85,12 +86,8 @@ public class BidsActivity extends ChickBidActivity {
         accepted_bid = bid;
 
         ChickenController chickenController = ChickBidsApplication.getChickenController();
-        try {
-            chickenController.acceptBidForChicken(bid);
-            startActivityForResult(new Intent(this, LocationActivity.class), LAT_LON_REQUEST);
-        } catch (ChickenException e) {
-            e.printStackTrace();
-        }
+        startActivityForResult(new Intent(this, LocationActivity.class), LAT_LON_REQUEST);
+
         refreshView();
     }
 
@@ -101,7 +98,11 @@ public class BidsActivity extends ChickBidActivity {
                 LatLng latLng = data.getExtras().getParcelable(LocationActivity.LAT_LON_KEY);
                 Location location = new Location(latLng.latitude, latLng.longitude);
                 accepted_bid.setLocation(location);
-                ChickBidsApplication.getChickenController().updateBidForMyChicken(accepted_bid);
+                try {
+                    ChickBidsApplication.getChickenController().acceptBidForChicken(accepted_bid);
+                } catch (ChickenException e) {
+                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                }
             }
         }
     }

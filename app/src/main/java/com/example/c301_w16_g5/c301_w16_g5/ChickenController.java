@@ -211,7 +211,10 @@ public class ChickenController {
         SearchController searchController = ChickBidsApplication.getSearchController();
         UserController userController = ChickBidsApplication.getUserController();
 
+        User current_user = userController.getCurrentUser();
+
         Chicken chicken = getChickenForBidForCurrentUser(bid);
+        current_user.deleteChickenForId(chicken.getId());
 
         if (!userController.getCurrentUser().getUsername().equals(chicken.getOwnerUsername())) {
             throw new ChickenException("Cannot accept bid if not the owner");
@@ -227,11 +230,14 @@ public class ChickenController {
                 searchController.updateUserInDatabase(user);
             }
         }
+
+        bid = searchController.updateBidInDatabase(bid);
         chicken.getBids().clear();
         chicken.addBid(bid);
         chicken.setChickenStatus(Chicken.ChickenStatus.BORROWED);
         chicken.setBorrowerUsername(bid.getBidderUsername());
         chicken = searchController.updateChickenInDatabase(chicken);
+        current_user.addChicken(chicken);
 
         userController.updateUser(userController.getCurrentUser());
     }
