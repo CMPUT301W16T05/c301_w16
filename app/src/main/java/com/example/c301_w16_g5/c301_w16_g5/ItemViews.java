@@ -5,13 +5,19 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v7.widget.Toolbar;
+import android.view.ContextMenu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 
 import java.util.ArrayList;
+
 
 /**
  * Displays tab-headed lists of various sets of chickens (owned, bidded, lent,
@@ -77,6 +83,9 @@ public class ItemViews extends ChickBidActivity  {
 
         final Intent viewMyChickenIntent = new Intent(this, MyChickenDisplayProfileActivity.class);
         final Intent viewOthersChickenIntent = new Intent(this, OthersChickenDisplayProfileActivity.class);
+
+        registerForContextMenu(listView);
+
         // Mar 20, 2016 - http://stackoverflow.com/questions/9097723/adding-an-onclicklistener-to-listview-android
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -84,32 +93,49 @@ public class ItemViews extends ChickBidActivity  {
                 Chicken chicken = (Chicken) listView.getItemAtPosition(position);
                 ChickBidsApplication.getChickenController().setCurrentChicken(chicken);
 
-                for(Chicken myChicken : ChickBidsApplication.getChickenController().getMyOwnedChickens()) {
-                    if (myChicken.getId().equals(chicken.getId())) {
-                        startActivity(viewMyChickenIntent);
-                        return;
-                    }
+                if (ChickBidsApplication.getChickenController().getMyOwnedChickens().contains(chicken)) {
+                    startActivity(viewMyChickenIntent);
+                } else {
+                    startActivity(viewOthersChickenIntent);
                 }
-
-                startActivity(viewOthersChickenIntent);
-//
-//                if (ChickBidsApplication.getChickenController().getMyOwnedChickens().contains(chicken)) {
-//                    startActivity(viewMyChickenIntent);
-//                } else {
-//                    startActivity(viewOthersChickenIntent);
-//                }
             }
         });
 
-        final Intent addChickenIntent = new Intent(this, AddChickenActivity.class);
         updateForTab(tab_possession);
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.add_chicken_fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(addChickenIntent);
+                launchAddChicken();
             }
         });
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.item_delete, menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        User current_user = ChickBidsApplication.getUserController().getCurrentUser();
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        switch(item.getItemId()){
+            case R.id.delete:
+                Chicken chicken = adapter.getItem(info.position);
+
+                if(chicken.getOwnerUsername().equals(current_user.getUsername())){
+                    ChickBidsApplication.getChickenController().removeChickenForMe(chicken);
+                    updateForTab(tabLayout.getTabAt(tabLayout.getSelectedTabPosition()));
+                } else {
+                    Toast.makeText(this, "Cannot delete a borrowed chicken.", Toast.LENGTH_LONG).show();
+                }
+                return true;
+        }
+        return true;
     }
 
     @Override
@@ -176,5 +202,10 @@ public class ItemViews extends ChickBidActivity  {
         @Override
         public void onTabReselected(TabLayout.Tab tab) {
         }
+    }
+
+    private void launchAddChicken(){
+        Intent addChickenIntent = new Intent(this, AddChickenActivity.class);
+        startActivity(addChickenIntent);
     }
 }

@@ -50,7 +50,7 @@ public class Notification extends GenericModel<GenericView> {
         return "Bid put on chicken " + ChickBidsApplication.getSearchController().getChickenFromDatabase(bid.getChickenId()).getName() + " by " + bid.getBidderUsername();
     }
 
-    public static String notificationMessageBuilderForMailbox(String username, String message) {
-        return username + ": " + message;
+    public static String notificationMessageBuilderForMailbox(String sender, String message) {
+        return sender + ": " + message;
     }
 }

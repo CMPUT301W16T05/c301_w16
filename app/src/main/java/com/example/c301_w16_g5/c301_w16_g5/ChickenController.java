@@ -149,6 +149,12 @@ public class ChickenController {
         }
     }
 
+    public void removeChickenForMe(Chicken chicken){
+        User user = ChickBidsApplication.getUserController().getCurrentUser();
+        user.deleteChickenForId(chicken.getId());
+        ChickBidsApplication.getSearchController().removeChickenFromDatabase(chicken.getId());
+    }
+
     // Bids
     public ArrayList<Bid> getAllActiveBidsForChicken(Chicken chicken) {
         ArrayList<Bid> bids = chicken.getBids();
@@ -290,6 +296,17 @@ public class ChickenController {
         addNotificationForBid(bid);
     }
 
+    public void updateBidForMyChicken(Bid bid) {
+        SearchController searchController = ChickBidsApplication.getSearchController();
+        Chicken chicken;
+        try {
+            chicken = getChickenForBidForCurrentUser(bid);
+        } catch (ChickenException e) {
+        }
+        //TODO: DO STUFF
+        searchController.updateBidInDatabase(bid);
+    }
+
     public void returnChickenToOwner(Chicken chicken) {
         SearchController searchController = ChickBidsApplication.getSearchController();
         UserController userController = ChickBidsApplication.getUserController();
@@ -308,13 +325,14 @@ public class ChickenController {
     // Notifications
     public void addNotification(String username, String message) {
         SearchController searchController = ChickBidsApplication.getSearchController();
+        User current_user = ChickBidsApplication.getUserController().getCurrentUser();
         User user = searchController.getUserFromDatabase(username);
 
-        Notification notification = new Notification(Notification.notificationMessageBuilderForMailbox(username, message));
+        Notification notification = new Notification(Notification.notificationMessageBuilderForMailbox(current_user.getUsername(), message));
         notification = searchController.addNotificationToDatabase(notification);
 
         user.addNotification(notification);
-        ChickBidsApplication.getUserController().updateUser(user);
+        searchController.updateUserInDatabase(user);
     }
 
     public void addNotificationForBid(Bid bid) {

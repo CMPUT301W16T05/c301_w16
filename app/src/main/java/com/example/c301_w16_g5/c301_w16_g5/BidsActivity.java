@@ -17,6 +17,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -32,8 +34,12 @@ import java.util.Comparator;
  */
 public class BidsActivity extends ChickBidActivity {
 
+    public static int LAT_LON_REQUEST = 5732;
+
     private BidAdapter adapter;
     private ListView listView;
+
+    private Bid accepted_bid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,14 +82,28 @@ public class BidsActivity extends ChickBidActivity {
     }
 
     private void acceptBid(Bid bid) {
+        accepted_bid = bid;
+
         ChickenController chickenController = ChickBidsApplication.getChickenController();
         try {
             chickenController.acceptBidForChicken(bid);
-            startActivity(new Intent(this, LocationActivity.class));
+            startActivityForResult(new Intent(this, LocationActivity.class), LAT_LON_REQUEST);
         } catch (ChickenException e) {
             e.printStackTrace();
         }
         refreshView();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == LAT_LON_REQUEST) {
+            if (resultCode == LocationActivity.LAT_LON_SUCCESS_CODE) {
+                LatLng latLng = data.getExtras().getParcelable(LocationActivity.LAT_LON_KEY);
+                Location location = new Location(latLng.latitude, latLng.longitude);
+                accepted_bid.setLocation(location);
+                ChickBidsApplication.getChickenController().updateBidForMyChicken(accepted_bid);
+            }
+        }
     }
 
     private class BidAdapter extends ArrayAdapter<Bid> {
