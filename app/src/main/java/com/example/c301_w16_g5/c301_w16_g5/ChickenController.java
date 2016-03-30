@@ -287,6 +287,17 @@ public class ChickenController {
         addNotificationForBid(bid);
     }
 
+    public void updateBidForMyChicken(Bid bid) {
+        SearchController searchController = ChickBidsApplication.getSearchController();
+        Chicken chicken;
+        try {
+            chicken = getChickenForBidForCurrentUser(bid);
+        } catch (ChickenException e) {
+        }
+        //TODO: DO STUFF
+        searchController.updateBidInDatabase(bid);
+    }
+
     public void returnChickenToOwner(Chicken chicken) {
         SearchController searchController = ChickBidsApplication.getSearchController();
         UserController userController = ChickBidsApplication.getUserController();

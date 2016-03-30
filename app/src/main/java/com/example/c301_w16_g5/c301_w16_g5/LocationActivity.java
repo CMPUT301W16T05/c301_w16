@@ -12,6 +12,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class LocationActivity extends FragmentActivity {
+    public static int LAT_LON_SUCCESS_CODE = 23451;
+    public static String LAT_LON_KEY = "lat_lon_key";
 
     private GoogleMap mMap; // Might be null if Google Play services APK is not available.
 
