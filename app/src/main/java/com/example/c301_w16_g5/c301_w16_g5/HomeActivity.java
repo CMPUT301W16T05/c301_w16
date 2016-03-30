@@ -6,6 +6,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 /**
  * The main screen, from which the user can access their profile or chickens,
@@ -55,7 +56,13 @@ public class HomeActivity extends ChickBidActivity {
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(searchIntent);
+                if (ChickBidsApplication.getSearchController().checkOnline()) {
+                    startActivity(searchIntent);
+                } else {
+                    Toast.makeText(getApplicationContext(),
+                            "Cannot search offline.",
+                            Toast.LENGTH_SHORT).show();
+                }
             }
         });
         logoutButton.setOnClickListener(new View.OnClickListener() {

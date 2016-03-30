@@ -81,6 +81,9 @@ public class SearchController {
                 Chicken chicken1 = addChickenToDatabase(chicken);
                 chickens.add(chicken1);
             }
+
+            offlineChickens.clear();
+            saveOfflineChickens();
         }
 
         return chickens;

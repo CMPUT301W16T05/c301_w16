@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -49,7 +50,13 @@ public class NotificationsActivity extends ChickBidActivity {
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(sendMessageIntent);
+                if (ChickBidsApplication.getSearchController().checkOnline()) {
+                    startActivity(sendMessageIntent);
+                } else {
+                    Toast.makeText(getApplicationContext(),
+                            "Cannot send message offline.",
+                            Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

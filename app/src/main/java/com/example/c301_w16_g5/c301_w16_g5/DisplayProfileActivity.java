@@ -6,6 +6,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * <code>DisplayProfileActivity</code> provides a view of a user's profile information.
@@ -55,7 +56,13 @@ public class DisplayProfileActivity extends ChickBidActivity {
             @Override
             public void onClick(View view) {
 //                startActivityForResult(editProfileIntent, EDIT_PROFILE_REQUEST);
-                startActivity(editProfileIntent);
+                if (ChickBidsApplication.getSearchController().checkOnline()) {
+                    startActivity(editProfileIntent);
+                } else {
+                    Toast.makeText(getApplicationContext(),
+                            "Cannot edit profile offline.",
+                            Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

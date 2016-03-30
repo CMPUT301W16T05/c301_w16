@@ -70,19 +70,37 @@ public class OthersChickenDisplayProfileActivity extends ChickBidActivity {
         buttonPlaceBid.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                placeBid();
+                if (ChickBidsApplication.getSearchController().checkOnline()) {
+                    placeBid();
+                } else {
+                    Toast.makeText(getApplicationContext(),
+                            "Cannot place bid offline.",
+                            Toast.LENGTH_SHORT).show();
+                }
             }
         });
         buttonViewBids.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                launchViewBids();
+                if (ChickBidsApplication.getSearchController().checkOnline()) {
+                    launchViewBids();
+                } else {
+                    Toast.makeText(getApplicationContext(),
+                            "Cannot view bids offline.",
+                            Toast.LENGTH_SHORT).show();
+                }
             }
         });
         buttonReturn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                returnChicken();
+                if (ChickBidsApplication.getSearchController().checkOnline()) {
+                    returnChicken();
+                } else {
+                    Toast.makeText(getApplicationContext(),
+                            "Cannot return chicken offline.",
+                            Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
