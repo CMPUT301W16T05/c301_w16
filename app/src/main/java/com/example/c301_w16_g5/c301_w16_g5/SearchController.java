@@ -232,19 +232,6 @@ public class SearchController {
                 e.printStackTrace();
             }
 
-            try {
-                FileOutputStream fos = ChickBidsApplication.getApp().openFileOutput(user.getUsername() + ".sav", 0);
-                BufferedWriter out = new BufferedWriter(new OutputStreamWriter(fos));
-                Gson gson = new Gson();
-                gson.toJson(user, out);
-                out.flush();
-                fos.close();
-            } catch (FileNotFoundException e) {
-                throw new RuntimeException();
-            } catch (IOException e) {
-                throw new RuntimeException();
-            }
-
         } else {
             try {
                 FileInputStream fis = ChickBidsApplication.getApp().openFileInput(username + ".sav");
