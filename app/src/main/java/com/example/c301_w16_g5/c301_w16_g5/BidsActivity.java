@@ -155,7 +155,8 @@ public class BidsActivity extends ChickBidActivity {
             });
 
             //hide accept/decline buttons if not owner
-            if (chickenController.getCurrentChicken().getOwnerUsername().equals(userController.getCurrentUser().getUsername())) {
+            if ((bid.getBidStatus() == Bid.BidStatus.UNDECIDED)
+                && (chickenController.getCurrentChicken().getOwnerUsername().equals(userController.getCurrentUser().getUsername()))) {
                 acceptBidImageView.setVisibility(View.VISIBLE);
                 declineBidImageView.setVisibility(View.VISIBLE);
             } else {

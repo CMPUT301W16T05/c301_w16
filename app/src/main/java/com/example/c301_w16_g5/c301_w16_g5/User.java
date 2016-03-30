@@ -145,8 +145,13 @@ public class User extends GenericModel<GenericView> implements Parcelable {
         return myChickens;
     }
 
-    public boolean hasChicken(Chicken chicken){
-        return myChickens.contains(chicken);
+    public boolean hasChicken(String chicken_id){
+        for (Chicken c : myChickens) {
+            if (c.getId().contains(chicken_id)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void deleteChicken(Chicken chicken) {

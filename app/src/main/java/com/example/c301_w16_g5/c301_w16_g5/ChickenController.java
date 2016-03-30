@@ -224,11 +224,11 @@ public class ChickenController {
                 User user = searchController.getUserFromDatabase(b.getBidderUsername());
                 removeChickenForBidFromUser(user, b);
                 searchController.removeBidFromDatabase(b.getId());
-                userController.updateUser(user);
+                searchController.updateUserInDatabase(user);
             }
         }
         chicken.getBids().clear();
-        chicken.getBids().add(bid);
+        chicken.addBid(bid);
         chicken.setChickenStatus(Chicken.ChickenStatus.BORROWED);
         chicken.setBorrowerUsername(bid.getBidderUsername());
         chicken = searchController.updateChickenInDatabase(chicken);
@@ -273,12 +273,12 @@ public class ChickenController {
             }
         }
 
-        UserController userController = ChickBidsApplication.getUserController();
-        userController.updateUser(user);
+        ChickBidsApplication.getSearchController().updateUserInDatabase(user);
     }
 
     public void putBidOnChicken(Bid bid, Chicken chicken) throws ChickenException {
         SearchController searchController = ChickBidsApplication.getSearchController();
+        UserController userController = ChickBidsApplication.getUserController();
 
         if (bid.getAmount() < getHighestBidForChicken(chicken)) {
             throw new ChickenException("Bid is not high enough");
@@ -288,28 +288,38 @@ public class ChickenController {
         }
 
         bid = searchController.addBidToDatabase(bid);
-        User current_user = ChickBidsApplication.getUserController().getCurrentUser();
-        chicken.getBids().add(bid);
+        chicken.addBid(bid);
         chicken.setChickenStatus(Chicken.ChickenStatus.BIDDED);
         updateChickenForMe(chicken);
+
+        User current_user = ChickBidsApplication.getUserController().getCurrentUser();
+        if (current_user.hasChicken(chicken.getId())) {
+            current_user.deleteChickenForId(chicken.getId());
+        }
         current_user.addChicken(chicken);
+        userController.updateUser(current_user);
+
         addNotificationForBid(bid);
     }
 
     public void updateBidForMyChicken(Bid bid) {
         SearchController searchController = ChickBidsApplication.getSearchController();
-        Chicken chicken;
+        Chicken chicken = null;
         try {
             chicken = getChickenForBidForCurrentUser(bid);
         } catch (ChickenException e) {
         }
-        //TODO: DO STUFF
-        searchController.updateBidInDatabase(bid);
+
+        chicken.deleteBidForId(bid.getId());
+        bid = searchController.updateBidInDatabase(bid);
+        chicken.addBid(bid);
     }
 
     public void returnChickenToOwner(Chicken chicken) {
         SearchController searchController = ChickBidsApplication.getSearchController();
         UserController userController = ChickBidsApplication.getUserController();
+
+        User current_user = userController.getCurrentUser();
 
         for (Bid b : chicken.getBids()) {
             searchController.removeBidFromDatabase(b.getId());
@@ -319,7 +329,8 @@ public class ChickenController {
         chicken.setChickenStatus(Chicken.ChickenStatus.AVAILABLE);
         chicken = searchController.updateChickenInDatabase(chicken);
 
-        userController.updateUser(userController.getCurrentUser());
+        current_user.deleteChickenForId(chicken.getId());
+        userController.updateUser(current_user);
     }
 
     // Notifications
@@ -337,12 +348,15 @@ public class ChickenController {
 
     public void addNotificationForBid(Bid bid) {
         SearchController searchController = ChickBidsApplication.getSearchController();
-        User current_user = ChickBidsApplication.getUserController().getCurrentUser();
 
-        String notificationMessage = Notification.notificationMessageBuilderForBid(bid);
-        Notification notification = new Notification(notificationMessage);
+        Chicken chicken = searchController.getChickenFromDatabase(bid.getChickenId());
+        User user = searchController.getUserFromDatabase(chicken.getOwnerUsername());
+
+        Notification notification = new Notification(Notification.notificationMessageBuilderForBid(bid));
         notification = searchController.addNotificationToDatabase(notification);
-        current_user.addNotification(notification);
+
+        user.addNotification(notification);
+        searchController.updateUserInDatabase(user);
     }
 
     public void dismissNotification(Notification notification) {

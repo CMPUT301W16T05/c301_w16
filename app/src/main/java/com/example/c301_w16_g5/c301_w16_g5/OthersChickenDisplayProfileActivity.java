@@ -11,6 +11,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.model.LatLng;
+
 /**
  * <code>OthersChickenDisplayProfileActivity</code> displays the profile
  * information of a chicken, as well as giving the viewing user the options like
@@ -99,6 +101,27 @@ public class OthersChickenDisplayProfileActivity extends ChickBidActivity {
                 }
             }
         });
+
+        buttonViewLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                launchViewLocation();
+            }
+        });
+    }
+
+    private void launchViewLocation() {
+        ChickenController chickenController = ChickBidsApplication.getChickenController();
+        try {
+            Bid bid = chickenController.getAcceptedBidForChicken(chickenController.getCurrentChicken());
+            Location location = bid.getLocation();
+
+            Intent intent = new Intent(this, LocationActivity.class);
+            LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+            intent.putExtra(LocationActivity.LAT_LON_KEY, latLng);
+        } catch (ChickenException e) {
+            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void launchViewBids() {
@@ -124,6 +147,7 @@ public class OthersChickenDisplayProfileActivity extends ChickBidActivity {
         try {
             ChickBidsApplication.getChickenController().putBidOnChicken(bid, currentChicken);
             Toast.makeText(getApplicationContext(), "Bid Placed", Toast.LENGTH_SHORT).show();
+            finish();
         } catch (ChickenException e) {
             Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
         }

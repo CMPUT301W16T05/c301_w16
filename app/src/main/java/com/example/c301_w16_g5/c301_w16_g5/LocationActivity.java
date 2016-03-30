@@ -1,5 +1,6 @@
 package com.example.c301_w16_g5.c301_w16_g5;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -23,12 +24,21 @@ public class LocationActivity extends FragmentActivity {
         setContentView(R.layout.activity_location);
         setUpMapIfNeeded();
 
-        mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
-            @Override
-            public void onMapLongClick(LatLng latLng) {
-                Toast.makeText(getApplicationContext(), "Longitude: " + latLng.longitude + " Latitude: " + latLng.latitude, Toast.LENGTH_LONG);
-            }
-        });
+        final Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        if (bundle == null) {
+            mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
+                @Override
+                public void onMapLongClick(LatLng latLng) {
+                    intent.putExtra(LAT_LON_KEY, latLng);
+                    setResult(LAT_LON_SUCCESS_CODE, intent);
+                    finish();
+                }
+            });
+        } else {
+            LatLng latLng = bundle.getParcelable(LAT_LON_KEY);
+            mMap.addMarker(new MarkerOptions().position(latLng).draggable(false));
+        }
     }
 
     @Override
@@ -39,8 +49,7 @@ public class LocationActivity extends FragmentActivity {
 
     /**
      * Sets up the map if it is possible to do so (i.e., the Google Play services APK is correctly
-     * installed) and the map has not already been instantiated.. This will ensure that we only ever
-     * call {@link #setUpMap()} once when {@link #mMap} is not null.
+     * installed) and the map has not already been instantiated..
      * <p/>
      * If it isn't installed {@link SupportMapFragment} (and
      * {@link com.google.android.gms.maps.MapView MapView}) will show a prompt for the user to
@@ -58,20 +67,6 @@ public class LocationActivity extends FragmentActivity {
             // Try to obtain the map from the SupportMapFragment.
             mMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map))
                     .getMap();
-            // Check if we were successful in obtaining the map.
-            if (mMap != null) {
-                setUpMap();
-            }
         }
-    }
-
-    /**
-     * This is where we can add markers or lines, add listeners or move the camera. In this case, we
-     * just add a marker near Africa.
-     * <p/>
-     * This should only be called once and when we are sure that {@link #mMap} is not null.
-     */
-    private void setUpMap() {
-        mMap.addMarker(new MarkerOptions().position(new LatLng(0, 0)).title("Marker"));
     }
 }

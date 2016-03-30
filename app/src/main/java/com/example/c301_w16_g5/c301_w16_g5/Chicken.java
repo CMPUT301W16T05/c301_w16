@@ -101,6 +101,20 @@ public class Chicken extends GenericModel<GenericView> implements Parcelable {
         return bids;
     }
 
+    public void addBid(Bid bid) {
+        bids.add(bid);
+    }
+
+    public void deleteBidForId(String id) {
+        ArrayList<Bid> bids = getBids();
+        for (Bid b : bids) {
+            if (b.getId().equals(id)) {
+                bids.remove(b);
+                break;
+            }
+        }
+    }
+
     public String getBorrowerUsername() {
         return borrower_username;
     }
