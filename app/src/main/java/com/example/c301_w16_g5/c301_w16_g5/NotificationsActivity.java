@@ -1,6 +1,7 @@
 package com.example.c301_w16_g5.c301_w16_g5;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.Toolbar;
@@ -42,13 +43,13 @@ public class NotificationsActivity extends ChickBidActivity {
 
         listView = (ListView) findViewById(R.id.notificationList);
 
+        final Intent sendMessageIntent = new Intent(this, SendMessageActivity.class);
+
         FloatingActionButton floatingActionButton = (FloatingActionButton) findViewById(R.id.dismissAllNotifications);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ChickenController chickenController = ChickBidsApplication.getChickenController();
-                chickenController.dismissAllNotifications();
-                refreshView();
+                startActivity(sendMessageIntent);
             }
         });
 

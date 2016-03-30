@@ -114,6 +114,14 @@
                 android:value=".MyChickenDisplayProfileActivity" />
         </activity>
         <activity android:name=".ViewPhotoActivity"></activity>
+        <activity
+            android:name=".SendMessageActivity"
+            android:label="Send Message"
+            android:parentActivityName=".NotificationsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".NotificationsActivity" />
+        </activity>
     </application>
 
 </manifest>
