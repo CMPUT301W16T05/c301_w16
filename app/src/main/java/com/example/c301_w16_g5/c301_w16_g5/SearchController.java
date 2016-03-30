@@ -537,7 +537,7 @@ public class SearchController {
         return letters;
     }
 
-    private boolean checkOnline() {
+    public boolean checkOnline() {
         //Taken from http://stackoverflow.com/questions/9570237/android-check-internet-connection
         //Answer by Seshu Vinay
         //Accessed by athompson0 on March 29 2016

@@ -59,6 +59,13 @@ public class LoginActivity extends ChickBidActivity {
             userController.setUser(user);
             intent = new Intent(this, HomeActivity.class);
         }
-        startActivity(intent);
+
+        if (user == null && !ChickBidsApplication.getSearchController().checkOnline()) {
+            Toast.makeText(getApplicationContext(),
+                    "No user info found on device. Please regain connectivity to login or create user.",
+                    Toast.LENGTH_SHORT).show();
+        } else {
+            startActivity(intent);
+        }
     }
 }
