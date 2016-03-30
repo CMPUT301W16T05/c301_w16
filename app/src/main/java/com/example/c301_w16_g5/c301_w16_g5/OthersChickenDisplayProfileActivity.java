@@ -35,6 +35,7 @@ public class OthersChickenDisplayProfileActivity extends ChickBidActivity {
 
     Button buttonPlaceBid;
     Button buttonViewBids;
+    Button buttonReturn;
     Button buttonViewPhoto;
     Button buttonViewLocation;
 
@@ -62,6 +63,7 @@ public class OthersChickenDisplayProfileActivity extends ChickBidActivity {
 
         buttonPlaceBid = (Button) findViewById(R.id.buttonBid);
         buttonViewBids = (Button) findViewById(R.id.buttonViewBids);
+        buttonReturn = (Button) findViewById(R.id.buttonReturn);
         buttonViewPhoto = (Button) findViewById(R.id.buttonViewPhoto);
         buttonViewLocation = (Button) findViewById(R.id.buttonViewLocation);
 
@@ -75,6 +77,12 @@ public class OthersChickenDisplayProfileActivity extends ChickBidActivity {
             @Override
             public void onClick(View v) {
                 launchViewBids();
+            }
+        });
+        buttonReturn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                returnChicken();
             }
         });
 
@@ -96,6 +104,10 @@ public class OthersChickenDisplayProfileActivity extends ChickBidActivity {
     private void launchViewBids() {
         Intent viewBidsIntent = new Intent(this, BidsActivity.class);
         startActivity(viewBidsIntent);
+    }
+
+    private void returnChicken() {
+        ChickBidsApplication.getChickenController().returnChickenToOwner(currentChicken);
     }
 
     private void placeBid() {
@@ -126,10 +138,16 @@ public class OthersChickenDisplayProfileActivity extends ChickBidActivity {
             buttonPlaceBid.setVisibility(View.GONE);
             bidAmount.setVisibility(View.GONE);
             buttonViewBids.setVisibility(View.GONE);
+
+            if (currentChicken.getBorrowerUsername().equals(ChickBidsApplication.getUserController().getCurrentUser().getUsername())) {
+                buttonReturn.setVisibility(View.VISIBLE);
+            }
+
         } else {
             buttonPlaceBid.setVisibility(View.VISIBLE);
             bidAmount.setVisibility(View.VISIBLE);
             buttonViewBids.setVisibility(View.VISIBLE);
+            buttonReturn.setVisibility(View.GONE);
         }
     }
 

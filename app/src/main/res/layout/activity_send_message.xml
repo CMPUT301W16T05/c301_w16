@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.example.c301_w16_g5.c301_w16_g5.EditProfileActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <include layout="@layout/navbar"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="To:"
+            android:padding="16dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentStart="true"
+            android:textColor="@color/colorTextSecondary"/>
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/usernameEditText"
+            android:maxLength="20"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentStart="true"
+            android:textStyle="bold"
+            android:hint="@string/username_hint"
+            android:textColor="@color/colorPrimaryDark"
+            android:minEms="1"/>
+
+        </LinearLayout>
+        <!--source:
+         http://stackoverflow.com/questions/3188719/how-can-i-set-a-minimum-width-in-characters-for-a-textview
+        answered by Adrian on Jun 4 '11
+        accessed by Hailey on Mar 13 '16-->
+
+        <!-- TODO: cite source
+             Adding a line to android layout
+             http://stackoverflow.com/questions/5049852/android-drawing-separator-divider-line-in-layout
+             Answer by Alex Kucherenko on Apr 23 2012
+             Accessed by Satyen Akolkar on Mar 7 2016 -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorAccent"/>
+
+        <!--Android add TableLayout and LinearLayout together?-->
+        <!--http://stackoverflow.com/questions/32837466/android-add-tablelayout-and-linearlayout-together-->
+        <!--Answered Sep 29 '15 at 6:54 by Phan Văn Linh-->
+        <!--Accessed by Hailey Musselman on Mar 12 2016-->
+
+        <!--Android EditText with multiple Lines automatic line break
+        source:
+        http://stackoverflow.com/questions/10313417/android-edittext-with-multiple-lines-automatic-line-break
+        answered by Aerrow on Apr 25 '12
+        accessed by Hailey on Mar 13 '16-->
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight = "1"
+            android:padding="16dp">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="Message:"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentStart="true"
+                        android:textColor="@color/colorTextSecondary"/>
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:id="@+id/messageEditText"
+                        android:ems="5"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentStart="true"
+                        android:textColor="@color/colorTextSecondary"
+                        android:textStyle="bold"
+                        android:minEms="1"/>
+                </LinearLayout>
+            </TableRow>
+
+        </TableLayout>
+        <Button
+            android:id="@+id/buttonSend"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SEND"
+            android:textSize="16.5dp"
+            android:background="@color/colorAccent"
+            android:layout_marginTop="8dp"
+            android:layout_margin="16dp"
+            android:textStyle="bold"
+            android:typeface="normal"/>
+
+    </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>
