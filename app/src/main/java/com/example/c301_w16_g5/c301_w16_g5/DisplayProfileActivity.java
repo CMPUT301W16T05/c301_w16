@@ -27,7 +27,7 @@ public class DisplayProfileActivity extends ChickBidActivity {
 
     private Intent editProfileIntent;
 
-    public static final int EDIT_PROFILE_REQUEST = 1;  // The add request code
+//    public static final int EDIT_PROFILE_REQUEST = 1;  // The add request code
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,10 +67,10 @@ public class DisplayProfileActivity extends ChickBidActivity {
         user = ChickBidsApplication.getUserController().getCurrentUser();
 
         usernameTextView.setText(user.getUsername());
-        nameTextView.setText("Username: " + user.getFirstName() + " " + user.getLastName());
-        emailTextView.setText("Email: " + user.getEmail());
-        phoneTextView.setText("Phone: " + user.getPhoneNumber());
-        experienceTextView.setText("Experience: " + user.getChickenExperience());
+        nameTextView.setText(user.getFirstName() + " " + user.getLastName());
+        emailTextView.setText(user.getEmail());
+        phoneTextView.setText(user.getPhoneNumber());
+        experienceTextView.setText(user.getChickenExperience());
     }
 
     @Override
