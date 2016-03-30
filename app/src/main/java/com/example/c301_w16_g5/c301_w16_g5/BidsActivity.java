@@ -1,6 +1,7 @@
 package com.example.c301_w16_g5.c301_w16_g5;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -74,6 +75,17 @@ public class BidsActivity extends ChickBidActivity {
         listView.setAdapter(adapter);
     }
 
+    private void acceptBid(Bid bid) {
+        ChickenController chickenController = ChickBidsApplication.getChickenController();
+        try {
+            chickenController.acceptBidForChicken(bid);
+            startActivity(new Intent(this, LocationActivity.class));
+        } catch (ChickenException e) {
+            e.printStackTrace();
+        }
+        refreshView();
+    }
+
     private class BidAdapter extends ArrayAdapter<Bid> {
         public BidAdapter(Context context, ArrayList<Bid> bids) {
             super(context, 0, bids);
@@ -106,12 +118,7 @@ public class BidsActivity extends ChickBidActivity {
             acceptBidImageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    try {
-                        chickenController.acceptBidForChicken(bid);
-                    } catch (ChickenException e) {
-                        e.printStackTrace();
-                    }
-                    refreshView();
+                    acceptBid(bid);
                 }
             });
 
