@@ -299,13 +299,14 @@ public class ChickenController {
     // Notifications
     public void addNotification(String username, String message) {
         SearchController searchController = ChickBidsApplication.getSearchController();
+        User current_user = ChickBidsApplication.getUserController().getCurrentUser();
         User user = searchController.getUserFromDatabase(username);
 
-        Notification notification = new Notification(Notification.notificationMessageBuilderForMailbox(username, message));
+        Notification notification = new Notification(Notification.notificationMessageBuilderForMailbox(current_user.getUsername(), message));
         notification = searchController.addNotificationToDatabase(notification);
 
         user.addNotification(notification);
-        ChickBidsApplication.getUserController().updateUser(user);
+        searchController.updateUserInDatabase(user);
     }
 
     public void addNotificationForBid(Bid bid) {

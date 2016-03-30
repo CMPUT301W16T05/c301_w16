@@ -3,6 +3,7 @@ package com.example.c301_w16_g5.c301_w16_g5;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.Projection;
@@ -19,24 +20,19 @@ public class LocationActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location);
         setUpMapIfNeeded();
+
+        mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
+            @Override
+            public void onMapLongClick(LatLng latLng) {
+                Toast.makeText(getApplicationContext(), "Longitude: " + latLng.longitude + " Latitude: " + latLng.latitude, Toast.LENGTH_LONG);
+            }
+        });
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         setUpMapIfNeeded();
-    }
-
-    @Override
-    public boolean dispatchTouchEvent(MotionEvent ev) {
-        int actionType = ev.getAction();
-        switch (actionType) {
-            case MotionEvent.ACTION_UP:
-                Projection proj = mMap.getProjection();
-
-        }
-
-        return super.dispatchTouchEvent(ev);
     }
 
     /**
