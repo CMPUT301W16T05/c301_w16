@@ -78,5 +78,6 @@
     <string name="chicken_description_hint">Description of chicken</string>
 
     <string name="title_activity_location">Location</string>
+    <string name="location_pin_title">Pick Up Here!</string>
 
 </resources>

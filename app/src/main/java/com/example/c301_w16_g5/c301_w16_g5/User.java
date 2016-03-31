@@ -180,6 +180,15 @@ public class User extends GenericModel<GenericView> implements Parcelable {
         myNotifications.add(notification);
     }
 
+    public void deleteNotificationForId(String id) {
+        for (Notification notification : myNotifications) {
+            if (notification.getId().equals(id)) {
+                myNotifications.remove(notification);
+                break;
+            }
+        }
+    }
+
     public ArrayList<Letter> getLetters() {
         return myLetters;
     }

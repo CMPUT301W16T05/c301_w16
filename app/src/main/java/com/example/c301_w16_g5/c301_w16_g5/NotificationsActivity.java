@@ -109,7 +109,7 @@ public class NotificationsActivity extends ChickBidActivity {
                 @Override
                 public void onClick(View v) {
                     ChickenController chickenController = ChickBidsApplication.getChickenController();
-                    chickenController.dismissNotification(notification);
+                    chickenController.removeNotificationForMe(notification);
                     refreshView();
                 }
             });

@@ -1,7 +1,6 @@
 package com.example.c301_w16_g5.c301_w16_g5;
 
 import android.content.Context;
-import android.util.Log;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -153,7 +152,7 @@ public class ChickenController {
         User user = ChickBidsApplication.getUserController().getCurrentUser();
 
         for (Bid b : chicken.getBids()) {
-            
+            ChickBidsApplication.getSearchController().removeBidFromDatabase(b.getId());
         }
 
         user.deleteChickenForId(chicken.getId());
@@ -276,14 +275,7 @@ public class ChickenController {
     }
 
     private void removeChickenForBidFromUser(User user, Bid bid) {
-        ArrayList<Chicken> chickens = user.getMyChickens();
-        for (Chicken c : chickens) {
-            if (c.getBids().contains(bid)) {
-                chickens.remove(c);
-                break;
-            }
-        }
-
+        user.deleteChickenForId(bid.getChickenId());
         ChickBidsApplication.getSearchController().updateUserInDatabase(user);
     }
 
@@ -313,19 +305,6 @@ public class ChickenController {
         addNotificationForBid(bid);
     }
 
-    public void updateBidForMyChicken(Bid bid) {
-        SearchController searchController = ChickBidsApplication.getSearchController();
-        Chicken chicken = null;
-        try {
-            chicken = getChickenForBidForCurrentUser(bid);
-        } catch (ChickenException e) {
-        }
-
-        chicken.deleteBidForId(bid.getId());
-        bid = searchController.updateBidInDatabase(bid);
-        chicken.addBid(bid);
-    }
-
     public void returnChickenToOwner(Chicken chicken) {
         SearchController searchController = ChickBidsApplication.getSearchController();
         UserController userController = ChickBidsApplication.getUserController();
@@ -333,6 +312,7 @@ public class ChickenController {
         User current_user = userController.getCurrentUser();
 
         for (Bid b : chicken.getBids()) {
+            searchController.removeLocationFromDatabase(b.getLocation().getId());
             searchController.removeBidFromDatabase(b.getId());
         }
 
@@ -370,19 +350,12 @@ public class ChickenController {
         searchController.updateUserInDatabase(user);
     }
 
-    public void dismissNotification(Notification notification) {
+    public void removeNotificationForMe(Notification notification) {
         SearchController searchController = ChickBidsApplication.getSearchController();
         User current_user = ChickBidsApplication.getUserController().getCurrentUser();
 
-        current_user.getNotifications().remove(notification);
+        current_user.deleteNotificationForId(notification.getId());
         searchController.removeNotificationFromDatabase(notification.getId());
-    }
-
-    public void dismissAllNotifications() {
-        ArrayList<Notification> notifications = (ArrayList) ChickBidsApplication.getUserController().getCurrentUser().getNotifications().clone();
-        for (Notification n : notifications) {
-            dismissNotification(n);
-        }
     }
 
     public boolean userHasNotifications() {

@@ -3,7 +3,6 @@ package com.example.c301_w16_g5.c301_w16_g5;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -137,6 +136,7 @@ public class OthersChickenDisplayProfileActivity extends ChickBidActivity {
             Intent intent = new Intent(this, LocationActivity.class);
             LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
             intent.putExtra(LocationActivity.LAT_LON_KEY, latLng);
+            startActivity(intent);
         } catch (ChickenException e) {
             Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
         }
@@ -149,6 +149,8 @@ public class OthersChickenDisplayProfileActivity extends ChickBidActivity {
 
     private void returnChicken() {
         ChickBidsApplication.getChickenController().returnChickenToOwner(currentChicken);
+        Toast.makeText(getApplicationContext(), "Chicken returned", Toast.LENGTH_SHORT).show();
+        finish();
     }
 
     private void placeBid() {

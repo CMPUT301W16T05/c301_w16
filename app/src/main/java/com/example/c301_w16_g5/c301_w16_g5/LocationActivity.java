@@ -1,18 +1,18 @@
 package com.example.c301_w16_g5.c301_w16_g5;
 
 import android.content.Intent;
-import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
-import android.view.MotionEvent;
-import android.widget.Toast;
+import android.support.v4.app.FragmentActivity;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.Projection;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class LocationActivity extends FragmentActivity {
+    // 2016-03-28 http://stackoverflow.com/questions/15391665/setting-a-longclicklistener-on-a-map-marker
     public static int LAT_LON_SUCCESS_CODE = 23451;
     public static String LAT_LON_KEY = "lat_lon_key";
 
@@ -36,8 +36,12 @@ public class LocationActivity extends FragmentActivity {
                 }
             });
         } else {
+            // 2016-03-29 http://stackoverflow.com/questions/17611544/center-a-map-marker-in-android
             LatLng latLng = bundle.getParcelable(LAT_LON_KEY);
-            mMap.addMarker(new MarkerOptions().position(latLng).draggable(false));
+            Marker marker = mMap.addMarker(new MarkerOptions().position(latLng));
+            marker.setDraggable(false);
+            marker.setTitle(getString(R.string.location_pin_title));
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
         }
     }
 
