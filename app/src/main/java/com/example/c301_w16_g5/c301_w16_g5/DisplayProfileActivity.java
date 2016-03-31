@@ -18,11 +18,17 @@ import android.widget.Toast;
  */
 public class DisplayProfileActivity extends ChickBidActivity {
 
+    public static final String KEY_DISPLAY_USER = "displayUser";
+    public static final int CURR_USER = 1;
+    public static final int OTHER_USER = 2;
+
     private TextView usernameTextView;
     private TextView nameTextView;
     private TextView emailTextView;
     private TextView phoneTextView;
     private TextView experienceTextView;
+
+    FloatingActionButton editProfileFAB;
 
     private User user;
 
@@ -51,7 +57,8 @@ public class DisplayProfileActivity extends ChickBidActivity {
 
         // TODO: disable fab if user profile is not of logged in user
         // should perform the check and disable in onStart. create a method and call it in onStart
-        FloatingActionButton editProfileFAB = (FloatingActionButton) findViewById(R.id.fab);
+
+        editProfileFAB = (FloatingActionButton) findViewById(R.id.fab);
         editProfileFAB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -71,8 +78,16 @@ public class DisplayProfileActivity extends ChickBidActivity {
     protected void onStart() {
         super.onStart();
 
-        user = ChickBidsApplication.getUserController().getCurrentUser();
+        Bundle b = getIntent().getExtras();
 
+        if(b.getInt(KEY_DISPLAY_USER) == 2) {
+       //     String username = b.getString(OthersChickenDisplayProfileActivity.OTHER_USERNAME);
+       //     user = ChickBidsApplication.getSearchController().getUserFromDatabase(username);
+            editProfileFAB.setVisibility(View.INVISIBLE);
+            editProfileFAB.setClickable(false);
+        } //else {
+            user = ChickBidsApplication.getUserController().getCurrentUser();
+        //}
         usernameTextView.setText(user.getUsername());
         nameTextView.setText(user.getFirstName() + " " + user.getLastName());
         emailTextView.setText(user.getEmail());

@@ -27,6 +27,8 @@ import com.google.android.gms.maps.model.LatLng;
  */
 public class OthersChickenDisplayProfileActivity extends ChickBidActivity {
 
+    public static final String OTHER_USERNAME = "otherUser";
+
     TextView name;
     TextView description;
     TextView status;
@@ -116,6 +118,12 @@ public class OthersChickenDisplayProfileActivity extends ChickBidActivity {
                             Toast.LENGTH_SHORT).show();
                     return;
                 }
+            }
+        });
+        ownerUsername.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                launchDisplayUserProfile(ownerUsername.getText().toString());
             }
         });
 
@@ -215,5 +223,12 @@ public class OthersChickenDisplayProfileActivity extends ChickBidActivity {
     private void launchViewPhoto(){
         Intent viewPhotoIntent = new Intent(this, ViewPhotoActivity.class);
         startActivity(viewPhotoIntent);
+    }
+
+    private void launchDisplayUserProfile(String username){
+        Intent displayProfileIntent = new Intent(this, DisplayProfileActivity.class);
+        displayProfileIntent.putExtra(DisplayProfileActivity.KEY_DISPLAY_USER, DisplayProfileActivity.OTHER_USER);
+        displayProfileIntent.putExtra(OTHER_USERNAME, username);
+        startActivity(displayProfileIntent);
     }
 }
