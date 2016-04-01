@@ -1,6 +1,5 @@
 package com.example.c301_w16_g5.c301_w16_g5;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -22,7 +21,7 @@ public class SendMessageActivity extends ChickBidActivity {
         // show back arrow at top left
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        usernameEditText = (EditText) findViewById(R.id.usernameEditText);
+        usernameEditText = (EditText) findViewById(R.id.username);
         messageEditText = (EditText) findViewById(R.id.messageEditText);
 
         Button sendButton = (Button) findViewById(R.id.buttonSend);

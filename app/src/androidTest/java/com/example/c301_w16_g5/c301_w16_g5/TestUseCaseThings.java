@@ -17,7 +17,6 @@ public class TestUseCaseThings extends ActivityInstrumentationTestCase2 {
 
     private Solo solo;
     private String username = "hailey123";
-    private String[] tabs = {"Possession", "Lent", "Borrowed", "Owned", "Received Bids", "My Bidded"};
 
     public TestUseCaseThings() {
         super(LoginActivity.class);
@@ -72,6 +71,13 @@ public class TestUseCaseThings extends ActivityInstrumentationTestCase2 {
         solo.clickOnView(solo.getView(R.id.buttonChickens));
         solo.assertCurrentActivity("Expected Item Views Activity", ItemViews.class);
 
+        String[] tabs = new String[] {solo.getString(R.string.item_profile_possession),
+                solo.getString(R.string.item_profile_lent),
+                solo.getString(R.string.item_profile_borrowed),
+                solo.getString(R.string.item_profile_owned),
+                solo.getString(R.string.item_profile_owned_with_bids),
+                solo.getString(R.string.item_profile_bids_placed)};
+
         for (String tab : tabs) {
             // view list of all chickens under tab
             solo.clickOnText(tab);
@@ -85,7 +91,7 @@ public class TestUseCaseThings extends ActivityInstrumentationTestCase2 {
         solo.assertCurrentActivity("Expected Item Views Activity", ItemViews.class);
 
         // select a chicken of yours
-        solo.clickOnText("Owned");
+        solo.clickOnText(solo.getString(R.string.item_profile_owned));
         solo.clickInList(0);
         solo.assertCurrentActivity("Expected View Chicken Activity", MyChickenDisplayProfileActivity.class);
 
@@ -101,7 +107,7 @@ public class TestUseCaseThings extends ActivityInstrumentationTestCase2 {
         solo.assertCurrentActivity("Expected Item Views Activity", ItemViews.class);
 
         // select a chicken of yours
-        solo.clickOnText("Owned");
+        solo.clickOnText(solo.getString(R.string.item_profile_owned));
         solo.clickInList(0);
         solo.assertCurrentActivity("Expected View My Chicken Activity", MyChickenDisplayProfileActivity.class);
 

@@ -16,7 +16,8 @@ import android.widget.Toast;
  * @see     User
  * @see     UserController
  */
-public class DisplayProfileActivity extends ChickBidActivity {
+public class
+        DisplayProfileActivity extends ChickBidActivity {
 
     public static final String KEY_DISPLAY_USER = "displayUser";
     public static final int CURR_USER = 1;
@@ -80,14 +81,14 @@ public class DisplayProfileActivity extends ChickBidActivity {
 
         Bundle b = getIntent().getExtras();
 
-        if(b.getInt(KEY_DISPLAY_USER) == 2) {
-       //     String username = b.getString(OthersChickenDisplayProfileActivity.OTHER_USERNAME);
-       //     user = ChickBidsApplication.getSearchController().getUserFromDatabase(username);
+        if (b != null && b.getInt(KEY_DISPLAY_USER) == OTHER_USER) {
+            String username = b.getString(OthersChickenDisplayProfileActivity.OTHER_USERNAME);
+            user = ChickBidsApplication.getSearchController().getUserFromDatabase(username);
             editProfileFAB.setVisibility(View.INVISIBLE);
             editProfileFAB.setClickable(false);
-        } //else {
+        } else {
             user = ChickBidsApplication.getUserController().getCurrentUser();
-        //}
+        }
         usernameTextView.setText(user.getUsername());
         nameTextView.setText(user.getFirstName() + " " + user.getLastName());
         emailTextView.setText(user.getEmail());

@@ -36,17 +36,17 @@ public class EditProfileActivityUITest extends ActivityInstrumentationTestCase2 
 
     public void testEditTextVisible() {
         ViewAsserts.assertOnScreen(activity.getWindow().getDecorView(),
-                activity.findViewById(R.id.usernameEditText));
+                activity.findViewById(R.id.username));
         ViewAsserts.assertOnScreen(activity.getWindow().getDecorView(),
-                activity.findViewById(R.id.firstNameEditText));
+                activity.findViewById(R.id.firstName));
         ViewAsserts.assertOnScreen(activity.getWindow().getDecorView(),
-                activity.findViewById(R.id.lastNameEditText));
+                activity.findViewById(R.id.lastName));
         ViewAsserts.assertOnScreen(activity.getWindow().getDecorView(),
-                activity.findViewById(R.id.phoneEditText));
+                activity.findViewById(R.id.phone));
         ViewAsserts.assertOnScreen(activity.getWindow().getDecorView(),
-                activity.findViewById(R.id.emailEditText));
+                activity.findViewById(R.id.email));
         ViewAsserts.assertOnScreen(activity.getWindow().getDecorView(),
-                activity.findViewById(R.id.experienceEditText));
+                activity.findViewById(R.id.experience));
     }
 
     public void testButtonVisible() {

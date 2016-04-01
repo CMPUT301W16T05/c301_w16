@@ -55,12 +55,12 @@ public class EditProfileActivity extends ChickBidActivity {
         // show back arrow at top left
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        usernameEditText = (EditText) findViewById(R.id.usernameEditText);
-        firstNameEditText = (EditText) findViewById(R.id.firstNameEditText);
-        lastNameEditText = (EditText) findViewById(R.id.lastNameEditText);
-        emailEditText = (EditText) findViewById(R.id.emailEditText);
-        phoneEditText = (EditText) findViewById(R.id.phoneEditText);
-        experienceEditText = (EditText) findViewById(R.id.experienceEditText);
+        usernameEditText = (EditText) findViewById(R.id.username);
+        firstNameEditText = (EditText) findViewById(R.id.firstName);
+        lastNameEditText = (EditText) findViewById(R.id.lastName);
+        emailEditText = (EditText) findViewById(R.id.email);
+        phoneEditText = (EditText) findViewById(R.id.phone);
+        experienceEditText = (EditText) findViewById(R.id.experience);
 
         Intent intent = getIntent();
         activityType = intent.getStringExtra(PROFILE_EXTRA_KEY);
@@ -125,12 +125,12 @@ public class EditProfileActivity extends ChickBidActivity {
     }
 
     private boolean validateUpdatedUserInfo() {
-        String username = ((EditText) findViewById(R.id.usernameEditText)).getText().toString();
-        String firstName = ((EditText) findViewById(R.id.firstNameEditText)).getText().toString();
-        String lastName = ((EditText) findViewById(R.id.lastNameEditText)).getText().toString();
-        String email = ((EditText) findViewById(R.id.emailEditText)).getText().toString();
-        String phone = ((EditText) findViewById(R.id.phoneEditText)).getText().toString();
-        String experience = ((EditText) findViewById(R.id.experienceEditText)).getText().toString();
+        String username = ((EditText) findViewById(R.id.username)).getText().toString();
+        String firstName = ((EditText) findViewById(R.id.firstName)).getText().toString();
+        String lastName = ((EditText) findViewById(R.id.lastName)).getText().toString();
+        String email = ((EditText) findViewById(R.id.email)).getText().toString();
+        String phone = ((EditText) findViewById(R.id.phone)).getText().toString();
+        String experience = ((EditText) findViewById(R.id.experience)).getText().toString();
 
         String error_message = "";
         boolean valid = false;
@@ -173,12 +173,12 @@ public class EditProfileActivity extends ChickBidActivity {
     }
 
     private void updateUserInfo() {
-        String username = ((EditText) findViewById(R.id.usernameEditText)).getText().toString();
-        String firstName = ((EditText) findViewById(R.id.firstNameEditText)).getText().toString();
-        String lastName = ((EditText) findViewById(R.id.lastNameEditText)).getText().toString();
-        String email = ((EditText) findViewById(R.id.emailEditText)).getText().toString();
-        String phone = ((EditText) findViewById(R.id.phoneEditText)).getText().toString();
-        String experience = ((EditText) findViewById(R.id.experienceEditText)).getText().toString();
+        String username = ((EditText) findViewById(R.id.username)).getText().toString();
+        String firstName = ((EditText) findViewById(R.id.firstName)).getText().toString();
+        String lastName = ((EditText) findViewById(R.id.lastName)).getText().toString();
+        String email = ((EditText) findViewById(R.id.email)).getText().toString();
+        String phone = ((EditText) findViewById(R.id.phone)).getText().toString();
+        String experience = ((EditText) findViewById(R.id.experience)).getText().toString();
 
         user.setUsername(username);
         user.setFirstName(firstName);

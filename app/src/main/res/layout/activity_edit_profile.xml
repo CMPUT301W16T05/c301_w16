@@ -19,7 +19,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:id="@+id/usernameEditText"
+            android:id="@+id/username"
             android:padding="16dp"
             android:textStyle="bold"
             android:hint="@string/username_hint"
@@ -62,7 +62,7 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="12dp"
                 android:maxLength="15"
-                android:id="@+id/firstNameEditText"
+                android:id="@+id/firstName"
                 android:singleLine='true'
                 android:textColor="@color/colorTextSecondary"
                 android:hint="@string/first_name_hint"
@@ -73,7 +73,7 @@
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:layout_marginRight="16dp"
                 android:maxLength="20"
-                android:id="@+id/lastNameEditText"
+                android:id="@+id/lastName"
                 android:singleLine='true'
                 android:textColor="@color/colorTextSecondary"
                 android:hint="@string/last_name_hint"
@@ -85,7 +85,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:id="@+id/emailEditText"
+            android:id="@+id/email"
             android:singleLine='true'
             android:maxLength="50"
             android:textColor="@color/colorTextSecondary"
@@ -97,13 +97,13 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:id="@+id/phoneEditText"
+            android:id="@+id/phone"
             android:maxLength="12"
             android:textColor="@color/colorTextSecondary"
             android:hint="@string/phone_hint"
             android:minEms="1"/>
         <EditText
-            android:id="@+id/experienceEditText"
+            android:id="@+id/experience"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
