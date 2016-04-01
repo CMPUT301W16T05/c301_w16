@@ -109,6 +109,24 @@ public class SearchController {
         return chickens;
     }
 
+    public ArrayList<Chicken> getAllChickens() {
+        ArrayList<Chicken> chickens = new ArrayList<Chicken>();
+
+        if (checkOnline()) {
+            ElasticSearchBackend.GetAllChickensTask searchTask = new ElasticSearchBackend.GetAllChickensTask();
+            searchTask.execute("");
+            try {
+                chickens = searchTask.get();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return chickens;
+    }
+
     //chicken methods
     public Chicken addChickenToDatabase(Chicken chicken) {
         Chicken chicken2 = null;

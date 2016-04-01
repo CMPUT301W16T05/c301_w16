@@ -14,6 +14,21 @@ public class SearchControllerTest extends ActivityInstrumentationTestCase2 {
         super(Search.class);
     }
 
+    public void testAddChickenToDatabase() {
+        SearchController sc = ChickBidsApplication.getSearchController();
+        Chicken chicken = sc.getChickenFromDatabase("qgZvLkclT2WOKa1cn-3dUA");
+        Chicken chicken1 = sc.getChickenFromDatabase("ToeU2YdyQYGHHxOTSpRefQ");
+        Chicken chicken2 = sc.getChickenFromDatabase("92nz834ESv2E352EIhKJlw");
+        Chicken chicken3 = sc.getChickenFromDatabase("uISZ1Tp5QauHI4xLbZjcEA");
+        Chicken chicken4 = sc.getChickenFromDatabase("3O_d1YKJRyyjpEhRrOSkNw");
+
+        sc.updateChickenInDatabase(chicken);
+        sc.updateChickenInDatabase(chicken1);
+        sc.updateChickenInDatabase(chicken2);
+        sc.updateChickenInDatabase(chicken3);
+        sc.updateChickenInDatabase(chicken4);
+    }
+
     public void testGetChickenFromDatabase() {
         SearchController sc = new SearchController();
         Chicken chicken = sc.getChickenFromDatabase("3eYlWldXRvyNNq3uhsoH8w");
@@ -113,6 +128,19 @@ public class SearchControllerTest extends ActivityInstrumentationTestCase2 {
         assertEquals(user.getEmail(), user1.getEmail());
         assertEquals(user.getPhoneNumber(), user1.getPhoneNumber());
         assertEquals(user.getChickenExperience(), user1.getChickenExperience());
+    }
+
+    public void testUpdateBids() {
+        SearchController sc = ChickBidsApplication.getSearchController();
+        Bid bid = sc.getBidFromDatabase("gsTE_0UcQCmZI89OrHyZPQ");
+        Bid bid1 = sc.getBidFromDatabase("hdFvxZACRVeAm0pBxoYT4A");
+        Bid bid2 = sc.getBidFromDatabase("bcpZv7DuTgClf8oZwnMqvw");
+        Bid bid3 = sc.getBidFromDatabase("wx7X58S-S0SEEaJDCFz8Sg");
+
+        sc.updateBidInDatabase(bid);
+        sc.updateBidInDatabase(bid1);
+        sc.updateBidInDatabase(bid2);
+        sc.updateBidInDatabase(bid3);
     }
 /*
     // US 04.01.01

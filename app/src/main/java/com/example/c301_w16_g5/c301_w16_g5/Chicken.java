@@ -1,9 +1,13 @@
 package com.example.c301_w16_g5.c301_w16_g5;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Base64;
 
+import java.io.ByteArrayOutputStream;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +49,8 @@ public class Chicken extends GenericModel<GenericView> implements Parcelable {
     private String borrower_username;
     private ArrayList<Bid> bids;
     private Uri picture;
-    private Photograph photo;
+    private Bitmap photo;
+    private String photoBase64;
 
     protected Chicken() {
         bids = new ArrayList<Bid>();
@@ -123,12 +128,31 @@ public class Chicken extends GenericModel<GenericView> implements Parcelable {
         this.borrower_username = borrower_username;
     }
 
-    public Photograph getPhoto() {
+    public Bitmap getPhoto() {
+        if (photo == null && photoBase64 != null) {
+            byte[] decodeString = Base64.decode(photoBase64, Base64.DEFAULT);
+            photo = BitmapFactory.decodeByteArray(decodeString, 0, decodeString.length);
+        }
         return photo;
     }
 
-    public void setPhoto(Photograph photo) {
-        this.photo = photo;
+    public void setPhoto(Bitmap newPhoto) {
+        if (newPhoto != null) {
+            photo = newPhoto;
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            photo.compress(Bitmap.CompressFormat.PNG, 65536, byteArrayOutputStream);
+
+            byte[] b = byteArrayOutputStream.toByteArray();
+            photoBase64 = Base64.encodeToString(b, Base64.DEFAULT);
+        }
+    }
+
+    public String getPhotoBase64() {
+        return photoBase64;
+    }
+
+    public void setPhotoBase64(String photoBase64) {
+        this.photoBase64 = photoBase64;
     }
 
     public String getId() {

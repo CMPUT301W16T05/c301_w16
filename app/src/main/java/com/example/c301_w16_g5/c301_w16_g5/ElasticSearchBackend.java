@@ -1,7 +1,9 @@
 package com.example.c301_w16_g5.c301_w16_g5;
 
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.provider.MediaStore;
 import android.util.Log;
 
 import com.google.gson.Gson;
@@ -67,6 +69,47 @@ public class ElasticSearchBackend {
             ArrayList<Chicken> chickens = new ArrayList<Chicken>();
 
             String query = "{ \"size\" : 500, \"query\" : { \"query_string\" : { \"query\" : \"" + keyword + "\" } } }";
+            Search search = new Search.Builder(query).addIndex(TEAM_INDEX).addType(CHICKEN_TYPE).build();
+
+            try {
+                SearchResult result = client.execute(search);
+                if (result.isSucceeded()) {
+                    try {
+                        JSONArray a = (new JSONObject(result.getJsonString())).getJSONObject("hits").getJSONArray("hits");
+
+                        // sadly JSONArray is not iterable so i have this ugly for loop
+                        for (int i = 0; i < a.length(); i++) {
+                            JSONObject jo = a.getJSONObject(i);
+
+                            String id = jo.getString("_id");
+                            Chicken chicken = parseChicken(jo.getString("_source"));
+                            chicken.setId(id);
+                            chickens.add(chicken);
+                        }
+                    } catch (JSONException e) {
+                        Log.i("ERROR", "Failed to parse Chicken JSON");
+                    }
+                } else {
+                    Log.i("INFO","Search failed");
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return chickens;
+        }
+    }
+
+    /* This method is not used in the actual app, but is very useful for updating the entire
+     * elasticsearch database when changes to chicken storage are made
+     */
+    public static class GetAllChickensTask extends AsyncTask<String, Void, ArrayList<Chicken>> {
+        @Override
+        protected ArrayList<Chicken> doInBackground(String... searches) {
+            verifyClient();
+            ArrayList<Chicken> chickens = new ArrayList<Chicken>();
+
+            String query = "{ \"size\" : 500, \"match_all\" : {} }";
             Search search = new Search.Builder(query).addIndex(TEAM_INDEX).addType(CHICKEN_TYPE).build();
 
             try {
@@ -660,6 +703,12 @@ public class ElasticSearchBackend {
             source.put("photo", chicken.getPicture().toString());
         }
 
+        if (chicken.getPhotoBase64() == null) {
+            source.put("picture", "none");
+        } else {
+            source.put("picture", chicken.getPhotoBase64());
+        }
+
         return source;
     }
 
@@ -697,7 +746,12 @@ public class ElasticSearchBackend {
             }
 
             if (!source.getString("photo").equals("none")) {
-                chicken.setPicture(Uri.parse(source.getString("picture")));
+                chicken.setPicture(Uri.parse(source.getString("photo")));
+            }
+
+
+            if (!source.getString("picture").equals("none")) {
+                chicken.setPhotoBase64(source.getString("picture"));
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -871,6 +925,7 @@ public class ElasticSearchBackend {
 
         bid.setBidStatus(Bid.BidStatus.valueOf(attrList[15]));
 
+
         if (!attrList[19].equals("none")) {
             Get get = new Get.Builder(TEAM_INDEX, attrList[19]).type(LOCATION_TYPE).build();
             try {
@@ -885,6 +940,7 @@ public class ElasticSearchBackend {
                 e.printStackTrace();
             }
         }
+
         return bid;
     }
 
