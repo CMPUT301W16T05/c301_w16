@@ -66,7 +66,7 @@ public class ElasticSearchBackend {
             String keyword = searches[0];
             ArrayList<Chicken> chickens = new ArrayList<Chicken>();
 
-            String query = "{ \"query\" : { \"query_string\" : { \"query\" : \"" + keyword + "\" } } }";
+            String query = "{ \"size\" : 500, \"query\" : { \"query_string\" : { \"query\" : \"" + keyword + "\" } } }";
             Search search = new Search.Builder(query).addIndex(TEAM_INDEX).addType(CHICKEN_TYPE).build();
 
             try {
