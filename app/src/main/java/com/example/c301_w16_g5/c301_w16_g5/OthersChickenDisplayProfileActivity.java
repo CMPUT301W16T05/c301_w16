@@ -123,7 +123,7 @@ public class OthersChickenDisplayProfileActivity extends ChickBidActivity {
         ownerUsername.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                launchDisplayUserProfile(ownerUsername.getText().toString());
+                launchDisplayUserProfile(currentChicken.getOwnerUsername());
             }
         });
 
