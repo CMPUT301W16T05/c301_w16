@@ -123,6 +123,29 @@ public class SearchController {
     /* Chickens */
 
     /**
+     * Gets all saved chickens from the Elasticsearch database.
+     *
+     * @return  list of all chickens
+     */
+    public ArrayList<Chicken> getAllChickens() {
+        ArrayList<Chicken> chickens = new ArrayList<Chicken>();
+
+        if (checkOnline()) {
+            ElasticSearchBackend.GetAllChickensTask searchTask = new ElasticSearchBackend.GetAllChickensTask();
+            searchTask.execute("");
+            try {
+                chickens = searchTask.get();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return chickens;
+    }
+
+    /**
      * Saves the given chicken as a new chicken in the Elasticsearch database.
      *
      * @param   chicken the chicken to add to the database
