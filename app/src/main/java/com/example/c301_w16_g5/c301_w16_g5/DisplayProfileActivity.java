@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,10 +30,12 @@ public class
     private TextView phoneTextView;
     private TextView experienceTextView;
 
+    Button sendMessageButton;
     FloatingActionButton editProfileFAB;
 
     private User user;
 
+    private Intent sendMessageIntent;
     private Intent editProfileIntent;
 
 //    public static final int EDIT_PROFILE_REQUEST = 1;  // The add request code
@@ -53,12 +56,29 @@ public class
         phoneTextView = (TextView) findViewById(R.id.phoneNumberTextView);
         experienceTextView = (TextView) findViewById(R.id.chickenExperienceTextView);
 
+        sendMessageIntent = new Intent(this, SendMessageActivity.class);
+        sendMessageIntent.putExtra(SendMessageActivity.USERNAME_KEY, SendMessageActivity.A_USERNAME);
+
         editProfileIntent = new Intent(this, EditProfileActivity.class);
         editProfileIntent.putExtra(EditProfileActivity.PROFILE_EXTRA_KEY, EditProfileActivity.UPDATE_USER_EXTRA_KEY);
 
         // TODO: disable fab if user profile is not of logged in user
         // should perform the check and disable in onStart. create a method and call it in onStart
 
+        sendMessageButton = (Button) findViewById(R.id.buttonSendMessage);
+        sendMessageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                startActivityForResult(editProfileIntent, EDIT_PROFILE_REQUEST);
+                if (ChickBidsApplication.getSearchController().checkOnline()) {
+                    startActivity(sendMessageIntent);
+                } else {
+                    Toast.makeText(getApplicationContext(),
+                            "Cannot send message offline.",
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
         editProfileFAB = (FloatingActionButton) findViewById(R.id.fab);
         editProfileFAB.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,6 +106,9 @@ public class
             user = ChickBidsApplication.getSearchController().getUserFromDatabase(username);
             editProfileFAB.setVisibility(View.INVISIBLE);
             editProfileFAB.setClickable(false);
+            sendMessageButton.setVisibility(View.VISIBLE);
+            sendMessageButton.setClickable(true);
+            sendMessageIntent.putExtra(SendMessageActivity.USERNAME, user.getUsername());
         } else {
             user = ChickBidsApplication.getUserController().getCurrentUser();
         }

@@ -11,6 +11,11 @@ public class SendMessageActivity extends ChickBidActivity {
     private EditText usernameEditText;
     private EditText messageEditText;
 
+    public static final String USERNAME_KEY = "usernameKey";
+    public static final String USERNAME = "username";
+    public static final int NO_USERNAME = 1;
+    public static final int A_USERNAME = 2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,5 +48,17 @@ public class SendMessageActivity extends ChickBidActivity {
                 }
             }
         });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        Bundle b = getIntent().getExtras();
+
+        if (b != null && b.getInt(USERNAME_KEY) == A_USERNAME) {
+            String username = b.getString(USERNAME);
+            usernameEditText.setText(username);
+        }
     }
 }
