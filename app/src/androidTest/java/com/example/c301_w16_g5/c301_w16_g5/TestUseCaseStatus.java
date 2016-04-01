@@ -20,8 +20,7 @@ public class TestUseCaseStatus extends ActivityInstrumentationTestCase2 {
 
     @Override
     public void setUp() throws Exception {
-        //setUp() is run before a test case is started.
-        //This is where the solo object is created.
+        // run before each test case
         solo = new Solo(getInstrumentation());
         getActivity();
 
@@ -34,8 +33,7 @@ public class TestUseCaseStatus extends ActivityInstrumentationTestCase2 {
 
     @Override
     public void tearDown() throws Exception {
-        //tearDown() is run after a test case has finished.
-        //finishOpenedActivities() will finish all the activities that have been opened during the test execution.
+        // run after each test case
         solo.finishOpenedActivities();
     }
 
