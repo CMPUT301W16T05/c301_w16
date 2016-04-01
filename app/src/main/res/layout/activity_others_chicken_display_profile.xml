@@ -21,12 +21,12 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="3">
+                android:orientation="horizontal">
 
                 <EditText
-                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
                     android:layout_marginTop="16dp"
@@ -34,9 +34,10 @@
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textStyle="bold"
                     android:textColor="@color/colorPrimaryDark"
-                    android:layout_weight="2"
                     android:hint="$/day"
-                    android:numeric="decimal" />
+                    android:numeric="decimal"
+                    android:singleLine="true"
+                    android:maxLength="16"/>
 
                 <Button
                     android:id="@+id/buttonBid"
@@ -49,8 +50,7 @@
                     android:layout_marginRight="16dp"
                     android:layout_marginTop="16dp"
                     android:textStyle="bold"
-                    android:typeface="normal"
-                    android:layout_weight="1"/>
+                    android:typeface="normal"/>
             </LinearLayout>
 
             <LinearLayout
