@@ -40,8 +40,8 @@ public class ViewPhotoActivity extends ChickBidActivity {
         name = (TextView) findViewById(R.id.name);
 
         name.setText(currentChicken.getName());
-        if(currentChicken.getPicture() != null){
-            imageChicken.setImageURI(currentChicken.getPicture());
+        if(currentChicken.getPhoto() != null){
+            imageChicken.setImageBitmap(currentChicken.getPhoto());
         } else {
             imageChicken.setVisibility(View.INVISIBLE);
         }

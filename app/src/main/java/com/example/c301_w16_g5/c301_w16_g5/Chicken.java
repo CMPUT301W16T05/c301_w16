@@ -140,7 +140,8 @@ public class Chicken extends GenericModel<GenericView> implements Parcelable {
         if (newPhoto != null) {
             photo = newPhoto;
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-            photo.compress(Bitmap.CompressFormat.PNG, 65536, byteArrayOutputStream);
+//            photo.compress(Bitmap.CompressFormat.PNG, 65536, byteArrayOutputStream);
+            photo.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
 
             byte[] b = byteArrayOutputStream.toByteArray();
             photoBase64 = Base64.encodeToString(b, Base64.DEFAULT);
