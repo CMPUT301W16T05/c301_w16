@@ -32,8 +32,9 @@ public abstract class ChickBidActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem menuItem) {
+        super.onOptionsItemSelected(menuItem);
         switch (menuItem.getItemId()) {
-            case R.id.home:
+            case android.R.id.home:
                 finish();
                 break;
             case R.id.home_button:
@@ -43,6 +44,6 @@ public abstract class ChickBidActivity extends AppCompatActivity {
                 startActivity(new Intent(this, NotificationsActivity.class));
                 break;
         }
-        return super.onOptionsItemSelected(menuItem);
+        return true;
     }
 }
