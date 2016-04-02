@@ -124,18 +124,4 @@ public class
         super.onResume();
         ChickBidsApplication.getChickenController().popupNotificationToast(this);
     }
-
-//    /** Called upon return to DisplayProfileActivity */
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        switch(requestCode) {
-//            case (EDIT_PROFILE_REQUEST) : {
-//                if (resultCode == Activity.RESULT_OK) {
-//
-//                } else if (resultCode == Activity.RESULT_CANCELED) {}
-//                break;
-//            }
-//        }
-//    }
 }

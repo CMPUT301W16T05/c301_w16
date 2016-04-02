@@ -217,7 +217,7 @@ public class OthersChickenDisplayProfileActivity extends ChickBidActivity {
         description.setText(currentChicken.getDescription());
         status.setText(currentChicken.getChickenStatus().toString());
 
-        ownerUsername.setText("Owned by " + currentChicken.getOwnerUsername());
+        ownerUsername.setText(currentChicken.getOwnerUsername());
     }
 
     private void launchViewPhoto(){

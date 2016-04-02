@@ -42,12 +42,6 @@ public class EditProfileActivity extends ChickBidActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        /* TODO: Check the incoming intent's extra for either of the
-         keys defined above. Edit or create user depending on the
-         extra key passed in.
-         Ideally, update the updated_user locally and then override
-         onPause or something and call updateUser() below. */
-
         setContentView(R.layout.activity_edit_profile);
         Toolbar toolbar = (Toolbar) findViewById(R.id.nav_toolbar);
         setSupportActionBar(toolbar);
@@ -106,7 +100,6 @@ public class EditProfileActivity extends ChickBidActivity {
         if (validateUpdatedUserInfo() == true) {
             updateUserInfo();
         } else {
-            // display error to user and don't update info
             return;
         }
 

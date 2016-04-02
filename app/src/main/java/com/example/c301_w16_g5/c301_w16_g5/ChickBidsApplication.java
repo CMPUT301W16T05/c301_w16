@@ -30,6 +30,11 @@ public class ChickBidsApplication extends Application {
         return app;
     }
 
+    /**
+     * Access to the Chicken Controller Singleton
+     *
+     * @return the chicken controller
+     */
     public static ChickenController getChickenController() {
         if (chickenController == null) {
             chickenController = new ChickenController();
@@ -37,6 +42,11 @@ public class ChickBidsApplication extends Application {
         return chickenController;
     }
 
+    /**
+     * Access to the Search Controller Singleton
+     *
+     * @return the search controller
+     */
     public static SearchController getSearchController() {
         if (searchController == null) {
             searchController = new SearchController();
@@ -44,6 +54,11 @@ public class ChickBidsApplication extends Application {
         return searchController;
     }
 
+    /**
+     * Access to the User Controller Singleton
+     *
+     * @return the user controller
+     */
     public static UserController getUserController() {
         if (userController == null) {
             userController = new UserController();

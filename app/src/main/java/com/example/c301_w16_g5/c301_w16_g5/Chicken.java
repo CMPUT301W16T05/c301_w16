@@ -23,14 +23,12 @@ import io.searchbox.annotations.JestId;
  * @version 1.4, 03/02/2016
  * @see     User
  * @see     Bid
- * @see     Photograph
  * @see     ElasticSearchBackend
  * @see     ChickenController
- * @see     ChickenActivity
  * @see     AddChickenActivity
  * @see     EditChickenActivity
- * @see     OwnerChickenProfileActivity
- * @see     BorrowerChickenProfileActivity
+ * @see     MyChickenDisplayProfileActivity
+ * @see     OthersChickenDisplayProfileActivity
  */
 public class Chicken extends GenericModel<GenericView> implements Parcelable {
     public enum ChickenStatus {
@@ -136,6 +134,12 @@ public class Chicken extends GenericModel<GenericView> implements Parcelable {
         return photo;
     }
 
+    /**
+     * Sets the photo of the chicken to the provided photo, compressing this
+     * photo to a maximum of 65536 bytes.
+     *
+     * @param newPhoto  the bitmap of the new photo
+     */
     public void setPhoto(Bitmap newPhoto) {
         if (newPhoto != null) {
             photo = newPhoto;

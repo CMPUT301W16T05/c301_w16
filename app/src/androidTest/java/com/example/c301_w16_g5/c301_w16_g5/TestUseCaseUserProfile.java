@@ -150,6 +150,6 @@ public class TestUseCaseUserProfile extends ActivityInstrumentationTestCase2 {
         solo.clickOnView(solo.getView(R.id.signInButton));
         solo.assertCurrentActivity("Expected Home Activity", HomeActivity.class);
 
-        // TODO: this is also broken in the app right now
+        // TODO: add test
     }
 }
