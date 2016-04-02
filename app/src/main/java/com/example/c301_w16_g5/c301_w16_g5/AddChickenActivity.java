@@ -3,6 +3,7 @@ package com.example.c301_w16_g5.c301_w16_g5;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -20,6 +21,7 @@ public class AddChickenActivity extends ChickBidActivity {
 
     private EditText nameEditText;
     private EditText descriptionEditText;
+    private Button addButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,7 @@ public class AddChickenActivity extends ChickBidActivity {
 
         nameEditText = (EditText) findViewById(R.id.name);
         descriptionEditText = (EditText) findViewById(R.id.description);
+        addButton = (Button) findViewById(R.id.buttonSave);
     }
 
     /**
@@ -41,6 +44,7 @@ public class AddChickenActivity extends ChickBidActivity {
      * @param view  the view associated with button click
      */
     public void addChicken(View view) {
+        addButton.setClickable(false);
         Chicken chicken;
 
         try {
