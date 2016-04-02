@@ -697,11 +697,13 @@ public class ElasticSearchBackend {
             source.put("bids", bids);
         }
 
+        /*
         if (chicken.getPicture() == null) {
             source.put("photo", "none");
         } else {
             source.put("photo", chicken.getPicture().toString());
         }
+        */
 
         if (chicken.getPhotoBase64() == null) {
             source.put("picture", "none");
@@ -745,9 +747,11 @@ public class ElasticSearchBackend {
                 }
             }
 
+            /*
             if (!source.getString("photo").equals("none")) {
                 chicken.setPicture(Uri.parse(source.getString("photo")));
             }
+            */
 
 
             if (!source.getString("picture").equals("none")) {

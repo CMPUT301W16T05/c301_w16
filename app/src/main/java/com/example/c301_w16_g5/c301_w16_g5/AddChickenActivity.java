@@ -52,6 +52,13 @@ public class AddChickenActivity extends ChickBidActivity {
         }
 
         ChickBidsApplication.getChickenController().saveChickenForMe(chicken);
+
+        if (!ChickBidsApplication.getSearchController().checkOnline()) {
+            Toast.makeText(getApplicationContext(),
+                    "Chicken saved. Will be pushed to online database once connectivity is restored.",
+                    Toast.LENGTH_SHORT).show();
+        }
+
         finish();
     }
 
