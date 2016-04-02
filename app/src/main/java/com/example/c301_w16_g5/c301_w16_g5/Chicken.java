@@ -6,8 +6,11 @@ import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.Base64;
+import android.util.Log;
 
 import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
@@ -49,6 +52,8 @@ public class Chicken extends GenericModel<GenericView> implements Parcelable {
     private Uri picture;
     private Bitmap photo;
     private String photoBase64;
+
+    static final int MAX_IMAGE_SIZE = 65536; // max final file size
 
     protected Chicken() {
         bids = new ArrayList<Bid>();
@@ -143,11 +148,26 @@ public class Chicken extends GenericModel<GenericView> implements Parcelable {
     public void setPhoto(Bitmap newPhoto) {
         if (newPhoto != null) {
             photo = newPhoto;
-            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-//            photo.compress(Bitmap.CompressFormat.PNG, 65536, byteArrayOutputStream);
-            photo.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
 
-            byte[] b = byteArrayOutputStream.toByteArray();
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            photo.compress(Bitmap.CompressFormat.PNG, 100, stream);
+            byte[] b = stream.toByteArray();
+
+            BitmapFactory.Options opts = new BitmapFactory.Options();
+            opts.inSampleSize = 2;  // cut width & height in half
+
+            Log.d("INITIAL SIZE", Integer.toString(photo.getByteCount()));
+            while (photo.getByteCount() >= MAX_IMAGE_SIZE) {
+                // decrease photo size to 1 quarter
+                photo = BitmapFactory.decodeByteArray(b, 0, b.length, opts);
+
+                // get the byte array of the downsized photo
+                stream = new ByteArrayOutputStream();
+                photo.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                b = stream.toByteArray();
+                Log.d("SIZE", Integer.toString(photo.getByteCount()));
+            }
+            Log.d("FINAL SIZE", Integer.toString(photo.getByteCount()));
             photoBase64 = Base64.encodeToString(b, Base64.DEFAULT);
         }
     }
