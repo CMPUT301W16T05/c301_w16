@@ -69,8 +69,13 @@ public class HomeActivity extends ChickBidActivity {
             @Override
             public void onClick(View v) {
                 finish();
+                //logout();
             }
         });
+    }
+
+    private void logout() {
+        ChickBidsApplication.getUserController().setUser(null);
     }
 
     @Override

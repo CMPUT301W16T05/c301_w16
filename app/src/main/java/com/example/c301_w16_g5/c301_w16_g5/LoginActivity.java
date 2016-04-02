@@ -9,7 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 /**
- * A login screen that offers login via email/password.
+ * A login screen that offers login via username
  *
  * @author  Satyen
  * @version 1.4, 03/02/2016

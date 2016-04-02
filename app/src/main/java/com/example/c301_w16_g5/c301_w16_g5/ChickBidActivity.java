@@ -34,11 +34,7 @@ public abstract class ChickBidActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case R.id.home:
-                /*
-                FIXME: doesn't work as wanted
-                should go to previous activity instance not to parent
-                 */
-                NavUtils.navigateUpFromSameTask(this);
+                finish();
                 break;
             case R.id.home_button:
                 startActivity(new Intent(this, HomeActivity.class));
@@ -47,6 +43,6 @@ public abstract class ChickBidActivity extends AppCompatActivity {
                 startActivity(new Intent(this, NotificationsActivity.class));
                 break;
         }
-        return false;
+        return super.onOptionsItemSelected(menuItem);
     }
 }

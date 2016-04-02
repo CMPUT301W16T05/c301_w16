@@ -203,14 +203,14 @@ public class OthersChickenDisplayProfileActivity extends ChickBidActivity {
         }
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                finish();
-        }
-        return super.onOptionsItemSelected(item);
-    }
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        switch (item.getItemId()) {
+//            case android.R.id.home:
+//                finish();
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
 
     private void setTextFields(){
         name.setText(currentChicken.getName());

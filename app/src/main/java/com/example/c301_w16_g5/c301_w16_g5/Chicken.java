@@ -25,8 +25,8 @@ import io.searchbox.annotations.JestId;
  * @see     ChickenActivity
  * @see     AddChickenActivity
  * @see     EditChickenActivity
- * @see     OwnerChickenProfileActivity
- * @see     BorrowerChickenProfileActivity
+ * @see     MyChickenDisplayProfileActivity
+ * @see     OthersChickenDisplayProfileActivity
  */
 public class Chicken extends GenericModel<GenericView> implements Parcelable {
     public enum ChickenStatus {
