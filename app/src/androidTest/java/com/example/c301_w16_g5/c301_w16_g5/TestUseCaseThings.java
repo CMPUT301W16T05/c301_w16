@@ -31,6 +31,7 @@ public class TestUseCaseThings extends ActivityInstrumentationTestCase2 {
 
         // enter the app
         solo.unlockScreen();
+        solo.assertCurrentActivity("Expected Login Activity", LoginActivity.class);
         solo.enterText((AutoCompleteTextView) solo.getView(R.id.usernameEntered), username);
         solo.clickOnView(solo.getView(R.id.signInButton));
         solo.assertCurrentActivity("Expected Home Activity", HomeActivity.class);

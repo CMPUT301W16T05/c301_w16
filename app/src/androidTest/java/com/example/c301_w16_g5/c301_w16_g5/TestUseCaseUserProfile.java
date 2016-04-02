@@ -1,6 +1,7 @@
 package com.example.c301_w16_g5.c301_w16_g5;
 
 import android.test.ActivityInstrumentationTestCase2;
+import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -13,7 +14,11 @@ import com.robotium.solo.Solo;
 public class TestUseCaseUserProfile extends ActivityInstrumentationTestCase2 {
 
     private Solo solo;
-    private String username = "hailey123";  // must be a user with at least 1 chicken
+
+    // TODO: possibly make sure the condition is true is setup
+    // must be a user with at least 1 chicken owned and 1 chicken bid upon
+    private String username = "hailey123";
+
     private String newUsername = "newHailey";
 
     public TestUseCaseUserProfile() {
@@ -38,6 +43,7 @@ public class TestUseCaseUserProfile extends ActivityInstrumentationTestCase2 {
     public void testCreateProfile() {
         // enter the app
         solo.unlockScreen();
+        solo.assertCurrentActivity("Expected Login Activity", LoginActivity.class);
         solo.enterText((AutoCompleteTextView) solo.getView(R.id.usernameEntered), newUsername);
         solo.clickOnView(solo.getView(R.id.signInButton));
         solo.assertCurrentActivity("Expected Edit (Add) Profile Activity", EditProfileActivity.class);
@@ -49,6 +55,7 @@ public class TestUseCaseUserProfile extends ActivityInstrumentationTestCase2 {
         assertEquals(((EditText) solo.getView(R.id.phone)).getText().toString(), "");
         assertEquals(((EditText) solo.getView(R.id.experience)).getText().toString(), "");
 
+        // make a new profile
         String firstName = "Hailey";
         String lastName = "Musselman";
         String email = "email@email.com";
@@ -61,8 +68,8 @@ public class TestUseCaseUserProfile extends ActivityInstrumentationTestCase2 {
         solo.enterText((EditText) solo.getView(R.id.experience), experience);
 
         solo.clickOnView(solo.getView(R.id.buttonSave));
-        // TODO: fix the broken app behaviour
 
+        // sign in with new profile
         solo.clickOnView(solo.getView(R.id.signInButton));
         solo.assertCurrentActivity("Expected Home Activity", HomeActivity.class);
 
@@ -80,6 +87,7 @@ public class TestUseCaseUserProfile extends ActivityInstrumentationTestCase2 {
     public void testEditProfile() {
         // enter the app
         solo.unlockScreen();
+        solo.assertCurrentActivity("Expected Login Activity", LoginActivity.class);
         solo.enterText((AutoCompleteTextView) solo.getView(R.id.usernameEntered), username);
         solo.clickOnView(solo.getView(R.id.signInButton));
         solo.assertCurrentActivity("Expected Home Activity", HomeActivity.class);
@@ -135,21 +143,46 @@ public class TestUseCaseUserProfile extends ActivityInstrumentationTestCase2 {
 
         // save and check for the update
         solo.clickOnView(solo.getView(R.id.buttonSave));
-        solo.assertCurrentActivity("Expected Display My Profile Activity", DisplayProfileActivity.class);
+        solo.assertCurrentActivity("Expected Display My Profile Activity",
+                DisplayProfileActivity.class);
 
-        assertEquals(newFirstName + " " + newLastName, ((TextView) solo.getView(R.id.nameTextView)).getText().toString());
-        assertEquals(newEmail, ((TextView) solo.getView(R.id.emailTextView)).getText().toString());
-        assertEquals(newPhone, ((TextView) solo.getView(R.id.phoneNumberTextView)).getText().toString());
-        assertEquals(newExperience, ((TextView) solo.getView(R.id.chickenExperienceTextView)).getText().toString());
+        assertEquals(newFirstName + " " + newLastName,
+                ((TextView) solo.getView(R.id.nameTextView)).getText().toString());
+        assertEquals(newEmail,
+                ((TextView) solo.getView(R.id.emailTextView)).getText().toString());
+        assertEquals(newPhone,
+                ((TextView) solo.getView(R.id.phoneNumberTextView)).getText().toString());
+        assertEquals(newExperience,
+                ((TextView) solo.getView(R.id.chickenExperienceTextView)).getText().toString());
     }
 
     public void testGetUserForChicken() {
         // enter the app
         solo.unlockScreen();
+        solo.assertCurrentActivity("Expected Login Activity", LoginActivity.class);
         solo.enterText((AutoCompleteTextView) solo.getView(R.id.usernameEntered), username);
         solo.clickOnView(solo.getView(R.id.signInButton));
         solo.assertCurrentActivity("Expected Home Activity", HomeActivity.class);
 
-        // TODO: add test
+        // go to chicken lists screen
+        solo.clickOnView(solo.getView(R.id.buttonChickens));
+        solo.assertCurrentActivity("Expected Item Views Activity", ItemViews.class);
+
+        // select a chicken belonging to someone else
+        solo.scrollViewToSide(solo.getView(R.id.tabs), Solo.RIGHT);
+        solo.clickOnText(solo.getString(R.string.item_profile_bids_placed));
+        solo.clickInList(0);
+        solo.assertCurrentActivity("Expected View Other's Chicken Activity",
+                OthersChickenDisplayProfileActivity.class);
+
+        // view the owner's profile
+        solo.clickOnView(solo.getView(R.id.ownerUsername));
+        solo.assertCurrentActivity("Expected View Other's Profile Activity",
+                DisplayProfileActivity.class);
+        assertTrue(solo.getView(R.id.usernameTextView).getVisibility() == View.VISIBLE);
+        assertTrue(solo.getView(R.id.nameTextView).getVisibility() == View.VISIBLE);
+        assertTrue(solo.getView(R.id.emailTextView).getVisibility() == View.VISIBLE);
+        assertTrue(solo.getView(R.id.phoneNumberTextView).getVisibility() == View.VISIBLE);
+        assertTrue(solo.getView(R.id.chickenExperienceTextView).getVisibility() == View.VISIBLE);
     }
 }

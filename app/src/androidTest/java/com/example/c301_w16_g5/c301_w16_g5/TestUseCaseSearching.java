@@ -15,6 +15,8 @@ import java.util.ArrayList;
 public class TestUseCaseSearching extends ActivityInstrumentationTestCase2 {
 
     private Solo solo;
+
+    // TODO: possibly make sure the condition is true is setup
     private String username = "hailey123";  // must be a user with at least 1 chicken
 
     public TestUseCaseSearching() {
@@ -29,6 +31,7 @@ public class TestUseCaseSearching extends ActivityInstrumentationTestCase2 {
 
         // enter the app
         solo.unlockScreen();
+        solo.assertCurrentActivity("Expected Login Activity", LoginActivity.class);
         solo.enterText((AutoCompleteTextView) solo.getView(R.id.usernameEntered), username);
         solo.clickOnView(solo.getView(R.id.signInButton));
         solo.assertCurrentActivity("Expected Home Activity", HomeActivity.class);
