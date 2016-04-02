@@ -8,7 +8,6 @@ import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -138,7 +137,7 @@ public class SearchesActivity extends AppCompatActivity {
         return true;
     }
 
-    public void doMySearch(String query) {
+    private void doMySearch(String query) {
         chickens = ChickBidsApplication.getSearchController().searchByKeyword(query);
         if (chickens.size() == 0) {
             Toast.makeText(getApplicationContext(), "No Results", Toast.LENGTH_SHORT).show();

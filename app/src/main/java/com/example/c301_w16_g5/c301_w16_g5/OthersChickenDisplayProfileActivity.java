@@ -3,7 +3,6 @@ package com.example.c301_w16_g5.c301_w16_g5;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -168,7 +167,6 @@ public class OthersChickenDisplayProfileActivity extends ChickBidActivity {
             return;
         }
 
-        //FIXME: should this be in views?
         Bid bid = new Bid( ChickBidsApplication.getUserController().getCurrentUser().getUsername(),
                 currentChicken.getId(),
                 Double.parseDouble(bidAmount.getText().toString()));
@@ -202,15 +200,6 @@ public class OthersChickenDisplayProfileActivity extends ChickBidActivity {
             buttonReturn.setVisibility(View.GONE);
         }
     }
-
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        switch (item.getItemId()) {
-//            case android.R.id.home:
-//                finish();
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
 
     private void setTextFields(){
         name.setText(currentChicken.getName());

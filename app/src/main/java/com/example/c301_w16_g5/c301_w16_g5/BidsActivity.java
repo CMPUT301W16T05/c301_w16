@@ -3,16 +3,11 @@ package com.example.c301_w16_g5.c301_w16_g5;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -64,14 +59,9 @@ public class BidsActivity extends ChickBidActivity {
                 return -1 * (Double.valueOf(lhs.getAmount())).compareTo(rhs.getAmount());
             }
         });
+
         adapter = new BidAdapter(this, bids);
         listView.setAdapter(adapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-            }
-        });
     }
 
     private void refreshView() {
@@ -109,6 +99,9 @@ public class BidsActivity extends ChickBidActivity {
         }
     }
 
+    /**
+     * ArrayAdapter for Bids to be used for the list of bids.
+     */
     private class BidAdapter extends ArrayAdapter<Bid> {
         public BidAdapter(Context context, ArrayList<Bid> bids) {
             super(context, 0, bids);

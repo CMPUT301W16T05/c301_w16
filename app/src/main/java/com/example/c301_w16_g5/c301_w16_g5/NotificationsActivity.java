@@ -81,6 +81,9 @@ public class NotificationsActivity extends ChickBidActivity {
     }
 
 
+    /**
+     * Notification adapter for showing list of notifications.
+     */
     private class NotificationAdapter extends ArrayAdapter<Notification> {
         public NotificationAdapter(Context context, ArrayList<Notification> notifications) {
             super(context, 0, notifications);
