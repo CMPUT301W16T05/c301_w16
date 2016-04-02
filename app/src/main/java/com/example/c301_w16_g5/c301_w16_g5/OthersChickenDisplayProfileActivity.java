@@ -110,7 +110,7 @@ public class OthersChickenDisplayProfileActivity extends ChickBidActivity {
         buttonViewPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (currentChicken.getPicture() != null) {
+                if (currentChicken.getPhoto() != null) {
                     launchViewPhoto();
                 } else {
                     Toast.makeText(getApplicationContext(),
@@ -217,7 +217,7 @@ public class OthersChickenDisplayProfileActivity extends ChickBidActivity {
         description.setText(currentChicken.getDescription());
         status.setText(currentChicken.getChickenStatus().toString());
 
-        ownerUsername.setText("Owned by " + currentChicken.getOwnerUsername());
+        ownerUsername.setText(currentChicken.getOwnerUsername());
     }
 
     private void launchViewPhoto(){

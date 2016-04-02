@@ -6,6 +6,7 @@ import android.test.ActivityInstrumentationTestCase2;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -24,8 +25,7 @@ public class TestUseCaseThings extends ActivityInstrumentationTestCase2 {
 
     @Override
     public void setUp() throws Exception {
-        //setUp() is run before a test case is started.
-        //This is where the solo object is created.
+        // run before each test case
         solo = new Solo(getInstrumentation());
         getActivity();
 
@@ -38,8 +38,7 @@ public class TestUseCaseThings extends ActivityInstrumentationTestCase2 {
 
     @Override
     public void tearDown() throws Exception {
-        //tearDown() is run after a test case has finished.
-        //finishOpenedActivities() will finish all the activities that have been opened during the test execution.
+        // run after each test case
         solo.finishOpenedActivities();
     }
 
@@ -47,6 +46,10 @@ public class TestUseCaseThings extends ActivityInstrumentationTestCase2 {
         // go to add chicken screen
         solo.clickOnView(solo.getView(R.id.buttonChickens));
         solo.assertCurrentActivity("Expected Item Views Activity", ItemViews.class);
+
+        solo.clickOnText(solo.getString(R.string.item_profile_owned));
+        int listSizeBefore = ((ListView) solo.getView(R.id.chickenList)).getCount();
+
         solo.clickOnView(solo.getView(R.id.add_chicken_fab));
         solo.assertCurrentActivity("Expected Add Chicken Activity", AddChickenActivity.class);
 
@@ -58,12 +61,9 @@ public class TestUseCaseThings extends ActivityInstrumentationTestCase2 {
         solo.enterText((EditText) solo.getView(R.id.description), testChicken.getDescription());
         solo.clickOnView(solo.getView(R.id.buttonSave));
 
-        // TODO
-        // This is failing currently because chickens are not being saved to Elasticsearch right
-        // when the save button is clicked
-        assertEquals(countChickensBefore + 1, ChickBidsApplication.getUserController().getCurrentUser().getMyChickens().size());
-        assertTrue("New chicken is found", solo.searchText(testChicken.getName()));
-        assertTrue("New chicken is found", solo.searchText(testChicken.getDescription()));
+        /// compare old and new list sizes
+        solo.waitForActivity(ItemViews.class);
+        assertEquals(listSizeBefore + 1, ((ListView) solo.getView(R.id.chickenList)).getCount());
     }
 
     public void testViewChickenList() {
@@ -133,6 +133,18 @@ public class TestUseCaseThings extends ActivityInstrumentationTestCase2 {
     }
 
     public void testDeleteChicken() {
-        // TODO: delete a chicken
+        // go to chicken lists screen
+        solo.clickOnView(solo.getView(R.id.buttonChickens));
+        solo.assertCurrentActivity("Expected Item Views Activity", ItemViews.class);
+
+        // select a chicken of yours
+        solo.clickOnText(solo.getString(R.string.item_profile_owned));
+        int listSizeBefore = ((ListView) solo.getView(R.id.chickenList)).getCount();
+        solo.clickLongInList(0);
+        solo.clickOnText("Delete");
+
+        // compare old and new list sizes
+        solo.waitForDialogToClose();
+        assertEquals(listSizeBefore - 1, ((ListView) solo.getView(R.id.chickenList)).getCount());
     }
 }

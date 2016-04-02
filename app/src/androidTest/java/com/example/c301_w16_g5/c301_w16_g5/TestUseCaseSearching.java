@@ -23,8 +23,7 @@ public class TestUseCaseSearching extends ActivityInstrumentationTestCase2 {
 
     @Override
     public void setUp() throws Exception {
-        //setUp() is run before a test case is started.
-        //This is where the solo object is created.
+        // run before each test case
         solo = new Solo(getInstrumentation());
         getActivity();
 
@@ -37,8 +36,7 @@ public class TestUseCaseSearching extends ActivityInstrumentationTestCase2 {
 
     @Override
     public void tearDown() throws Exception {
-        //tearDown() is run after a test case has finished.
-        //finishOpenedActivities() will finish all the activities that have been opened during the test execution.
+        // run after each test case
         solo.finishOpenedActivities();
     }
 
@@ -57,13 +55,12 @@ public class TestUseCaseSearching extends ActivityInstrumentationTestCase2 {
         solo.clickOnView(solo.getView(R.id.buttonSearch));
         solo.assertCurrentActivity("Expected Search Activity", SearchesActivity.class);
 
-        // perform a search
-        solo.clickOnMenuItem("Search");
-        solo.assertCurrentActivity("Expected Search Activity", SearchesActivity.class);
+        // TODO: how to click on the search button?
 
-        // TODO: figure out how to input the text
+        // TODO: how to input the text?
 
         solo.sendKey(Solo.ENTER);
+        solo.assertCurrentActivity("Expected Search Activity", SearchesActivity.class);
 
         // TODO: compare expected result and list displayed
     }

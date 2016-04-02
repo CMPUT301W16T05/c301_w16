@@ -36,7 +36,7 @@ import java.util.concurrent.ExecutionException;
 public class SearchController {
     private ArrayList<Chicken> offlineChickens;
 
-    //deals with offline chickens
+    /* Offline Behaviour */
     public SearchController() {
         offlineChickens = new ArrayList<Chicken>();
     }
@@ -73,6 +73,11 @@ public class SearchController {
         }
     }
 
+    /**
+     * Updates the database with offline chicken push requests.
+     *
+     * @return  list of chickens pushed to database
+     */
     public ArrayList<Chicken> pushOfflineChickensToDatabase() {
         ArrayList<Chicken> chickens = new ArrayList<Chicken>();
 
@@ -90,7 +95,13 @@ public class SearchController {
         return chickens;
     }
 
-    //deals with search
+    /* Searching */
+
+    /**
+     * Finds the chickens matching given keyword criteria.
+     *
+     * @return  list of all chickens whose info contains the keyword
+     */
     public ArrayList<Chicken> searchByKeyword(String keyword) {
         ArrayList<Chicken> chickens = new ArrayList<Chicken>();
 
@@ -109,7 +120,37 @@ public class SearchController {
         return chickens;
     }
 
-    //chicken methods
+    /* Chickens */
+
+    /**
+     * Gets all saved chickens from the Elasticsearch database.
+     *
+     * @return  list of all chickens
+     */
+    public ArrayList<Chicken> getAllChickens() {
+        ArrayList<Chicken> chickens = new ArrayList<Chicken>();
+
+        if (checkOnline()) {
+            ElasticSearchBackend.GetAllChickensTask searchTask = new ElasticSearchBackend.GetAllChickensTask();
+            searchTask.execute("");
+            try {
+                chickens = searchTask.get();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return chickens;
+    }
+
+    /**
+     * Saves the given chicken as a new chicken in the Elasticsearch database.
+     *
+     * @param   chicken the chicken to add to the database
+     * @return  the saved chicken
+     */
     public Chicken addChickenToDatabase(Chicken chicken) {
         Chicken chicken2 = null;
 
@@ -133,6 +174,12 @@ public class SearchController {
         return chicken2;
     }
 
+    /**
+     * Updates the given existing chicken in the Elasticsearch database.
+     *
+     * @param   chicken the chicken to update in the database
+     * @return  the updated chicken
+     */
     public Chicken updateChickenInDatabase(Chicken chicken) {
         Chicken chicken2 = null;
 
@@ -151,6 +198,14 @@ public class SearchController {
         return chicken2;
     }
 
+    /**
+     * Retrieves the chicken with the given ID from the Elasticsearch database.
+     * ID is a unique identifier which allows chickens to be saved and
+     * retrieved.
+     *
+     * @param   id  the id of the chicken to find
+     * @return  the matching chicken
+     */
     public Chicken getChickenFromDatabase(String id) {
         Chicken chicken = null;
 
@@ -169,6 +224,13 @@ public class SearchController {
         return chicken;
     }
 
+    /**
+     * Deletes the chicken with the given ID from the Elasticsearch database.
+     * ID is a unique identifier which allows chickens to be saved and
+     * retrieved.
+     *
+     * @param   id  the id of the chicken to delete
+     */
     public void removeChickenFromDatabase(String id) {
         if (checkOnline()) {
             ElasticSearchBackend.DeleteChickenTask deleteChickenTask = new ElasticSearchBackend.DeleteChickenTask();
@@ -176,7 +238,13 @@ public class SearchController {
         }
     }
 
-    //user methods
+    /* Users */
+
+    /**
+     * Saves the given user as a new user in the Elasticsearch database.
+     *
+     * @param   user    the user to add to the database
+     */
     public void addUserToDatabase(User user) {
         try {
             FileOutputStream fos = ChickBidsApplication.getApp().openFileOutput(user.getUsername() + ".sav", 0);
@@ -197,6 +265,11 @@ public class SearchController {
         }
     }
 
+    /**
+     * Updates the given existing user in the Elasticsearch database.
+     *
+     * @param   user    the user to update in the database
+     */
     public void updateUserInDatabase(User user) {
         try {
             FileOutputStream fos = ChickBidsApplication.getApp().openFileOutput(user.getUsername() + ".sav", 0);
@@ -217,6 +290,13 @@ public class SearchController {
         }
     }
 
+    /**
+     * Retrieves the user with the given username from the Elasticsearch
+     * database.  Username is a unique identifier of users.
+     *
+     * @param   username    the username of the user to find
+     * @return  the matching user
+     */
     public User getUserFromDatabase(String username) {
         User user =  null;
 
@@ -253,6 +333,12 @@ public class SearchController {
         return user;
     }
 
+    /**
+     * Deletes the user with the given username from the Elasticsearch
+     * database.  Username is a unique identifier of users.
+     *
+     * @param   username    the username of the user to delete
+     */
     public void removeUserFromDatabase(String username) {
         if (checkOnline()) {
             ElasticSearchBackend.DeleteUserTask deleteUserTask = new ElasticSearchBackend.DeleteUserTask();
@@ -260,6 +346,12 @@ public class SearchController {
         }
     }
 
+    /**
+     * Updates the given existing user's username in the Elasticsearch database.
+     *
+     * @param   user    the user to update in the database
+     * @param   oldUsername the user's previous username, currently saved
+     */
     public void changeUsernameInDatabase(User user, String oldUsername) {
         AsyncTask<User, Void, Void> executable = new ElasticSearchBackend.AddUserTask();
         executable.execute(user);
@@ -268,7 +360,13 @@ public class SearchController {
         deleteUserTask.execute(oldUsername);
     }
 
-    //notification methods
+    /* Notifications */
+
+    /**
+     * Saves the given notification in the Elasticsearch database.
+     *
+     * @param   notification    the notification to save
+     */
     public Notification addNotificationToDatabase(Notification notification) {
         Notification notification2 = null;
 
@@ -287,6 +385,12 @@ public class SearchController {
         return notification2;
     }
 
+    /**
+     * Updates the given existing notification in the Elasticsearch database.
+     *
+     * @param   notification    the notification to update in the database
+     * @return  the updated notification
+     */
     public Notification updateNotificationInDatabase(Notification notification) {
         Notification notification2 = null;
 
@@ -305,6 +409,14 @@ public class SearchController {
         return notification2;
     }
 
+    /**
+     * Retrieves the notification with the given ID from the Elasticsearch
+     * database.  ID is a unique identifier which allows notifications to be
+     * saved and retrieved.
+     *
+     * @param   id  the id of the notification to find
+     * @return  the matching notification
+     */
     public Notification getNotificationFromDatabase(String id) {
         Notification notification = null;
 
@@ -323,6 +435,13 @@ public class SearchController {
         return notification;
     }
 
+    /**
+     * Deletes the notification with the given ID from the Elasticsearch
+     * database.  ID is a unique identifier which allows notifications to be
+     * saved and retrieved.
+     *
+     * @param   id  the id of the notification to delete
+     */
     public void removeNotificationFromDatabase(String id) {
         if (checkOnline()) {
             ElasticSearchBackend.DeleteNotificationTask deleteNotificationTask = new ElasticSearchBackend.DeleteNotificationTask();
@@ -330,7 +449,13 @@ public class SearchController {
         }
     }
 
-    //bid methods
+    /* Bids */
+
+    /**
+     * Saves the given bid in the Elasticsearch database.
+     *
+     * @param   bid the bid to save
+     */
     public Bid addBidToDatabase(Bid bid) {
         Bid bid2 = null;
 
@@ -349,6 +474,12 @@ public class SearchController {
         return bid2;
     }
 
+    /**
+     * Updates the given existing bid in the Elasticsearch database.
+     *
+     * @param   bid the bid to update in the database
+     * @return  the updated bid
+     */
     public Bid updateBidInDatabase(Bid bid) {
         Bid bid2 = null;
 
@@ -367,6 +498,14 @@ public class SearchController {
         return bid2;
     }
 
+    /**
+     * Retrieves the bid with the given ID from the Elasticsearch database.
+     * ID is a unique identifier which allows bids to be saved and
+     * retrieved.
+     *
+     * @param   id  the id of the bid to find
+     * @return  the matching bid
+     */
     public Bid getBidFromDatabase(String id) {
         Bid bid = null;
 
@@ -385,6 +524,12 @@ public class SearchController {
         return bid;
     }
 
+    /**
+     * Deletes the bid with the given ID from the Elasticsearch database.  ID
+     * is a unique identifier which allows bids to be saved and retrieved.
+     *
+     * @param   id  the id of the bid to delete
+     */
     public void removeBidFromDatabase(String id) {
         if (checkOnline()) {
             ElasticSearchBackend.DeleteBidTask deleteBidTask = new ElasticSearchBackend.DeleteBidTask();
@@ -392,7 +537,13 @@ public class SearchController {
         }
     }
 
-    //location methods
+    /* Location */
+
+    /**
+     * Saves the given location in the Elasticsearch database.
+     *
+     * @param   location    the location to save
+     */
     public Location addLocationToDatabase(Location location) {
         Location location1 = null;
 
@@ -411,6 +562,12 @@ public class SearchController {
         return location1;
     }
 
+    /**
+     * Updates the given existing location in the Elasticsearch database.
+     *
+     * @param   location    the location to update in the database
+     * @return  the updated location
+     */
     public Location updateLocationInDatabase(Location location) {
         Location location1 = null;
 
@@ -429,6 +586,14 @@ public class SearchController {
         return location1;
     }
 
+    /**
+     * Retrieves the location with the given ID from the Elasticsearch
+     * database.  ID is a unique identifier which allows locations to be saved
+     * and retrieved.
+     *
+     * @param   id  the id of the location to find
+     * @return  the matching location
+     */
     public Location getLocationFromDatabase(String id) {
         Location location = null;
 
@@ -447,6 +612,12 @@ public class SearchController {
         return location;
     }
 
+    /**
+     * Deletes the location with the given ID from the Elasticsearch database.
+     * ID is a unique identifier which allows locations to be saved and retrieved.
+     *
+     * @param   id  the id of the location to delete
+     */
     public void removeLocationFromDatabase(String id) {
         if (checkOnline()) {
             ElasticSearchBackend.DeleteLocationTask deleteLocationTask = new ElasticSearchBackend.DeleteLocationTask();
@@ -454,7 +625,13 @@ public class SearchController {
         }
     }
 
-    //letter methods
+    /* Letter */
+
+    /**
+     * Saves the given letter in the Elasticsearch database.
+     *
+     * @param   letter  the letter to save
+     */
     public Letter addLetterToDatabase(Letter letter) {
         Letter letter2 = null;
 
@@ -473,6 +650,12 @@ public class SearchController {
         return letter2;
     }
 
+    /**
+     * Updates the given existing letter in the Elasticsearch database.
+     *
+     * @param   letter  the letter to update in the database
+     * @return  the updated letter
+     */
     public Letter updateLetterInDatabase(Letter letter) {
         Letter letter1 = null;
 
@@ -491,6 +674,14 @@ public class SearchController {
         return letter1;
     }
 
+    /**
+     * Retrieves the letter with the given ID from the Elasticsearch database.
+     * ID is a unique identifier which allows letters to be saved and
+     * retrieved.
+     *
+     * @param   id  the id of the letter to find
+     * @return  the matching letter
+     */
     public Letter getLetterFromDatabase(String id) {
         Letter letter = null;
 
@@ -509,6 +700,13 @@ public class SearchController {
         return letter;
     }
 
+    /**
+     * Deletes the letter with the given ID from the Elasticsearch database.
+     * ID is a unique identifier which allows letters to be saved and
+     * retrieved.
+     *
+     * @param   id  the id of the letter to delete
+     */
     public void removeLetterFromDatabase(String id) {
         if (checkOnline()) {
             ElasticSearchBackend.DeleteLetterTask deleteLetterTask = new ElasticSearchBackend.DeleteLetterTask();
@@ -516,6 +714,12 @@ public class SearchController {
         }
     }
 
+    /**
+     * Retrieves the letters of the given user from the Elasticsearch database.
+     *
+     * @param   user    the user whose letters are retrieved
+     * @return  the list of all letters of that user
+     */
     public ArrayList<Letter> getLettersForUser(User user) {
         ArrayList<Letter> letters = new ArrayList<Letter>();
 
@@ -535,11 +739,15 @@ public class SearchController {
         return letters;
     }
 
-    //checks if device is connected to the internet
+    /**
+     * Checks if a device is connected to the internet.
+     *
+     * @return  true if connected, false otherwise
+     */
     public boolean checkOnline() {
-        //Taken from http://stackoverflow.com/questions/9570237/android-check-internet-connection
-        //Answer by Seshu Vinay
-        //Accessed by athompson0 on March 29 2016
+        // Taken from http://stackoverflow.com/questions/9570237/android-check-internet-connection
+        // Answer by Seshu Vinay
+        // Accessed by athompson0 on March 29 2016
         ConnectivityManager cm = (ConnectivityManager) ChickBidsApplication.getApp().getSystemService(Context.CONNECTIVITY_SERVICE);
         return cm.getActiveNetworkInfo() != null;
     }

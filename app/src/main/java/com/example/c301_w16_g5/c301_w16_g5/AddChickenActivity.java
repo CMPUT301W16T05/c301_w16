@@ -18,13 +18,8 @@ import android.widget.Toast;
  */
 public class AddChickenActivity extends ChickBidActivity {
 
-    public static final String CREATE_CHICKEN_EXTRA_KEY = "create_chicken_extra_key";
-    public static final String UPDATE_CHICKEN_EXTRA_KEY = "update_chicken_extra_key";
-
     private EditText nameEditText;
     private EditText descriptionEditText;
-
-    private String activityType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +34,12 @@ public class AddChickenActivity extends ChickBidActivity {
         descriptionEditText = (EditText) findViewById(R.id.description);
     }
 
+    /**
+     * Adds a new chicken for the current user based on the input they have
+     * provided.
+     *
+     * @param view  the view associated with button click
+     */
     public void addChicken(View view) {
         Chicken chicken;
 
@@ -67,7 +68,6 @@ public class AddChickenActivity extends ChickBidActivity {
             throw new UserException("Invalid Description.");
         }
 
-        // TODO: move chicken creation to the controller
         return new Chicken(nameEditText.getText().toString(),
                 descriptionEditText.getText().toString(),
                 ChickBidsApplication.getUserController().getCurrentUser().getUsername());

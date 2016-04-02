@@ -13,7 +13,14 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 /**
- * Created by Hailey on 2016-03-16.
+ * This class provides the adapter for allowing chickens to be displayed in
+ * ListViews.
+ *
+ * @author  Hailey
+ * @version 1.4, 03/16/2016
+ * @see     Chicken
+ * @see     ItemViews
+ * @see     SearchesActivity
  */
 public class ChickenAdapter extends ArrayAdapter<Chicken> {
     public ChickenAdapter(Context context, ArrayList<Chicken> chickens) {

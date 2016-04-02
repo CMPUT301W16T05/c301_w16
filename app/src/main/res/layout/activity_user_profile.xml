@@ -119,6 +119,27 @@
             android:layout_marginRight="16dp"/>
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:gravity="center|bottom">
+
+        <Button
+            android:id="@+id/buttonSendMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Send Message"
+            android:textSize="16.5dp"
+            android:background="@color/colorAccent"
+            android:layout_margin="16dp"
+            android:textStyle="bold"
+            android:typeface="normal"
+            android:visibility="invisible"
+            android:clickable="false"/>
+    </LinearLayout>
+
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"

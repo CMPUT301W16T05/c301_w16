@@ -56,7 +56,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:maxLines="5"
-            android:maxLength="150"
+            android:maxLength="100"
             android:id="@+id/description"
             android:textColor="@color/colorTextSecondary"
             android:layout_margin="16dp"/>
