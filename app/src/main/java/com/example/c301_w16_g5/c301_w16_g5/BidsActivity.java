@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -46,6 +47,14 @@ public class BidsActivity extends ChickBidActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         listView = (ListView) findViewById(R.id.bidsListView);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Bid bid = (Bid) listView.getItemAtPosition(position);
+                String username = bid.getBidderUsername();
+                launchDisplayUserProfile(username);
+            }
+        });
     }
 
     @Override
@@ -97,6 +106,13 @@ public class BidsActivity extends ChickBidActivity {
                 }
             }
         }
+    }
+
+    private void launchDisplayUserProfile(String username){
+        Intent displayProfileIntent = new Intent(this, DisplayProfileActivity.class);
+        displayProfileIntent.putExtra(DisplayProfileActivity.KEY_DISPLAY_USER, DisplayProfileActivity.OTHER_USER);
+        displayProfileIntent.putExtra(OthersChickenDisplayProfileActivity.OTHER_USERNAME, username);
+        startActivity(displayProfileIntent);
     }
 
     /**

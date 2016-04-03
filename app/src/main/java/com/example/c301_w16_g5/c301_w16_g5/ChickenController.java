@@ -310,11 +310,15 @@ public class ChickenController {
         bid.setBidStatus(Bid.BidStatus.ACCEPTED);
 
         for (Bid b : chicken.getBids()) {
-            if ((b.getBidStatus() == Bid.BidStatus.UNDECIDED) && (b != bid)) {
-                User user = searchController.getUserFromDatabase(b.getBidderUsername());
-                removeChickenForBidFromUser(user, b);
-                searchController.removeBidFromDatabase(b.getId());
-                searchController.updateUserInDatabase(user);
+            if (!b.equals(bid)) {
+                if (b.getBidStatus() == Bid.BidStatus.UNDECIDED) {
+                    User user = searchController.getUserFromDatabase(b.getBidderUsername());
+                    removeChickenForBidFromUser(user, b);
+                    searchController.removeBidFromDatabase(b.getId());
+                    searchController.updateUserInDatabase(user);
+                } else if (b.getBidStatus() == Bid.BidStatus.REJECTED) {
+                    searchController.removeBidFromDatabase(b.getId());
+                }
             }
         }
 

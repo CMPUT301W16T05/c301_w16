@@ -39,6 +39,9 @@ public class SendMessageActivity extends ChickBidActivity {
                 if (ChickBidsApplication.getUserController().usernameInUse(username)) {
                     ChickBidsApplication.getChickenController().addNotification(username,
                             messageEditText.getText().toString());
+                    Toast.makeText(getApplicationContext(),
+                            "Message sent",
+                            Toast.LENGTH_SHORT).show();
                     finish();
                 } else {
                     Toast.makeText(getApplicationContext(),
