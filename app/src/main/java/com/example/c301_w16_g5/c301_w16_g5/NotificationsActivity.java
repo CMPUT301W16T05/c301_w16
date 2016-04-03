@@ -81,6 +81,9 @@ public class NotificationsActivity extends ChickBidActivity {
     }
 
 
+    /**
+     * Notification adapter for showing list of notifications.
+     */
     private class NotificationAdapter extends ArrayAdapter<Notification> {
         public NotificationAdapter(Context context, ArrayList<Notification> notifications) {
             super(context, 0, notifications);
@@ -109,9 +112,15 @@ public class NotificationsActivity extends ChickBidActivity {
             dismissButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ChickenController chickenController = ChickBidsApplication.getChickenController();
-                    chickenController.removeNotificationForMe(notification);
-                    refreshView();
+                    if (ChickBidsApplication.getSearchController().checkOnline()) {
+                        ChickenController chickenController = ChickBidsApplication.getChickenController();
+                        chickenController.removeNotificationForMe(notification);
+                        refreshView();
+                    } else {
+                        Toast.makeText(getApplicationContext(),
+                                "Cannot dismiss notifications offline.",
+                                Toast.LENGTH_SHORT).show();
+                    }
                 }
             });
 

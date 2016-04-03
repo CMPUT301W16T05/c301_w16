@@ -3,22 +3,34 @@ package com.example.c301_w16_g5.c301_w16_g5;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.lang.reflect.Type;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.concurrent.ExecutionException;
 
 /**
@@ -71,6 +83,40 @@ public class SearchController {
         } catch (IOException e) {
             throw new RuntimeException();
         }
+    }
+
+    public void saveUserOffline(User user) {
+        try {
+            FileOutputStream fos = ChickBidsApplication.getApp().openFileOutput(user.getUsername() + ".sav", 0);
+            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(fos));
+            Gson gson = new Gson();
+            gson.toJson(user, out);
+            out.flush();
+            fos.close();
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException();
+        } catch (IOException e) {
+            throw new RuntimeException();
+        }
+    }
+
+    public User loadUserOffline(String username) {
+        User user = null;
+
+        try {
+            FileInputStream fis = ChickBidsApplication.getApp().openFileInput(username + ".sav");
+            BufferedReader in = new BufferedReader(new InputStreamReader(fis));
+            Gson gson = new Gson();
+
+            user = gson.fromJson(in, User.class);
+
+        } catch (FileNotFoundException e) {
+            Log.i("ERROR", "User was not loaded from file");
+        } catch (IOException e) {
+            throw new RuntimeException();
+        }
+
+        return user;
     }
 
     /**
@@ -246,18 +292,7 @@ public class SearchController {
      * @param   user    the user to add to the database
      */
     public void addUserToDatabase(User user) {
-        try {
-            FileOutputStream fos = ChickBidsApplication.getApp().openFileOutput(user.getUsername() + ".sav", 0);
-            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(fos));
-            Gson gson = new Gson();
-            gson.toJson(user, out);
-            out.flush();
-            fos.close();
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException();
-        } catch (IOException e) {
-            throw new RuntimeException();
-        }
+        saveUserOffline(user);
 
         if (checkOnline()) {
             AsyncTask<User, Void, Void> executable = new ElasticSearchBackend.AddUserTask();
@@ -271,18 +306,7 @@ public class SearchController {
      * @param   user    the user to update in the database
      */
     public void updateUserInDatabase(User user) {
-        try {
-            FileOutputStream fos = ChickBidsApplication.getApp().openFileOutput(user.getUsername() + ".sav", 0);
-            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(fos));
-            Gson gson = new Gson();
-            gson.toJson(user, out);
-            out.flush();
-            fos.close();
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException();
-        } catch (IOException e) {
-            throw new RuntimeException();
-        }
+        saveUserOffline(user);
 
         if (checkOnline()) {
             AsyncTask<User, Void, Void> executable = new ElasticSearchBackend.AddUserTask();
@@ -312,22 +336,10 @@ public class SearchController {
                 e.printStackTrace();
             }
 
+            saveUserOffline(user);
+
         } else {
-            try {
-                FileInputStream fis = ChickBidsApplication.getApp().openFileInput(username + ".sav");
-                BufferedReader in = new BufferedReader(new InputStreamReader(fis));
-                Gson gson = new Gson();
-
-                // Took from https://google-gson.googlecode.com/svn/trunk/gson/docs/javadocs/com/google/gson/Gson.html 01-19 2016
-                Type userType = new TypeToken<User>() {
-                }.getType();
-                user = gson.fromJson(in, userType);
-
-            } catch (FileNotFoundException e) {
-                Log.i("ERROR", "User was not loaded from file");
-            } catch (IOException e) {
-                throw new RuntimeException();
-            }
+            user = loadUserOffline(username);
         }
 
         return user;
