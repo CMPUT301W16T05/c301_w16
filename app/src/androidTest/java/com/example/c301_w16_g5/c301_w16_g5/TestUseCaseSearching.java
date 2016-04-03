@@ -3,6 +3,8 @@ package com.example.c301_w16_g5.c301_w16_g5;
 import android.test.ActivityInstrumentationTestCase2;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.SearchView;
 
 import com.robotium.solo.Solo;
@@ -52,19 +54,29 @@ public class TestUseCaseSearching extends ActivityInstrumentationTestCase2 {
         // the front-end
 
         // expected result:
-        ArrayList<Chicken> result = ChickBidsApplication.getSearchController().searchByKeyword("bob");
+        ArrayList<Chicken> expectedResult = ChickBidsApplication.getSearchController().searchByKeyword("bob");
 
         // go to search screen
         solo.clickOnView(solo.getView(R.id.buttonSearch));
         solo.assertCurrentActivity("Expected Search Activity", SearchesActivity.class);
 
         // TODO: how to click on the search button?
+        solo.clickOnView(solo.getView(R.id.search));
 
         // TODO: how to input the text?
+        solo.enterText(0, "bob");
 
         solo.sendKey(Solo.ENTER);
         solo.assertCurrentActivity("Expected Search Activity", SearchesActivity.class);
 
+        ListAdapter adapter = ((ListView) solo.getView(R.id.searchResults)).getAdapter();
+        ArrayList<Chicken> actualResult = new ArrayList<>();
+
+        for(int i = 0; i < adapter.getCount(); i++) {
+            actualResult.add((Chicken) adapter.getItem(i));
+        }
+
         // TODO: compare expected result and list displayed
+        assertEquals("Search Results Don't Match", expectedResult.size(), actualResult.size());
     }
 }
