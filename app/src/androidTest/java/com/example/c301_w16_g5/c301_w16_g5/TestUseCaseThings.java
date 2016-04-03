@@ -9,8 +9,6 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-
 /**
  * Created by Hailey on 2016-03-31.
  */
@@ -46,7 +44,7 @@ public class TestUseCaseThings extends ActivityInstrumentationTestCase2 {
     public void testAddChicken() {
         // go to add chicken screen
         solo.clickOnView(solo.getView(R.id.buttonChickens));
-        solo.assertCurrentActivity("Expected Item Views Activity", ItemViews.class);
+        solo.assertCurrentActivity("Expected Item Views Activity", ChickenViewsActivity.class);
 
         solo.clickOnText(solo.getString(R.string.item_profile_owned));
         int listSizeBefore = ((ListView) solo.getView(R.id.chickenList)).getCount();
@@ -63,14 +61,14 @@ public class TestUseCaseThings extends ActivityInstrumentationTestCase2 {
         solo.clickOnView(solo.getView(R.id.buttonSave));
 
         /// compare old and new list sizes
-        solo.waitForActivity(ItemViews.class);
+        solo.waitForActivity(ChickenViewsActivity.class);
         assertEquals(listSizeBefore + 1, ((ListView) solo.getView(R.id.chickenList)).getCount());
     }
 
     public void testViewChickenList() {
         // go to chicken lists screen
         solo.clickOnView(solo.getView(R.id.buttonChickens));
-        solo.assertCurrentActivity("Expected Item Views Activity", ItemViews.class);
+        solo.assertCurrentActivity("Expected Item Views Activity", ChickenViewsActivity.class);
 
         String[] tabs = new String[] {solo.getString(R.string.item_profile_possession),
                 solo.getString(R.string.item_profile_lent),
@@ -89,7 +87,7 @@ public class TestUseCaseThings extends ActivityInstrumentationTestCase2 {
     public void testViewChicken() {
         // go to chicken lists screen
         solo.clickOnView(solo.getView(R.id.buttonChickens));
-        solo.assertCurrentActivity("Expected Item Views Activity", ItemViews.class);
+        solo.assertCurrentActivity("Expected Item Views Activity", ChickenViewsActivity.class);
 
         // select a chicken of yours
         solo.clickOnText(solo.getString(R.string.item_profile_owned));
@@ -105,7 +103,7 @@ public class TestUseCaseThings extends ActivityInstrumentationTestCase2 {
     public void testEditChicken() {
         // go to chicken lists screen
         solo.clickOnView(solo.getView(R.id.buttonChickens));
-        solo.assertCurrentActivity("Expected Item Views Activity", ItemViews.class);
+        solo.assertCurrentActivity("Expected Item Views Activity", ChickenViewsActivity.class);
 
         // select a chicken of yours
         solo.clickOnText(solo.getString(R.string.item_profile_owned));
@@ -136,7 +134,7 @@ public class TestUseCaseThings extends ActivityInstrumentationTestCase2 {
     public void testDeleteChicken() {
         // go to chicken lists screen
         solo.clickOnView(solo.getView(R.id.buttonChickens));
-        solo.assertCurrentActivity("Expected Item Views Activity", ItemViews.class);
+        solo.assertCurrentActivity("Expected Item Views Activity", ChickenViewsActivity.class);
 
         // select a chicken of yours
         solo.clickOnText(solo.getString(R.string.item_profile_owned));

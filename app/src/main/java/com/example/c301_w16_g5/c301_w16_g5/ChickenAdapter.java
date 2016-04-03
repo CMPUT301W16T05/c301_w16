@@ -1,13 +1,10 @@
 package com.example.c301_w16_g5.c301_w16_g5;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -19,7 +16,7 @@ import java.util.ArrayList;
  * @author  Hailey
  * @version 1.4, 03/16/2016
  * @see     Chicken
- * @see     ItemViews
+ * @see     ChickenViewsActivity
  * @see     SearchesActivity
  */
 public class ChickenAdapter extends ArrayAdapter<Chicken> {

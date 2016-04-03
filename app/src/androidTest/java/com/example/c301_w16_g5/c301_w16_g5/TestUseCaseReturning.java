@@ -37,7 +37,7 @@ public class TestUseCaseReturning extends ActivityInstrumentationTestCase2 {
 
         // go to chicken views
         solo.clickOnView(solo.getView(R.id.buttonChickens));
-        solo.assertCurrentActivity("Expected Item Views Activity", ItemViews.class);
+        solo.assertCurrentActivity("Expected Item Views Activity", ChickenViewsActivity.class);
         solo.scrollViewToSide(solo.getView(R.id.tabs), Solo.RIGHT);
     }
 
@@ -64,7 +64,7 @@ public class TestUseCaseReturning extends ActivityInstrumentationTestCase2 {
         solo.waitForActivity(OthersChickenDisplayProfileActivity.class);
         Chicken returningChicken = ChickBidsApplication.getChickenController().getCurrentChicken();
         solo.clickOnView(solo.getView(R.id.buttonReturn));
-        solo.waitForActivity(ItemViews.class);
+        solo.waitForActivity(ChickenViewsActivity.class);
 
         // check that the  chicken is now available
         assertEquals(Chicken.ChickenStatus.AVAILABLE, returningChicken.getChickenStatus());
