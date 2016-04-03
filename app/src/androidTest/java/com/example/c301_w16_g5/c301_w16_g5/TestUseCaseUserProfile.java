@@ -166,7 +166,7 @@ public class TestUseCaseUserProfile extends ActivityInstrumentationTestCase2 {
 
         // go to chicken lists screen
         solo.clickOnView(solo.getView(R.id.buttonChickens));
-        solo.assertCurrentActivity("Expected Item Views Activity", ItemViews.class);
+        solo.assertCurrentActivity("Expected Item Views Activity", ChickenViewsActivity.class);
 
         // select a chicken belonging to someone else
         solo.scrollViewToSide(solo.getView(R.id.tabs), Solo.RIGHT);

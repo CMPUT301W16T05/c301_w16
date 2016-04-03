@@ -43,7 +43,7 @@ public class TestUseCaseStatus extends ActivityInstrumentationTestCase2 {
     public void testChickenHasStatus() {
         // go to chicken lists screen
         solo.clickOnView(solo.getView(R.id.buttonChickens));
-        solo.assertCurrentActivity("Expected Item Views Activity", ItemViews.class);
+        solo.assertCurrentActivity("Expected Item Views Activity", ChickenViewsActivity.class);
 
         // select a chicken of yours
         solo.clickOnText(solo.getString(R.string.item_profile_owned));

@@ -28,7 +28,7 @@ import java.util.ArrayList;
  * @see     Chicken
  * @see     ChickenController
  */
-public class ItemViews extends ChickBidActivity  {
+public class ChickenViewsActivity extends ChickBidActivity  {
 
     private enum TabCategory {
         POSSESSION,
@@ -56,7 +56,7 @@ public class ItemViews extends ChickBidActivity  {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_item_views);
+        setContentView(R.layout.activity_chicken_views);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.nav_toolbar);
         setSupportActionBar(toolbar);

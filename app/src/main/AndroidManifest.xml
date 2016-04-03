@@ -50,7 +50,7 @@
             android:label="Send Message"/>
 
         <activity
-            android:name=".ItemViews"
+            android:name=".ChickenViewsActivity"
             android:label="@string/title_activity_item_views"/>
         <activity
             android:name=".AddChickenActivity"

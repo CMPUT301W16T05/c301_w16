@@ -41,7 +41,7 @@ public class TestUseCaseBorrowing extends ActivityInstrumentationTestCase2{
 
         // go to chicken views
         solo.clickOnView(solo.getView(R.id.buttonChickens));
-        solo.assertCurrentActivity("Expected Item Views Activity", ItemViews.class);
+        solo.assertCurrentActivity("Expected Item Views Activity", ChickenViewsActivity.class);
         solo.scrollViewToSide(solo.getView(R.id.tabs), Solo.RIGHT);
     }
 
@@ -70,7 +70,7 @@ public class TestUseCaseBorrowing extends ActivityInstrumentationTestCase2{
             assertEquals("BORROWED", ((TextView) solo.getView(R.id.status)).getText().toString());
             solo.goBack();
             solo.assertCurrentActivity("Expected View Chicken Lists Activity",
-                    ItemViews.class);
+                    ChickenViewsActivity.class);
         }
     }
 
@@ -93,7 +93,7 @@ public class TestUseCaseBorrowing extends ActivityInstrumentationTestCase2{
             assertEquals("BORROWED", ((TextView) solo.getView(R.id.status)).getText().toString());
             solo.goBack();
             solo.assertCurrentActivity("Expected View Chicken Lists Activity",
-                    ItemViews.class);
+                    ChickenViewsActivity.class);
         }
     }
 }
