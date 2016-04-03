@@ -47,7 +47,7 @@ public class NotificationsActivity extends ChickBidActivity {
         final Intent sendMessageIntent = new Intent(this, SendMessageActivity.class);
         sendMessageIntent.putExtra(SendMessageActivity.USERNAME_KEY, SendMessageActivity.NO_USERNAME);
 
-        FloatingActionButton floatingActionButton = (FloatingActionButton) findViewById(R.id.dismissAllNotifications);
+        FloatingActionButton floatingActionButton = (FloatingActionButton) findViewById(R.id.sendMessage);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
