@@ -1,6 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:descendantFocusability="blocksDescendants" >
     <TableLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -32,6 +33,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
+                android:textStyle="bold"
                 android:textColor="@color/colorTextSecondary"
                 android:paddingTop="5dp"
                 android:paddingBottom="5dp"
