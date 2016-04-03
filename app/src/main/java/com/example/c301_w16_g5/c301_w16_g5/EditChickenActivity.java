@@ -6,7 +6,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -39,7 +38,7 @@ public class EditChickenActivity extends ChickBidActivity {
     Bitmap currentPhoto;
 
     ImageView imageToUpload;
-    Button buttonUploadImage, buttonSave;
+    Button buttonUploadImage, buttonSave, buttonDeleteImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +56,7 @@ public class EditChickenActivity extends ChickBidActivity {
 
         imageToUpload = (ImageView) findViewById(R.id.imageChicken);
         buttonUploadImage = (Button) findViewById(R.id.buttonUploadImage);
+        buttonDeleteImage = (Button) findViewById(R.id.buttonDeleteImage);
         buttonSave = (Button) findViewById(R.id.buttonSave);
 
         buttonUploadImage.setOnClickListener(new View.OnClickListener() {
@@ -64,6 +64,22 @@ public class EditChickenActivity extends ChickBidActivity {
             public void onClick(View v) {
                 currentDescription = description.getText().toString();
                 launchGalleryPick();
+            }
+        });
+
+        buttonDeleteImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (currentChicken.getPhoto() != null) {
+                    currentPhoto = null;
+                    // 2016-04-03 http://stackoverflow.com/questions/9498094/how-to-clear-imageview-correctly
+                    imageToUpload.setImageDrawable(null);
+                } else {
+                    Toast.makeText(getApplicationContext(),
+                            "No photo available.",
+                            Toast.LENGTH_SHORT).show();
+                    return;
+                }
             }
         });
 
@@ -123,7 +139,12 @@ public class EditChickenActivity extends ChickBidActivity {
     private void saveChickenInfoFields() {
         // save the most recently input data
         currentChicken.setDescription(description.getText().toString());
-        currentChicken.setPhoto(currentPhoto);
+
+        if (currentPhoto == null) {
+            currentChicken.clearPhoto();
+        } else {
+            currentChicken.setPhoto(currentPhoto);
+        }
     }
 
     private void launchGalleryPick() {

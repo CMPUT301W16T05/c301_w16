@@ -2,7 +2,6 @@ package com.example.c301_w16_g5.c301_w16_g5;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.Base64;
@@ -167,6 +166,11 @@ public class Chicken extends GenericModel<GenericView> implements Parcelable {
             Log.d("FINAL SIZE", Integer.toString(photo.getByteCount()));
             photoBase64 = Base64.encodeToString(b, Base64.DEFAULT);
         }
+    }
+
+    public void clearPhoto() {
+        photo = null;
+        photoBase64 = null;
     }
 
     public String getPhotoBase64() {

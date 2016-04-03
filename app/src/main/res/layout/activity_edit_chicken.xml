@@ -85,6 +85,18 @@
                 android:layout_marginRight="16dp"
                 android:textStyle="bold"
                 android:typeface="normal"/>
+
+            <Button
+                android:id="@+id/buttonDeleteImage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Delete Image"
+                android:textSize="16.5dp"
+                android:background="@color/colorAccent"
+                android:layout_margin="16dp"
+                android:textStyle="bold"
+                android:typeface="normal"/>
+
             <Button
                 android:id="@+id/buttonSave"
                 android:layout_width="match_parent"
