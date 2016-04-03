@@ -40,13 +40,14 @@ public abstract class ChickBidActivity extends AppCompatActivity {
                 intent = new Intent(this, HomeActivity.class);
                 // 2016-04-02 http://stackoverflow.com/questions/11460896/button-to-go-back-to-mainactivity
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
                 break;
             case R.id.notifications_button:
                 intent = new Intent(this, NotificationsActivity.class);
-                startActivity(intent);
                 break;
         }
+
+        if (intent != null)
+            startActivity(intent);
 
         return true;
     }
