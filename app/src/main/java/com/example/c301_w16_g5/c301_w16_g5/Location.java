@@ -12,8 +12,7 @@ import io.searchbox.annotations.JestId;
  * @see     User
  * @see     Chicken
  * @see     Bid
- * @see     ChooseLocationActivity
- * @see     ViewLocationActivity
+ * @see     LocationActivity
  * @see     ChickenController
  */
 public class Location {

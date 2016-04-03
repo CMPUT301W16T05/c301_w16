@@ -49,7 +49,6 @@ public class Bid extends GenericModel<GenericView> {
         return amount;
     }
 
-
     public BidStatus getBidStatus() {
         return bidStatus;
     }

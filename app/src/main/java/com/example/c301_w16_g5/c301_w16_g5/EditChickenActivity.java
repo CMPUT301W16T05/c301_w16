@@ -91,6 +91,7 @@ public class EditChickenActivity extends ChickBidActivity {
             Uri selectedImage = data.getData();
             try {
                 currentPhoto = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImage);
+
             } catch (IOException e) {
                 Toast.makeText(getApplicationContext(),
                         "Photo upload failed.",
