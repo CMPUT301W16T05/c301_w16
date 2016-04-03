@@ -46,7 +46,9 @@ public abstract class ChickBidActivity extends AppCompatActivity {
                 break;
         }
 
-        startActivity(intent);
+        if (intent != null)
+            startActivity(intent);
+
         return true;
     }
 }
