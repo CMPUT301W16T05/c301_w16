@@ -18,6 +18,7 @@ public class SearchesActivityUITest extends ActivityInstrumentationTestCase2 {
 
     Instrumentation instrumentation;
     Activity activity;
+    User user;
 
     public SearchesActivityUITest() {
         super(SearchesActivity.class);
@@ -25,81 +26,17 @@ public class SearchesActivityUITest extends ActivityInstrumentationTestCase2 {
 
     protected void setUp() throws Exception {
         super.setUp();
+
+        user = new User("un", "f", "l", "abc@email.com", "780-123-4567", "some");
+        ChickBidsApplication.getUserController().setUser(user);
+
         instrumentation = getInstrumentation();
         activity = getActivity();
     }
 
     public void testViewVisible() {
         ViewAsserts.assertOnScreen(activity.getWindow().getDecorView(),
-                activity.findViewById(R.id.nav_toolbar));
-//        ViewAsserts.assertOnScreen(activity.getWindow().getDecorView(),
-//                activity.findViewById(R.id.searchView));
-        /*
-        ViewAsserts.assertOnScreen(activity.getWindow().getDecorView(),
-                activity.findViewById(R.id.listView));
-                */
+                activity.findViewById(R.id.search));
     }
-/*
-    protected void setUp() throws Exception {
-        super.setUp();
-        activity = getActivity();
-
-        // make these the chickens in the database:
-        Chicken chicken1 = new Chicken("Bob", "Friendly chicken", 13.55,
-                Chicken.ChickenStatus.AVAILABLE);
-        activity.getChickenList().add(chicken1);
-        Chicken chicken2 = new Chicken("Joe", "Friendly and social chicken",
-                13.55, Chicken.ChickenStatus.AVAILABLE);
-        activity.getChickenList().add(chicken2);
-        Chicken chicken3 = new Chicken("Fred", "Shy chicken", 15.00,
-                Chicken.ChickenStatus.AVAILABLE);
-        activity.getChickenList().add(chicken3);
-        Chicken chicken4 = new Chicken("Shirley", "Angry chicken",
-                12.05, Chicken.ChickenStatus.AVAILABLE);
-        activity.getChickenList().add(chicken4);
-        Chicken chicken5 = new Chicken("Ethel", "Shy chicken", 11.95,
-                Chicken.ChickenStatus.BORROWED);
-        activity.getChickenList().add(chicken5);
-    }
-
-    @UiThreadTest
-    public void testShowSearchResults() {
-        SearchActivity sa = (SearchActivity) getActivity();
-
-        // test search that returns multiple results
-        String[] keywords1 = {"Friendly"};
-        sa.search(keywords1);
-        ArrayAdapter<Chicken> arrayAdapter = sa.getAdapter();
-
-        // check the number of results
-        assertEquals(2, arrayAdapter.getCount()); // number of results
-
-        assertTrue("Did you Chicken objects?",
-                arrayAdapter.getItem(0) instanceof Chicken);
-        assertTrue("Did you Chicken objects?",
-                arrayAdapter.getItem(1) instanceof Chicken);
-
-        Chicken c1 = arrayAdapter.getItem(0);
-        Chicken c2 = arrayAdapter.getItem(0);
-        assertEquals("This is not the chicken we expected", "Bob", c1.getName());
-        assertEquals("This is not the chicken we expected", "Joes", c2.getName());
-
-        // test search that returns 1 result
-        String[] keywords2 = {"social"};
-        sa.search(keywords2);
-        arrayAdapter = sa.getAdapter();
-
-        // check the number of results
-        assertEquals(1, arrayAdapter.getCount()); // number of results
-
-        // test search that returns no results
-        String[] keywords3 = {"old"};
-        sa.search(keywords3);
-        arrayAdapter = sa.getAdapter();
-
-        // check the number of results
-        assertEquals(0, arrayAdapter.getCount()); // number of results
-    }
-    */
 }
 
