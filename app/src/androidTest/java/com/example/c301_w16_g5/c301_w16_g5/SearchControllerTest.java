@@ -16,29 +16,21 @@ public class SearchControllerTest extends ActivityInstrumentationTestCase2 {
 
     public void testAddChickenToDatabase() {
         SearchController sc = ChickBidsApplication.getSearchController();
-        Chicken chicken = sc.getChickenFromDatabase("qgZvLkclT2WOKa1cn-3dUA");
-        Chicken chicken1 = sc.getChickenFromDatabase("ToeU2YdyQYGHHxOTSpRefQ");
-        Chicken chicken2 = sc.getChickenFromDatabase("92nz834ESv2E352EIhKJlw");
-        Chicken chicken3 = sc.getChickenFromDatabase("uISZ1Tp5QauHI4xLbZjcEA");
-        Chicken chicken4 = sc.getChickenFromDatabase("3O_d1YKJRyyjpEhRrOSkNw");
+        Chicken chicken = sc.getChickenFromDatabase("Igl8TAz7R-SC5M1FSxJLEg");
 
         sc.updateChickenInDatabase(chicken);
-        sc.updateChickenInDatabase(chicken1);
-        sc.updateChickenInDatabase(chicken2);
-        sc.updateChickenInDatabase(chicken3);
-        sc.updateChickenInDatabase(chicken4);
     }
 
     public void testGetChickenFromDatabase() {
         SearchController sc = new SearchController();
-        Chicken chicken = sc.getChickenFromDatabase("3eYlWldXRvyNNq3uhsoH8w");
+        Chicken chicken = sc.getChickenFromDatabase("Igl8TAz7R-SC5M1FSxJLEg");
 
-        assertEquals(chicken.getId(),"3eYlWldXRvyNNq3uhsoH8w");
+        assertEquals(chicken.getId(),"Igl8TAz7R-SC5M1FSxJLEg");
     }
 
     public void testGetUserFromDatabase() {
         SearchController sc = new SearchController();
-        User user = sc.getUserFromDatabase("test2");
+        User user = sc.getUserFromDatabase("hailey123");
         Chicken chicken = new Chicken("Anne","sweet","test2");
 
         chicken = sc.addChickenToDatabase(chicken);
@@ -47,17 +39,17 @@ public class SearchControllerTest extends ActivityInstrumentationTestCase2 {
         user.addChicken(chicken);
         sc.addUserToDatabase(user);
 
-        User user1 = sc.getUserFromDatabase("test2");
+        User user1 = sc.getUserFromDatabase("hailey123");
         Chicken chicken1 = user1.getChicken(0);
         Chicken chicken2 = user1.getChicken(1);
 
         assertFalse(chicken1.getId() == null);
-        assertFalse(chicken2.getId() == null);
+        assertFalse(chicken.getId() == null);
     }
 
     public void testGetLettersForUser() {
         SearchController sc = new SearchController();
-        User user = sc.getUserFromDatabase("alex");
+        User user = sc.getUserFromDatabase("satyen");
 
         assertFalse(user.getId() == null);
 
@@ -65,14 +57,14 @@ public class SearchControllerTest extends ActivityInstrumentationTestCase2 {
 
         //assertTrue(letters.size() == 1);
         assertEquals(letters.get(0).getMessage(), "Hey");
-        assertEquals(letters.get(0).getToUsername(), "alex");
+        assertEquals(letters.get(0).getToUsername(), "satyen");
         assertEquals(letters.get(0).getFromUsername(), "jsmith");
 
     }
 
     public void testUpdateUserInDatabase() {
         SearchController sc = new SearchController();
-        User user = sc.getUserFromDatabase("hailey12");
+        User user = sc.getUserFromDatabase("hailey123");
 
         assertTrue(user.getLetters() != null);
 
@@ -81,8 +73,8 @@ public class SearchControllerTest extends ActivityInstrumentationTestCase2 {
 
     public void testGetUserFromDatabase2() {
         SearchController sc = new SearchController();
-        Letter letter = new Letter("Hello", "alex", "jsmith");
-        User user = sc.getUserFromDatabase("alex");
+        Letter letter = new Letter("Hello", "satyen", "jsmith");
+        User user = sc.getUserFromDatabase("satyen");
 
         assertFalse(user.getId() == null);
 
@@ -92,7 +84,7 @@ public class SearchControllerTest extends ActivityInstrumentationTestCase2 {
         user.addLetter(letter);
         sc.updateUserInDatabase(user);
 
-        User user2 = sc.getUserFromDatabase("alex");
+        User user2 = sc.getUserFromDatabase("satyen");
         assertEquals(user2.getLetters().get(0).getMessage(), "Hello");
     }
 
@@ -142,64 +134,4 @@ public class SearchControllerTest extends ActivityInstrumentationTestCase2 {
         sc.updateBidInDatabase(bid2);
         sc.updateBidInDatabase(bid3);
     }
-/*
-    // US 04.01.01
-    public void testSearchByKeywords() {
-        Chicken chicken1 = new Chicken("Bob", "Friendly chicken",
-                Chicken.ChickenStatus.AVAILABLE, new User("username"));
-        Chicken chicken2 = new Chicken("Joe", "Friendly and social chicken",
-                Chicken.ChickenStatus.AVAILABLE, new User("username"));
-        Chicken chicken3 = new Chicken("Fred", "Shy chicken",
-                Chicken.ChickenStatus.AVAILABLE, new User("username"));
-        Chicken chicken4 = new Chicken("Shirley", "Angry chicken",
-                Chicken.ChickenStatus.AVAILABLE, new User("username"));
-        Chicken chicken5 = new Chicken("Ethel", "Shy chicken",
-                Chicken.ChickenStatus.BORROWED, new User("username"));
-
-        // subject to change based on how chickens are stored
-        ChickenDatabase allChickens = new ChickenDataBase();
-        allChickens.add(chicken1);
-        allChickens.add(chicken2);
-        allChickens.add(chicken3);
-        allChickens.add(chicken4);
-        allChickens.add(chicken5);
-        SearchController search = new SearchController();
-        search.setDatabase(allChickens);
-
-        // test normal functionality
-        String keywords1 = "Friendly";
-        ArrayList<Chicken> results = new ArrayList<Chicken>();
-        results.add(chicken1);
-        results.add(chicken2);
-        assertEquals(results, search.searchFor(keywords1));
-
-        // test no input
-        String keywords2 = "";
-        try {
-            search.searchFor(keywords2);
-        } catch (Exception e) {
-            // success
-        }
-
-        // test search with no match
-        String keywords3 = "rooster Bob";
-        results = new ArrayList<Chicken>();
-        assertEquals(results, search.searchFor(keywords3));
-
-        // test search whose results are reduced because at least one matching item is borrowed
-        String keywords4 = "Shy chicken";
-        results = new ArrayList<Chicken>();
-        results.add(chicken3);
-        assertEquals(results, search.searchFor(keywords4));
-
-        // test adding punctuation (ensure it's ignored)
-        // and that order doesn't matter
-        // and that results are case-insensitive
-        String keywords5 = "chicken, friendly";
-        results = new ArrayList<Chicken>();
-        results.add(chicken1);
-        results.add(chicken2);
-        assertEquals(results, search.searchFor(keywords5));
-    }
-    */
 }
