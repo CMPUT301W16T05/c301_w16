@@ -10,10 +10,10 @@ import com.robotium.solo.Solo;
 
 public class BidsActivityUITest extends ActivityInstrumentationTestCase2 {
 
-    Solo solo;
-    String username = "hailey123";
-    Instrumentation instrumentation;
-    Activity activity;
+    private Solo solo;
+    private String username = "hailey123";
+    private Instrumentation instrumentation;
+    private Activity activity;
 
     public BidsActivityUITest() {
         super(BidsActivity.class);

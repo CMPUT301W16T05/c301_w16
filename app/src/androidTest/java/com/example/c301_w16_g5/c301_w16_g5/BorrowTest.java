@@ -9,15 +9,15 @@ public class BorrowTest extends ActivityInstrumentationTestCase2 {
         super(HomeActivity.class);
     }
 
-    public User user;
+    private User user;
 
-    public Chicken chicken1;
-    public Chicken chicken2;
-    public Chicken chicken3;
-    public Chicken chicken4;
+    private Chicken chicken1;
+    private Chicken chicken2;
+    private Chicken chicken3;
+    private Chicken chicken4;
 
-    public ChickenController chickenController;
-    public UserController userController;
+    private ChickenController chickenController;
+    private UserController userController;
 
     /*
      * Create a list of reference items with which to test.
@@ -50,7 +50,7 @@ public class BorrowTest extends ActivityInstrumentationTestCase2 {
     public void testGetBorrowedFromOthers(){
         ArrayList<Chicken> borrowedThings = chickenController.getChickensBorrowedFromOthers();
 
-        ArrayList<Chicken> expectedCase = new ArrayList<Chicken>();
+        ArrayList<Chicken> expectedCase = new ArrayList<>();
         expectedCase.add(chicken2);
 
         assertTrue(borrowedThings.equals(expectedCase));
@@ -64,7 +64,7 @@ public class BorrowTest extends ActivityInstrumentationTestCase2 {
     public void testGetBorrowedFromMe(){
         ArrayList<Chicken> myBorrowedThings = chickenController.getChickensLentByMe();
 
-        ArrayList<Chicken> expectedCase = new ArrayList<Chicken>();
+        ArrayList<Chicken> expectedCase = new ArrayList<>();
         expectedCase.add(chicken4);
 
         assertTrue(myBorrowedThings.equals(expectedCase));

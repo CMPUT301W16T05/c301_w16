@@ -31,7 +31,7 @@ import java.util.Comparator;
  */
 public class BidsActivity extends ChickBidActivity {
 
-    public static int LAT_LON_REQUEST = 5732;
+    private static int LAT_LON_REQUEST = 5732;
 
     private BidAdapter adapter;
     private ListView listView;

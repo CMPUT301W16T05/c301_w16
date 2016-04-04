@@ -14,7 +14,7 @@ public abstract class GenericModel<V  extends GenericView> {
     private ArrayList<V> views;
 
     public GenericModel() {
-        views = new ArrayList<V>();
+        views = new ArrayList<>();
     }
 
     public void addView(V view) {

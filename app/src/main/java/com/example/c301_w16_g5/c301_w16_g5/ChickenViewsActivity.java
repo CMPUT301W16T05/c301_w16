@@ -48,7 +48,7 @@ public class ChickenViewsActivity extends ChickBidActivity  {
     private TabLayout.Tab tab_borrowed;
     private TabLayout.Tab tab_bids_placed;
 
-    private ArrayList<Chicken> listOfChickens = new ArrayList<Chicken>();
+    private ArrayList<Chicken> listOfChickens = new ArrayList<>();
 
     private ArrayAdapter<Chicken> adapter;
     private ListView listView;

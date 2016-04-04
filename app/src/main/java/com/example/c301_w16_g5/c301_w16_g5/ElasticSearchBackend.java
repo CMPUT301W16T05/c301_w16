@@ -61,7 +61,7 @@ public class ElasticSearchBackend {
         protected ArrayList<Chicken> doInBackground(String... searches) {
             verifyClient();
             String keyword = searches[0];
-            ArrayList<Chicken> chickens = new ArrayList<Chicken>();
+            ArrayList<Chicken> chickens = new ArrayList<>();
 
             String query = "{ \"size\" : 500, \"query\" : { \"query_string\" : { \"query\" : \"" + keyword + "\" } } }";
             Search search = new Search.Builder(query).addIndex(TEAM_INDEX).addType(CHICKEN_TYPE).build();
@@ -102,7 +102,7 @@ public class ElasticSearchBackend {
         @Override
         protected ArrayList<Chicken> doInBackground(String... searches) {
             verifyClient();
-            ArrayList<Chicken> chickens = new ArrayList<Chicken>();
+            ArrayList<Chicken> chickens = new ArrayList<>();
 
             String query = "{ \"size\" : 500, \"match_all\" : {} }";
             Search search = new Search.Builder(query).addIndex(TEAM_INDEX).addType(CHICKEN_TYPE).build();
@@ -637,7 +637,7 @@ public class ElasticSearchBackend {
         protected ArrayList<Letter> doInBackground(User... users) {
             verifyClient();
             User user = users[0];
-            ArrayList<Letter> letters = new ArrayList<Letter>();
+            ArrayList<Letter> letters = new ArrayList<>();
 
             String query = "{ \"query\" : { \"match\" : { \"toUsername\" : \"" + user.getUsername()
                     + "\" } } }";

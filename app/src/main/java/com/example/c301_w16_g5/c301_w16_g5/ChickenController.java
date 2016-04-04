@@ -43,7 +43,7 @@ public class ChickenController {
     public ArrayList<Chicken> getAllChickensInMyPossession() {
         User current_user = ChickBidsApplication.getUserController().getCurrentUser();
         ArrayList<Chicken> all_chickens = current_user.getMyChickens();
-        ArrayList<Chicken> possessed_chickens = new ArrayList<Chicken>();
+        ArrayList<Chicken> possessed_chickens = new ArrayList<>();
 
         for (Chicken chicken : all_chickens) {
             if (((chicken.getChickenStatus() == Chicken.ChickenStatus.BORROWED) &&
@@ -66,7 +66,7 @@ public class ChickenController {
     public ArrayList<Chicken> getChickensBorrowedFromOthers() {
         User current_user = ChickBidsApplication.getUserController().getCurrentUser();
         ArrayList<Chicken> all_chickens = current_user.getMyChickens();
-        ArrayList<Chicken> borrowed_chickens = new ArrayList<Chicken>();
+        ArrayList<Chicken> borrowed_chickens = new ArrayList<>();
 
         for (Chicken chicken : all_chickens) {
             if ((chicken.getChickenStatus() == Chicken.ChickenStatus.BORROWED) &&
@@ -87,7 +87,7 @@ public class ChickenController {
     public ArrayList<Chicken> getMyOwnedChickens() {
         User current_user = ChickBidsApplication.getUserController().getCurrentUser();
         ArrayList<Chicken> all_chickens = current_user.getMyChickens();
-        ArrayList<Chicken> owned_chickens = new ArrayList<Chicken>();
+        ArrayList<Chicken> owned_chickens = new ArrayList<>();
 
         for (Chicken chicken : all_chickens) {
             if (chicken.getOwnerUsername().equals(current_user.getUsername())) {
@@ -106,7 +106,7 @@ public class ChickenController {
     public ArrayList<Chicken> getChickensLentByMe() {
         User current_user = ChickBidsApplication.getUserController().getCurrentUser();
         ArrayList<Chicken> all_chickens = current_user.getMyChickens();
-        ArrayList<Chicken> borrowed_chickens = new ArrayList<Chicken>();
+        ArrayList<Chicken> borrowed_chickens = new ArrayList<>();
 
         for (Chicken chicken : all_chickens) {
             if ((chicken.getChickenStatus() == Chicken.ChickenStatus.BORROWED) &&
@@ -127,7 +127,7 @@ public class ChickenController {
     public ArrayList<Chicken> getMyChickensWithBids() {
         User current_user = ChickBidsApplication.getUserController().getCurrentUser();
         ArrayList<Chicken> all_chickens = current_user.getMyChickens();
-        ArrayList<Chicken> bidded_chickens = new ArrayList<Chicken>();
+        ArrayList<Chicken> bidded_chickens = new ArrayList<>();
 
         for (Chicken chicken : all_chickens) {
             if ((chicken.getChickenStatus() == Chicken.ChickenStatus.BIDDED) &&
@@ -147,7 +147,7 @@ public class ChickenController {
     public ArrayList<Chicken> getChickensBiddedOnByMe() {
         User current_user = ChickBidsApplication.getUserController().getCurrentUser();
         ArrayList<Chicken> all_chickens = current_user.getMyChickens();
-        ArrayList<Chicken> my_bidded_chickens = new ArrayList<Chicken>();
+        ArrayList<Chicken> my_bidded_chickens = new ArrayList<>();
 
         for (Chicken chicken : all_chickens) {
             if ((chicken.getChickenStatus() == Chicken.ChickenStatus.BIDDED) &&
@@ -225,7 +225,7 @@ public class ChickenController {
      */
     public ArrayList<Bid> getAllActiveBidsForChicken(Chicken chicken) {
         ArrayList<Bid> bids = chicken.getBids();
-        ArrayList<Bid> active_bids = new ArrayList<Bid>();
+        ArrayList<Bid> active_bids = new ArrayList<>();
 
         for (Bid bid : bids) {
             if (bid.getBidStatus() == Bid.BidStatus.UNDECIDED) {
