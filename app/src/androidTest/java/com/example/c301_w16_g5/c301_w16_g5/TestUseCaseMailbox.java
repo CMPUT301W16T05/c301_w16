@@ -18,7 +18,7 @@ public class TestUseCaseMailbox extends ActivityInstrumentationTestCase2 {
 
     private Solo solo;
     private String senderUsername = "hailey123";
-    private String receiverUsername = "jsmith";
+    private String receiverUsername = "satyen";
     private String message = "test message";
     ListView listView;
 

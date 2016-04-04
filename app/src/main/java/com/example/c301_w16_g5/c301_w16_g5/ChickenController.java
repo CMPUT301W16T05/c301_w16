@@ -367,6 +367,10 @@ public class ChickenController {
 
         User user = searchController.getUserFromDatabase(bid.getBidderUsername());
         removeChickenForBidFromUser(user, bid);
+
+        chicken.deleteBidForId(bid.getId());
+        if (chicken.getBids().size() == 0)
+            chicken.setChickenStatus(Chicken.ChickenStatus.AVAILABLE);
     }
 
     private void removeChickenForBidFromUser(User user, Bid bid) {
@@ -419,7 +423,8 @@ public class ChickenController {
         User current_user = userController.getCurrentUser();
 
         for (Bid b : chicken.getBids()) {
-            searchController.removeLocationFromDatabase(b.getLocation().getId());
+            if (b.getLocation() != null)
+                searchController.removeLocationFromDatabase(b.getLocation().getId());
             searchController.removeBidFromDatabase(b.getId());
         }
 
