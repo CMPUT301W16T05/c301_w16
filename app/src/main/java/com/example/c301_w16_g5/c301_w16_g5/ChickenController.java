@@ -178,9 +178,12 @@ public class ChickenController {
      */
     public void updateChickenForMe(Chicken updated_chicken) {
         User user = ChickBidsApplication.getUserController().getUser(updated_chicken.getOwnerUsername());
-        user.deleteChickenForId(updated_chicken.getId());
+        if (user != null)
+            user.deleteChickenForId(updated_chicken.getId());
+
         updated_chicken = ChickBidsApplication.getSearchController().updateChickenInDatabase(updated_chicken);
-        user.addChicken(updated_chicken);
+        if (user != null)
+            user.addChicken(updated_chicken);
     }
 
     /**
@@ -455,15 +458,10 @@ public class ChickenController {
      */
     public void addNotificationForBid(Bid bid) {
         SearchController searchController = ChickBidsApplication.getSearchController();
-
         Chicken chicken = searchController.getChickenFromDatabase(bid.getChickenId());
         User user = searchController.getUserFromDatabase(chicken.getOwnerUsername());
-
         Notification notification = new Notification(Notification.notificationMessageBuilderForBid(bid));
         notification = searchController.addNotificationToDatabase(notification);
-
-        user.addNotification(notification);
-        searchController.updateUserInDatabase(user);
     }
 
     /**

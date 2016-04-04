@@ -163,8 +163,11 @@ public class User extends GenericModel<GenericView> implements Parcelable {
     }
 
     public void deleteChickenForId(String id) {
+        if (id == null)
+            return;
+
         for (Chicken chicken : myChickens) {
-            if (chicken.getId().equals(id)) {
+            if (chicken.getId() != null && chicken.getId().equals(id)) {
                 myChickens.remove(chicken);
                 break;
             }
