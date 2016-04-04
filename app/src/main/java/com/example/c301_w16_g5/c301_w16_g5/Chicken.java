@@ -228,7 +228,6 @@ public class Chicken extends GenericModel<GenericView> implements Parcelable {
         this.borrowerUsername = in.readString();
         this.bids = new ArrayList<>();
         in.readList(this.bids, List.class.getClassLoader());
-        this.photo = in.readParcelable(Photograph.class.getClassLoader());
     }
 
     public static final Creator<Chicken> CREATOR = new Creator<Chicken>() {
