@@ -30,7 +30,7 @@
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
                     android:layout_marginTop="16dp"
-                    android:id="@+id/bid"
+                    android:id="@+id/bidEditText"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textStyle="bold"
                     android:textColor="@color/colorPrimaryDark"

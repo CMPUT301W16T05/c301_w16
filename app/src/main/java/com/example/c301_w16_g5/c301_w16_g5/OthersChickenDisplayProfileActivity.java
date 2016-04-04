@@ -61,7 +61,7 @@ public class OthersChickenDisplayProfileActivity extends ChickBidActivity {
         status = (TextView) findViewById(R.id.status);
         ownerUsername = (TextView) findViewById((R.id.ownerUsername));
 
-        bidAmount = (EditText) findViewById(R.id.bid);
+        bidAmount = (EditText) findViewById(R.id.bidEditText);
 
         buttonPlaceBid = (Button) findViewById(R.id.buttonBid);
         buttonViewBids = (Button) findViewById(R.id.buttonViewBids);
