@@ -1,9 +1,16 @@
 package com.example.c301_w16_g5.c301_w16_g5;
 
+import android.media.Image;
+import android.support.design.widget.TabLayout;
 import android.test.ActivityInstrumentationTestCase2;
+import android.view.View;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ListView;
 
+import com.robotium.solo.Condition;
 import com.robotium.solo.Solo;
 
 import java.util.Date;
@@ -18,6 +25,7 @@ public class TestUseCaseMailbox extends ActivityInstrumentationTestCase2 {
     private String receiverUsername = "jsmith";
     private String message = "test message";
     private Date sentDate;
+    ListView listView;
 
     public TestUseCaseMailbox() {
         super(LoginActivity.class);
@@ -45,6 +53,7 @@ public class TestUseCaseMailbox extends ActivityInstrumentationTestCase2 {
 
     public void testMessageExchangeProcess() {
         sendMessage();
+        changeFromSendingToReceivingUser();
         viewMessage();
         deleteMessage();
     }
@@ -63,14 +72,41 @@ public class TestUseCaseMailbox extends ActivityInstrumentationTestCase2 {
     }
 
     private void viewMessage() {
+        // go to view messages
+        solo.clickOnView(solo.getView(R.id.notifications_button));
+        solo.assertCurrentActivity("Expected Notifications Activity", NotificationsActivity.class);
 
+        // is message visible?
+        assertTrue("Message not visible.", solo.searchText(senderUsername + ": " + message));
     }
 
     private void deleteMessage() {
+        // dismiss the notification
+        listView = (ListView) solo.getView(R.id.notificationList);
+        final int countBefore = listView.getCount();
+        View view = listView.getChildAt(countBefore - 1);
+        solo.clickOnView(view.findViewById(R.id.dismissNotification));
 
+        // confirm it's gone
+        solo.waitForCondition(new Condition() {
+            @Override
+            public boolean isSatisfied() {
+                return countBefore - 1 == listView.getCount();
+            }
+        }, 5);
     }
 
     private void changeFromSendingToReceivingUser() {
+        // sending user logout
+        solo.clickOnView(solo.getView(R.id.home_button));
+        solo.assertCurrentActivity("Expected Home Activity", HomeActivity.class);
+        solo.clickOnView(solo.getView(R.id.buttonLogout));
+        solo.assertCurrentActivity("Expected Login Activity", LoginActivity.class);
 
+        // receiving user login
+        solo.clearEditText((AutoCompleteTextView) solo.getView(R.id.usernameEntered));
+        solo.enterText((AutoCompleteTextView) solo.getView(R.id.usernameEntered), receiverUsername);
+        solo.clickOnView(solo.getView(R.id.signInButton));
+        solo.assertCurrentActivity("Expected Home Activity", HomeActivity.class);
     }
 }
