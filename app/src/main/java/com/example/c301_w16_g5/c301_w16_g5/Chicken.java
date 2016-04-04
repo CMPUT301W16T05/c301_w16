@@ -52,7 +52,7 @@ public class Chicken extends GenericModel<GenericView> implements Parcelable {
     static final int MAX_IMAGE_SIZE = 65536; // max final file size
 
     protected Chicken() {
-        bids = new ArrayList<Bid>();
+        bids = new ArrayList<>();
     }
 
     public Chicken(String name, String description, String ownerUsername) {
@@ -60,7 +60,7 @@ public class Chicken extends GenericModel<GenericView> implements Parcelable {
         this.description = description;
         this.chickenStatus = ChickenStatus.AVAILABLE;
         this.ownerUsername = ownerUsername;
-        this.bids = new ArrayList<Bid>();
+        this.bids = new ArrayList<>();
     }
 
     public void update(String name, String description, ChickenStatus chickenStatus) {
@@ -226,7 +226,7 @@ public class Chicken extends GenericModel<GenericView> implements Parcelable {
         this.chickenStatus = tmpChickenStatus == -1 ? null : ChickenStatus.values()[tmpChickenStatus];
         this.ownerUsername = in.readString();
         this.borrowerUsername = in.readString();
-        this.bids = new ArrayList<Bid>();
+        this.bids = new ArrayList<>();
         in.readList(this.bids, List.class.getClassLoader());
         this.photo = in.readParcelable(Photograph.class.getClassLoader());
     }

@@ -32,8 +32,8 @@ public class User extends GenericModel<GenericView> implements Parcelable {
     protected String id;
 
     // My chickens should contain all chickens owned by
-    // user OR currently in user's posession OR chickens the
-    // user has bidded on
+    // user OR currently in user's possession OR chickens the
+    // user has bidden on
     private ArrayList<Chicken> myChickens;
     private ArrayList<Notification> myNotifications;
     private ArrayList<Letter> myLetters;
@@ -45,9 +45,9 @@ public class User extends GenericModel<GenericView> implements Parcelable {
         this.email = "";
         this.phoneNumber = "";
         this.chickenExperience = "";
-        this.myChickens = new ArrayList<Chicken>();
-        this.myNotifications = new ArrayList<Notification>();
-        this.myLetters = new ArrayList<Letter>();
+        this.myChickens = new ArrayList<>();
+        this.myNotifications = new ArrayList<>();
+        this.myLetters = new ArrayList<>();
     }
 
     /**
@@ -66,9 +66,9 @@ public class User extends GenericModel<GenericView> implements Parcelable {
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.chickenExperience = chickenExperience;
-        this.myChickens = new ArrayList<Chicken>();
-        this.myNotifications = new ArrayList<Notification>();
-        this.myLetters = new ArrayList<Letter>();
+        this.myChickens = new ArrayList<>();
+        this.myNotifications = new ArrayList<>();
+        this.myLetters = new ArrayList<>();
     }
 
     // profile management
@@ -159,7 +159,7 @@ public class User extends GenericModel<GenericView> implements Parcelable {
     }
 
     public void removeAllChickens() {
-        myChickens = new ArrayList<Chicken>();
+        myChickens = new ArrayList<>();
     }
 
     public void deleteChickenForId(String id) {
@@ -229,11 +229,11 @@ public class User extends GenericModel<GenericView> implements Parcelable {
         this.phoneNumber = in.readString();
         this.chickenExperience = in.readString();
         this.id = in.readString();
-        this.myChickens = new ArrayList<Chicken>();
+        this.myChickens = new ArrayList<>();
         in.readList(this.myChickens, List.class.getClassLoader());
-        this.myNotifications = new ArrayList<Notification>();
+        this.myNotifications = new ArrayList<>();
         in.readList(this.myNotifications, List.class.getClassLoader());
-        this.myLetters = new ArrayList<Letter>();
+        this.myLetters = new ArrayList<>();
         in.readList(this.myLetters, List.class.getClassLoader());
     }
 

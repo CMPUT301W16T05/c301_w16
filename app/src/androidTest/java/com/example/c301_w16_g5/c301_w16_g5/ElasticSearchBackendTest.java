@@ -53,9 +53,7 @@ public class ElasticSearchBackendTest extends ActivityInstrumentationTestCase2 {
         Chicken chicken2 = new Chicken();
         try {
             chicken2 = executable.get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
+        } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
         user.addChicken(chicken2);
@@ -65,9 +63,7 @@ public class ElasticSearchBackendTest extends ActivityInstrumentationTestCase2 {
         Notification notification2 = new Notification("a");
         try {
             notification2 = executable1.get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
+        } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
         user.addNotification(notification2);
@@ -82,9 +78,7 @@ public class ElasticSearchBackendTest extends ActivityInstrumentationTestCase2 {
 
         try {
             user2 = getUserTask.get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
+        } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
 
@@ -114,9 +108,7 @@ public class ElasticSearchBackendTest extends ActivityInstrumentationTestCase2 {
         Bid bid2 = new Bid("a", "a", 0.00);
         try {
             bid2 = executable1.get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
+        } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
         chicken1.getBids().add(bid2);
@@ -125,9 +117,7 @@ public class ElasticSearchBackendTest extends ActivityInstrumentationTestCase2 {
         executable.execute(chicken1);
         try {
             chicken3 = executable.get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
+        } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
 
@@ -135,9 +125,7 @@ public class ElasticSearchBackendTest extends ActivityInstrumentationTestCase2 {
         getChickenTask.execute(chicken3.getId());
         try {
             chicken2 = getChickenTask.get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
+        } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
 
@@ -161,9 +149,7 @@ public class ElasticSearchBackendTest extends ActivityInstrumentationTestCase2 {
 
         try {
              notification2 = executable.get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
+        } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
 
@@ -171,9 +157,7 @@ public class ElasticSearchBackendTest extends ActivityInstrumentationTestCase2 {
         getNotificationTask.execute(notification2.getId());
         try {
             notification3 = getNotificationTask.get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
+        } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
 
@@ -191,9 +175,7 @@ public class ElasticSearchBackendTest extends ActivityInstrumentationTestCase2 {
 
         try {
             bid2 = executable.get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
+        } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
 
@@ -201,9 +183,7 @@ public class ElasticSearchBackendTest extends ActivityInstrumentationTestCase2 {
         getBidTask.execute(bid2.getId());
         try {
             bid3 = getBidTask.get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
+        } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
 
@@ -213,15 +193,13 @@ public class ElasticSearchBackendTest extends ActivityInstrumentationTestCase2 {
     }
 
     public void testSearchChickenTask() {
-        ArrayList<Chicken> chickens = new ArrayList<Chicken>();
+        ArrayList<Chicken> chickens = new ArrayList<>();
 
         ElasticSearchBackend.SearchChickenTask searchTask = new ElasticSearchBackend.SearchChickenTask();
         searchTask.execute("Bob");
         try {
             chickens = searchTask.get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
+        } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
 

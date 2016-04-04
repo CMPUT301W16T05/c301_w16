@@ -37,7 +37,7 @@ public class SearchController {
 
     /* Offline Behaviour */
     public SearchController() {
-        offlineChickens = new ArrayList<Chicken>();
+        offlineChickens = new ArrayList<>();
     }
 
     private void saveOfflineChickens() {
@@ -48,8 +48,6 @@ public class SearchController {
             gson.toJson(this.offlineChickens, out);
             out.flush();
             fos.close();
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException();
         } catch (IOException e) {
             throw new RuntimeException();
         }
@@ -67,8 +65,6 @@ public class SearchController {
 
         } catch (FileNotFoundException e) {
             Log.i("ERROR", "Chickens were not loaded from file");
-        } catch (IOException e) {
-            throw new RuntimeException();
         }
     }
 
@@ -80,8 +76,6 @@ public class SearchController {
             gson.toJson(user, out);
             out.flush();
             fos.close();
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException();
         } catch (IOException e) {
             throw new RuntimeException();
         }
@@ -99,8 +93,6 @@ public class SearchController {
 
         } catch (FileNotFoundException e) {
             Log.i("ERROR", "User was not loaded from file");
-        } catch (IOException e) {
-            throw new RuntimeException();
         }
 
         return user;
@@ -112,7 +104,7 @@ public class SearchController {
      * @return  list of chickens pushed to database
      */
     public ArrayList<Chicken> pushOfflineChickensToDatabase() {
-        ArrayList<Chicken> chickens = new ArrayList<Chicken>();
+        ArrayList<Chicken> chickens = new ArrayList<>();
 
         if (checkOnline()) {
             loadOfflineChickens();
@@ -136,16 +128,14 @@ public class SearchController {
      * @return  list of all chickens whose info contains the keyword
      */
     public ArrayList<Chicken> searchByKeyword(String keyword) {
-        ArrayList<Chicken> chickens = new ArrayList<Chicken>();
+        ArrayList<Chicken> chickens = new ArrayList<>();
 
         if (checkOnline()) {
             ElasticSearchBackend.SearchChickenTask searchTask = new ElasticSearchBackend.SearchChickenTask();
             searchTask.execute(keyword);
             try {
                 chickens = searchTask.get();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
+            } catch (InterruptedException | ExecutionException e) {
                 e.printStackTrace();
             }
         }
@@ -161,16 +151,14 @@ public class SearchController {
      * @return  list of all chickens
      */
     public ArrayList<Chicken> getAllChickens() {
-        ArrayList<Chicken> chickens = new ArrayList<Chicken>();
+        ArrayList<Chicken> chickens = new ArrayList<>();
 
         if (checkOnline()) {
             ElasticSearchBackend.GetAllChickensTask searchTask = new ElasticSearchBackend.GetAllChickensTask();
             searchTask.execute("");
             try {
                 chickens = searchTask.get();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
+            } catch (InterruptedException | ExecutionException e) {
                 e.printStackTrace();
             }
         }
@@ -192,9 +180,7 @@ public class SearchController {
             executable.execute(chicken);
             try {
                 chicken2 = executable.get();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
+            } catch (InterruptedException | ExecutionException e) {
                 e.printStackTrace();
             }
         } else {
@@ -221,9 +207,7 @@ public class SearchController {
             executable.execute(chicken);
             try {
                 chicken2 = executable.get();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
+            } catch (InterruptedException | ExecutionException e) {
                 e.printStackTrace();
             }
         }
@@ -247,9 +231,7 @@ public class SearchController {
             getChickenTask.execute(id);
             try {
                 chicken = getChickenTask.get();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
+            } catch (InterruptedException | ExecutionException e) {
                 e.printStackTrace();
             }
         }
@@ -317,9 +299,7 @@ public class SearchController {
 
             try {
                 user = getUserTask.get();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
+            } catch (InterruptedException | ExecutionException e) {
                 e.printStackTrace();
             }
 
@@ -372,9 +352,7 @@ public class SearchController {
             executable.execute(notification);
             try {
                 notification2 = executable.get();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
+            } catch (InterruptedException | ExecutionException e) {
                 e.printStackTrace();
             }
         }
@@ -396,9 +374,7 @@ public class SearchController {
             executable.execute(notification);
             try {
                 notification2 = executable.get();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
+            } catch (InterruptedException | ExecutionException e) {
                 e.printStackTrace();
             }
         }
@@ -422,9 +398,7 @@ public class SearchController {
             getNotificationTask.execute(id);
             try {
                 notification = getNotificationTask.get();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
+            } catch (InterruptedException | ExecutionException e) {
                 e.printStackTrace();
             }
         }
@@ -461,9 +435,7 @@ public class SearchController {
             executable.execute(bid);
             try {
                 bid2 = executable.get();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
+            } catch (InterruptedException | ExecutionException e) {
                 e.printStackTrace();
             }
         }
@@ -485,9 +457,7 @@ public class SearchController {
             executable.execute(bid);
             try {
                 bid2 = executable.get();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
+            } catch (InterruptedException | ExecutionException e) {
                 e.printStackTrace();
             }
         }
@@ -511,9 +481,7 @@ public class SearchController {
             getBidTask.execute(id);
             try {
                 bid = getBidTask.get();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
+            } catch (InterruptedException | ExecutionException e) {
                 e.printStackTrace();
             }
         }
@@ -549,9 +517,7 @@ public class SearchController {
             executable.execute(location);
             try {
                 location1 = executable.get();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
+            } catch (InterruptedException | ExecutionException e) {
                 e.printStackTrace();
             }
         }
@@ -573,9 +539,7 @@ public class SearchController {
             executable.execute(location);
             try {
                 location1 = executable.get();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
+            } catch (InterruptedException | ExecutionException e) {
                 e.printStackTrace();
             }
         }
@@ -599,9 +563,7 @@ public class SearchController {
             getLocationTask.execute(id);
             try {
                 location = getLocationTask.get();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
+            } catch (InterruptedException | ExecutionException e) {
                 e.printStackTrace();
             }
         }
@@ -637,9 +599,7 @@ public class SearchController {
             executable.execute(letter);
             try {
                 letter2 = executable.get();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
+            } catch (InterruptedException | ExecutionException e) {
                 e.printStackTrace();
             }
         }
@@ -661,9 +621,7 @@ public class SearchController {
             executable.execute(letter);
             try {
                 letter1 = executable.get();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
+            } catch (InterruptedException | ExecutionException e) {
                 e.printStackTrace();
             }
         }
@@ -687,9 +645,7 @@ public class SearchController {
             getLetterTask.execute(id);
             try {
                 letter = getLetterTask.get();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
+            } catch (InterruptedException | ExecutionException e) {
                 e.printStackTrace();
             }
         }
@@ -718,7 +674,7 @@ public class SearchController {
      * @return  the list of all letters of that user
      */
     public ArrayList<Letter> getLettersForUser(User user) {
-        ArrayList<Letter> letters = new ArrayList<Letter>();
+        ArrayList<Letter> letters = new ArrayList<>();
 
         if (checkOnline()) {
             ElasticSearchBackend.GetLettersForUserTask getLettersTask
@@ -726,9 +682,7 @@ public class SearchController {
             getLettersTask.execute(user);
             try {
                 letters = getLettersTask.get();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
+            } catch (InterruptedException | ExecutionException e) {
                 e.printStackTrace();
             }
         }

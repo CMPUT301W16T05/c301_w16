@@ -7,9 +7,6 @@ import android.widget.ListView;
 
 import com.robotium.solo.Solo;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by Satyen on 2016-04-03.
  */

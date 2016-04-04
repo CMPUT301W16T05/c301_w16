@@ -36,7 +36,7 @@ import java.util.ArrayList;
  * @see     Chicken
  */
 public class SearchesActivity extends AppCompatActivity {
-    private ArrayList<Chicken> chickens = new ArrayList<Chicken>();
+    private ArrayList<Chicken> chickens = new ArrayList<>();
     private ArrayAdapter<Chicken> adapter;
     private ListView searchResults;
 

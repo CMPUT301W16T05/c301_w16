@@ -5,16 +5,16 @@ import android.test.ActivityInstrumentationTestCase2;
 import java.util.ArrayList;
 
 public class BiddingTest extends ActivityInstrumentationTestCase2 {
-    public User user1;
-    public User user2;
-    public User user3;
+    private User user1;
+    private User user2;
+    private User user3;
 
-    public Chicken chicken1;
-    public Chicken chicken2;
-    public Chicken chicken3;
+    private Chicken chicken1;
+    private Chicken chicken2;
+    private Chicken chicken3;
 
-    public ChickenController chickenController;
-    public UserController userController;
+    private ChickenController chickenController;
+    private UserController userController;
 
     public BiddingTest() {
         super(HomeActivity.class);
