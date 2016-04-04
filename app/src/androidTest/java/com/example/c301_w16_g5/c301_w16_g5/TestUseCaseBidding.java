@@ -114,7 +114,7 @@ public class TestUseCaseBidding extends ActivityInstrumentationTestCase2 {
         try {
             ChickBidsApplication.getChickenController().putBidOnChicken(
                     new Bid(ChickBidsApplication.getUserController().getCurrentUser().getUsername(),
-                            chicken.getId(), 500.0),
+                            chicken.getId(), ChickBidsApplication.getChickenController().getHighestBidForChicken(chicken) + 1),
                     chicken);
         } catch (Exception e) {
             fail();
