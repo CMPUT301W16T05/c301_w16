@@ -423,7 +423,8 @@ public class ChickenController {
         User current_user = userController.getCurrentUser();
 
         for (Bid b : chicken.getBids()) {
-            searchController.removeLocationFromDatabase(b.getLocation().getId());
+            if (b.getLocation() != null)
+                searchController.removeLocationFromDatabase(b.getLocation().getId());
             searchController.removeBidFromDatabase(b.getId());
         }
 
