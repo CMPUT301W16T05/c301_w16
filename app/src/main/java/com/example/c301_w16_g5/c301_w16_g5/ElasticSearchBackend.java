@@ -235,8 +235,7 @@ public class ElasticSearchBackend {
                     .id(user.getUsername()).build();
             try {
                 DocumentResult result = client.execute(index);
-                if (result.isSucceeded()) {
-                } else {
+                if (!result.isSucceeded()) {
                     Log.i("INFO","Adding a user failed");
                 }
             } catch (IOException e) {
@@ -323,8 +322,7 @@ public class ElasticSearchBackend {
                     .build();
             try {
                 DocumentResult result = client.execute(index);
-                if (result.isSucceeded()) {
-                } else {
+                if (!result.isSucceeded()) {
                     Log.i("INFO","Updating bid failed");
                 }
             } catch (IOException e) {
@@ -410,8 +408,7 @@ public class ElasticSearchBackend {
                     .id(notification.getId()).build();
             try {
                 DocumentResult result = client.execute(index);
-                if (result.isSucceeded()) {
-                } else {
+                if (!result.isSucceeded()) {
                     Log.i("INFO","Updating notification failed");
                 }
             } catch (IOException e) {
@@ -497,8 +494,7 @@ public class ElasticSearchBackend {
                     .id(location.getId()).build();
             try {
                 DocumentResult result = client.execute(index);
-                if (result.isSucceeded()) {
-                } else {
+                if (!result.isSucceeded()) {
                     Log.i("INFO","Updating location failed");
                 }
             } catch (IOException e) {
@@ -584,8 +580,7 @@ public class ElasticSearchBackend {
                     .id(letter.getId()).build();
             try {
                 DocumentResult result = client.execute(index);
-                if (result.isSucceeded()) {
-                } else {
+                if (!result.isSucceeded()) {
                     Log.i("INFO","Updating letter failed");
                 }
             } catch (IOException e) {

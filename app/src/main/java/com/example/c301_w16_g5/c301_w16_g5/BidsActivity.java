@@ -44,7 +44,8 @@ public class BidsActivity extends ChickBidActivity {
         setContentView(R.layout.activity_bids);
         Toolbar toolbar = (Toolbar) findViewById(R.id.nav_toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if (getSupportActionBar() != null)
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         listView = (ListView) findViewById(R.id.bidsListView);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -83,10 +84,7 @@ public class BidsActivity extends ChickBidActivity {
 
     private void acceptBid(Bid bid) {
         accepted_bid = bid;
-
-        ChickenController chickenController = ChickBidsApplication.getChickenController();
         startActivityForResult(new Intent(this, LocationActivity.class), LAT_LON_REQUEST);
-
         refreshView();
     }
 

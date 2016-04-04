@@ -60,7 +60,8 @@ public class ChickenViewsActivity extends ChickBidActivity  {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.nav_toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if (getSupportActionBar() != null)
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         listView = (ListView) findViewById(R.id.chickenList);

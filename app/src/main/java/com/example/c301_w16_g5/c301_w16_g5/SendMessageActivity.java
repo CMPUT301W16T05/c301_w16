@@ -24,7 +24,8 @@ public class SendMessageActivity extends ChickBidActivity {
         setSupportActionBar(toolbar);
 
         // show back arrow at top left
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if (getSupportActionBar() != null)
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         usernameEditText = (EditText) findViewById(R.id.username);
         messageEditText = (EditText) findViewById(R.id.messageEditText);

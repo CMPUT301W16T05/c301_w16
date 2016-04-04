@@ -48,7 +48,8 @@ public class EditChickenActivity extends ChickBidActivity {
         setSupportActionBar(toolbar);
 
         // show back arrow at top left
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if (getSupportActionBar() != null)
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         name = (TextView) findViewById(R.id.name);
         status = (TextView) findViewById(R.id.status);

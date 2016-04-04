@@ -46,7 +46,8 @@ public class SearchesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_searches);
         Toolbar toolbar = (Toolbar) findViewById(R.id.nav_toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if (getSupportActionBar() != null)
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         final Intent viewOthersChickenIntent = new Intent(this, OthersChickenDisplayProfileActivity.class);
         final Intent viewMyChickenIntent = new Intent(this, MyChickenDisplayProfileActivity.class);

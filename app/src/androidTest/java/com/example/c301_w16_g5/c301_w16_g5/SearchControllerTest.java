@@ -51,8 +51,8 @@ public class SearchControllerTest extends ActivityInstrumentationTestCase2 {
         Chicken chicken1 = user1.getChicken(0);
         Chicken chicken2 = user1.getChicken(1);
 
-        assertFalse(chicken.getId() == null);
-        assertFalse(chicken.getId() == null);
+        assertFalse(chicken1.getId() == null);
+        assertFalse(chicken2.getId() == null);
     }
 
     public void testGetLettersForUser() {

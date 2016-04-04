@@ -48,7 +48,8 @@ public class
         setSupportActionBar(toolbar);
 
         // show back arrow at top left
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if (getSupportActionBar() != null)
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         usernameTextView = (TextView) findViewById(R.id.usernameTextView);
         nameTextView = (TextView) findViewById(R.id.nameTextView);
