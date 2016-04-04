@@ -73,6 +73,12 @@ public class OthersChickenDisplayProfileActivity extends ChickBidActivity {
         buttonPlaceBid.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (bidAmount.getText().toString().trim().length() < 1) {
+                    Toast.makeText(getApplicationContext(),
+                            "Bid cannot be blank.",
+                            Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 if (ChickBidsApplication.getSearchController().checkOnline()) {
                     placeBid();
                 } else {
