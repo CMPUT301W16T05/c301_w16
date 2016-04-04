@@ -1,13 +1,8 @@
 package com.example.c301_w16_g5.c301_w16_g5;
 
-import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.AsyncTask;
-import android.provider.MediaStore;
 import android.util.Log;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import com.searchly.jestdroid.DroidClientConfig;
 import com.searchly.jestdroid.JestClientFactory;
 import com.searchly.jestdroid.JestDroidClient;

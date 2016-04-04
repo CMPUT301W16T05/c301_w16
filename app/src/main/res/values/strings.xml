@@ -19,7 +19,7 @@
     <string name="first_name_hint">first</string>
     <string name="last_name_hint">last</string>
     <string name="email_hint">name@provider.com</string>
-    <string name="phone_hint">780-666-8888</string>
+    <string name="phone_hint">780–666–8888</string>
     <string name="chicken_experience_hint">experience</string>
 
     <string name="name_label">Name:</string>

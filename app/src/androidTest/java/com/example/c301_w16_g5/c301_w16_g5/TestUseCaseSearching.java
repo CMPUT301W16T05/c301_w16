@@ -2,10 +2,8 @@ package com.example.c301_w16_g5.c301_w16_g5;
 
 import android.test.ActivityInstrumentationTestCase2;
 import android.widget.AutoCompleteTextView;
-import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.SearchView;
 
 import com.robotium.solo.Solo;
 

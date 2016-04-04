@@ -1,7 +1,6 @@
 package com.example.c301_w16_g5.c301_w16_g5;
 
 import java.util.ArrayList;
-import java.util.Vector;
 
 /**
  * Provides the basic framework for all models in the application, such that

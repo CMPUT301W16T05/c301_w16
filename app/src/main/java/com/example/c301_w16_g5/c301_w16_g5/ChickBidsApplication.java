@@ -1,7 +1,6 @@
 package com.example.c301_w16_g5.c301_w16_g5;
 
 import android.app.Application;
-import android.os.Bundle;
 
 /**
  * <code>ChickBidsApplication</code> is the primary application class.  It

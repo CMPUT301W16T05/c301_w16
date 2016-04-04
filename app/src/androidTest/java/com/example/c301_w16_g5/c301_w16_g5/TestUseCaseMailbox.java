@@ -1,13 +1,9 @@
 package com.example.c301_w16_g5.c301_w16_g5;
 
-import android.media.Image;
-import android.support.design.widget.TabLayout;
 import android.test.ActivityInstrumentationTestCase2;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ListView;
 
 import com.robotium.solo.Condition;
