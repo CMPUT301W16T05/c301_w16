@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.robotium.solo.Solo;
@@ -145,7 +146,14 @@ public class TestUseCaseBidding extends ActivityInstrumentationTestCase2 {
 
         //place bid on chicken
         //FIXME: cant click on search results list for some reason
-        solo.clickOnView(solo.getView(R.id.searchResults));
+        ListView listView = (ListView) solo.getView(R.id.searchResults);
+        listView.setSelection(0);
+        ListAdapter adapter = listView.getAdapter();
+        View view = adapter.getView(0, null, null);
+        view.performClick();
+
+        solo.clickOnView(view, true);
+        solo.clickOnView(solo.getView(R.id.searchResults), true);
         solo.assertCurrentActivity("Expected Chicken Profile Activity", OthersChickenDisplayProfileActivity.class);
         solo.enterText((EditText) solo.getView(R.id.bidEditText), "500");
         solo.clickOnView(solo.getView(R.id.buttonBid));
