@@ -79,7 +79,9 @@ public class ElasticSearchBackend {
                             String id = jo.getString("_id");
                             Chicken chicken = parseChicken(jo.getString("_source"));
                             chicken.setId(id);
-                            chickens.add(chicken);
+                            if(chicken.getChickenStatus() != Chicken.ChickenStatus.BORROWED &&
+                                    chicken.getChickenStatus() != Chicken.ChickenStatus.NOT_AVAILABLE)
+                                chickens.add(chicken);
                         }
                     } catch (JSONException e) {
                         Log.i("ERROR", "Failed to parse Chicken JSON");
