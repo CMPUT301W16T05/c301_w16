@@ -53,7 +53,6 @@ public class TestUseCaseBidding extends ActivityInstrumentationTestCase2 {
     }
 
     public void testSeeMyBidChickenList() {
-        // go to chicken lists screen
         solo.clickOnView(solo.getView(R.id.buttonChickens));
         solo.assertCurrentActivity("Expected Item Views Activity", ChickenViewsActivity.class);
 
@@ -63,7 +62,7 @@ public class TestUseCaseBidding extends ActivityInstrumentationTestCase2 {
         assertTrue(solo.getView(R.id.chickenList).getVisibility() == View.VISIBLE);
     }
 
-
-
-
+    public void testReceiveNewBidNotification() {
+        
+    }
 }
