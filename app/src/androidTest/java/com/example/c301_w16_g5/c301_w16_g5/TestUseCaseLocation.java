@@ -1,9 +1,11 @@
 package com.example.c301_w16_g5.c301_w16_g5;
 
+import android.support.design.widget.TabLayout;
 import android.test.ActivityInstrumentationTestCase2;
 import android.widget.AutoCompleteTextView;
 import android.widget.ListView;
 
+import com.robotium.solo.Condition;
 import com.robotium.solo.Solo;
 
 /**
@@ -68,7 +70,14 @@ public class TestUseCaseLocation extends ActivityInstrumentationTestCase2 {
         solo.assertCurrentActivity("Expected Item Views Activity", ChickenViewsActivity.class);
         String tab = solo.getString(R.string.item_profile_borrowed);
         solo.clickOnText(tab);
+        solo.waitForCondition(new Condition() {
+            @Override
+            public boolean isSatisfied() {
+                return ((TabLayout) solo.getView(R.id.tabs)).getTabAt(4).isSelected();
+            }
+        }, 5);
         solo.clickInList(0);
+        solo.assertCurrentActivity("Expected Others Chicken Display Profile Activity", OthersChickenDisplayProfileActivity.class);
         solo.clickOnView(solo.getView(R.id.buttonViewLocation));
 
         solo.assertCurrentActivity("Expected Locations Activity", LocationActivity.class);
