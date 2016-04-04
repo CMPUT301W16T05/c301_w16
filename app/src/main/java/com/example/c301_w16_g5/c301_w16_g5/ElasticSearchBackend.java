@@ -80,7 +80,8 @@ public class ElasticSearchBackend {
                             Chicken chicken = parseChicken(jo.getString("_source"));
                             chicken.setId(id);
                             if(chicken.getChickenStatus() != Chicken.ChickenStatus.BORROWED &&
-                                    chicken.getChickenStatus() != Chicken.ChickenStatus.NOT_AVAILABLE)
+                                    chicken.getChickenStatus() != Chicken.ChickenStatus.NOT_AVAILABLE &&
+                                    !chicken.getOwnerUsername().equals(ChickBidsApplication.getUserController().getCurrentUser().getUsername()))
                                 chickens.add(chicken);
                         }
                     } catch (JSONException e) {
