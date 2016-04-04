@@ -12,7 +12,7 @@ public class TestUseCasePhotographs extends ActivityInstrumentationTestCase2 {
 
     private Solo solo;
 
-    private String username = "RobinV";
+    private String username = "hailey123";
 
     public TestUseCasePhotographs() {
         super(LoginActivity.class);

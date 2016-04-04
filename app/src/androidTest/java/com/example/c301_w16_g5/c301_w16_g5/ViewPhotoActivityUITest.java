@@ -42,13 +42,11 @@ public class ViewPhotoActivityUITest extends ActivityInstrumentationTestCase2 {
         if (imageChicken.getVisibility() != View.INVISIBLE) {
             fail();
         }
-
-        String Filepath = ""; //TODO: Replace value with whatever file is set in memory.
-        Bitmap currentPhoto = BitmapFactory.decodeFile(Filepath);
-        if(currentPhoto != null){
-            imageChicken.setImageBitmap(currentPhoto);
+        Bitmap bm = Bitmap.createBitmap(50, 50, Bitmap.Config.ARGB_8888);
+        try {
+            imageChicken.setImageBitmap(bm);
+        }catch(Exception e){
+            fail();
         }
-        imageChicken.setImageBitmap(currentPhoto);
-
     }
 }
