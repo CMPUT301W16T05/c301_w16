@@ -15,7 +15,7 @@ public class TestUseCaseReturning extends ActivityInstrumentationTestCase2 {
 
     private Solo solo;
 
-    // TODO: possibly make sure the condition is true is setup
+    // TODO: possibly make sure the condition is true in setup
     private String username = "hailey123";  // must be a user with at least 1 chicken borrowed
 
     public TestUseCaseReturning() {
