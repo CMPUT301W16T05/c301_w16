@@ -2,6 +2,9 @@ package com.example.c301_w16_g5.c301_w16_g5;
 
 import android.app.Activity;
 import android.app.Instrumentation;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.provider.MediaStore;
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.ViewAsserts;
 import android.view.View;
@@ -42,6 +45,12 @@ public class ViewPhotoActivityUITest extends ActivityInstrumentationTestCase2 {
             fail();
         }
 
-        // TODO: add photo and make sure it's visible
+        String Filepath = ""; //TODO: Replace value with whatever file is set in memory.
+        Bitmap currentPhoto = BitmapFactory.decodeFile(Filepath);
+        if(currentPhoto != null){
+            imageChicken.setImageBitmap(currentPhoto);
+        }
+        imageChicken.setImageBitmap(currentPhoto);
+
     }
 }
