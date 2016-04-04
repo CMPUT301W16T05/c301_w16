@@ -1,9 +1,13 @@
 package com.example.c301_w16_g5.c301_w16_g5;
 
+import android.support.design.widget.TabLayout;
 import android.test.ActivityInstrumentationTestCase2;
 import android.widget.AutoCompleteTextView;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import com.robotium.solo.Condition;
 import com.robotium.solo.Solo;
 
 /**
@@ -44,13 +48,27 @@ public class TestUseCaseStatus extends ActivityInstrumentationTestCase2 {
         solo.clickOnView(solo.getView(R.id.buttonChickens));
         solo.assertCurrentActivity("Expected Item Views Activity", ChickenViewsActivity.class);
 
-        // select a chicken of yours
+        // check that chickens you own have a status
         solo.clickOnText(solo.getString(R.string.item_profile_owned));
-        solo.clickInList(0);
-        solo.assertCurrentActivity("Expected View My Chicken Activity", MyChickenDisplayProfileActivity.class);
+        solo.waitForCondition(new Condition() {
+            @Override
+            public boolean isSatisfied() {
+                return ((TabLayout) solo.getView(R.id.tabs)).getTabAt(1).isSelected();
+            }
+        }, 5);
 
-        String currentDescription = ((TextView) solo.getView(R.id.status)).getText().toString();
-        assertTrue(currentDescription.equals("AVAILABLE") || currentDescription.equals("BORROWED") ||
-            currentDescription.equals("BIDDED") || currentDescription.equals("NOT_AVAILABLE"));
+        ListView listView = (ListView) solo.getView(R.id.chickenList);
+        for(int i = 0; i < listView.getCount(); i++) {
+            solo.clickInList(i);
+            solo.assertCurrentActivity("Expected View My Chicken Activity", MyChickenDisplayProfileActivity.class);
+
+            String currentDescription = ((TextView) solo.getView(R.id.status)).getText().toString();
+            assertTrue(currentDescription.equals("AVAILABLE") || currentDescription.equals("BORROWED") ||
+                    currentDescription.equals("BIDDED") || currentDescription.equals("NOT_AVAILABLE"));
+            solo.goBack();
+        }
+
+        // that chickens you are borrowing have a status (and that that status is BORROWED)
+        // is tested in TestUseCaseBorrowing
     }
 }
