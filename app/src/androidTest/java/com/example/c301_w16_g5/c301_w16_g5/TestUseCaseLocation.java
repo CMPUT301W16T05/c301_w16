@@ -69,6 +69,7 @@ public class TestUseCaseLocation extends ActivityInstrumentationTestCase2 {
         solo.clickOnView(solo.getView(R.id.buttonChickens));
         solo.assertCurrentActivity("Expected Item Views Activity", ChickenViewsActivity.class);
         String tab = solo.getString(R.string.item_profile_borrowed);
+        solo.scrollViewToSide(solo.getView(R.id.tabs), Solo.RIGHT);
         solo.clickOnText(tab);
         solo.waitForCondition(new Condition() {
             @Override
@@ -106,7 +107,7 @@ public class TestUseCaseLocation extends ActivityInstrumentationTestCase2 {
         try {
             ChickBidsApplication.getChickenController().putBidOnChicken(
                     new Bid(ChickBidsApplication.getUserController().getCurrentUser().getUsername(),
-                            chicken.getId(), 500.0),
+                            chicken.getId(), ChickBidsApplication.getChickenController().getHighestBidForChicken(chicken) + 1),
                     chicken);
         } catch (Exception e) {
             fail();
