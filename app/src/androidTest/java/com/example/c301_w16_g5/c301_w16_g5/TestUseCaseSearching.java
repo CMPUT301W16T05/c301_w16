@@ -1,6 +1,7 @@
 package com.example.c301_w16_g5.c301_w16_g5;
 
 import android.test.ActivityInstrumentationTestCase2;
+import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -10,14 +11,14 @@ import com.robotium.solo.Solo;
 import java.util.ArrayList;
 
 /**
- * Created by Hailey on 2016-03-31.
+ * US 04: Searching - also, see
  */
 public class TestUseCaseSearching extends ActivityInstrumentationTestCase2 {
 
     private Solo solo;
 
-    // TODO: possibly make sure the condition is true is setup
     private String username = "hailey123";  // must be a user with at least 1 chicken
+    private String searchText = "bob";
 
     public TestUseCaseSearching() {
         super(LoginActivity.class);
@@ -43,16 +44,14 @@ public class TestUseCaseSearching extends ActivityInstrumentationTestCase2 {
         solo.finishOpenedActivities();
     }
 
-    public void testKeywordSearch() {
-        // the back-end
-        // Is this already tested somewhere else?
-    }
-
-    public void testViewSearchResults() {
+    /**
+     * Gets the list of search results and displays them, covering US 04.01.01 & US 04.02.01.
+     */
+    public void testPerformSearch() {
         // the front-end
 
         // expected result:
-        ArrayList<Chicken> expectedResult = ChickBidsApplication.getSearchController().searchByKeyword("bob");
+        ArrayList<Chicken> expectedResult = ChickBidsApplication.getSearchController().searchByKeyword(searchText);
 
         // go to search screen
         solo.clickOnView(solo.getView(R.id.buttonSearch));
@@ -60,18 +59,26 @@ public class TestUseCaseSearching extends ActivityInstrumentationTestCase2 {
 
         // perform a search
         solo.clickOnView(solo.getView(R.id.search));
-        solo.enterText(0, "bob");
+        solo.enterText(0, searchText);
         solo.sendKey(Solo.ENTER);
         solo.assertCurrentActivity("Expected Search Activity", SearchesActivity.class);
 
         // check the result
-        ListAdapter adapter = ((ListView) solo.getView(R.id.searchResults)).getAdapter();
-        ArrayList<Chicken> actualResult = new ArrayList<>();
+        //   - check size
+        //   - check contents
+        ListView listView = (ListView) solo.getView(R.id.searchResults);
+        ListAdapter adapter = listView.getAdapter();
 
-        for(int i = 0; i < adapter.getCount(); i++) {
-            actualResult.add((Chicken) adapter.getItem(i));
+        int resultCount = adapter.getCount();
+        for(int i = 0; i < resultCount; i++) {
+            Chicken chicken = (Chicken) adapter.getItem(i);
+            String text = "";
+            text += chicken.getName() + " ";
+            text += chicken.getDescription() + " ";
+            text += chicken.getOwnerUsername() + " ";
+            assertTrue(text.toLowerCase().contains(searchText));
         }
 
-        assertEquals("Search Results Don't Match", expectedResult.size(), actualResult.size());
+        assertEquals("Search Results Don't Match", expectedResult.size(), resultCount);
     }
 }

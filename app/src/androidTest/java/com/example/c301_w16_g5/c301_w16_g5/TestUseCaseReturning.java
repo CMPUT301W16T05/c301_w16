@@ -9,13 +9,12 @@ import com.robotium.solo.Condition;
 import com.robotium.solo.Solo;
 
 /**
- * Created by Hailey on 2016-04-02.
+ * US 07: Returning
  */
 public class TestUseCaseReturning extends ActivityInstrumentationTestCase2 {
 
     private Solo solo;
 
-    // TODO: possibly make sure the condition is true in setup
     private String username = "hailey123";  // must be a user with at least 1 chicken borrowed
 
     public TestUseCaseReturning() {

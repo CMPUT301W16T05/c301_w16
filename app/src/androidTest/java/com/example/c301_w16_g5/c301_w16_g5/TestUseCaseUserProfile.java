@@ -9,13 +9,12 @@ import android.widget.TextView;
 import com.robotium.solo.Solo;
 
 /**
- * Created by Hailey on 2016-03-31.
+ * US 03: User Profile
  */
 public class TestUseCaseUserProfile extends ActivityInstrumentationTestCase2 {
 
     private Solo solo;
 
-    // TODO: possibly make sure the condition is true is setup
     // must be a user with at least 1 chicken owned and 1 chicken bid upon
     private String username = "hailey123";
 
@@ -96,8 +95,8 @@ public class TestUseCaseUserProfile extends ActivityInstrumentationTestCase2 {
         solo.clickOnView(solo.getView(R.id.buttonProfile));
         solo.assertCurrentActivity("Expected Display My Profile Activity", DisplayProfileActivity.class);
 
-        String newFirstName = "Hai";
-        String newLastName = "Owen";
+        String newFirstName = "HAILEY";
+        String newLastName = "MUSSELMAN";
         String newEmail = "email2@email.com";
         String newPhone = "780-432-5432";
         String newExperience = "I changed my name and still have chickens";

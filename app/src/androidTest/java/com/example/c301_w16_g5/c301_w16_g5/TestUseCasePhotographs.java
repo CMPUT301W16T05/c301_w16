@@ -6,15 +6,15 @@ import android.widget.AutoCompleteTextView;
 import com.robotium.solo.Solo;
 
 /**
- * Created by Robin on 2016-04-03.
+ * US 09: Photographs
  */
-public class TestUseCasePhotograph extends ActivityInstrumentationTestCase2 {
+public class TestUseCasePhotographs extends ActivityInstrumentationTestCase2 {
 
     private Solo solo;
 
     private String username = "RobinV";
 
-    public TestUseCasePhotograph() {
+    public TestUseCasePhotographs() {
         super(LoginActivity.class);
     }
 

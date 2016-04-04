@@ -8,7 +8,7 @@ import android.widget.ListView;
 import com.robotium.solo.Solo;
 
 /**
- * Created by Satyen on 2016-04-03.
+ * US 05: Bidding
  */
 public class TestUseCaseBidding extends ActivityInstrumentationTestCase2 {
 

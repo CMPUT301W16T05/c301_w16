@@ -10,13 +10,12 @@ import com.robotium.solo.Condition;
 import com.robotium.solo.Solo;
 
 /**
- * Created by Hailey on 2016-04-02.
+ * US 06: Borrowing
  */
 public class TestUseCaseBorrowing extends ActivityInstrumentationTestCase2{
 
     private Solo solo;
 
-    // TODO: possibly make sure the condition is true is setup
     // for the best test, this user should have at least one chicken being
     // borrowed from them and be borrowing at least 1 chicken from someone
     // else
