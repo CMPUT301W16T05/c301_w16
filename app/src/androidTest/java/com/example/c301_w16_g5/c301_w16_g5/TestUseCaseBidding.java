@@ -46,12 +46,7 @@ public class TestUseCaseBidding extends ActivityInstrumentationTestCase2 {
     }
 
     public void testPlaceBid() {
-        solo.clickOnView(solo.getView(R.id.buttonSearch));
-        solo.assertCurrentActivity("Expected Search Activity", SearchesActivity.class);
-        solo.clickOnView(solo.getView(R.id.search));
-        solo.enterText(0, "Bob");
-        solo.sendKey(Solo.ENTER);
-        //TODO: select chichken and place bid
+        helperPlaceBidAsSecondUser();
     }
 
     public void testSeeMyBidChicken() {
@@ -147,10 +142,10 @@ public class TestUseCaseBidding extends ActivityInstrumentationTestCase2 {
         solo.clickOnView(solo.getView(R.id.search));
         solo.enterText(0, username);
         solo.sendKey(Solo.ENTER);
-        try { solo.wait(10); } catch (Exception e) {}
-        solo.clickInList(0,0);
-        ArrayList<View> a = solo.getCurrentViews();
-        try { solo.wait(10); } catch (Exception e) {}
+
+        //place bid on chicken
+        //FIXME: cant click on search results list for some reason
+        solo.clickOnView(solo.getView(R.id.searchResults));
         solo.assertCurrentActivity("Expected Chicken Profile Activity", OthersChickenDisplayProfileActivity.class);
         solo.enterText((EditText) solo.getView(R.id.bidEditText), "500");
         solo.clickOnView(solo.getView(R.id.buttonBid));
