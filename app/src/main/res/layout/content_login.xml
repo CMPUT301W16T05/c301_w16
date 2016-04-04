@@ -34,15 +34,13 @@
         android:orientation="vertical"
         android:layout_centerVertical="true"
         android:gravity="center">
-        <!--android:layout_alignParentEnd="true"-->
-        <!--android:layout_alignParentStart="true"-->
 
         <!--android:textAppearance="?android:attr/textAppearanceLarge"-->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/appTitle"
-            android:text="CHICKBIDS"
+            android:text="@string/app_display_name"
             android:textSize='45dp'
             android:padding="16dp"
             android:layout_marginBottom="30dp"
@@ -64,25 +62,6 @@
                 android:textColor="@color/colorPrimaryDark" />
 
         </android.support.design.widget.TextInputLayout>
-
-        <!--<android.support.design.widget.TextInputLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content">-->
-
-            <!--<EditText-->
-                <!--android:id="@+id/password"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:hint="@string/prompt_password"-->
-                <!--android:imeActionId="@+id/login"-->
-                <!--android:imeActionLabel="@string/action_sign_in_short"-->
-                <!--android:imeOptions="actionUnspecified"-->
-                <!--android:inputType="textPassword"-->
-                <!--android:maxLines="1"-->
-                <!--android:singleLine="true"-->
-                <!--android:textColor="@color/colorPrimaryDark" />-->
-
-        <!--</android.support.design.widget.TextInputLayout>-->
 
         <Button
             android:id="@+id/signInButton"

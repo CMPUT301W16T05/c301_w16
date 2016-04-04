@@ -130,7 +130,7 @@
             android:id="@+id/buttonSendMessage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Send Message"
+            android:text="@string/button_send"
             android:textSize="16.5dp"
             android:background="@color/colorAccent"
             android:layout_margin="16dp"

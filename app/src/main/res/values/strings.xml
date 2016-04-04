@@ -3,6 +3,7 @@
     <string name="title_activity_login">Login</string>
 
     <!-- Strings related to login -->
+    <string name="app_display_name">CHICKBIDS</string>
     <string name="prompt_username">Enter Username</string>
     <!--<string name="prompt_password">Password (optional)</string>-->
     <string name="action_sign_in">Sign in or register</string>
@@ -12,7 +13,7 @@
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>
-    <string name="message_hint">type message</string>
+    <string name="message_hint">Type message</string>
 
     <string name="username_hint">username</string>
     <string name="first_name_hint">first</string>
@@ -65,20 +66,27 @@
     <string name="item_profile_borrowed">Borrowed</string>
     <string name="item_profile_bids_placed">My Bidded</string>
 
-    <string name="hello_world">Hello world!</string>
     <string name="title_activity_chicken_profile">Chicken Profile</string>
-    <string name="buttonSave">SAVE</string>
+    <string name="button_save">Save</string>
+    <string name="button_delete_image">Delete Image</string>
     <string name="title_activity_searches">Chicken Search</string>
     <string name="pending_notifications">You have some pending notifications</string>
+    <string name="button_send">Send Message</string>
     <string name="title_activity_edit_chicken">Edit Chicken</string>
-    <string name="title_activity_others_chicken_display_profile">
-        OthersChickenDisplayProfileActivity
-    </string>
 
     <string name="chicken_name_hint">Chicken\'s name</string>
     <string name="chicken_description_hint">Description of chicken</string>
+    <string name="button_edit">Edit</string>
+    <string name="button_view_bids">View Bids</string>
+    <string name="button_view_image">View Photo</string>
+    <string name="button_return">Return</string>
+    <string name="button_bid">Bid</string>
+    <string name="owner_label">Owned by:</string>
+    <string name="button_view_location">View Location</string>
 
     <string name="title_activity_location">Location</string>
     <string name="location_pin_title">Pick Up Here!</string>
+    <string name="to_label">To:</string>
+    <string name="message_label">Message:</string>
 
 </resources>

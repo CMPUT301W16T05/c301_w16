@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:layout_margin="16dp"
-            android:text="To:"
+            android:text="@string/to_label"
             android:textStyle="bold"
             android:textColor="@color/colorTextSecondary"/>
 
@@ -57,7 +57,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Message:"
+            android:text="@string/message_label"
             android:textStyle="bold"
             android:layout_marginTop="16dp"
             android:layout_marginRight="16dp"
@@ -85,7 +85,7 @@
                 android:id="@+id/buttonSend"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="SEND"
+                android:text="@string/button_send"
                 android:textSize="16.5dp"
                 android:background="@color/colorAccent"
                 android:textStyle="bold"

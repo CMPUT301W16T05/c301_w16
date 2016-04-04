@@ -1,7 +1,9 @@
 package com.example.c301_w16_g5.c301_w16_g5;
 
+import com.robotium.solo.Condition;
 import com.robotium.solo.Solo;
 
+import android.support.design.widget.TabLayout;
 import android.test.ActivityInstrumentationTestCase2;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
@@ -47,12 +49,17 @@ public class TestUseCaseThings extends ActivityInstrumentationTestCase2 {
         solo.assertCurrentActivity("Expected Item Views Activity", ChickenViewsActivity.class);
 
         solo.clickOnText(solo.getString(R.string.item_profile_owned));
+        solo.waitForCondition(new Condition() {
+            @Override
+            public boolean isSatisfied() {
+                return ((TabLayout) solo.getView(R.id.tabs)).getTabAt(1).isSelected();
+            }
+        }, 5);
         int listSizeBefore = ((ListView) solo.getView(R.id.chickenList)).getCount();
 
         solo.clickOnView(solo.getView(R.id.add_chicken_fab));
         solo.assertCurrentActivity("Expected Add Chicken Activity", AddChickenActivity.class);
 
-        int countChickensBefore = ChickBidsApplication.getUserController().getCurrentUser().getMyChickens().size();
         Chicken testChicken = new Chicken("Bobchicken", "A happy test chicken", username);
 
         // input a chicken
@@ -62,6 +69,13 @@ public class TestUseCaseThings extends ActivityInstrumentationTestCase2 {
 
         /// compare old and new list sizes
         solo.waitForActivity(ChickenViewsActivity.class);
+        solo.clickOnText(solo.getString(R.string.item_profile_owned));
+        solo.waitForCondition(new Condition() {
+            @Override
+            public boolean isSatisfied() {
+                return ((TabLayout) solo.getView(R.id.tabs)).getTabAt(1).isSelected();
+            }
+        }, 5);
         assertEquals(listSizeBefore + 1, ((ListView) solo.getView(R.id.chickenList)).getCount());
     }
 
@@ -138,9 +152,15 @@ public class TestUseCaseThings extends ActivityInstrumentationTestCase2 {
 
         // select a chicken of yours
         solo.clickOnText(solo.getString(R.string.item_profile_owned));
+        solo.waitForCondition(new Condition() {
+            @Override
+            public boolean isSatisfied() {
+                return ((TabLayout) solo.getView(R.id.tabs)).getTabAt(1).isSelected();
+            }
+        }, 5);
         int listSizeBefore = ((ListView) solo.getView(R.id.chickenList)).getCount();
         solo.clickLongInList(0);
-        solo.clickOnText("Delete");
+        solo.clickOnText(solo.getString(R.string.contextmenu_delete));
 
         // compare old and new list sizes
         solo.waitForDialogToClose();
