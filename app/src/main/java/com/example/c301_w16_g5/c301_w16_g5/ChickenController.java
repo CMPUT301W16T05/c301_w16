@@ -367,6 +367,10 @@ public class ChickenController {
 
         User user = searchController.getUserFromDatabase(bid.getBidderUsername());
         removeChickenForBidFromUser(user, bid);
+
+        chicken.deleteBidForId(bid.getId());
+        if (chicken.getBids().size() == 0)
+            chicken.setChickenStatus(Chicken.ChickenStatus.AVAILABLE);
     }
 
     private void removeChickenForBidFromUser(User user, Bid bid) {
