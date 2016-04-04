@@ -7,7 +7,7 @@ import android.widget.ListView;
 import com.robotium.solo.Solo;
 
 /**
- * Created by Satyen on 2016-04-03.
+ * US 10: Location
  */
 public class TestUseCaseLocation extends ActivityInstrumentationTestCase2 {
 

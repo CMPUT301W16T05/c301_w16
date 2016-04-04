@@ -12,7 +12,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 /**
- * Created by Hailey on 2016-03-31.
+ * US 01: Things
  */
 public class TestUseCaseThings extends ActivityInstrumentationTestCase2 {
 

@@ -7,13 +7,12 @@ import android.widget.TextView;
 import com.robotium.solo.Solo;
 
 /**
- * Created by Hailey on 2016-03-31.
+ * US 02: Status
  */
 public class TestUseCaseStatus extends ActivityInstrumentationTestCase2 {
 
     private Solo solo;
 
-    // TODO: possibly make sure the condition is true is setup
     private String username = "hailey123";  // must be a user with at least 1 chicken
 
     public TestUseCaseStatus() {

@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Satyen on 2016-04-03.
+ * US 05: Bidding
  */
 public class TestUseCaseBidding extends ActivityInstrumentationTestCase2 {
 

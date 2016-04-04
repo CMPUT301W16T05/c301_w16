@@ -12,7 +12,7 @@ import com.robotium.solo.Solo;
 import java.util.Date;
 
 /**
- * Created by Hailey on 2016-04-04.
+ * US 11: Mailbox
  */
 public class TestUseCaseMailbox extends ActivityInstrumentationTestCase2 {
 
@@ -20,7 +20,6 @@ public class TestUseCaseMailbox extends ActivityInstrumentationTestCase2 {
     private String senderUsername = "hailey123";
     private String receiverUsername = "jsmith";
     private String message = "test message";
-    private Date sentDate;
     ListView listView;
 
     public TestUseCaseMailbox() {

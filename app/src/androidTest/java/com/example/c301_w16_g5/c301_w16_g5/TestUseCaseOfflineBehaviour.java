@@ -15,7 +15,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 
 /**
- * Created by Hailey on 2016-04-03.
+ * US 08: Offline Behaviour
  */
 public class TestUseCaseOfflineBehaviour extends ActivityInstrumentationTestCase2 {
 
