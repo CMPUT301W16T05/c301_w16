@@ -464,9 +464,12 @@ public class ChickenController {
     public void addNotificationForBid(Bid bid) {
         SearchController searchController = ChickBidsApplication.getSearchController();
         Chicken chicken = searchController.getChickenFromDatabase(bid.getChickenId());
-        searchController.getUserFromDatabase(chicken.getOwnerUsername());
+        User user = searchController.getUserFromDatabase(chicken.getOwnerUsername());
         Notification notification = new Notification(Notification.notificationMessageBuilderForBid(bid));
-        searchController.addNotificationToDatabase(notification);
+        notification = searchController.addNotificationToDatabase(notification);
+
+        user.addNotification(notification);
+        searchController.updateUserInDatabase(user);
     }
 
     /**
