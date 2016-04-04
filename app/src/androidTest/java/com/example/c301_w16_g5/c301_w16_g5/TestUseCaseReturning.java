@@ -8,6 +8,8 @@ import android.widget.ListView;
 import com.robotium.solo.Condition;
 import com.robotium.solo.Solo;
 
+import java.util.ArrayList;
+
 /**
  * US 07: Returning
  */
@@ -57,6 +59,7 @@ public class TestUseCaseReturning extends ActivityInstrumentationTestCase2 {
         }, 5);
 
         int numBorrowedBefore = ((ListView) solo.getView(R.id.chickenList)).getCount();
+        Chicken chickenBefore = (Chicken) ((ListView) solo.getView(R.id.chickenList)).getAdapter().getItem(0);
 
         // return the chicken
         solo.clickInList(0);
@@ -68,5 +71,9 @@ public class TestUseCaseReturning extends ActivityInstrumentationTestCase2 {
         // check that the  chicken is now available
         assertEquals(Chicken.ChickenStatus.AVAILABLE, returningChicken.getChickenStatus());
         assertEquals(numBorrowedBefore - 1, ((ListView) solo.getView(R.id.chickenList)).getCount());
+        for (int i = 0; i < numBorrowedBefore - 1; i++) {
+            Chicken someChicken = (Chicken) ((ListView) solo.getView(R.id.chickenList)).getAdapter().getItem(i);
+            assertTrue(!chickenBefore.equals(someChicken));
+        }
     }
 }
