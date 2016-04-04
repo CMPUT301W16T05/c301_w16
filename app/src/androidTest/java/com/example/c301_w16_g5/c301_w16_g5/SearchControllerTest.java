@@ -47,21 +47,6 @@ public class SearchControllerTest extends ActivityInstrumentationTestCase2 {
         assertFalse(chicken.getId() == null);
     }
 
-    public void testGetLettersForUser() {
-        SearchController sc = new SearchController();
-        User user = sc.getUserFromDatabase("satyen");
-
-        assertFalse(user.getId() == null);
-
-        ArrayList<Letter> letters = sc.getLettersForUser(user);
-
-        //assertTrue(letters.size() == 1);
-        assertEquals(letters.get(0).getMessage(), "Hey");
-        assertEquals(letters.get(0).getToUsername(), "satyen");
-        assertEquals(letters.get(0).getFromUsername(), "jsmith");
-
-    }
-
     public void testUpdateUserInDatabase() {
         SearchController sc = new SearchController();
         User user = sc.getUserFromDatabase("hailey123");
@@ -69,23 +54,6 @@ public class SearchControllerTest extends ActivityInstrumentationTestCase2 {
         assertTrue(user.getLetters() != null);
 
         sc.updateUserInDatabase(user);
-    }
-
-    public void testGetUserFromDatabase2() {
-        SearchController sc = new SearchController();
-        Letter letter = new Letter("Hello", "satyen", "jsmith");
-        User user = sc.getUserFromDatabase("satyen");
-
-        assertFalse(user.getId() == null);
-
-        letter = sc.addLetterToDatabase(letter);
-        assertFalse(letter.getId() == null);
-
-        user.addLetter(letter);
-        sc.updateUserInDatabase(user);
-
-        User user2 = sc.getUserFromDatabase("satyen");
-        assertEquals(user2.getLetters().get(0).getMessage(), "Hello");
     }
 
     public void testGetUserOffline() {
