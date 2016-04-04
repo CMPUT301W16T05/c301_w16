@@ -3,26 +3,20 @@ package com.example.c301_w16_g5.c301_w16_g5;
 import android.test.ActivityInstrumentationTestCase2;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.robotium.solo.Solo;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by Satyen on 2016-04-03.
  */
-public class TestUseCaseBidding extends ActivityInstrumentationTestCase2 {
+public class TestUseCaseLocation extends ActivityInstrumentationTestCase2 {
 
     private Solo solo;
     private String username = "hailey123";
     private String username2 = "satyen";
 
-    public TestUseCaseBidding() {
+    public TestUseCaseLocation() {
         super(LoginActivity.class);
     }
 
@@ -46,26 +40,7 @@ public class TestUseCaseBidding extends ActivityInstrumentationTestCase2 {
         solo.finishOpenedActivities();
     }
 
-    public void testPlaceBid() {
-        helperPlaceBidAsSecondUser();
-    }
-
-    public void testViewAllBidsOnMyChicken() {
-        solo.clickOnView(solo.getView(R.id.buttonChickens));
-        solo.assertCurrentActivity("Expected Item Views Activity", ChickenViewsActivity.class);
-        String tab = solo.getString(R.string.item_profile_owned_with_bids);
-        solo.clickOnText(tab);
-
-        solo.clickInList(0);
-        solo.assertCurrentActivity("Expected My Chicken Display Profile Activity", MyChickenDisplayProfileActivity.class);
-
-        solo.clickOnView(solo.getView(R.id.buttonViewBids));
-        solo.assertCurrentActivity("Expected View Bids Activity", BidsActivity.class);
-
-        assertTrue(solo.getView(R.id.bidsListView).getVisibility() == View.VISIBLE);
-    }
-
-    public void testAcceptBidOnChicken() {
+    public void testSpecifyLocation() {
         helperPlaceBidAsSecondUser();
 
         //accept bid
@@ -76,19 +51,28 @@ public class TestUseCaseBidding extends ActivityInstrumentationTestCase2 {
         solo.clickInList(0);
         solo.clickOnView(solo.getView(R.id.buttonViewBids));
         solo.clickOnView(solo.getView(R.id.acceptBidImageView));
+
+        solo.assertCurrentActivity("Expected Locations Activity", LocationActivity.class);
     }
 
-    public void testDeclineBidOnChicken() {
-        helperPlaceBidAsSecondUser();
+    public void testViewLocation() {
+        //login as second user
+        solo.clickOnView(solo.getView(R.id.buttonLogout));
+        solo.assertCurrentActivity("Expected Login Activity", LoginActivity.class);
+        solo.clearEditText((AutoCompleteTextView) solo.getView(R.id.usernameEntered));
+        solo.enterText((AutoCompleteTextView) solo.getView(R.id.usernameEntered), username2);
+        solo.clickOnView(solo.getView(R.id.signInButton));
+        solo.assertCurrentActivity("Expected Home Activity", HomeActivity.class);
 
-        //decline bid
+        //go to borrowed item
         solo.clickOnView(solo.getView(R.id.buttonChickens));
         solo.assertCurrentActivity("Expected Item Views Activity", ChickenViewsActivity.class);
-        String tab = solo.getString(R.string.item_profile_owned_with_bids);
+        String tab = solo.getString(R.string.item_profile_borrowed);
         solo.clickOnText(tab);
         solo.clickInList(0);
-        solo.clickOnView(solo.getView(R.id.buttonViewBids));
-        solo.clickOnView(solo.getView(R.id.declineBidImageView));
+        solo.clickOnView(solo.getView(R.id.buttonViewLocation));
+
+        solo.assertCurrentActivity("Expected Locations Activity", LocationActivity.class);
     }
 
     private void helperPlaceBidAsSecondUser() {
