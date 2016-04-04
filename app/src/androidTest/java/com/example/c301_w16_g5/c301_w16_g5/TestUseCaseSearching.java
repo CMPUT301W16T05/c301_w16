@@ -60,15 +60,13 @@ public class TestUseCaseSearching extends ActivityInstrumentationTestCase2 {
         solo.clickOnView(solo.getView(R.id.buttonSearch));
         solo.assertCurrentActivity("Expected Search Activity", SearchesActivity.class);
 
-        // TODO: how to click on the search button?
+        // perform a search
         solo.clickOnView(solo.getView(R.id.search));
-
-        // TODO: how to input the text?
         solo.enterText(0, "bob");
-
         solo.sendKey(Solo.ENTER);
         solo.assertCurrentActivity("Expected Search Activity", SearchesActivity.class);
 
+        // check the result
         ListAdapter adapter = ((ListView) solo.getView(R.id.searchResults)).getAdapter();
         ArrayList<Chicken> actualResult = new ArrayList<>();
 
@@ -76,7 +74,6 @@ public class TestUseCaseSearching extends ActivityInstrumentationTestCase2 {
             actualResult.add((Chicken) adapter.getItem(i));
         }
 
-        // TODO: compare expected result and list displayed
         assertEquals("Search Results Don't Match", expectedResult.size(), actualResult.size());
     }
 }
