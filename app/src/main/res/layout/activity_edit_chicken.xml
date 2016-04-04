@@ -83,6 +83,7 @@
                 android:background="@color/colorAccent"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
+                android:layout_marginBottom="16dp"
                 android:textStyle="bold"
                 android:typeface="normal"/>
 
@@ -93,7 +94,8 @@
                 android:text="Delete Image"
                 android:textSize="16.5dp"
                 android:background="@color/colorAccent"
-                android:layout_margin="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
                 android:textStyle="bold"
                 android:typeface="normal"/>
 
